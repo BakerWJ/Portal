@@ -44,18 +44,18 @@ class SettingsViewController: UIViewController {
                 houseButton.isSelected = results[0].houseNotifications
                 eventButton.isSelected = results[0].eventNotifications
                 switch results[0].daysBefore{
-                case 1:
-                    oneClick(1)
-                case 2:
-                    twoClick(1)
-                case 3:
-                    threeClick(1)
-                case 4:
-                    fourClick(1)
-                case 5:
-                    fiveClick(1)
-                default:
-                    oneClick(1)
+                    case 1:
+                        oneClick(1)
+                    case 2:
+                        twoClick(1)
+                    case 3:
+                        threeClick(1)
+                    case 4:
+                        fourClick(1)
+                    case 5:
+                        fiveClick(1)
+                    default:
+                        oneClick(1)
                 }
                 /*switch results[0].notificationTime {
                 case 1:

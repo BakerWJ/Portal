@@ -42,7 +42,6 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate
     var keyboardHeight = 0.0;
     var textFieldCoordinateY = 0.0
     
-    
     //Some code is in viewWillAppear to avoid overcrowding viewDidLoad ()
     override func viewWillAppear (_ animated: Bool)
     {
@@ -69,7 +68,6 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate
         view.backgroundColor = UIColor(red: 243.0/255, green: 243.0/255, blue: 243.0/255, alpha: 1.0);
         //setup the outerstackview and its constraints
         outerViewSetup();
-        //sets up the houseinfobutton
         //as the name suggests, connects to the firebase database and gets the information needed for the day
         updateSchedule()
     }
@@ -96,7 +94,7 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate
         today.translatesAutoresizingMaskIntoConstraints = false;
         today.leadingAnchor.constraint (equalTo: outerView.leadingAnchor).isActive = true;
         today.trailingAnchor.constraint (equalTo: outerView.trailingAnchor).isActive = true;
-        today.topAnchor.constraint(equalTo: outerView.topAnchor, constant: 70).isActive = true;
+        today.topAnchor.constraint(equalTo: outerView.topAnchor, constant: 60).isActive = true;
         
         //sets the frame and alignment for the label at the top of the page
         formatter.dateFormat = "MMMM";
@@ -110,7 +108,7 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate
         label.translatesAutoresizingMaskIntoConstraints = false;
         label.leadingAnchor.constraint (equalTo: outerView.leadingAnchor).isActive = true;
         label.trailingAnchor.constraint (equalTo: outerView.trailingAnchor).isActive = true;
-        label.topAnchor.constraint(equalTo: outerView.topAnchor, constant: 105).isActive = true;
+        label.topAnchor.constraint(equalTo: outerView.topAnchor, constant: 95).isActive = true;
     }
     
     //This method gives the timer an event handler (code to execute every time interval) and starts the timer.
@@ -249,6 +247,49 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate
                                 //if the schedule has the same value as the value of the wanted schedule
                                 if each.value == Int32(value)
                                 {
+                                    //The things/decorations on top of the actual schedule starts
+                                    //label that says schedule
+                                    let labelSchedule = UILabel ()
+                                    labelSchedule.textAlignment = .center;
+                                    labelSchedule.font = UIFont (name: "SegoeUI-Bold", size: 16);
+                                    labelSchedule.text = "Schedule";
+                                    labelSchedule.layer.opacity = 0;
+                                    self.outerView.addSubview (labelSchedule);
+                                    labelSchedule.translatesAutoresizingMaskIntoConstraints = false;
+                                    labelSchedule.leadingAnchor.constraint(equalTo: self.outerView.leadingAnchor).isActive = true;
+                                    labelSchedule.trailingAnchor.constraint(equalTo: self.outerView.trailingAnchor).isActive = true;
+                                    labelSchedule.heightAnchor.constraint(equalToConstant: 20).isActive = true;
+                                    labelSchedule.topAnchor.constraint (equalTo: self.label.topAnchor, constant: 50).isActive = true;
+                                    //make an image for the title on top
+                                    let image = UIImageView (image: UIImage (named: "Rectangle 1028"));
+                                    let biggerview = UIView();
+                                    biggerview.layer.opacity = 0;
+                                    self.outerView.addSubview (biggerview);
+                                    //set constraint for the outerview
+                                    biggerview.translatesAutoresizingMaskIntoConstraints = false;
+                                    biggerview.trailingAnchor.constraint (equalTo: self.outerView.trailingAnchor).isActive = true;
+                                    biggerview.leadingAnchor.constraint (equalTo: self.outerView.leadingAnchor).isActive = true;
+                                    biggerview.heightAnchor.constraint (equalToConstant: 43).isActive = true;
+                                    biggerview.topAnchor.constraint (equalTo: labelSchedule.topAnchor, constant: 26).isActive = true;
+                                    biggerview.addSubview (image);
+                                    //set constraints for the image
+                                    image.translatesAutoresizingMaskIntoConstraints = false;
+                                    image.leadingAnchor.constraint (equalTo: biggerview.leadingAnchor).isActive = true;
+                                    image.trailingAnchor.constraint (equalTo: biggerview.trailingAnchor).isActive = true;
+                                    image.topAnchor.constraint (equalTo: biggerview.topAnchor).isActive = true;
+                                    image.bottomAnchor.constraint (equalTo: biggerview.bottomAnchor).isActive = true;
+                                    //set up the label for what kind of day today is
+                                    let dayLabel = UILabel();
+                                    dayLabel.textAlignment = .center;
+                                    dayLabel.font = UIFont(name: "SegoeUI", size: 16);
+                                    dayLabel.textColor = .white;
+                                    dayLabel.text = "It's a " + each.kind;
+                                    biggerview.addSubview (dayLabel);
+                                    dayLabel.translatesAutoresizingMaskIntoConstraints = false;
+                                    dayLabel.centerXAnchor.constraint(equalTo: biggerview.centerXAnchor).isActive = true;
+                                    dayLabel.centerYAnchor.constraint(equalTo: biggerview.centerYAnchor).isActive = true;
+                                    //The things/decorations on top of the actual schedule ends
+                                    
                                     //then create a scheduleView with the schedule
                                     let currentSchedule = ScheduleView(schedule: each, ADay: ADay, flipped: flipped, delegate: self);
                                     //The tag is set to 13 so that you can access this object from anywhere else in the program
@@ -261,8 +302,8 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate
                                     
                                     //sets layoutConstraints for tempView
                                     self.tempView.translatesAutoresizingMaskIntoConstraints = false;
+                                    self.tempView.topAnchor.constraint (equalTo: biggerview.bottomAnchor).isActive = true;
                                     self.tempView.centerXAnchor.constraint(equalTo: self.outerView.centerXAnchor).isActive = true;
-                                    self.tempView.centerYAnchor.constraint(equalTo: self.outerView.centerYAnchor, constant: 40).isActive = true;
                                     self.tempView.leadingAnchor.constraint (equalTo: self.outerView.leadingAnchor).isActive = true;
                                     self.tempView.trailingAnchor.constraint (equalTo: self.outerView.trailingAnchor).isActive = true;
                                     
@@ -283,49 +324,11 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate
                                     currentSchedule.spacing = 6;
                                     currentSchedule.backgroundColor = .clear
                                     
-                                    //make an image for the title on top
-                                    let image = UIImageView (image: #imageLiteral(resourceName: "Rectangle 1028"));
-                                    let biggerview = UIView();
-                                    self.outerView.addSubview (biggerview);
-                                    //set constraint for the outerview
-                                    biggerview.translatesAutoresizingMaskIntoConstraints = false;
-                                    biggerview.trailingAnchor.constraint (equalTo: self.outerView.trailingAnchor).isActive = true;
-                                    biggerview.leadingAnchor.constraint (equalTo: self.outerView.leadingAnchor).isActive = true;
-                                    biggerview.heightAnchor.constraint (equalToConstant: 43).isActive = true;
-                                    biggerview.bottomAnchor.constraint (equalTo: self.tempView.topAnchor).isActive = true;
-                                    biggerview.addSubview (image);
-                                    //set constraints for the image
-                                    image.translatesAutoresizingMaskIntoConstraints = false;
-                                    image.leadingAnchor.constraint (equalTo: biggerview.leadingAnchor).isActive = true;
-                                    image.trailingAnchor.constraint (equalTo: biggerview.trailingAnchor).isActive = true;
-                                    image.topAnchor.constraint (equalTo: biggerview.topAnchor).isActive = true;
-                                    image.bottomAnchor.constraint (equalTo: biggerview.bottomAnchor).isActive = true;
-                                    //set up the label for what kind of day today is
-                                    let dayLabel = UILabel();
-                                    dayLabel.textAlignment = .center;
-                                    dayLabel.font = UIFont(name: "SegoeUI", size: 16);
-                                    dayLabel.textColor = .white;
-                                    dayLabel.text = "It's a " + each.kind;
-                                    biggerview.addSubview (dayLabel);
-                                    dayLabel.translatesAutoresizingMaskIntoConstraints = false;
-                                    dayLabel.centerXAnchor.constraint(equalTo: biggerview.centerXAnchor).isActive = true;
-                                    dayLabel.centerYAnchor.constraint(equalTo: biggerview.centerYAnchor).isActive = true;
-                                    //label that says schedule
-                                    let labelSchedule = UILabel ()
-                                    labelSchedule.textAlignment = .center;
-                                    labelSchedule.font = UIFont (name: "SegoeUI-Bold", size: 16);
-                                    labelSchedule.text = "Schedule";
-                                    biggerview.addSubview (labelSchedule);
-                                    labelSchedule.translatesAutoresizingMaskIntoConstraints = false;
-                                    labelSchedule.leadingAnchor.constraint(equalTo: self.outerView.leadingAnchor).isActive = true;
-                                    labelSchedule.trailingAnchor.constraint(equalTo: self.outerView.trailingAnchor).isActive = true;
-                                    labelSchedule.heightAnchor.constraint(equalToConstant: 20).isActive = true;
-                                    labelSchedule.bottomAnchor.constraint(equalTo: biggerview.topAnchor, constant: -10).isActive = true;
-                                    
-                                    
-                                    //makes the schedule fade in
+                                    //makes the schedule and everything fade in
                                     UIView.animate(withDuration: 1.0, delay: 0, options: .curveEaseInOut, animations: {
                                         self.tempView.layer.opacity = 1;
+                                        biggerview.layer.opacity = 1;
+                                        labelSchedule.layer.opacity = 1;
                                     }, completion: nil)
                                     
                                     //breaks out of the loop

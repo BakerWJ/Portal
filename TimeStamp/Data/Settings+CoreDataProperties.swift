@@ -2,7 +2,7 @@
 //  Settings+CoreDataProperties.swift
 //  TimeStamp
 //
-//  Created by Baker Jackson on 2019-05-06.
+//  Created by Jacky He on 2019-05-06.
 //  Copyright © 2019 Baker Jackson. All rights reserved.
 //
 //

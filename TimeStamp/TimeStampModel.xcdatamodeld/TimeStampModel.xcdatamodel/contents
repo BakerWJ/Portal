@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="18E226" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="FlipDay" representedClassName="FlipDay" syncable="YES" codeGenerationType="class">
-        <attribute name="expirationDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="normalToFlip" optional="YES" attributeType="Transformable" syncable="YES"/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18A391" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="FlipDay" representedClassName="FlipDay" syncable="YES">
+        <attribute name="expirationDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="normalToFlip" attributeType="Transformable" customClassName="[Int]" syncable="YES"/>
     </entity>
-    <entity name="Period" representedClassName="Period" syncable="YES" codeGenerationType="class">
-        <attribute name="additionalNotes" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="correspond" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="endTime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="periodName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="startTime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+    <entity name="Period" representedClassName="Period" syncable="YES">
+        <attribute name="additionalNotes" attributeType="String" syncable="YES"/>
+        <attribute name="correspond" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="endTime" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="periodName" attributeType="String" syncable="YES"/>
+        <attribute name="startTime" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="schedule" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Schedule" syncable="YES"/>
     </entity>
-    <entity name="Schedule" representedClassName="Schedule" syncable="YES" codeGenerationType="class">
-        <attribute name="expirationDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="kind" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="value" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="periods" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Period" syncable="YES"/>
+    <entity name="Schedule" representedClassName="Schedule" syncable="YES">
+        <attribute name="expirationDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="kind" attributeType="String" syncable="YES"/>
+        <attribute name="value" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="periods" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Period" syncable="YES"/>
     </entity>
-    <entity name="Settings" representedClassName="Settings" syncable="YES" codeGenerationType="class">
-        <attribute name="daysBefore" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="eventNotifications" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="generalNotifications" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="houseNotifications" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="notificationTime" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+    <entity name="Settings" representedClassName="Settings" syncable="YES">
+        <attribute name="daysBefore" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="eventNotifications" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="generalNotifications" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="houseNotifications" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="notificationTime" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
-    <entity name="Timetable" representedClassName="Timetable" syncable="YES" codeGenerationType="class">
-        <attribute name="clases" optional="YES" attributeType="Transformable" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    <entity name="Timetable" representedClassName="Timetable" syncable="YES">
+        <attribute name="classes" attributeType="Transformable" customClassName="[String]" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
         <element name="FlipDay" positionX="-54" positionY="-9" width="128" height="75"/>

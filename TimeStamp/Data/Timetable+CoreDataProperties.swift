@@ -2,7 +2,7 @@
 //  Timetable+CoreDataProperties.swift
 //  TimeStamp
 //
-//  Created by Baker Jackson on 2019-05-06.
+//  Created by Jacky He on 2019-05-06.
 //  Copyright © 2019 Baker Jackson. All rights reserved.
 //
 //
@@ -17,7 +17,7 @@ extension Timetable {
         return NSFetchRequest<Timetable>(entityName: "Timetable")
     }
 
-    @NSManaged public var clases: NSObject
+    @NSManaged public var classes: [String]
     @NSManaged public var name: String
 
 }
