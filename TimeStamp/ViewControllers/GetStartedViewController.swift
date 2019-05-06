@@ -50,7 +50,7 @@ class GetStartedViewController: UIViewController {
         let fetchRequest = NSFetchRequest <NSFetchRequestResult> (entityName: "Settings");
         do {
             if let results = try CoreDataStack.managedObjectContext.fetch(fetchRequest) as? [Settings] {
-                results[0].eventNotifications = eventNotif.isSelected
+                results[0].houseNotifications = houseNotif.isSelected
             }
         }
         catch {

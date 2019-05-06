@@ -730,7 +730,7 @@
                                 <rect key="frame" x="47" y="646" width="280" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="Rectangle 1034"/>
-                                <state key="selected" image="Rectangle 1035"/>
+                                <state key="selected" image="Rectangle 1034"/>
                                 <state key="highlighted" image="Ellipse 37-1"/>
                                 <connections>
                                     <action selector="morningClick:" destination="oFc-jc-KNZ" eventType="touchUpInside" id="fhV-Tz-4vI"/>
@@ -1048,6 +1048,6 @@
         <image name="Toggle - On" width="68" height="39"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="9cE-TZ-mMA"/>
+        <segue reference="mak-GG-wgz"/>
     </inferredMetricsTieBreakers>
 </document>

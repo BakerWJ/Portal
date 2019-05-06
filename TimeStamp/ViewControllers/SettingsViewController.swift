@@ -57,14 +57,14 @@ class SettingsViewController: UIViewController {
                     default:
                         oneClick(1)
                 }
-                /*switch results[0].notificationTime {
+                switch results[0].notificationTime {
                 case 1:
                     morningClick(1)
                 case 2:
                     afternoonClick(1)
                 default:
-                    eventClick(1)
-                }*/
+                    eveningClick(1)
+                }
                 settings = results[0];
             }
         }
@@ -76,62 +76,73 @@ class SettingsViewController: UIViewController {
     
     @IBAction func generalClick(_ sender: Any) {
         generalButton.isSelected = !generalButton.isSelected
+        settings?.generalNotifications = generalButton.isSelected
     }
     
     @IBAction func houseClick(_ sender: Any) {
         houseButton.isSelected = !houseButton.isSelected
+        settings?.houseNotifications = houseButton.isSelected
     }
     
     @IBAction func eventClick(_ sender: Any) {
         eventButton.isSelected = !eventButton.isSelected
+        settings?.eventNotifications = eventButton.isSelected
     }
     
     @IBAction func oneClick(_ sender: Any) {
         clearDay()
         oneDay.isSelected = true
         oneLabel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        settings?.daysBefore = 1;
     }
     
     @IBAction func twoClick(_ sender: Any) {
         clearDay()
         twoDay.isSelected = true
         twoLabel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        settings?.daysBefore = 2;
     }
     
     @IBAction func threeClick(_ sender: Any) {
         clearDay()
         threeDay.isSelected = true
         threeLabel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        settings?.daysBefore = 3;
     }
     
     @IBAction func fourClick(_ sender: Any) {
         clearDay()
         fourDay.isSelected = true
         fourLabel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        settings?.daysBefore = 4;
     }
     
     @IBAction func fiveClick(_ sender: Any) {
         clearDay()
         fiveDay.isSelected = true
         fiveLabel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        settings?.daysBefore = 5;
     }
     
     @IBAction func morningClick(_ sender: Any) {
         clearTime()
         morningButton.isSelected = true
         morningLabel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        settings?.notificationTime = 1;
     }
     
     @IBAction func afternoonClick(_ sender: Any) {
         clearTime()
         afternoonButton.isSelected = true
         afternoonLabel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        settings?.notificationTime = 2;
     }
     
     @IBAction func eveningClick(_ sender: Any) {
         clearTime()
         eveningButton.isSelected = true
         eveningLabel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        settings?.notificationTime = 3;
     }
     
     
