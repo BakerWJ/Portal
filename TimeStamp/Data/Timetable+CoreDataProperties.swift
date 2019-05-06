@@ -1,9 +1,9 @@
 //
 //  Timetable+CoreDataProperties.swift
-//  UTS APP
+//  TimeStamp
 //
-//  Created by Jacky He on 2019-04-26.
-//  Copyright © 2019 Jacky He. All rights reserved.
+//  Created by Baker Jackson on 2019-05-06.
+//  Copyright © 2019 Baker Jackson. All rights reserved.
 //
 //
 
@@ -17,7 +17,7 @@ extension Timetable {
         return NSFetchRequest<Timetable>(entityName: "Timetable")
     }
 
-    @NSManaged public var classes: [String]
+    @NSManaged public var clases: NSObject
     @NSManaged public var name: String
 
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class SettingsViewController: UIViewController {
 
@@ -30,13 +31,46 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var afternoonLabel: UILabel!
     @IBOutlet weak var eveningLabel: UILabel!
     
-    
+    var settings: Settings?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        afternoonClick(1)
-        twoClick(1)
-
+        clearDay()
+        clearTime()
+        let fetchRequest = NSFetchRequest <NSFetchRequestResult> (entityName: "Settings");
+        do {
+            if let results = try CoreDataStack.managedObjectContext.fetch(fetchRequest) as? [Settings] {
+                generalButton.isSelected = results[0].generalNotifications
+                houseButton.isSelected = results[0].houseNotifications
+                eventButton.isSelected = results[0].eventNotifications
+                switch results[0].daysBefore{
+                case 1:
+                    oneClick(1)
+                case 2:
+                    twoClick(1)
+                case 3:
+                    threeClick(1)
+                case 4:
+                    fourClick(1)
+                case 5:
+                    fiveClick(1)
+                default:
+                    oneClick(1)
+                }
+                /*switch results[0].notificationTime {
+                case 1:
+                    morningClick(1)
+                case 2:
+                    afternoonClick(1)
+                default:
+                    eventClick(1)
+                }*/
+                settings = results[0];
+            }
+        }
+        catch {
+            fatalError("There was an error fetching the list of timetables");
+        }
         // Do any additional setup after loading the view.
     }
     

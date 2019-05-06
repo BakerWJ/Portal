@@ -8,15 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		3F1A47B2B1D9B6C8A9CDD880 /* Pods_TimeStamp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12817475A8496AB78A3C28C3 /* Pods_TimeStamp.framework */; };
-		CE81E6302280A51D00AA2FC7 /* Settings+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE81E62E2280A51D00AA2FC7 /* Settings+CoreDataClass.swift */; };
-		CE81E6312280A51D00AA2FC7 /* Settings+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE81E62F2280A51D00AA2FC7 /* Settings+CoreDataProperties.swift */; };
+		CE146D972280BD9900B3922D /* Settings+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE146D952280BD9900B3922D /* Settings+CoreDataClass.swift */; };
+		CE146D982280BD9900B3922D /* Settings+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE146D962280BD9900B3922D /* Settings+CoreDataProperties.swift */; };
+		CE2D71492280C71E00F4D89A /* TimeStampModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE2D71472280C71E00F4D89A /* TimeStampModel.xcdatamodeld */; };
 		CE927FF4227A0BCD00EE0A22 /* UserTimetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE927FEE227A0BCD00EE0A22 /* UserTimetable.swift */; };
 		CE927FF6227A0BCD00EE0A22 /* ArticleClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE927FF0227A0BCD00EE0A22 /* ArticleClass.swift */; };
 		CE927FF7227A0BCD00EE0A22 /* PeriodClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE927FF1227A0BCD00EE0A22 /* PeriodClass.swift */; };
 		CE927FF8227A0BCD00EE0A22 /* RepeatingTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE927FF2227A0BCD00EE0A22 /* RepeatingTimer.swift */; };
 		CE927FF9227A0BCD00EE0A22 /* ScheduleClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE927FF3227A0BCD00EE0A22 /* ScheduleClass.swift */; };
 		CE927FFB227A0EFB00EE0A22 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE927FFA227A0EFB00EE0A22 /* GoogleService-Info.plist */; };
-		CEC26DF5227B3E9600FFFC67 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CEC26DF3227B3E9600FFFC67 /* Model.xcdatamodeld */; };
 		CEC26E00227B3E9E00FFFC67 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC26DF7227B3E9E00FFFC67 /* CoreDataStack.swift */; };
 		CEC26E01227B3E9E00FFFC67 /* Schedule+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC26DF8227B3E9E00FFFC67 /* Schedule+CoreDataProperties.swift */; };
 		CEC26E02227B3E9E00FFFC67 /* Timetable+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC26DF9227B3E9E00FFFC67 /* Timetable+CoreDataProperties.swift */; };
@@ -49,15 +49,15 @@
 		12817475A8496AB78A3C28C3 /* Pods_TimeStamp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TimeStamp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D9C7440C79988B274B1F14A /* Pods-TimeStamp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeStamp.release.xcconfig"; path = "Target Support Files/Pods-TimeStamp/Pods-TimeStamp.release.xcconfig"; sourceTree = "<group>"; };
 		7C118D26195145B6F602CD7A /* Pods-TimeStamp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeStamp.debug.xcconfig"; path = "Target Support Files/Pods-TimeStamp/Pods-TimeStamp.debug.xcconfig"; sourceTree = "<group>"; };
-		CE81E62E2280A51D00AA2FC7 /* Settings+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+CoreDataClass.swift"; sourceTree = "<group>"; };
-		CE81E62F2280A51D00AA2FC7 /* Settings+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		CE146D952280BD9900B3922D /* Settings+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+CoreDataClass.swift"; sourceTree = "<group>"; };
+		CE146D962280BD9900B3922D /* Settings+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		CE2D71482280C71E00F4D89A /* TimeStampModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TimeStampModel.xcdatamodel; sourceTree = "<group>"; };
 		CE927FEE227A0BCD00EE0A22 /* UserTimetable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTimetable.swift; sourceTree = "<group>"; };
 		CE927FF0227A0BCD00EE0A22 /* ArticleClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleClass.swift; sourceTree = "<group>"; };
 		CE927FF1227A0BCD00EE0A22 /* PeriodClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeriodClass.swift; sourceTree = "<group>"; };
 		CE927FF2227A0BCD00EE0A22 /* RepeatingTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepeatingTimer.swift; sourceTree = "<group>"; };
 		CE927FF3227A0BCD00EE0A22 /* ScheduleClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleClass.swift; sourceTree = "<group>"; };
 		CE927FFA227A0EFB00EE0A22 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		CEC26DF4227B3E9600FFFC67 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		CEC26DF7227B3E9E00FFFC67 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		CEC26DF8227B3E9E00FFFC67 /* Schedule+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Schedule+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		CEC26DF9227B3E9E00FFFC67 /* Timetable+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Timetable+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -133,8 +133,8 @@
 		CEC26DF6227B3E9E00FFFC67 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				CE81E62E2280A51D00AA2FC7 /* Settings+CoreDataClass.swift */,
-				CE81E62F2280A51D00AA2FC7 /* Settings+CoreDataProperties.swift */,
+				CE146D952280BD9900B3922D /* Settings+CoreDataClass.swift */,
+				CE146D962280BD9900B3922D /* Settings+CoreDataProperties.swift */,
 				CEC26DF7227B3E9E00FFFC67 /* CoreDataStack.swift */,
 				CEC26DF8227B3E9E00FFFC67 /* Schedule+CoreDataProperties.swift */,
 				CEC26DF9227B3E9E00FFFC67 /* Timetable+CoreDataProperties.swift */,
@@ -179,7 +179,7 @@
 				CEDC4347227612E500A78890 /* Fonts */,
 				CE927FFA227A0EFB00EE0A22 /* GoogleService-Info.plist */,
 				CEDC434022760BC000A78890 /* Info.plist */,
-				CEC26DF3227B3E9600FFFC67 /* Model.xcdatamodeld */,
+				CE2D71472280C71E00F4D89A /* TimeStampModel.xcdatamodeld */,
 			);
 			path = TimeStamp;
 			sourceTree = "<group>";
@@ -351,6 +351,7 @@
 				CE927FF9227A0BCD00EE0A22 /* ScheduleClass.swift in Sources */,
 				CEDC433422760BBE00A78890 /* GetStartedViewController.swift in Sources */,
 				CEDC435F22775DFA00A78890 /* SettingsViewController.swift in Sources */,
+				CE2D71492280C71E00F4D89A /* TimeStampModel.xcdatamodeld in Sources */,
 				CEDC4359227681A600A78890 /* SetUp5ViewController.swift in Sources */,
 				CEDC43512276816C00A78890 /* SetUp1ViewController.swift in Sources */,
 				CEDC43532276817E00A78890 /* SetUp2ViewController.swift in Sources */,
@@ -359,13 +360,12 @@
 				CEC26E07227B3E9E00FFFC67 /* Period+CoreDataProperties.swift in Sources */,
 				CE927FF8227A0BCD00EE0A22 /* RepeatingTimer.swift in Sources */,
 				CEDC43552276818D00A78890 /* SetUp3ViewController.swift in Sources */,
-				CE81E6312280A51D00AA2FC7 /* Settings+CoreDataProperties.swift in Sources */,
+				CE146D982280BD9900B3922D /* Settings+CoreDataProperties.swift in Sources */,
 				CEC26E02227B3E9E00FFFC67 /* Timetable+CoreDataProperties.swift in Sources */,
 				CEC26E04227B3E9E00FFFC67 /* FlipDay+CoreDataProperties.swift in Sources */,
 				CEDC433222760BBE00A78890 /* AppDelegate.swift in Sources */,
-				CEC26DF5227B3E9600FFFC67 /* Model.xcdatamodeld in Sources */,
 				CEC26E01227B3E9E00FFFC67 /* Schedule+CoreDataProperties.swift in Sources */,
-				CE81E6302280A51D00AA2FC7 /* Settings+CoreDataClass.swift in Sources */,
+				CE146D972280BD9900B3922D /* Settings+CoreDataClass.swift in Sources */,
 				CEC26E00227B3E9E00FFFC67 /* CoreDataStack.swift in Sources */,
 				CEC26E08227B3E9E00FFFC67 /* Period+CoreDataClass.swift in Sources */,
 				CEC26E03227B3E9E00FFFC67 /* FlipDay+CoreDataClass.swift in Sources */,
@@ -580,14 +580,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		CEC26DF3227B3E9600FFFC67 /* Model.xcdatamodeld */ = {
+		CE2D71472280C71E00F4D89A /* TimeStampModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				CEC26DF4227B3E9600FFFC67 /* Model.xcdatamodel */,
+				CE2D71482280C71E00F4D89A /* TimeStampModel.xcdatamodel */,
 			);
-			currentVersion = CEC26DF4227B3E9600FFFC67 /* Model.xcdatamodel */;
-			name = Model.xcdatamodeld;
-			path = "../../The-APP/UTS APP/Model.xcdatamodeld";
+			currentVersion = CE2D71482280C71E00F4D89A /* TimeStampModel.xcdatamodel */;
+			path = TimeStampModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

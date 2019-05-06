@@ -116,10 +116,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate
                         fatalError("Could not find entity deccription!")
                     }
                     let mainSettings = Settings (entity: entity, insertInto: CoreDataStack.managedObjectContext)
-                    mainSettings.daysBefore = 1;
+                    mainSettings.daysBefore = 2;
                     mainSettings.eventNotifications = false;
-                    mainSettings.generalNotification = false;
-                    mainSettings.houseNotification = false;
+                    mainSettings.generalNotifications = false;
+                    mainSettings.notificationTime = 3;
+                    mainSettings.houseNotifications = false;
                 }
             }
         }

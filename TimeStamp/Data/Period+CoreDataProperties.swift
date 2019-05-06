@@ -1,9 +1,9 @@
 //
 //  Period+CoreDataProperties.swift
-//  UTS APP
+//  TimeStamp
 //
-//  Created by Jacky He on 2019-04-26.
-//  Copyright © 2019 Jacky He. All rights reserved.
+//  Created by Baker Jackson on 2019-05-06.
+//  Copyright © 2019 Baker Jackson. All rights reserved.
 //
 //
 
@@ -18,10 +18,10 @@ extension Period {
     }
 
     @NSManaged public var additionalNotes: String
+    @NSManaged public var correspond: Int32
     @NSManaged public var endTime: NSDate
     @NSManaged public var periodName: String
     @NSManaged public var startTime: NSDate
-    @NSManaged public var correspond: Int32
-    @NSManaged public var schedule: Schedule?
+    @NSManaged public var schedule: Schedule
 
 }

@@ -1,9 +1,9 @@
 //
 //  FlipDay+CoreDataProperties.swift
-//  UTS APP
+//  TimeStamp
 //
-//  Created by Jacky He on 2019-04-26.
-//  Copyright © 2019 Jacky He. All rights reserved.
+//  Created by Baker Jackson on 2019-05-06.
+//  Copyright © 2019 Baker Jackson. All rights reserved.
 //
 //
 
@@ -17,7 +17,7 @@ extension FlipDay {
         return NSFetchRequest<FlipDay>(entityName: "FlipDay")
     }
 
-    @NSManaged public var normalToFlip: [Int]
     @NSManaged public var expirationDate: NSDate
+    @NSManaged public var normalToFlip: NSObject
 
 }
