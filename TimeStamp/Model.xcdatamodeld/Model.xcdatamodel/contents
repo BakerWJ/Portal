@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18A391" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="FlipDay" representedClassName="FlipDay" syncable="YES">
+        <attribute name="expirationDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="normalToFlip" attributeType="Transformable" customClassName="[Int]" syncable="YES"/>
+    </entity>
+    <entity name="Period" representedClassName="Period" syncable="YES">
+        <attribute name="additionalNotes" attributeType="String" syncable="YES"/>
+        <attribute name="correspond" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="endTime" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="periodName" attributeType="String" syncable="YES"/>
+        <attribute name="startTime" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="schedule" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Schedule" syncable="YES"/>
+    </entity>
+    <entity name="Schedule" representedClassName="Schedule" syncable="YES">
+        <attribute name="expirationDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="value" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="periods" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Period" syncable="YES"/>
+    </entity>
+    <entity name="Timetable" representedClassName="Timetable" syncable="YES">
+        <attribute name="classes" attributeType="Transformable" customClassName="[String]" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Period" positionX="-36" positionY="9" width="128" height="133"/>
+        <element name="Schedule" positionX="-54" positionY="-9" width="128" height="90"/>
+        <element name="Timetable" positionX="-45" positionY="45" width="128" height="73"/>
+        <element name="FlipDay" positionX="-36" positionY="54" width="128" height="75"/>
+    </elements>
+</model>
