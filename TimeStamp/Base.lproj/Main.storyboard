@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vXe-ls-4tL">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vXe-ls-4tL">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -111,7 +111,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="I'm Done"/>
                                 <connections>
-                                    <segue destination="rcl-pN-vkI" kind="show" id="zaO-8e-I5F"/>
+                                    <segue destination="rcl-pN-vkI" kind="custom" customClass="HorizontalRightShiftTransition" customModule="TimeStamp" customModuleProvider="target" id="zaO-8e-I5F"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -208,7 +208,7 @@
                                     <color key="titleColor" red="0.51764705882352935" green="0.51764705882352935" blue="0.51764705882352935" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Shi-Lm-Jvz" kind="show" animates="NO" id="hMh-E8-IOY"/>
+                                    <segue destination="Shi-Lm-Jvz" kind="custom" customClass="HorizontalRightShiftTransition" customModule="TimeStamp" customModuleProvider="target" id="hMh-E8-IOY"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Th9-d8-bcz">
@@ -217,7 +217,7 @@
                                 <state key="normal" image="Next"/>
                                 <connections>
                                     <action selector="isClicked:" destination="rcl-pN-vkI" eventType="touchUpInside" id="rKM-c7-a7m"/>
-                                    <segue destination="CQd-4A-VEn" kind="show" animates="NO" id="Hmd-li-bwL"/>
+                                    <segue destination="CQd-4A-VEn" kind="custom" customClass="HorizontalRightShiftTransition" customModule="TimeStamp" customModuleProvider="target" id="NxV-Ys-9oR"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vae-ei-J6m">
@@ -310,7 +310,7 @@
                                 <state key="normal" image="Next"/>
                                 <connections>
                                     <action selector="isClicked:" destination="CQd-4A-VEn" eventType="touchUpInside" id="qX5-u2-G9b"/>
-                                    <segue destination="PG5-Ym-amj" kind="show" animates="NO" id="IWF-Hh-N6S"/>
+                                    <segue destination="PG5-Ym-amj" kind="custom" customClass="HorizontalRightShiftTransition" customModule="TimeStamp" customModuleProvider="target" id="IWF-Hh-N6S"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zlZ-Kz-X8J">
@@ -331,6 +331,7 @@
                         <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="KYe-QB-0Yb"/>
                     </view>
+                    <navigationItem key="navigationItem" id="I7O-31-lKy"/>
                     <connections>
                         <outlet property="monday" destination="zlZ-Kz-X8J" id="y3m-pE-wHw"/>
                         <outlet property="tuesday" destination="NbN-XV-XQl" id="cCo-2T-qr4"/>
@@ -403,7 +404,7 @@
                                 <state key="normal" image="Next"/>
                                 <connections>
                                     <action selector="isClicked:" destination="PG5-Ym-amj" eventType="touchUpInside" id="eTC-ff-mdo"/>
-                                    <segue destination="MLO-Wh-zSm" kind="show" animates="NO" id="4pd-k3-XUF"/>
+                                    <segue destination="MLO-Wh-zSm" kind="custom" customClass="HorizontalRightShiftTransition" customModule="TimeStamp" customModuleProvider="target" id="4pd-k3-XUF"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cBq-9N-8cc">
@@ -522,12 +523,12 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hHd-6b-UJa" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <swipeGestureRecognizer direction="right" id="MBh-KU-sef">
                     <connections>
-                        <segue destination="Vy2-Vx-pG9" kind="show" identifier="SwipeLeft" animates="NO" id="iIj-Y3-3e4"/>
+                        <segue destination="Vy2-Vx-pG9" kind="custom" identifier="SwipeLeft" customClass="HorizontalLeftShiftTransition" customModule="TimeStamp" customModuleProvider="target" id="iIj-Y3-3e4"/>
                     </connections>
                 </swipeGestureRecognizer>
                 <swipeGestureRecognizer direction="left" id="CCf-hO-FWs">
                     <connections>
-                        <segue destination="oFc-jc-KNZ" kind="show" animates="NO" id="8ES-yy-3qt"/>
+                        <segue destination="oFc-jc-KNZ" kind="custom" customClass="HorizontalRightShiftTransition" customModule="TimeStamp" customModuleProvider="target" id="8ES-yy-3qt"/>
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
@@ -811,7 +812,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rw8-yR-y0e" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <swipeGestureRecognizer direction="right" id="UJf-F8-ye5">
                     <connections>
-                        <segue destination="Shi-Lm-Jvz" kind="show" animates="NO" id="mak-GG-wgz"/>
+                        <segue destination="Shi-Lm-Jvz" kind="custom" customClass="HorizontalLeftShiftTransition" customModule="TimeStamp" customModuleProvider="target" id="mak-GG-wgz"/>
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
@@ -835,7 +836,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="85e-6S-0ab" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <swipeGestureRecognizer direction="left" id="bbh-xB-hcg">
                     <connections>
-                        <segue destination="Shi-Lm-Jvz" kind="show" animates="NO" id="9cE-TZ-mMA"/>
+                        <segue destination="Shi-Lm-Jvz" kind="custom" customClass="HorizontalRightShiftTransition" customModule="TimeStamp" customModuleProvider="target" id="9cE-TZ-mMA"/>
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
@@ -903,7 +904,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="Next"/>
                                 <connections>
-                                    <segue destination="kTI-ha-L4e" kind="show" animates="NO" id="5Ap-Eg-9NN"/>
+                                    <segue destination="kTI-ha-L4e" kind="custom" customClass="HorizontalRightShiftTransition" customModule="TimeStamp" customModuleProvider="target" id="5Ap-Eg-9NN"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yqg-Oi-wQM">
@@ -999,7 +1000,7 @@
                                 <state key="normal" image="I'm Done"/>
                                 <connections>
                                     <action selector="isClicked:" destination="kTI-ha-L4e" eventType="touchUpInside" id="gnO-NV-v31"/>
-                                    <segue destination="Shi-Lm-Jvz" kind="show" animates="NO" id="09h-mp-YXM"/>
+                                    <segue destination="Shi-Lm-Jvz" kind="custom" customClass="HorizontalRightShiftTransition" customModule="TimeStamp" customModuleProvider="target" id="09h-mp-YXM"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="snR-ry-dFq">
@@ -1048,6 +1049,6 @@
         <image name="Toggle - On" width="68" height="39"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mak-GG-wgz"/>
+        <segue reference="hMh-E8-IOY"/>
     </inferredMetricsTieBreakers>
 </document>
