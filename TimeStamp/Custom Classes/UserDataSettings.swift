@@ -25,10 +25,10 @@ class UserDataSettings
     static func updateWithInternet ()
     {
         let connectedRef = Database.database().reference(withPath: ".info/connected")
-        connectedRef.observe (.value, with:
+        connectedRef.observe(.value)
         {
             (snapshot) in
-            if snapshot.value as? Bool ?? false
+            if let connected = snapshot.value as? Bool, connected
             {
                 self.updateData()
                 self.updateWeeklySchedule()
@@ -36,14 +36,14 @@ class UserDataSettings
             else
             {
                 //apple does not allow this, so we will change it later
-                let alert = UIAlertController (title: "No Internet Connection", message: "Press OK to exit", preferredStyle: UIAlertController.Style.alert)
+                let alert = UIAlertController (title: "Cannot connect to server", message: "Press OK to exit", preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: {
                     (action) in
                     exit (0);
                 }))
                 delegate?.window?.rootViewController?.present (alert, animated: true, completion: nil);
             }
-        })
+        }
     }
     
     //This creates the setttngs and default values
@@ -127,6 +127,7 @@ class UserDataSettings
                         }
                         x += 1;
                     }
+                    print ("updated")
                     CoreDataStack.saveContext()
                 }
         })
@@ -220,6 +221,7 @@ class UserDataSettings
                 if (results.count == 0)
                 {
                     updateWithInternet()
+                    CoreDataStack.saveContext()
                 }
                 else
                 {
@@ -230,6 +232,7 @@ class UserDataSettings
                         {
                             //updates the local data with new schedules, even though it might be the same as the old one
                             updateWithInternet()
+                            CoreDataStack.saveContext()
                             break;
                         }
                     }
@@ -269,8 +272,7 @@ class UserDataSettings
                     if let data = docSnapshot.data()
                     {
                         let arr = data ["correspondingPeriods"] as? [Int] ?? [];
-                        print (arr)
-                        //creates a flipday object
+                         //creates a flipday object
                         let Flip = FlipDay (entity: entityFlip, insertInto: CoreDataStack.managedObjectContext)
                         Flip.normalToFlip = arr;
                         Flip.expirationDate = self.nextSunday()
