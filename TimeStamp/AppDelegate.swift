@@ -18,7 +18,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate
     // Setup for Notifications
     let notificationCenter = UNUserNotificationCenter.current()
     let options: UNAuthorizationOptions = [.alert, .sound, .badge]
-    var weekly: WeeklySchedule?
     var window: UIWindow?
     /*
      //Code for Google Signins
