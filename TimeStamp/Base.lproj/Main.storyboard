@@ -41,12 +41,12 @@
                                 <color key="textColor" red="0.51764705882352935" green="0.51764705882352935" blue="0.51764705882352935" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="GENERAL NOTIFICATIONS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v56-jF-TK1">
-                                <rect key="frame" x="46" y="240" width="283" height="25"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="GENERAL NOTIFICATIONS" textAlignment="natural" lineBreakMode="tailTruncation" minimumFontSize="7" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v56-jF-TK1">
+                                <rect key="frame" x="43" y="245" width="172" height="17"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="v56-jF-TK1" secondAttribute="height" multiplier="283:25" id="ArJ-C7-Uhe"/>
+                                    <constraint firstAttribute="width" secondItem="v56-jF-TK1" secondAttribute="height" multiplier="172:17" id="ArJ-C7-Uhe"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="SegoeUI" family="Segoe UI" pointSize="15"/>
+                                <fontDescription key="fontDescription" name="SegoeUI" family="Segoe UI" pointSize="22"/>
                                 <color key="textColor" red="0.066666666666666666" green="0.12156862745098039" blue="0.12156862745098039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -59,12 +59,12 @@
                                 <color key="textColor" red="0.51764705879999995" green="0.51764705879999995" blue="0.51764705879999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="HOUSE NOTIFICATIONS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vcR-VR-8Yh">
-                                <rect key="frame" x="46" y="376" width="283" height="25"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="HOUSE NOTIFICATIONS" lineBreakMode="tailTruncation" minimumFontSize="7" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vcR-VR-8Yh">
+                                <rect key="frame" x="46" y="382" width="158" height="17"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="vcR-VR-8Yh" secondAttribute="height" multiplier="283:25" id="sqa-Mb-nrY"/>
+                                    <constraint firstAttribute="width" secondItem="vcR-VR-8Yh" secondAttribute="height" multiplier="158:17" id="sqa-Mb-nrY"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="SegoeUI" family="Segoe UI" pointSize="15"/>
+                                <fontDescription key="fontDescription" name="SegoeUI" family="Segoe UI" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -75,15 +75,6 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" name="SegoeUI" family="Segoe UI" pointSize="20"/>
                                 <color key="textColor" red="0.51764705879999995" green="0.51764705879999995" blue="0.51764705879999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="EVENT NOTIFICATIONS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QdF-GY-PW1">
-                                <rect key="frame" x="46" y="512" width="283" height="25"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="QdF-GY-PW1" secondAttribute="height" multiplier="283:25" id="LCb-7v-bmN"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="SegoeUI" family="Segoe UI" pointSize="15"/>
-                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Notifications for things like volunteer opportunities or out of school events." lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="6" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NX2-Qb-9st">
@@ -139,15 +130,21 @@
                                     <segue destination="rcl-pN-vkI" kind="custom" customClass="HorizontalRightShiftTransition" customModule="TimeStamp" customModuleProvider="target" id="zaO-8e-I5F"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="EVENT NOTIFICATIONS" lineBreakMode="tailTruncation" minimumFontSize="7" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QdF-GY-PW1">
+                                <rect key="frame" x="46" y="519" width="153" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="QdF-GY-PW1" secondAttribute="height" multiplier="153:17" id="LCb-7v-bmN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SegoeUI" family="Segoe UI" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="vcR-VR-8Yh" firstAttribute="centerX" secondItem="XDt-31-JOf" secondAttribute="centerX" id="0ha-2y-yd3"/>
-                            <constraint firstItem="QdF-GY-PW1" firstAttribute="centerX" secondItem="XDt-31-JOf" secondAttribute="centerX" id="1Uw-tM-tao"/>
                             <constraint firstItem="hjn-pl-XLo" firstAttribute="centerX" secondItem="XDt-31-JOf" secondAttribute="centerX" id="99a-xA-RiL"/>
                             <constraint firstItem="jV3-sa-6sP" firstAttribute="centerX" secondItem="XDt-31-JOf" secondAttribute="centerX" id="N8b-Qo-vYV"/>
                             <constraint firstItem="p33-Wd-drr" firstAttribute="centerX" secondItem="XDt-31-JOf" secondAttribute="centerX" id="Wnw-IA-uA0"/>
-                            <constraint firstItem="v56-jF-TK1" firstAttribute="centerX" secondItem="XDt-31-JOf" secondAttribute="centerX" id="bzG-Ph-tbD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="XDt-31-JOf"/>
                     </view>
