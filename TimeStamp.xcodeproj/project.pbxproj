@@ -10,6 +10,9 @@
 		3F1A47B2B1D9B6C8A9CDD880 /* Pods_TimeStamp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12817475A8496AB78A3C28C3 /* Pods_TimeStamp.framework */; };
 		8AA2F04422811FF90091EF0F /* HorizontalRightShiftTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA2F04322811FF90091EF0F /* HorizontalRightShiftTransition.swift */; };
 		8AA2F046228123890091EF0F /* HorizontalLeftShiftTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA2F045228123890091EF0F /* HorizontalLeftShiftTransition.swift */; };
+		8ABCA53E2282176000A30D36 /* WeeklySchedule+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABCA53C2282176000A30D36 /* WeeklySchedule+CoreDataClass.swift */; };
+		8ABCA53F2282176000A30D36 /* WeeklySchedule+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABCA53D2282176000A30D36 /* WeeklySchedule+CoreDataProperties.swift */; };
+		8AEA785122851D5C0031B030 /* UserDataSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEA785022851D5C0031B030 /* UserDataSettings.swift */; };
 		CE146D972280BD9900B3922D /* Settings+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE146D952280BD9900B3922D /* Settings+CoreDataClass.swift */; };
 		CE146D982280BD9900B3922D /* Settings+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE146D962280BD9900B3922D /* Settings+CoreDataProperties.swift */; };
 		CE2D71492280C71E00F4D89A /* TimeStampModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE2D71472280C71E00F4D89A /* TimeStampModel.xcdatamodeld */; };
@@ -53,6 +56,9 @@
 		7C118D26195145B6F602CD7A /* Pods-TimeStamp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeStamp.debug.xcconfig"; path = "Target Support Files/Pods-TimeStamp/Pods-TimeStamp.debug.xcconfig"; sourceTree = "<group>"; };
 		8AA2F04322811FF90091EF0F /* HorizontalRightShiftTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalRightShiftTransition.swift; sourceTree = "<group>"; };
 		8AA2F045228123890091EF0F /* HorizontalLeftShiftTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalLeftShiftTransition.swift; sourceTree = "<group>"; };
+		8ABCA53C2282176000A30D36 /* WeeklySchedule+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeeklySchedule+CoreDataClass.swift"; sourceTree = "<group>"; };
+		8ABCA53D2282176000A30D36 /* WeeklySchedule+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeeklySchedule+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8AEA785022851D5C0031B030 /* UserDataSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataSettings.swift; sourceTree = "<group>"; };
 		CE146D952280BD9900B3922D /* Settings+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+CoreDataClass.swift"; sourceTree = "<group>"; };
 		CE146D962280BD9900B3922D /* Settings+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		CE2D71482280C71E00F4D89A /* TimeStampModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TimeStampModel.xcdatamodel; sourceTree = "<group>"; };
@@ -132,6 +138,7 @@
 				CE927FF2227A0BCD00EE0A22 /* RepeatingTimer.swift */,
 				CE927FF3227A0BCD00EE0A22 /* ScheduleClass.swift */,
 				CE927FEE227A0BCD00EE0A22 /* UserTimetable.swift */,
+				8AEA785022851D5C0031B030 /* UserDataSettings.swift */,
 			);
 			path = "Custom Classes";
 			sourceTree = "<group>";
@@ -139,6 +146,8 @@
 		CEC26DF6227B3E9E00FFFC67 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				8ABCA53C2282176000A30D36 /* WeeklySchedule+CoreDataClass.swift */,
+				8ABCA53D2282176000A30D36 /* WeeklySchedule+CoreDataProperties.swift */,
 				CE146D952280BD9900B3922D /* Settings+CoreDataClass.swift */,
 				CE146D962280BD9900B3922D /* Settings+CoreDataProperties.swift */,
 				CEC26DF7227B3E9E00FFFC67 /* CoreDataStack.swift */,
@@ -362,6 +371,7 @@
 				8AA2F046228123890091EF0F /* HorizontalLeftShiftTransition.swift in Sources */,
 				CEDC43512276816C00A78890 /* SetUp1ViewController.swift in Sources */,
 				CEDC43532276817E00A78890 /* SetUp2ViewController.swift in Sources */,
+				8ABCA53F2282176000A30D36 /* WeeklySchedule+CoreDataProperties.swift in Sources */,
 				CEDC435D22773FAC00A78890 /* ScheduleViewController.swift in Sources */,
 				CE927FF7227A0BCD00EE0A22 /* PeriodClass.swift in Sources */,
 				CEC26E07227B3E9E00FFFC67 /* Period+CoreDataProperties.swift in Sources */,
@@ -375,10 +385,12 @@
 				CE146D972280BD9900B3922D /* Settings+CoreDataClass.swift in Sources */,
 				CEC26E00227B3E9E00FFFC67 /* CoreDataStack.swift in Sources */,
 				CEC26E08227B3E9E00FFFC67 /* Period+CoreDataClass.swift in Sources */,
+				8ABCA53E2282176000A30D36 /* WeeklySchedule+CoreDataClass.swift in Sources */,
 				CEC26E03227B3E9E00FFFC67 /* FlipDay+CoreDataClass.swift in Sources */,
 				CEC26E06227B3E9E00FFFC67 /* Timetable+CoreDataClass.swift in Sources */,
 				CEDC435B22773F8400A78890 /* MainPageViewController.swift in Sources */,
 				CEC26E05227B3E9E00FFFC67 /* Schedule+CoreDataClass.swift in Sources */,
+				8AEA785122851D5C0031B030 /* UserDataSettings.swift in Sources */,
 				CE927FF4227A0BCD00EE0A22 /* UserTimetable.swift in Sources */,
 				CE927FF6227A0BCD00EE0A22 /* ArticleClass.swift in Sources */,
 				8AA2F04422811FF90091EF0F /* HorizontalRightShiftTransition.swift in Sources */,

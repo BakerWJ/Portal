@@ -28,6 +28,8 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate
     var today = UILabel();
     //an array of schedules for the day.
     var schedules = [Schedule]()
+    //an weekly schedule object
+    var weeklySchedule: WeeklySchedule?
     //formates the date
     let formatter = DateFormatter ()
     //a timer that triggers an event every 2 seconds
@@ -46,29 +48,25 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate
     override func viewWillAppear (_ animated: Bool)
     {
         super.viewWillAppear (animated);
-        for family: String in UIFont.familyNames
-        {
-            print("\(family)")
-            for names: String in UIFont.fontNames(forFamilyName: family)
-            {
-                print("== \(names)")
-            }
-        }
+        //printFonts()
         //add observer of the keyboard showing
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-        //as the name suggests, fetches schedules from core Data and stores them in the array "schedules"
-        fetchSchedules ()
     }
-    
+    override func viewWillDisappear(_ animated: Bool)
+    {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
     override func viewDidLoad ()
     {
         super.viewDidLoad()
-        
         view.backgroundColor = UIColor(red: 243.0/255, green: 243.0/255, blue: 243.0/255, alpha: 1.0);
+        //as the name suggests, fetches schedules from core Data and stores them in the array "schedules"
+        fetchSchedules ()
         //setup the outerstackview and its constraints
         outerViewSetup();
-        //as the name suggests, connects to the firebase database and gets the information needed for the day
+        //as the name suggests, gets the information needed for the day
         updateSchedule()
     }
     
@@ -156,14 +154,13 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate
         }
     }
     
+    
+    
     //This method uploads the schedules stored in core data into the "schedule" array.
     func fetchSchedules ()
     {
         //fetch data from core data
-        let sort = NSSortDescriptor (key: "value", ascending: true);
         let fetchRequest = NSFetchRequest<NSFetchRequestResult> (entityName: "Schedule");
-        //the schedules are sorted by their "values" assigned to them
-        fetchRequest.sortDescriptors = [sort];
         do
         {
             if let results = try CoreDataStack.managedObjectContext.fetch (fetchRequest) as? [Schedule]
@@ -173,174 +170,144 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate
         }
         catch
         {
-            fatalError ("There was an error fetching the list of devices!")
+            fatalError ("There was an error fetching the list of schedules!")
         }
+        let fetchRequest2 = NSFetchRequest<NSFetchRequestResult> (entityName: "WeeklySchedule");
+        do
+        {
+            if let results = try CoreDataStack.managedObjectContext.fetch (fetchRequest2) as? [WeeklySchedule]
+            {
+                weeklySchedule = results [0]
+            }
+        }
+        catch
+        {
+            fatalError("There was an error fetching the list of weeklySchedules!")
+        }
+
     }
     
     //This method gets information necessary for the day and updates the view
     func updateSchedule ()
     {
-        
         //gets the current date and the current user calendar.
-        let date = Date()
-        let calendar = Calendar.current
+        let date = Date();
+        let calendar = Calendar.current;
         //Sunday is 1, Saturday is 7, gets today's weekday count
-        let weekday = calendar.component(.weekday, from: date)
-        
+        let weekday = calendar.component(.weekday, from: date);
         //fetch data from firebase database about the daily schedules.
-        ref.child ("DailySchedule/" + String (weekday - 1)).observeSingleEvent(of: .value, with:
+        if weeklySchedule?.typeOfDay [weekday - 1] == 4
+        {
+            //creates an image that says enjoy the weekend
+            let image = UIImageView(image: UIImage (named: "enjoyWeekend"));
+            //adds the image to the view to display
+            self.outerView.addSubview (image);
+            //sets layout constraints
+            image.translatesAutoresizingMaskIntoConstraints = false;
+            image.centerXAnchor.constraint(equalTo: self.outerView.centerXAnchor).isActive = true;
+            image.centerYAnchor.constraint(equalTo: self.outerView.centerYAnchor).isActive = true;
+            image.widthAnchor.constraint(equalToConstant: 320).isActive = true;
+            image.heightAnchor.constraint (equalToConstant: 360).isActive = true;
+        }
+        else
+        {
+            //loops through all the possible schedules
+            for each in self.schedules
             {
-                (snapshot) in
-                //casts the data to an array of any objects
-                if let data = snapshot.value as? [Any]
+                //if the schedule has the same value as the value of the wanted schedule
+                if each.value == Int32((weeklySchedule?.typeOfDay [weekday - 1])!)
                 {
-                    var ADay = false;
-                    var flipped = false;
+                    //The things/decorations on top of the actual schedule starts
+                    //label that says schedule
+                    let labelSchedule = UILabel ()
+                    labelSchedule.textAlignment = .center;
+                    labelSchedule.font = UIFont (name: "SegoeUI-Bold", size: 16);
+                    labelSchedule.text = "Schedule";
+                    labelSchedule.layer.opacity = 0;
+                    self.outerView.addSubview (labelSchedule);
+                    labelSchedule.translatesAutoresizingMaskIntoConstraints = false;
+                    labelSchedule.leadingAnchor.constraint(equalTo: self.outerView.leadingAnchor).isActive = true;
+                    labelSchedule.trailingAnchor.constraint(equalTo: self.outerView.trailingAnchor).isActive = true;
+                    labelSchedule.heightAnchor.constraint(equalToConstant: 20).isActive = true;
+                    labelSchedule.topAnchor.constraint (equalTo: self.label.topAnchor, constant: 50).isActive = true;
+                    //make an image for the title on top
+                    let image = UIImageView (image: UIImage (named: "Rectangle 1028"));
+                    let biggerview = UIView();
+                    biggerview.layer.opacity = 0;
+                    self.outerView.addSubview (biggerview);
+                    //set constraint for the outerview
+                    biggerview.translatesAutoresizingMaskIntoConstraints = false;
+                    biggerview.trailingAnchor.constraint (equalTo: self.outerView.trailingAnchor).isActive = true;
+                    biggerview.leadingAnchor.constraint (equalTo: self.outerView.leadingAnchor).isActive = true;
+                    biggerview.heightAnchor.constraint (equalToConstant: 43).isActive = true;
+                    biggerview.topAnchor.constraint (equalTo: labelSchedule.topAnchor, constant: 26).isActive = true;
+                    biggerview.addSubview (image);
+                    //set constraints for the image
+                    image.translatesAutoresizingMaskIntoConstraints = false;
+                    image.leadingAnchor.constraint (equalTo: biggerview.leadingAnchor).isActive = true;
+                    image.trailingAnchor.constraint (equalTo: biggerview.trailingAnchor).isActive = true;
+                    image.topAnchor.constraint (equalTo: biggerview.topAnchor).isActive = true;
+                    image.bottomAnchor.constraint (equalTo: biggerview.bottomAnchor).isActive = true;
+                    //set up the label for what kind of day today is
+                    let dayLabel = UILabel();
+                    dayLabel.textAlignment = .center;
+                    dayLabel.font = UIFont(name: "SegoeUI", size: 16);
+                    dayLabel.textColor = .white;
+                    dayLabel.text = "It's a " + each.kind;
+                    biggerview.addSubview (dayLabel);
+                    dayLabel.translatesAutoresizingMaskIntoConstraints = false;
+                    dayLabel.centerXAnchor.constraint(equalTo: biggerview.centerXAnchor).isActive = true;
+                    dayLabel.centerYAnchor.constraint(equalTo: biggerview.centerYAnchor).isActive = true;
+                    //The things/decorations on top of the actual schedule ends
                     
-                    //The 1 index gives whether today is an A day or B day
-                    if let ABDay = data [1] as? String
-                    {
-                        //sets the top label's text accordingly based on today's date
-                        if (ABDay == "A")
-                        {
-                            //self.label.text = "Today is \(self.formatter.string (from: Date())), A Day";
-                            ADay = true;
-                        }
-                        else if (ABDay == "B")
-                        {
-                            //self.label.text = "Today is \(self.formatter.string (from: Date())), B Day";
-                        }
-                        else
-                        {
-                            //self.label.text = "Today is \(self.formatter.string (from: Date())), No School";
-                        }
-                        //adds the label to the view to display it
-                        //self.outerView.addSubview (self.label)
-                    }
-                    //The 2 index gives whether today is a flipped day or not
-                    if let flippedOrNot = data [2] as? String
-                    {
-                        flipped = flippedOrNot == "F";
-                    }
-                    //The 0 index gives the number that represents the schedule of today
-                    if let value = data [0] as? Int
-                    {
-                        //A value of 4 means there is no school
-                        if value == 4
-                        {
-                            //creates an image that says enjoy the weekend
-                            let image = UIImageView(image: UIImage (named: "enjoyWeekend"));
-                            //adds the image to the view to display
-                            self.outerView.addSubview (image);
-                            //sets layout constraints
-                            image.translatesAutoresizingMaskIntoConstraints = false;
-                            image.centerXAnchor.constraint(equalTo: self.outerView.centerXAnchor).isActive = true;
-                            image.centerYAnchor.constraint(equalTo: self.outerView.centerYAnchor).isActive = true;
-                            image.widthAnchor.constraint(equalToConstant: 320).isActive = true;
-                            image.heightAnchor.constraint (equalToConstant: 360).isActive = true;
-                        }
-                        else //otherwise, generate a scheduleView to display
-                        {
-                            //loops through all the possible schedules
-                            for each in self.schedules
-                            {
-                                //if the schedule has the same value as the value of the wanted schedule
-                                if each.value == Int32(value)
-                                {
-                                    //The things/decorations on top of the actual schedule starts
-                                    //label that says schedule
-                                    let labelSchedule = UILabel ()
-                                    labelSchedule.textAlignment = .center;
-                                    labelSchedule.font = UIFont (name: "SegoeUI-Bold", size: 16);
-                                    labelSchedule.text = "Schedule";
-                                    labelSchedule.layer.opacity = 0;
-                                    self.outerView.addSubview (labelSchedule);
-                                    labelSchedule.translatesAutoresizingMaskIntoConstraints = false;
-                                    labelSchedule.leadingAnchor.constraint(equalTo: self.outerView.leadingAnchor).isActive = true;
-                                    labelSchedule.trailingAnchor.constraint(equalTo: self.outerView.trailingAnchor).isActive = true;
-                                    labelSchedule.heightAnchor.constraint(equalToConstant: 20).isActive = true;
-                                    labelSchedule.topAnchor.constraint (equalTo: self.label.topAnchor, constant: 50).isActive = true;
-                                    //make an image for the title on top
-                                    let image = UIImageView (image: UIImage (named: "Rectangle 1028"));
-                                    let biggerview = UIView();
-                                    biggerview.layer.opacity = 0;
-                                    self.outerView.addSubview (biggerview);
-                                    //set constraint for the outerview
-                                    biggerview.translatesAutoresizingMaskIntoConstraints = false;
-                                    biggerview.trailingAnchor.constraint (equalTo: self.outerView.trailingAnchor).isActive = true;
-                                    biggerview.leadingAnchor.constraint (equalTo: self.outerView.leadingAnchor).isActive = true;
-                                    biggerview.heightAnchor.constraint (equalToConstant: 43).isActive = true;
-                                    biggerview.topAnchor.constraint (equalTo: labelSchedule.topAnchor, constant: 26).isActive = true;
-                                    biggerview.addSubview (image);
-                                    //set constraints for the image
-                                    image.translatesAutoresizingMaskIntoConstraints = false;
-                                    image.leadingAnchor.constraint (equalTo: biggerview.leadingAnchor).isActive = true;
-                                    image.trailingAnchor.constraint (equalTo: biggerview.trailingAnchor).isActive = true;
-                                    image.topAnchor.constraint (equalTo: biggerview.topAnchor).isActive = true;
-                                    image.bottomAnchor.constraint (equalTo: biggerview.bottomAnchor).isActive = true;
-                                    //set up the label for what kind of day today is
-                                    let dayLabel = UILabel();
-                                    dayLabel.textAlignment = .center;
-                                    dayLabel.font = UIFont(name: "SegoeUI", size: 16);
-                                    dayLabel.textColor = .white;
-                                    dayLabel.text = "It's a " + each.kind;
-                                    biggerview.addSubview (dayLabel);
-                                    dayLabel.translatesAutoresizingMaskIntoConstraints = false;
-                                    dayLabel.centerXAnchor.constraint(equalTo: biggerview.centerXAnchor).isActive = true;
-                                    dayLabel.centerYAnchor.constraint(equalTo: biggerview.centerYAnchor).isActive = true;
-                                    //The things/decorations on top of the actual schedule ends
-                                    
-                                    //then create a scheduleView with the schedule
-                                    let currentSchedule = ScheduleView(schedule: each, ADay: ADay, flipped: flipped, delegate: self);
-                                    //The tag is set to 13 so that you can access this object from anywhere else in the program
-                                    currentSchedule.tag = 13;
-                                    
-                                    //Embeds the scheduleView into another UIView so that the borders are even
-                                    
-                                    self.tempView.frame = currentSchedule.frame
-                                    self.outerView.addSubview (self.tempView);
-                                    
-                                    //sets layoutConstraints for tempView
-                                    self.tempView.translatesAutoresizingMaskIntoConstraints = false;
-                                    self.tempView.topAnchor.constraint (equalTo: biggerview.bottomAnchor).isActive = true;
-                                    self.tempView.centerXAnchor.constraint(equalTo: self.outerView.centerXAnchor).isActive = true;
-                                    self.tempView.leadingAnchor.constraint (equalTo: self.outerView.leadingAnchor).isActive = true;
-                                    self.tempView.trailingAnchor.constraint (equalTo: self.outerView.trailingAnchor).isActive = true;
-                                    
-                                    //sets the border opacity to 0
-                                    self.tempView.layer.opacity = 0;
-                                    
-                                    //add currentSchedule to tempView
-                                    self.tempView.addSubview (currentSchedule)
-                                    
-                                    //sets layout constraints for currentSchedule
-                                    currentSchedule.translatesAutoresizingMaskIntoConstraints = false;
-                                    currentSchedule.centerXAnchor.constraint(equalTo: self.tempView.centerXAnchor).isActive = true;
-                                    currentSchedule.centerYAnchor.constraint(equalTo: self.tempView.centerYAnchor).isActive = true;
-                                    currentSchedule.topAnchor.constraint (equalTo: self.tempView.topAnchor).isActive = true;
-                                    currentSchedule.bottomAnchor.constraint (equalTo: self.tempView.bottomAnchor).isActive = true;
-                                    currentSchedule.leadingAnchor.constraint (equalTo: self.tempView.leadingAnchor).isActive = true;
-                                    currentSchedule.trailingAnchor.constraint (equalTo: self.tempView.trailingAnchor).isActive = true;
-                                    currentSchedule.spacing = 6;
-                                    currentSchedule.backgroundColor = .clear
-                                    
-                                    //makes the schedule and everything fade in
-                                    UIView.animate(withDuration: 1.0, delay: 0, options: .curveEaseInOut, animations: {
-                                        self.tempView.layer.opacity = 1;
-                                        biggerview.layer.opacity = 1;
-                                        labelSchedule.layer.opacity = 1;
-                                    }, completion: nil)
-                                    
-                                    //breaks out of the loop
-                                    break;
-                                }
-                            }
-                        }
-                    }
+                    //then create a scheduleView with the schedule
+                    let currentSchedule = ScheduleView(schedule: each, ADay: (weeklySchedule?.abDay [weekday - 1])!, flipped: (weeklySchedule?.flipOrNot [weekday - 1])!, delegate: self);
+                    //The tag is set to 13 so that you can access this object from anywhere else in the program
+                    currentSchedule.tag = 13;
+                    
+                    //Embeds the scheduleView into another UIView so that the borders are even
+                    
+                    self.tempView.frame = currentSchedule.frame
+                    self.outerView.addSubview (self.tempView);
+                    
+                    //sets layoutConstraints for tempView
+                    self.tempView.translatesAutoresizingMaskIntoConstraints = false;
+                    self.tempView.topAnchor.constraint (equalTo: biggerview.bottomAnchor).isActive = true;
+                    self.tempView.centerXAnchor.constraint(equalTo: self.outerView.centerXAnchor).isActive = true;
+                    self.tempView.leadingAnchor.constraint (equalTo: self.outerView.leadingAnchor).isActive = true;
+                    self.tempView.trailingAnchor.constraint (equalTo: self.outerView.trailingAnchor).isActive = true;
+                    
+                    //sets the border opacity to 0
+                    self.tempView.layer.opacity = 0;
+                    
+                    //add currentSchedule to tempView
+                    self.tempView.addSubview (currentSchedule)
+                    
+                    //sets layout constraints for currentSchedule
+                    currentSchedule.translatesAutoresizingMaskIntoConstraints = false;
+                    currentSchedule.centerXAnchor.constraint(equalTo: self.tempView.centerXAnchor).isActive = true;
+                    currentSchedule.centerYAnchor.constraint(equalTo: self.tempView.centerYAnchor).isActive = true;
+                    currentSchedule.topAnchor.constraint (equalTo: self.tempView.topAnchor).isActive = true;
+                    currentSchedule.bottomAnchor.constraint (equalTo: self.tempView.bottomAnchor).isActive = true;
+                    currentSchedule.leadingAnchor.constraint (equalTo: self.tempView.leadingAnchor).isActive = true;
+                    currentSchedule.trailingAnchor.constraint (equalTo: self.tempView.trailingAnchor).isActive = true;
+                    currentSchedule.spacing = 6;
+                    currentSchedule.backgroundColor = .clear
+                    
+                    //makes the schedule and everything fade in
+                    UIView.animate(withDuration: 1.0, delay: 0, options: .curveEaseInOut, animations: {
+                        self.tempView.layer.opacity = 1;
+                        biggerview.layer.opacity = 1;
+                        labelSchedule.layer.opacity = 1;
+                    }, completion: nil)
+                    
+                    //breaks out of the loop
+                    break;
                 }
-                //after all of that, the timer is constructed and will begin to track the current period
-                self.constructTimer()
-        })
+            }
+            //after all of that, the timer is constructed and will begin to track the current period
+            self.constructTimer()
+        }
     }
     // MARK: - Navigation
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -363,20 +330,38 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate
                 let textFieldY = self.topConstraint.constant + CGFloat(self.textFieldCoordinateY) + self.tempView.convert(schedule.frame.origin, to: self.view).y;
                 let difference = targetY - textFieldY;
                 let targetOffset = self.topConstraint.constant + difference;
-                UIView.animate(withDuration: 0.5, animations: {
+                DispatchQueue.main.async
+                {
+                    UIView.animate(withDuration: 0.3, animations: {
                     self.topConstraint.constant = targetOffset;
                     self.view.layoutIfNeeded();
-                }, completion: nil)
+                    }, completion: nil)
+                }
             }
         }
     }
+    func printFonts ()
+    {
+        for family: String in UIFont.familyNames
+        {
+            print("\(family)")
+            for names: String in UIFont.fontNames(forFamilyName: family)
+            {
+                print("== \(names)")
+            }
+        }
+    }
+    
     //When the keyboard hides, then animate back to the normal position
     @objc func keyboardWillHide (notification: NSNotification)
     {
-        UIView.animate (withDuration: 0.5, animations: {
-            self.topConstraint.constant = 0;
-            self.view.layoutIfNeeded()
-        }, completion: nil)
+        DispatchQueue.main.async
+        {
+            UIView.animate (withDuration: 0.3, animations: {
+                self.topConstraint.constant = 0;
+                self.view.layoutIfNeeded()
+            }, completion: nil)
+        }
     }
     //conform to protocol
     func didReceiveData(_ data: Float)

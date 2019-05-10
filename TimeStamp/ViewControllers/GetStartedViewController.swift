@@ -72,8 +72,5 @@ class GetStartedViewController: UIViewController {
         }
         CoreDataStack.saveContext()
     }
-    
-    
-    
 }
 
