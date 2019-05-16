@@ -41,10 +41,6 @@
 		CEDC434E2276130900A78890 /* Segoe UI Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEDC434A2276130900A78890 /* Segoe UI Bold.ttf */; };
 		CEDC434F2276130900A78890 /* Segoe UI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEDC434B2276130900A78890 /* Segoe UI.ttf */; };
 		CEDC43512276816C00A78890 /* SetUp1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDC43502276816C00A78890 /* SetUp1ViewController.swift */; };
-		CEDC43532276817E00A78890 /* SetUp2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDC43522276817E00A78890 /* SetUp2ViewController.swift */; };
-		CEDC43552276818D00A78890 /* SetUp3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDC43542276818D00A78890 /* SetUp3ViewController.swift */; };
-		CEDC43572276819800A78890 /* SetUp4ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDC43562276819800A78890 /* SetUp4ViewController.swift */; };
-		CEDC4359227681A600A78890 /* SetUp5ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDC4358227681A600A78890 /* SetUp5ViewController.swift */; };
 		CEDC435B22773F8400A78890 /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDC435A22773F8400A78890 /* MainPageViewController.swift */; };
 		CEDC435D22773FAC00A78890 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDC435C22773FAC00A78890 /* ScheduleViewController.swift */; };
 		CEDC435F22775DFA00A78890 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDC435E22775DFA00A78890 /* SettingsViewController.swift */; };
@@ -89,10 +85,6 @@
 		CEDC434A2276130900A78890 /* Segoe UI Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Segoe UI Bold.ttf"; sourceTree = "<group>"; };
 		CEDC434B2276130900A78890 /* Segoe UI.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Segoe UI.ttf"; sourceTree = "<group>"; };
 		CEDC43502276816C00A78890 /* SetUp1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUp1ViewController.swift; sourceTree = "<group>"; };
-		CEDC43522276817E00A78890 /* SetUp2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUp2ViewController.swift; sourceTree = "<group>"; };
-		CEDC43542276818D00A78890 /* SetUp3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUp3ViewController.swift; sourceTree = "<group>"; };
-		CEDC43562276819800A78890 /* SetUp4ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUp4ViewController.swift; sourceTree = "<group>"; };
-		CEDC4358227681A600A78890 /* SetUp5ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUp5ViewController.swift; sourceTree = "<group>"; };
 		CEDC435A22773F8400A78890 /* MainPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
 		CEDC435C22773FAC00A78890 /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 		CEDC435E22775DFA00A78890 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -204,10 +196,6 @@
 			children = (
 				CEDC433322760BBE00A78890 /* GetStartedViewController.swift */,
 				CEDC43502276816C00A78890 /* SetUp1ViewController.swift */,
-				CEDC43522276817E00A78890 /* SetUp2ViewController.swift */,
-				CEDC43542276818D00A78890 /* SetUp3ViewController.swift */,
-				CEDC43562276819800A78890 /* SetUp4ViewController.swift */,
-				CEDC4358227681A600A78890 /* SetUp5ViewController.swift */,
 				CEDC435C22773FAC00A78890 /* ScheduleViewController.swift */,
 				CEDC435A22773F8400A78890 /* MainPageViewController.swift */,
 				CEDC435E22775DFA00A78890 /* SettingsViewController.swift */,
@@ -367,16 +355,13 @@
 				CEDC433422760BBE00A78890 /* GetStartedViewController.swift in Sources */,
 				CEDC435F22775DFA00A78890 /* SettingsViewController.swift in Sources */,
 				CE2D71492280C71E00F4D89A /* TimeStampModel.xcdatamodeld in Sources */,
-				CEDC4359227681A600A78890 /* SetUp5ViewController.swift in Sources */,
 				8AA2F046228123890091EF0F /* HorizontalLeftShiftTransition.swift in Sources */,
 				CEDC43512276816C00A78890 /* SetUp1ViewController.swift in Sources */,
-				CEDC43532276817E00A78890 /* SetUp2ViewController.swift in Sources */,
 				8ABCA53F2282176000A30D36 /* WeeklySchedule+CoreDataProperties.swift in Sources */,
 				CEDC435D22773FAC00A78890 /* ScheduleViewController.swift in Sources */,
 				CE927FF7227A0BCD00EE0A22 /* PeriodClass.swift in Sources */,
 				CEC26E07227B3E9E00FFFC67 /* Period+CoreDataProperties.swift in Sources */,
 				CE927FF8227A0BCD00EE0A22 /* RepeatingTimer.swift in Sources */,
-				CEDC43552276818D00A78890 /* SetUp3ViewController.swift in Sources */,
 				CE146D982280BD9900B3922D /* Settings+CoreDataProperties.swift in Sources */,
 				CEC26E02227B3E9E00FFFC67 /* Timetable+CoreDataProperties.swift in Sources */,
 				CEC26E04227B3E9E00FFFC67 /* FlipDay+CoreDataProperties.swift in Sources */,
@@ -394,7 +379,6 @@
 				CE927FF4227A0BCD00EE0A22 /* UserTimetable.swift in Sources */,
 				CE927FF6227A0BCD00EE0A22 /* ArticleClass.swift in Sources */,
 				8AA2F04422811FF90091EF0F /* HorizontalRightShiftTransition.swift in Sources */,
-				CEDC43572276819800A78890 /* SetUp4ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
