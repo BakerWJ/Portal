@@ -24,21 +24,28 @@ class UserDataSettings
 
     static func updateWithInternet ()
     {
-        let connectedRef = Database.database().reference(withPath: ".info/connected")
-        connectedRef.observe(.value)
-        {
-            (snapshot) in
-            if let connected = snapshot.value as? Bool, connected
+        let connectedRef = Database.database().reference(withPath: ".info/connected");
+        var x : Bool = false;
+        for _ in 1 ... 5 {
+            connectedRef.observe(.value)
             {
-                self.updateData()
-                self.updateWeeklySchedule()
+                (snapshot) in
+                if let connected = snapshot.value as? Bool, connected
+                {
+                    x = true;
+                    self.updateData()
+                    self.updateWeeklySchedule()
+                }
             }
-            else
-            {
-                //apple does not allow this, so we will change it later
-                let alert = UIAlertController (title: "Cannot connect to server", message: "Press OK to exit", preferredStyle: UIAlertController.Style.alert)
-                delegate?.window?.rootViewController?.present (alert, animated: true, completion: nil);
-            }
+            sleep(0)
+        }
+        if (!x) {
+            let alert = UIAlertController(title: "cannot connect to server", message: "Press OK to exit", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: {
+                (action) in
+                exit (0)
+            }))
+            delegate?.window?.rootViewController?.present (alert, animated: true, completion: nil)
         }
     }
     
