@@ -330,12 +330,15 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate
                 let textFieldY = self.topConstraint.constant + CGFloat(self.textFieldCoordinateY) + self.tempView.convert(schedule.frame.origin, to: self.view).y;
                 let difference = targetY - textFieldY;
                 let targetOffset = self.topConstraint.constant + difference;
-                DispatchQueue.main.async
+                if (difference < 0)
                 {
-                    UIView.animate(withDuration: 0.3, animations: {
-                    self.topConstraint.constant = targetOffset;
-                    self.view.layoutIfNeeded();
-                    }, completion: nil)
+                    DispatchQueue.main.async
+                    {
+                        UIView.animate(withDuration: 0.3, animations: {
+                            self.topConstraint.constant = targetOffset;
+                            self.view.layoutIfNeeded();
+                        }, completion: nil)
+                    }
                 }
             }
         }

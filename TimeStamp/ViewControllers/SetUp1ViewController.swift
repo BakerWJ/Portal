@@ -10,6 +10,7 @@ import UIKit
 
 class SetUp1ViewController: UIViewController, UITextFieldDelegate {
 
+    //outlets
     @IBOutlet weak var mondayTextView: UITextField!
     @IBOutlet weak var tuesdayTextView: UITextField!
     @IBOutlet weak var questionLabel: UILabel!
@@ -20,10 +21,14 @@ class SetUp1ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var tellusmoreExplainLabel: UILabel!
     @IBOutlet weak var mondayLabel: UILabel!
     @IBOutlet weak var tuesdayLabel: UILabel!
+    @IBOutlet weak var outerView: UIView!
+    @IBOutlet weak var topConstraint: NSLayoutConstraint!
     
     var classnumber: Int = 1;
     var progress: [UIImageView] = [UIImageView] ()
     let stackview = UIStackView ();
+    var keyboardHeight = 0.0;
+    var textFieldCoordinateY = 0.0;
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,11 +41,27 @@ class SetUp1ViewController: UIViewController, UITextFieldDelegate {
         setUpProgress()
         setConstraints ()
         // Do any additional setup after loading the view.
+        outerView.layer.backgroundColor = UIColor(red: 243.0/255, green: 243.0/255, blue: 243.0/255, alpha: 1.0).cgColor
+        //Sets up notification observers
+        NotificationCenter.default.addObserver(self, selector: #selector (keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver (self, selector: #selector (keyboardWillDisappear), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    override func viewWillDisappear (_ animated: Bool)
+    {
+        super.viewWillDisappear (animated);
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        textFieldCoordinateY = Double(textField.frame.minY);
+        return true;
     }
     
     func returnText (classnumber: Int) -> String
@@ -88,13 +109,13 @@ class SetUp1ViewController: UIViewController, UITextFieldDelegate {
     //sets up the progress bar
     func setUpProgress ()
     {
-        view.addSubview (stackview);
+        outerView.addSubview (stackview);
         stackview.axis = .horizontal;
         stackview.spacing = view.frame.height/812.0*42;
         stackview.distribution = .equalSpacing
         stackview.translatesAutoresizingMaskIntoConstraints = false;
         stackview.centerXAnchor.constraint (equalTo: view.centerXAnchor).isActive = true;
-        stackview.topAnchor.constraint (equalTo: view.topAnchor, constant: 593/812.0*view.frame.height).isActive = true;
+        stackview.topAnchor.constraint (equalTo: outerView.topAnchor, constant: 593/812.0*view.frame.height).isActive = true;
         for _ in 0..<5
         {
             let imageView = UIImageView (image: UIImage(named: "Ellipse 39-1"), highlightedImage: UIImage (named: "Ellipse 39"))
@@ -155,16 +176,16 @@ class SetUp1ViewController: UIViewController, UITextFieldDelegate {
         skipButton.titleLabel?.adjustsFontSizeToFitWidth = true;
         tellusmoreLabel.centerXAnchor.constraint (equalTo: view.centerXAnchor).isActive = true;
         tellusmoreLabel.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 31.0/812).isActive = true;
-        tellusmoreLabel.topAnchor.constraint (equalTo: view.topAnchor, constant: 118/812.0*view.frame.height).isActive = true
+        tellusmoreLabel.topAnchor.constraint (equalTo: outerView.topAnchor, constant: 118/812.0*view.frame.height).isActive = true
         tellusmoreExplainLabel.centerXAnchor.constraint (equalTo: view.centerXAnchor).isActive = true;
         tellusmoreExplainLabel.heightAnchor.constraint (equalTo: view.heightAnchor, multiplier: 49.0/812).isActive = true;
-        tellusmoreExplainLabel.topAnchor.constraint (equalTo: view.topAnchor, constant: 145/812.0*view.frame.height).isActive = true
+        tellusmoreExplainLabel.topAnchor.constraint (equalTo: outerView.topAnchor, constant: 145/812.0*view.frame.height).isActive = true
         questionLabel.centerXAnchor.constraint (equalTo: view.centerXAnchor).isActive = true
         questionLabel.heightAnchor.constraint (equalTo: view.heightAnchor, multiplier: 104/812.0).isActive = true;
-        questionLabel.topAnchor.constraint (equalTo: view.topAnchor, constant: 208/812.0*view.frame.height).isActive = true;
+        questionLabel.topAnchor.constraint (equalTo: outerView.topAnchor, constant: 208/812.0*view.frame.height).isActive = true;
         mondayTextView.centerXAnchor.constraint (equalTo: view.centerXAnchor).isActive = true;
         mondayTextView.heightAnchor.constraint (equalTo: view.heightAnchor, multiplier: 30/812.0).isActive = true;
-        mondayTextView.topAnchor.constraint (equalTo: view.topAnchor, constant: 363/812.0*view.frame.height).isActive = true;
+        mondayTextView.topAnchor.constraint (equalTo: outerView.topAnchor, constant: 363/812.0*view.frame.height).isActive = true;
         
         mondayTextView.borderStyle = .none
         mondayTextView.layer.masksToBounds = false;
@@ -176,7 +197,7 @@ class SetUp1ViewController: UIViewController, UITextFieldDelegate {
         
         tuesdayTextView.centerXAnchor.constraint (equalTo: view.centerXAnchor).isActive = true;
         tuesdayTextView.heightAnchor.constraint (equalTo: view.heightAnchor, multiplier: 30/812.0).isActive = true;
-        tuesdayTextView.topAnchor.constraint (equalTo: view.topAnchor, constant: 474/812.0*view.frame.height).isActive = true;
+        tuesdayTextView.topAnchor.constraint (equalTo: outerView.topAnchor, constant: 474/812.0*view.frame.height).isActive = true;
         
         tuesdayTextView.borderStyle = .none
         tuesdayTextView.layer.masksToBounds = false;
@@ -188,20 +209,52 @@ class SetUp1ViewController: UIViewController, UITextFieldDelegate {
         
         mondayLabel.leadingAnchor.constraint(equalTo: mondayTextView.leadingAnchor).isActive = true;
         mondayLabel.heightAnchor.constraint (equalTo: view.heightAnchor, multiplier: 23.0/812.0).isActive = true;
-        mondayLabel.topAnchor.constraint (equalTo: view.topAnchor, constant: 320/812.0*view.frame.height).isActive = true
+        mondayLabel.topAnchor.constraint (equalTo: outerView.topAnchor, constant: 320/812.0*view.frame.height).isActive = true
         tuesdayLabel.leadingAnchor.constraint(equalTo: tuesdayTextView.leadingAnchor).isActive = true;
         tuesdayLabel.heightAnchor.constraint (equalTo: view.heightAnchor, multiplier: 23.0/812.0).isActive = true;
-        tuesdayLabel.topAnchor.constraint (equalTo: view.topAnchor, constant: 431/812.0*view.frame.height).isActive = true;
+        tuesdayLabel.topAnchor.constraint (equalTo: outerView.topAnchor, constant: 431/812.0*view.frame.height).isActive = true;
         ImdoneButton.centerXAnchor.constraint (equalTo: view.centerXAnchor).isActive = true;
         ImdoneButton.heightAnchor.constraint (equalTo: view.heightAnchor, multiplier: 43.0/812.0).isActive = true
-        ImdoneButton.topAnchor.constraint (equalTo: view.topAnchor, constant: 648/812.0*view.frame.height).isActive = true
+        ImdoneButton.topAnchor.constraint (equalTo: outerView.topAnchor, constant: 648/812.0*view.frame.height).isActive = true
         nextButton.centerXAnchor.constraint (equalTo: view.centerXAnchor).isActive = true
         nextButton.heightAnchor.constraint (equalTo: view.heightAnchor, multiplier: 43.0/812.0).isActive = true;
-        nextButton.topAnchor.constraint (equalTo: view.topAnchor, constant: 648/812.0*view.frame.height).isActive = true
+        nextButton.topAnchor.constraint (equalTo: outerView.topAnchor, constant: 648/812.0*view.frame.height).isActive = true
         skipButton.centerXAnchor.constraint (equalTo: view.centerXAnchor).isActive = true
         skipButton.heightAnchor.constraint (equalTo: view.heightAnchor, multiplier: 23/812.0).isActive = true
-        skipButton.topAnchor.constraint (equalTo: view.topAnchor, constant: 710/812.0*view.frame.height).isActive = true;
-        
+        skipButton.topAnchor.constraint (equalTo: outerView.topAnchor, constant: 710/812.0*view.frame.height).isActive = true;
+    }
+    
+    @objc func keyboardWillShow (notification: NSNotification)
+    {
+        if let keyboardSize = (notification.userInfo? [UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
+        {
+            keyboardHeight = Double(keyboardSize.height)
+            let targetY = CGFloat(Double(self.view.frame.height) - self.keyboardHeight - 40);
+            let textFieldY = self.topConstraint.constant + CGFloat(self.textFieldCoordinateY)
+            let difference = targetY - textFieldY;
+            let targetOffset = self.topConstraint.constant + difference;
+            if (difference < 0)
+            {
+                DispatchQueue.main.async
+                {
+                    UIView.animate(withDuration: 0.3, animations: {
+                        self.topConstraint.constant = targetOffset;
+                        self.view.layoutIfNeeded();
+                    }, completion: nil)
+                }
+            }
+        }
+    }
+    
+    @objc func keyboardWillDisappear (notification: NSNotification)
+    {
+        DispatchQueue.main.async
+        {
+            UIView.animate (withDuration: 0.3, animations: {
+                self.topConstraint.constant = 0;
+                self.view.layoutIfNeeded()
+            }, completion: nil)
+        }
     }
     // MARK: - Navigation
 

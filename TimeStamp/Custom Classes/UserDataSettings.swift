@@ -37,10 +37,6 @@ class UserDataSettings
             {
                 //apple does not allow this, so we will change it later
                 let alert = UIAlertController (title: "Cannot connect to server", message: "Press OK to exit", preferredStyle: UIAlertController.Style.alert)
-                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: {
-                    (action) in
-                    exit (0);
-                }))
                 delegate?.window?.rootViewController?.present (alert, animated: true, completion: nil);
             }
         }
