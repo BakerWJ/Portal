@@ -168,5 +168,8 @@ class SettingsViewController: UIViewController {
         eveningLabel.textColor = #colorLiteral(red: 0.5888373256, green: 0.5888516307, blue: 0.5888439417, alpha: 1)
     }
     
-
+    @IBAction func triggerUnwind ()
+    {
+        performSegue(withIdentifier: "returnFromSettings", sender: self)
+    }
 }

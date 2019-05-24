@@ -14,6 +14,13 @@
 		8ABCA53F2282176000A30D36 /* WeeklySchedule+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABCA53D2282176000A30D36 /* WeeklySchedule+CoreDataProperties.swift */; };
 		8AD8620D2297824000412EFF /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD8620C2297824000412EFF /* Util.swift */; };
 		8AD8620F229796D100412EFF /* TomorrowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD8620E229796D100412EFF /* TomorrowViewController.swift */; };
+		8AD862122298387600412EFF /* enjoyWeekend.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8AD862112298387600412EFF /* enjoyWeekend.gif */; };
+		8AD8621422983D0B00412EFF /* VerticalUpShiftTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD8621322983D0B00412EFF /* VerticalUpShiftTransition.swift */; };
+		8AD8621622983D1B00412EFF /* VerticalDownShiftTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD8621522983D1B00412EFF /* VerticalDownShiftTransition.swift */; };
+		8AD8621822984A3500412EFF /* HorizontalRightShiftTransitionUnwind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD8621722984A3500412EFF /* HorizontalRightShiftTransitionUnwind.swift */; };
+		8AD8621A22984A5E00412EFF /* HorizontalLeftShiftTransitionUnwind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD8621922984A5E00412EFF /* HorizontalLeftShiftTransitionUnwind.swift */; };
+		8AD8621C22984A9600412EFF /* VerticalUpShiftTransitionUnwind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD8621B22984A9600412EFF /* VerticalUpShiftTransitionUnwind.swift */; };
+		8AD8621E22984AB800412EFF /* VerticallyDownShiftTransitionUnwind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD8621D22984AB800412EFF /* VerticallyDownShiftTransitionUnwind.swift */; };
 		8AEA785122851D5C0031B030 /* UserDataSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEA785022851D5C0031B030 /* UserDataSettings.swift */; };
 		CE146D972280BD9900B3922D /* Settings+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE146D952280BD9900B3922D /* Settings+CoreDataClass.swift */; };
 		CE146D982280BD9900B3922D /* Settings+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE146D962280BD9900B3922D /* Settings+CoreDataProperties.swift */; };
@@ -58,6 +65,13 @@
 		8ABCA53D2282176000A30D36 /* WeeklySchedule+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeeklySchedule+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8AD8620C2297824000412EFF /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		8AD8620E229796D100412EFF /* TomorrowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TomorrowViewController.swift; sourceTree = "<group>"; };
+		8AD862112298387600412EFF /* enjoyWeekend.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = enjoyWeekend.gif; sourceTree = "<group>"; };
+		8AD8621322983D0B00412EFF /* VerticalUpShiftTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalUpShiftTransition.swift; sourceTree = "<group>"; };
+		8AD8621522983D1B00412EFF /* VerticalDownShiftTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalDownShiftTransition.swift; sourceTree = "<group>"; };
+		8AD8621722984A3500412EFF /* HorizontalRightShiftTransitionUnwind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalRightShiftTransitionUnwind.swift; sourceTree = "<group>"; };
+		8AD8621922984A5E00412EFF /* HorizontalLeftShiftTransitionUnwind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalLeftShiftTransitionUnwind.swift; sourceTree = "<group>"; };
+		8AD8621B22984A9600412EFF /* VerticalUpShiftTransitionUnwind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalUpShiftTransitionUnwind.swift; sourceTree = "<group>"; };
+		8AD8621D22984AB800412EFF /* VerticallyDownShiftTransitionUnwind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticallyDownShiftTransitionUnwind.swift; sourceTree = "<group>"; };
 		8AEA785022851D5C0031B030 /* UserDataSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataSettings.swift; sourceTree = "<group>"; };
 		CE146D952280BD9900B3922D /* Settings+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+CoreDataClass.swift"; sourceTree = "<group>"; };
 		CE146D962280BD9900B3922D /* Settings+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -124,18 +138,40 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8AD862102298385E00412EFF /* GIFs */ = {
+			isa = PBXGroup;
+			children = (
+				8AD862112298387600412EFF /* enjoyWeekend.gif */,
+			);
+			path = GIFs;
+			sourceTree = "<group>";
+		};
+		8AD8621F22984ACB00412EFF /* Custom Segues */ = {
+			isa = PBXGroup;
+			children = (
+				8AA2F04322811FF90091EF0F /* HorizontalRightShiftTransition.swift */,
+				8AD8621722984A3500412EFF /* HorizontalRightShiftTransitionUnwind.swift */,
+				8AA2F045228123890091EF0F /* HorizontalLeftShiftTransition.swift */,
+				8AD8621922984A5E00412EFF /* HorizontalLeftShiftTransitionUnwind.swift */,
+				8AD8621322983D0B00412EFF /* VerticalUpShiftTransition.swift */,
+				8AD8621B22984A9600412EFF /* VerticalUpShiftTransitionUnwind.swift */,
+				8AD8621522983D1B00412EFF /* VerticalDownShiftTransition.swift */,
+				8AD8621D22984AB800412EFF /* VerticallyDownShiftTransitionUnwind.swift */,
+			);
+			path = "Custom Segues";
+			sourceTree = "<group>";
+		};
 		CE927FED227A0BB200EE0A22 /* Custom Classes */ = {
 			isa = PBXGroup;
 			children = (
 				8AD8620C2297824000412EFF /* Util.swift */,
 				CE927FF0227A0BCD00EE0A22 /* ArticleClass.swift */,
-				8AA2F04322811FF90091EF0F /* HorizontalRightShiftTransition.swift */,
-				8AA2F045228123890091EF0F /* HorizontalLeftShiftTransition.swift */,
 				CE927FF1227A0BCD00EE0A22 /* PeriodClass.swift */,
 				CE927FF2227A0BCD00EE0A22 /* RepeatingTimer.swift */,
 				CE927FF3227A0BCD00EE0A22 /* ScheduleClass.swift */,
 				CE927FEE227A0BCD00EE0A22 /* UserTimetable.swift */,
 				8AEA785022851D5C0031B030 /* UserDataSettings.swift */,
+				8AD8621F22984ACB00412EFF /* Custom Segues */,
 			);
 			path = "Custom Classes";
 			sourceTree = "<group>";
@@ -186,6 +222,7 @@
 				CEDC433522760BBE00A78890 /* Main.storyboard */,
 				CEDC433D22760BC000A78890 /* LaunchScreen.storyboard */,
 				CEDC433B22760BC000A78890 /* Assets.xcassets */,
+				8AD862102298385E00412EFF /* GIFs */,
 				CEC26DF6227B3E9E00FFFC67 /* Data */,
 				CE927FED227A0BB200EE0A22 /* Custom Classes */,
 				CEDC4347227612E500A78890 /* Fonts */,
@@ -281,6 +318,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEDC434C2276130900A78890 /* Segoe UI Bold Italic.ttf in Resources */,
+				8AD862122298387600412EFF /* enjoyWeekend.gif in Resources */,
 				CE927FFB227A0EFB00EE0A22 /* GoogleService-Info.plist in Resources */,
 				CEDC434E2276130900A78890 /* Segoe UI Bold.ttf in Resources */,
 				CEDC434F2276130900A78890 /* Segoe UI.ttf in Resources */,
@@ -358,10 +396,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE927FF9227A0BCD00EE0A22 /* ScheduleClass.swift in Sources */,
+				8AD8621C22984A9600412EFF /* VerticalUpShiftTransitionUnwind.swift in Sources */,
 				CEDC433422760BBE00A78890 /* GetStartedViewController.swift in Sources */,
 				CEDC435F22775DFA00A78890 /* SettingsViewController.swift in Sources */,
 				CE2D71492280C71E00F4D89A /* TimeStampModel.xcdatamodeld in Sources */,
 				8AA2F046228123890091EF0F /* HorizontalLeftShiftTransition.swift in Sources */,
+				8AD8621622983D1B00412EFF /* VerticalDownShiftTransition.swift in Sources */,
 				8AD8620D2297824000412EFF /* Util.swift in Sources */,
 				CEDC43512276816C00A78890 /* SetUp1ViewController.swift in Sources */,
 				8ABCA53F2282176000A30D36 /* WeeklySchedule+CoreDataProperties.swift in Sources */,
@@ -375,18 +415,22 @@
 				CEC26E04227B3E9E00FFFC67 /* FlipDay+CoreDataProperties.swift in Sources */,
 				CEDC433222760BBE00A78890 /* AppDelegate.swift in Sources */,
 				CEC26E01227B3E9E00FFFC67 /* Schedule+CoreDataProperties.swift in Sources */,
+				8AD8621A22984A5E00412EFF /* HorizontalLeftShiftTransitionUnwind.swift in Sources */,
 				CE146D972280BD9900B3922D /* Settings+CoreDataClass.swift in Sources */,
 				CEC26E00227B3E9E00FFFC67 /* CoreDataStack.swift in Sources */,
 				CEC26E08227B3E9E00FFFC67 /* Period+CoreDataClass.swift in Sources */,
 				8ABCA53E2282176000A30D36 /* WeeklySchedule+CoreDataClass.swift in Sources */,
 				CEC26E03227B3E9E00FFFC67 /* FlipDay+CoreDataClass.swift in Sources */,
 				CEC26E06227B3E9E00FFFC67 /* Timetable+CoreDataClass.swift in Sources */,
+				8AD8621822984A3500412EFF /* HorizontalRightShiftTransitionUnwind.swift in Sources */,
 				CEDC435B22773F8400A78890 /* MainPageViewController.swift in Sources */,
+				8AD8621E22984AB800412EFF /* VerticallyDownShiftTransitionUnwind.swift in Sources */,
 				CEC26E05227B3E9E00FFFC67 /* Schedule+CoreDataClass.swift in Sources */,
 				8AEA785122851D5C0031B030 /* UserDataSettings.swift in Sources */,
 				CE927FF4227A0BCD00EE0A22 /* UserTimetable.swift in Sources */,
 				CE927FF6227A0BCD00EE0A22 /* ArticleClass.swift in Sources */,
 				8AA2F04422811FF90091EF0F /* HorizontalRightShiftTransition.swift in Sources */,
+				8AD8621422983D0B00412EFF /* VerticalUpShiftTransition.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

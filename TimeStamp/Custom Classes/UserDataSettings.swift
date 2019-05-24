@@ -27,17 +27,19 @@ class UserDataSettings
         let connectedRef = Database.database().reference(withPath: ".info/connected");
         var x : Bool = false;
         for _ in 1 ... 5 {
-            connectedRef.observe(.value)
+            if (!x)
             {
-                (snapshot) in
-                if let connected = snapshot.value as? Bool, connected
+                connectedRef.observe(.value)
                 {
-                    x = true;
-                    self.updateData()
-                    self.updateWeeklySchedule()
+                    (snapshot) in
+                    if let connected = snapshot.value as? Bool, connected
+                    {
+                        x = true;
+                        self.updateData()
+                        self.updateWeeklySchedule()
+                    }
                 }
             }
-            sleep(0)
         }
         if (!x) {
             let alert = UIAlertController(title: "cannot connect to server", message: "Press OK to exit", preferredStyle: .alert)

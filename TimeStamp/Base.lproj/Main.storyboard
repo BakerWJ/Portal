@@ -392,6 +392,7 @@
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="MBh-KU-sef" appends="YES" id="4V3-Sx-foj"/>
                             <outletCollection property="gestureRecognizers" destination="CCf-hO-FWs" appends="YES" id="zeS-ZZ-vmm"/>
+                            <outletCollection property="gestureRecognizers" destination="20B-uz-ytI" appends="YES" id="iIb-oW-EdC"/>
                         </connections>
                     </view>
                     <connections>
@@ -405,12 +406,17 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hHd-6b-UJa" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <swipeGestureRecognizer direction="right" id="MBh-KU-sef">
                     <connections>
-                        <segue destination="Vy2-Vx-pG9" kind="custom" identifier="SwipeLeft" customClass="HorizontalLeftShiftTransition" customModule="TimeStamp" customModuleProvider="target" id="iIj-Y3-3e4"/>
+                        <segue destination="Vy2-Vx-pG9" kind="custom" customClass="HorizontalLeftShiftTransition" customModule="TimeStamp" customModuleProvider="target" id="RlR-hY-k4E"/>
                     </connections>
                 </swipeGestureRecognizer>
                 <swipeGestureRecognizer direction="left" id="CCf-hO-FWs">
                     <connections>
                         <segue destination="oFc-jc-KNZ" kind="custom" customClass="HorizontalRightShiftTransition" customModule="TimeStamp" customModuleProvider="target" id="8ES-yy-3qt"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="up" id="20B-uz-ytI">
+                    <connections>
+                        <segue destination="3KH-96-mpF" kind="custom" customClass="VerticalUpShiftTransition" customModule="TimeStamp" customModuleProvider="target" id="Qqi-OT-WQc"/>
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
@@ -688,12 +694,14 @@
                         <outlet property="threeLabel" destination="XzU-vX-cEY" id="j7O-KK-iLX"/>
                         <outlet property="twoDay" destination="sN0-XJ-Bz1" id="fn1-qZ-JR4"/>
                         <outlet property="twoLabel" destination="pGe-I3-x9p" id="14C-oS-KEZ"/>
+                        <segue destination="KDz-FQ-FJt" kind="unwind" identifier="returnFromSettings" customClass="HorizontalRightShiftTransitionUnwind" customModule="TimeStamp" customModuleProvider="target" unwindAction="returnFromSettingsWithSender:" id="dWM-l0-GbB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rw8-yR-y0e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="KDz-FQ-FJt" userLabel="Exit" sceneMemberID="exit"/>
                 <swipeGestureRecognizer direction="right" id="UJf-F8-ye5">
                     <connections>
-                        <segue destination="Shi-Lm-Jvz" kind="custom" customClass="HorizontalLeftShiftTransition" customModule="TimeStamp" customModuleProvider="target" id="mak-GG-wgz"/>
+                        <action selector="triggerUnwind" destination="oFc-jc-KNZ" id="pdh-r1-IQg"/>
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
@@ -710,18 +718,22 @@
                         <gestureRecognizers/>
                         <viewLayoutGuide key="safeArea" id="oFq-pc-e3z"/>
                         <connections>
-                            <outletCollection property="gestureRecognizers" destination="gzb-9x-UNO" appends="YES" id="oxP-Io-jdS"/>
+                            <outletCollection property="gestureRecognizers" destination="PPP-ih-Pf8" appends="YES" id="5Zf-Xn-nvo"/>
                         </connections>
                     </view>
+                    <connections>
+                        <segue destination="2DG-2x-yvv" kind="unwind" identifier="returnFromTomorrow" customClass="VerticalUpShiftTransitionUnwind" customModule="TimeStamp" customModuleProvider="target" unwindAction="returnFromTomorrowWithSender:" id="us6-Kk-D8p"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mki-1o-XLw" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="left" id="gzb-9x-UNO">
+                <exit id="2DG-2x-yvv" userLabel="Exit" sceneMemberID="exit"/>
+                <swipeGestureRecognizer direction="down" id="PPP-ih-Pf8">
                     <connections>
-                        <segue destination="Vy2-Vx-pG9" kind="custom" customClass="HorizontalRightShiftTransition" customModule="TimeStamp" customModuleProvider="target" id="MVJ-iw-fCK"/>
+                        <action selector="triggerSegue" destination="3KH-96-mpF" id="6Ir-Nx-1BN"/>
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="667" y="658"/>
+            <point key="canvasLocation" x="2289" y="1476"/>
         </scene>
         <!--Today View Controller-->
         <scene sceneID="fKN-ix-CcW">
@@ -735,23 +747,21 @@
                         <viewLayoutGuide key="safeArea" id="yD9-oW-ig9"/>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="bbh-xB-hcg" appends="YES" id="j7Z-z0-kfk"/>
-                            <outletCollection property="gestureRecognizers" destination="rvh-8f-Q4U" appends="YES" id="uxQ-pB-ewF"/>
                         </connections>
                     </view>
+                    <connections>
+                        <segue destination="1Iy-uy-ROd" kind="unwind" identifier="returnFromToday" customClass="HorizontalLeftShiftTransitionUnwind" customModule="TimeStamp" customModuleProvider="target" unwindAction="returnFromTodayWithSender:" id="oYR-ZC-pdf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="85e-6S-0ab" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="1Iy-uy-ROd" userLabel="Exit" sceneMemberID="exit"/>
                 <swipeGestureRecognizer direction="left" id="bbh-xB-hcg">
                     <connections>
-                        <segue destination="Shi-Lm-Jvz" kind="custom" customClass="HorizontalRightShiftTransition" customModule="TimeStamp" customModuleProvider="target" id="9cE-TZ-mMA"/>
-                    </connections>
-                </swipeGestureRecognizer>
-                <swipeGestureRecognizer direction="right" id="rvh-8f-Q4U">
-                    <connections>
-                        <segue destination="3KH-96-mpF" kind="custom" customClass="HorizontalLeftShiftTransition" customModule="TimeStamp" customModuleProvider="target" id="UvW-QH-XNT"/>
+                        <action selector="triggerSegue" destination="Vy2-Vx-pG9" id="1bA-u8-Oz1"/>
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1505" y="658"/>
+            <point key="canvasLocation" x="1412" y="658"/>
         </scene>
     </scenes>
     <resources>
@@ -769,7 +779,6 @@
         <image name="Toggle - On" width="68" height="39"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="MVJ-iw-fCK"/>
-        <segue reference="9cE-TZ-mMA"/>
+        <segue reference="hMh-E8-IOY"/>
     </inferredMetricsTieBreakers>
 </document>

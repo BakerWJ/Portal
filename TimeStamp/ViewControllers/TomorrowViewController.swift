@@ -41,7 +41,6 @@ class TomorrowViewController: UIViewController, KeyboardShiftingDelegate, UIScro
     override func viewWillAppear (_ animated: Bool)
     {
         super.viewWillAppear (animated);
-        //printFonts()
         //add observer of the keyboard showing
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -144,20 +143,19 @@ class TomorrowViewController: UIViewController, KeyboardShiftingDelegate, UIScro
         let date = Calendar.current.date(byAdding: .day, value: 1, to: Date())!;
         //Sunday is 1, Saturday is 7, gets tomorrow's weekday count
         let weekday = calendar.component(.weekday, from: date);
-        print (schedules.count)
         //fetch data from firebase database about the daily schedules.
         if weeklySchedule?.typeOfDay [weekday - 1] == 4
         {
             //creates an image that says enjoy the weekend
-            let image = UIImageView(image: UIImage (named: "enjoyWeekend"));
+            let image = UIImageView (image: UIImage.gifImageWithName("enjoyWeekend"));
             //adds the image to the view to display
             self.outerView.addSubview (image);
             //sets layout constraints
             image.translatesAutoresizingMaskIntoConstraints = false;
             image.centerXAnchor.constraint(equalTo: self.outerView.centerXAnchor).isActive = true;
             image.centerYAnchor.constraint(equalTo: self.outerView.centerYAnchor).isActive = true;
-            image.widthAnchor.constraint(equalToConstant: 320/812*view.frame.height).isActive = true;
-            image.heightAnchor.constraint (equalToConstant: 360/812*view.frame.height).isActive = true;
+            image.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true;
+            image.heightAnchor.constraint (equalToConstant: 400/812*view.frame.height).isActive = true;
         }
         else
         {
@@ -308,5 +306,10 @@ class TomorrowViewController: UIViewController, KeyboardShiftingDelegate, UIScro
     func didReceiveData(_ data: Float)
     {
         textFieldCoordinateY = Double(data);
+    }
+    
+    @IBAction func triggerSegue ()
+    {
+        performSegue(withIdentifier: "returnFromTomorrow", sender: self);
     }
 }

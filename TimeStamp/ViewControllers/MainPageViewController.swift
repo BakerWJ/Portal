@@ -141,5 +141,9 @@ class MainPageViewController: UIViewController {
         schoolStartTimeLabel.leadingAnchor.constraint (equalTo: view.leadingAnchor).isActive = true;
         schoolStartTimeLabel.trailingAnchor.constraint (equalTo: view.trailingAnchor).isActive = true;
     }
+    
+    @IBAction func returnFromSettings (sender: UIStoryboardSegue) {}
+    @IBAction func returnFromToday (sender: UIStoryboardSegue) {}
+    @IBAction func returnFromTomorrow (sender: UIStoryboardSegue) {}
 
 }

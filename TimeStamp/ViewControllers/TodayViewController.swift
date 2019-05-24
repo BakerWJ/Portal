@@ -52,6 +52,7 @@ class TodayViewController: UIViewController, KeyboardShiftingDelegate, UIScrollV
     {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        timer.suspend();
     }
     override func viewDidLoad ()
     {
@@ -358,5 +359,10 @@ class TodayViewController: UIViewController, KeyboardShiftingDelegate, UIScrollV
     func didReceiveData(_ data: Float)
     {
         textFieldCoordinateY = Double(data);
+    }
+    
+    @IBAction func triggerSegue ()
+    {
+        performSegue(withIdentifier: "returnFromToday", sender: self);
     }
 }
