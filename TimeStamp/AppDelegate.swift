@@ -59,8 +59,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate
      */
     //Template code
     
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool
     {
+
+        
         //Connection to firebase
         FirebaseApp.configure();
         //After the app launches, it will check if the current schedule stored locally is up to date
@@ -108,7 +111,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
                                     latestart.title = "There is a late start today"
                                     
                                 }else{
-                                latestart.title = "There is a late start in " + String(results[0].daysBefore) + " days"
+                                    latestart.title = "There is a late start in " + String(results[0].daysBefore) + " days"
                                 }
                                 
                                 
