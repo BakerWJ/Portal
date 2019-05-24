@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+
 //This class is for random static methods that might be commonly used
 class Util
 {
@@ -55,3 +56,9 @@ class Util
     }
     
 }
+
+protocol KeyboardShiftingDelegate: class
+{
+    func didReceiveData (_ data: Float);
+}
+

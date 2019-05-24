@@ -133,9 +133,13 @@ class MainPageViewController: UIViewController {
         typeOfDayLabel.topAnchor.constraint (equalTo: view.topAnchor, constant: 221/812.0*view.frame.height).isActive = true;
         typeOfDayLabel.centerXAnchor.constraint (equalTo: view.centerXAnchor).isActive = true;
         typeOfDayLabel.heightAnchor.constraint (equalToConstant: 23/812.0*view.frame.height).isActive = true;
+        typeOfDayLabel.leadingAnchor.constraint (equalTo: view.leadingAnchor).isActive = true;
+        typeOfDayLabel.trailingAnchor.constraint (equalTo: view.trailingAnchor).isActive = true;
         schoolStartTimeLabel.topAnchor.constraint (equalTo: view.topAnchor, constant: 245/812.0*view.frame.height).isActive = true;
         schoolStartTimeLabel.centerXAnchor.constraint (equalTo: view.centerXAnchor).isActive = true;
         schoolStartTimeLabel.heightAnchor.constraint (equalToConstant: 11/812.0*view.frame.height).isActive = true;
+        schoolStartTimeLabel.leadingAnchor.constraint (equalTo: view.leadingAnchor).isActive = true;
+        schoolStartTimeLabel.trailingAnchor.constraint (equalTo: view.trailingAnchor).isActive = true;
     }
 
 }

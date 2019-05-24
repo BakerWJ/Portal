@@ -11,12 +11,7 @@ import FirebaseDatabase
 import FirebaseFirestore
 import CoreData
 
-protocol KeyboardShiftingDelegate: class
-{
-    func didReceiveData (_ data: Float);
-}
-
-class ScheduleViewController: UIViewController, KeyboardShiftingDelegate, UIScrollViewDelegate
+class TodayViewController: UIViewController, KeyboardShiftingDelegate, UIScrollViewDelegate
 {
     //MARK: Properties
     //firebase real time database reference
@@ -103,7 +98,7 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate, UIScro
         label.text = formatter.string (from: Date()) + " " + tempstring;
         label.font = UIFont (name: "SegoeUI", size: 14);
         label.textAlignment = .center
-        label.textColor = UIColor (red: 132/255.0, green: 132.0/255, blue: 132.0/255, alpha: 1.0)
+        label.textColor = UIColor (red: 132/255.0, green: 132.0/255, blue: 132.0/255, alpha: 1.0);
         outerView.addSubview (label);
         label.translatesAutoresizingMaskIntoConstraints = false;
         label.leadingAnchor.constraint (equalTo: outerView.leadingAnchor).isActive = true;

@@ -13,6 +13,7 @@
 		8ABCA53E2282176000A30D36 /* WeeklySchedule+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABCA53C2282176000A30D36 /* WeeklySchedule+CoreDataClass.swift */; };
 		8ABCA53F2282176000A30D36 /* WeeklySchedule+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABCA53D2282176000A30D36 /* WeeklySchedule+CoreDataProperties.swift */; };
 		8AD8620D2297824000412EFF /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD8620C2297824000412EFF /* Util.swift */; };
+		8AD8620F229796D100412EFF /* TomorrowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD8620E229796D100412EFF /* TomorrowViewController.swift */; };
 		8AEA785122851D5C0031B030 /* UserDataSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEA785022851D5C0031B030 /* UserDataSettings.swift */; };
 		CE146D972280BD9900B3922D /* Settings+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE146D952280BD9900B3922D /* Settings+CoreDataClass.swift */; };
 		CE146D982280BD9900B3922D /* Settings+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE146D962280BD9900B3922D /* Settings+CoreDataProperties.swift */; };
@@ -43,7 +44,7 @@
 		CEDC434F2276130900A78890 /* Segoe UI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEDC434B2276130900A78890 /* Segoe UI.ttf */; };
 		CEDC43512276816C00A78890 /* SetUp1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDC43502276816C00A78890 /* SetUp1ViewController.swift */; };
 		CEDC435B22773F8400A78890 /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDC435A22773F8400A78890 /* MainPageViewController.swift */; };
-		CEDC435D22773FAC00A78890 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDC435C22773FAC00A78890 /* ScheduleViewController.swift */; };
+		CEDC435D22773FAC00A78890 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDC435C22773FAC00A78890 /* TodayViewController.swift */; };
 		CEDC435F22775DFA00A78890 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDC435E22775DFA00A78890 /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +57,7 @@
 		8ABCA53C2282176000A30D36 /* WeeklySchedule+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeeklySchedule+CoreDataClass.swift"; sourceTree = "<group>"; };
 		8ABCA53D2282176000A30D36 /* WeeklySchedule+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeeklySchedule+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8AD8620C2297824000412EFF /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		8AD8620E229796D100412EFF /* TomorrowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TomorrowViewController.swift; sourceTree = "<group>"; };
 		8AEA785022851D5C0031B030 /* UserDataSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataSettings.swift; sourceTree = "<group>"; };
 		CE146D952280BD9900B3922D /* Settings+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+CoreDataClass.swift"; sourceTree = "<group>"; };
 		CE146D962280BD9900B3922D /* Settings+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -88,7 +90,7 @@
 		CEDC434B2276130900A78890 /* Segoe UI.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Segoe UI.ttf"; sourceTree = "<group>"; };
 		CEDC43502276816C00A78890 /* SetUp1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUp1ViewController.swift; sourceTree = "<group>"; };
 		CEDC435A22773F8400A78890 /* MainPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
-		CEDC435C22773FAC00A78890 /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
+		CEDC435C22773FAC00A78890 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		CEDC435E22775DFA00A78890 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -199,7 +201,8 @@
 			children = (
 				CEDC433322760BBE00A78890 /* GetStartedViewController.swift */,
 				CEDC43502276816C00A78890 /* SetUp1ViewController.swift */,
-				CEDC435C22773FAC00A78890 /* ScheduleViewController.swift */,
+				CEDC435C22773FAC00A78890 /* TodayViewController.swift */,
+				8AD8620E229796D100412EFF /* TomorrowViewController.swift */,
 				CEDC435A22773F8400A78890 /* MainPageViewController.swift */,
 				CEDC435E22775DFA00A78890 /* SettingsViewController.swift */,
 			);
@@ -362,11 +365,12 @@
 				8AD8620D2297824000412EFF /* Util.swift in Sources */,
 				CEDC43512276816C00A78890 /* SetUp1ViewController.swift in Sources */,
 				8ABCA53F2282176000A30D36 /* WeeklySchedule+CoreDataProperties.swift in Sources */,
-				CEDC435D22773FAC00A78890 /* ScheduleViewController.swift in Sources */,
+				CEDC435D22773FAC00A78890 /* TodayViewController.swift in Sources */,
 				CE927FF7227A0BCD00EE0A22 /* PeriodClass.swift in Sources */,
 				CEC26E07227B3E9E00FFFC67 /* Period+CoreDataProperties.swift in Sources */,
 				CE927FF8227A0BCD00EE0A22 /* RepeatingTimer.swift in Sources */,
 				CE146D982280BD9900B3922D /* Settings+CoreDataProperties.swift in Sources */,
+				8AD8620F229796D100412EFF /* TomorrowViewController.swift in Sources */,
 				CEC26E02227B3E9E00FFFC67 /* Timetable+CoreDataProperties.swift in Sources */,
 				CEC26E04227B3E9E00FFFC67 /* FlipDay+CoreDataProperties.swift in Sources */,
 				CEDC433222760BBE00A78890 /* AppDelegate.swift in Sources */,
@@ -530,14 +534,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 74FBNTPPY8;
+				DEVELOPMENT_TEAM = N8Z8T3YH7D;
 				INFOPLIST_FILE = TimeStamp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.UTS-development.timestamp";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.UTS-development";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -550,14 +554,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 74FBNTPPY8;
+				DEVELOPMENT_TEAM = N8Z8T3YH7D;
 				INFOPLIST_FILE = TimeStamp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.UTS-development.timestamp";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.UTS-development";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;

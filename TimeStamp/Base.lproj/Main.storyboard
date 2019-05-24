@@ -335,11 +335,9 @@
                                     <constraint firstAttribute="width" secondItem="M3l-kQ-RyG" secondAttribute="height" multiplier="311:59" id="Shk-wW-nzO"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Today is a Normal Start!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pkz-EC-jyB">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Today is a Normal Start!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pkz-EC-jyB">
                                 <rect key="frame" x="86" y="221" width="189" height="23"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="pkz-EC-jyB" secondAttribute="height" multiplier="189:23" id="zS5-Pt-kqZ"/>
-                                </constraints>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="SegoeUI" family="Segoe UI" pointSize="16"/>
                                 <color key="textColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -380,11 +378,9 @@
                                 <rect key="frame" x="182" y="430" width="12" height="12"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="SCHOOL STARTS AT 8:55" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pUP-bd-60G">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SCHOOL STARTS AT 8:55" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pUP-bd-60G">
                                 <rect key="frame" x="98" y="245" width="165" height="11"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="pUP-bd-60G" secondAttribute="height" multiplier="15:1" id="AHB-Rf-T2X"/>
-                                </constraints>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="SegoeUI" family="Segoe UI" pointSize="14"/>
                                 <color key="textColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -703,10 +699,34 @@
             </objects>
             <point key="canvasLocation" x="3114" y="658"/>
         </scene>
-        <!--Schedule View Controller-->
+        <!--Tomorrow View Controller-->
+        <scene sceneID="YCR-Xq-SGG">
+            <objects>
+                <viewController id="3KH-96-mpF" customClass="TomorrowViewController" customModule="TimeStamp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gtu-bx-ZXr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
+                        <viewLayoutGuide key="safeArea" id="oFq-pc-e3z"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="gzb-9x-UNO" appends="YES" id="oxP-Io-jdS"/>
+                        </connections>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mki-1o-XLw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="left" id="gzb-9x-UNO">
+                    <connections>
+                        <segue destination="Vy2-Vx-pG9" kind="custom" customClass="HorizontalRightShiftTransition" customModule="TimeStamp" customModuleProvider="target" id="MVJ-iw-fCK"/>
+                    </connections>
+                </swipeGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="667" y="658"/>
+        </scene>
+        <!--Today View Controller-->
         <scene sceneID="fKN-ix-CcW">
             <objects>
-                <viewController id="Vy2-Vx-pG9" customClass="ScheduleViewController" customModule="TimeStamp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Vy2-Vx-pG9" customClass="TodayViewController" customModule="TimeStamp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ddl-wZ-Mkx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -715,6 +735,7 @@
                         <viewLayoutGuide key="safeArea" id="yD9-oW-ig9"/>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="bbh-xB-hcg" appends="YES" id="j7Z-z0-kfk"/>
+                            <outletCollection property="gestureRecognizers" destination="rvh-8f-Q4U" appends="YES" id="uxQ-pB-ewF"/>
                         </connections>
                     </view>
                 </viewController>
@@ -722,6 +743,11 @@
                 <swipeGestureRecognizer direction="left" id="bbh-xB-hcg">
                     <connections>
                         <segue destination="Shi-Lm-Jvz" kind="custom" customClass="HorizontalRightShiftTransition" customModule="TimeStamp" customModuleProvider="target" id="9cE-TZ-mMA"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="rvh-8f-Q4U">
+                    <connections>
+                        <segue destination="3KH-96-mpF" kind="custom" customClass="HorizontalLeftShiftTransition" customModule="TimeStamp" customModuleProvider="target" id="UvW-QH-XNT"/>
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
@@ -743,7 +769,7 @@
         <image name="Toggle - On" width="68" height="39"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="8ES-yy-3qt"/>
-        <segue reference="mak-GG-wgz"/>
+        <segue reference="MVJ-iw-fCK"/>
+        <segue reference="9cE-TZ-mMA"/>
     </inferredMetricsTieBreakers>
 </document>
