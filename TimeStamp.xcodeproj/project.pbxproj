@@ -12,6 +12,7 @@
 		8AA2F046228123890091EF0F /* HorizontalLeftShiftTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA2F045228123890091EF0F /* HorizontalLeftShiftTransition.swift */; };
 		8ABCA53E2282176000A30D36 /* WeeklySchedule+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABCA53C2282176000A30D36 /* WeeklySchedule+CoreDataClass.swift */; };
 		8ABCA53F2282176000A30D36 /* WeeklySchedule+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABCA53D2282176000A30D36 /* WeeklySchedule+CoreDataProperties.swift */; };
+		8AD8620D2297824000412EFF /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD8620C2297824000412EFF /* Util.swift */; };
 		8AEA785122851D5C0031B030 /* UserDataSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEA785022851D5C0031B030 /* UserDataSettings.swift */; };
 		CE146D972280BD9900B3922D /* Settings+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE146D952280BD9900B3922D /* Settings+CoreDataClass.swift */; };
 		CE146D982280BD9900B3922D /* Settings+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE146D962280BD9900B3922D /* Settings+CoreDataProperties.swift */; };
@@ -54,6 +55,7 @@
 		8AA2F045228123890091EF0F /* HorizontalLeftShiftTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalLeftShiftTransition.swift; sourceTree = "<group>"; };
 		8ABCA53C2282176000A30D36 /* WeeklySchedule+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeeklySchedule+CoreDataClass.swift"; sourceTree = "<group>"; };
 		8ABCA53D2282176000A30D36 /* WeeklySchedule+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeeklySchedule+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8AD8620C2297824000412EFF /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		8AEA785022851D5C0031B030 /* UserDataSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataSettings.swift; sourceTree = "<group>"; };
 		CE146D952280BD9900B3922D /* Settings+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+CoreDataClass.swift"; sourceTree = "<group>"; };
 		CE146D962280BD9900B3922D /* Settings+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 		CE927FED227A0BB200EE0A22 /* Custom Classes */ = {
 			isa = PBXGroup;
 			children = (
+				8AD8620C2297824000412EFF /* Util.swift */,
 				CE927FF0227A0BCD00EE0A22 /* ArticleClass.swift */,
 				8AA2F04322811FF90091EF0F /* HorizontalRightShiftTransition.swift */,
 				8AA2F045228123890091EF0F /* HorizontalLeftShiftTransition.swift */,
@@ -356,6 +359,7 @@
 				CEDC435F22775DFA00A78890 /* SettingsViewController.swift in Sources */,
 				CE2D71492280C71E00F4D89A /* TimeStampModel.xcdatamodeld in Sources */,
 				8AA2F046228123890091EF0F /* HorizontalLeftShiftTransition.swift in Sources */,
+				8AD8620D2297824000412EFF /* Util.swift in Sources */,
 				CEDC43512276816C00A78890 /* SetUp1ViewController.swift in Sources */,
 				8ABCA53F2282176000A30D36 /* WeeklySchedule+CoreDataProperties.swift in Sources */,
 				CEDC435D22773FAC00A78890 /* ScheduleViewController.swift in Sources */,

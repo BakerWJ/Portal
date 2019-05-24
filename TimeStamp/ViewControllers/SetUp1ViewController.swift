@@ -96,6 +96,12 @@ class SetUp1ViewController: UIViewController, UITextFieldDelegate {
         doAnimations ();
     }
     
+    @IBAction func isDone (_ sender: Any) {
+        let variableName = UserTimetable()
+        variableName.update(ADay: true, flipped: false, classnumber: classnumber, newValue: mondayTextView.text ?? "Period \(classnumber)")
+        variableName.update(ADay: false, flipped: false, classnumber: classnumber, newValue: tuesdayTextView.text ?? "Period \(classnumber)")
+    }
+    
     //updates the progress bar
     func updateProgress ()
     {

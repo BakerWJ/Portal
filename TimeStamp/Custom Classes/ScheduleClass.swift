@@ -39,7 +39,19 @@ class ScheduleView: UIStackView
                 }
                 else
                 {
-                    let userInput = changeTimetable.query (ADay: ADay, flipped: flipped, classnumber: Int(period.correspond))
+                    var userInput = "";
+                    if (period.additionalNotes == "A")
+                    {
+                        userInput = changeTimetable.query (ADay: true, flipped: flipped, classnumber: Int (period.correspond));
+                    }
+                    else if (period.additionalNotes == "B")
+                    {
+                        userInput = changeTimetable.query (ADay: false, flipped: flipped, classnumber: Int (period.correspond));
+                    }
+                    else
+                    {
+                        userInput = changeTimetable.query (ADay: ADay, flipped: flipped, classnumber: Int(period.correspond))
+                    }
                     if userInput == ""
                     {
                         periodNames.append(period.periodName)
