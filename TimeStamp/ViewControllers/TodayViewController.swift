@@ -11,12 +11,7 @@ import FirebaseDatabase
 import FirebaseFirestore
 import CoreData
 
-protocol KeyboardShiftingDelegate: class
-{
-    func didReceiveData (_ data: Float);
-}
-
-class ScheduleViewController: UIViewController, KeyboardShiftingDelegate
+class TodayViewController: UIViewController, KeyboardShiftingDelegate, UIScrollViewDelegate
 {
     //MARK: Properties
     //firebase real time database reference
@@ -40,7 +35,7 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate
     var topConstraint: NSLayoutConstraint!
     //outermost stackview
     let outerView = UIView();
-    var tempView = UIView ();
+    var tempView = UIScrollView()
     var keyboardHeight = 0.0;
     var textFieldCoordinateY = 0.0
     
@@ -92,7 +87,9 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate
         today.translatesAutoresizingMaskIntoConstraints = false;
         today.leadingAnchor.constraint (equalTo: outerView.leadingAnchor).isActive = true;
         today.trailingAnchor.constraint (equalTo: outerView.trailingAnchor).isActive = true;
-        today.topAnchor.constraint(equalTo: outerView.topAnchor, constant: 60).isActive = true;
+        today.topAnchor.constraint(equalTo: outerView.topAnchor, constant: 60/812.0*view.frame.height).isActive = true;
+        today.heightAnchor.constraint (equalToConstant: 35/812.0*view.frame.height);
+
         
         //sets the frame and alignment for the label at the top of the page
         formatter.dateFormat = "MMMM";
@@ -101,12 +98,14 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate
         label.text = formatter.string (from: Date()) + " " + tempstring;
         label.font = UIFont (name: "SegoeUI", size: 14);
         label.textAlignment = .center
-        label.textColor = UIColor (red: 132/255.0, green: 132.0/255, blue: 132.0/255, alpha: 1.0)
+        label.textColor = UIColor (red: 132/255.0, green: 132.0/255, blue: 132.0/255, alpha: 1.0);
         outerView.addSubview (label);
         label.translatesAutoresizingMaskIntoConstraints = false;
         label.leadingAnchor.constraint (equalTo: outerView.leadingAnchor).isActive = true;
         label.trailingAnchor.constraint (equalTo: outerView.trailingAnchor).isActive = true;
-        label.topAnchor.constraint(equalTo: outerView.topAnchor, constant: 95).isActive = true;
+        label.topAnchor.constraint(equalTo: outerView.topAnchor, constant: 95/812.0*view.frame.height).isActive = true;
+        label.heightAnchor.constraint (equalToConstant: 25/812.0*view.frame.height);
+
     }
     
     //This method gives the timer an event handler (code to execute every time interval) and starts the timer.
@@ -190,11 +189,11 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate
     //This method gets information necessary for the day and updates the view
     func updateSchedule ()
     {
-        //gets the current date and the current user calendar.
+        //gets the current date
         let date = Date();
-        let calendar = Calendar.current;
         //Sunday is 1, Saturday is 7, gets today's weekday count
         let weekday = calendar.component(.weekday, from: date);
+        print (schedules.count)
         //fetch data from firebase database about the daily schedules.
         if weeklySchedule?.typeOfDay [weekday - 1] == 4
         {
@@ -206,8 +205,8 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate
             image.translatesAutoresizingMaskIntoConstraints = false;
             image.centerXAnchor.constraint(equalTo: self.outerView.centerXAnchor).isActive = true;
             image.centerYAnchor.constraint(equalTo: self.outerView.centerYAnchor).isActive = true;
-            image.widthAnchor.constraint(equalToConstant: 320).isActive = true;
-            image.heightAnchor.constraint (equalToConstant: 360).isActive = true;
+            image.widthAnchor.constraint(equalToConstant: 320/812*view.frame.height).isActive = true;
+            image.heightAnchor.constraint (equalToConstant: 360/812*view.frame.height).isActive = true;
         }
         else
         {
@@ -228,8 +227,8 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate
                     labelSchedule.translatesAutoresizingMaskIntoConstraints = false;
                     labelSchedule.leadingAnchor.constraint(equalTo: self.outerView.leadingAnchor).isActive = true;
                     labelSchedule.trailingAnchor.constraint(equalTo: self.outerView.trailingAnchor).isActive = true;
-                    labelSchedule.heightAnchor.constraint(equalToConstant: 20).isActive = true;
-                    labelSchedule.topAnchor.constraint (equalTo: self.label.topAnchor, constant: 50).isActive = true;
+                    labelSchedule.heightAnchor.constraint(equalToConstant: 20/812.0*view.frame.height).isActive = true;
+                    labelSchedule.topAnchor.constraint (equalTo: self.label.topAnchor, constant: 50.0/812*view.frame.height).isActive = true;
                     //make an image for the title on top
                     let image = UIImageView (image: UIImage (named: "Rectangle 1028"));
                     let biggerview = UIView();
@@ -239,8 +238,8 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate
                     biggerview.translatesAutoresizingMaskIntoConstraints = false;
                     biggerview.trailingAnchor.constraint (equalTo: self.outerView.trailingAnchor).isActive = true;
                     biggerview.leadingAnchor.constraint (equalTo: self.outerView.leadingAnchor).isActive = true;
-                    biggerview.heightAnchor.constraint (equalToConstant: 43).isActive = true;
-                    biggerview.topAnchor.constraint (equalTo: labelSchedule.topAnchor, constant: 26).isActive = true;
+                    biggerview.heightAnchor.constraint (equalToConstant: 43/812.0*view.frame.height).isActive = true;
+                    biggerview.topAnchor.constraint (equalTo: labelSchedule.topAnchor, constant: 26/812.0*view.frame.height).isActive = true;
                     biggerview.addSubview (image);
                     //set constraints for the image
                     image.translatesAutoresizingMaskIntoConstraints = false;
@@ -253,7 +252,7 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate
                     dayLabel.textAlignment = .center;
                     dayLabel.font = UIFont(name: "SegoeUI", size: 16);
                     dayLabel.textColor = .white;
-                    dayLabel.text = "It's a " + each.kind;
+                    dayLabel.text = "It's " + each.kind;
                     biggerview.addSubview (dayLabel);
                     dayLabel.translatesAutoresizingMaskIntoConstraints = false;
                     dayLabel.centerXAnchor.constraint(equalTo: biggerview.centerXAnchor).isActive = true;
@@ -266,33 +265,33 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate
                     currentSchedule.tag = 13;
                     
                     //Embeds the scheduleView into another UIView so that the borders are even
-                    
-                    self.tempView.frame = currentSchedule.frame
                     self.outerView.addSubview (self.tempView);
-                    
-                    //sets layoutConstraints for tempView
-                    self.tempView.translatesAutoresizingMaskIntoConstraints = false;
-                    self.tempView.topAnchor.constraint (equalTo: biggerview.bottomAnchor).isActive = true;
-                    self.tempView.centerXAnchor.constraint(equalTo: self.outerView.centerXAnchor).isActive = true;
-                    self.tempView.leadingAnchor.constraint (equalTo: self.outerView.leadingAnchor).isActive = true;
-                    self.tempView.trailingAnchor.constraint (equalTo: self.outerView.trailingAnchor).isActive = true;
-                    
-                    //sets the border opacity to 0
-                    self.tempView.layer.opacity = 0;
-                    
                     //add currentSchedule to tempView
                     self.tempView.addSubview (currentSchedule)
                     
                     //sets layout constraints for currentSchedule
                     currentSchedule.translatesAutoresizingMaskIntoConstraints = false;
-                    currentSchedule.centerXAnchor.constraint(equalTo: self.tempView.centerXAnchor).isActive = true;
-                    currentSchedule.centerYAnchor.constraint(equalTo: self.tempView.centerYAnchor).isActive = true;
+                    currentSchedule.centerXAnchor.constraint(equalTo: self.outerView.centerXAnchor).isActive = true;
                     currentSchedule.topAnchor.constraint (equalTo: self.tempView.topAnchor).isActive = true;
                     currentSchedule.bottomAnchor.constraint (equalTo: self.tempView.bottomAnchor).isActive = true;
                     currentSchedule.leadingAnchor.constraint (equalTo: self.tempView.leadingAnchor).isActive = true;
                     currentSchedule.trailingAnchor.constraint (equalTo: self.tempView.trailingAnchor).isActive = true;
                     currentSchedule.spacing = 6;
                     currentSchedule.backgroundColor = .clear
+
+                    //sets layoutConstraints for tempView
+                    self.tempView.translatesAutoresizingMaskIntoConstraints = false;
+                    self.tempView.topAnchor.constraint (equalTo: biggerview.bottomAnchor).isActive = true;
+                    self.tempView.centerXAnchor.constraint(equalTo: self.outerView.centerXAnchor).isActive = true;
+                    self.tempView.widthAnchor.constraint (equalTo: self.outerView.widthAnchor).isActive = true;
+                    self.tempView.heightAnchor.constraint (equalToConstant: 450/812.0*view.frame.height).isActive = true;
+                    
+                    //sets the border opacity to 0
+                    self.tempView.layer.opacity = 0;
+                    
+                    //set scrollview stuff
+                    tempView.isScrollEnabled = true;
+                    tempView.alwaysBounceVertical = true;
                     
                     //makes the schedule and everything fade in
                     UIView.animate(withDuration: 1.0, delay: 0, options: .curveEaseInOut, animations: {
@@ -330,24 +329,16 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate
                 let textFieldY = self.topConstraint.constant + CGFloat(self.textFieldCoordinateY) + self.tempView.convert(schedule.frame.origin, to: self.view).y;
                 let difference = targetY - textFieldY;
                 let targetOffset = self.topConstraint.constant + difference;
-                DispatchQueue.main.async
+                if (difference < 0)
                 {
-                    UIView.animate(withDuration: 0.3, animations: {
-                    self.topConstraint.constant = targetOffset;
-                    self.view.layoutIfNeeded();
-                    }, completion: nil)
+                    DispatchQueue.main.async
+                    {
+                        UIView.animate(withDuration: 0.3, animations: {
+                            self.topConstraint.constant = targetOffset;
+                            self.view.layoutIfNeeded();
+                        }, completion: nil)
+                    }
                 }
-            }
-        }
-    }
-    func printFonts ()
-    {
-        for family: String in UIFont.familyNames
-        {
-            print("\(family)")
-            for names: String in UIFont.fontNames(forFamilyName: family)
-            {
-                print("== \(names)")
             }
         }
     }

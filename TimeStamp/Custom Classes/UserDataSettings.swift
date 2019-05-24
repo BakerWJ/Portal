@@ -24,25 +24,28 @@ class UserDataSettings
 
     static func updateWithInternet ()
     {
-        let connectedRef = Database.database().reference(withPath: ".info/connected")
-        connectedRef.observe(.value)
-        {
-            (snapshot) in
-            if let connected = snapshot.value as? Bool, connected
+        let connectedRef = Database.database().reference(withPath: ".info/connected");
+        var x : Bool = false;
+        for _ in 1 ... 5 {
+            connectedRef.observe(.value)
             {
-                self.updateData()
-                self.updateWeeklySchedule()
+                (snapshot) in
+                if let connected = snapshot.value as? Bool, connected
+                {
+                    x = true;
+                    self.updateData()
+                    self.updateWeeklySchedule()
+                }
             }
-            else
-            {
-                //apple does not allow this, so we will change it later
-                let alert = UIAlertController (title: "Cannot connect to server", message: "Press OK to exit", preferredStyle: UIAlertController.Style.alert)
-                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: {
-                    (action) in
-                    exit (0);
-                }))
-                delegate?.window?.rootViewController?.present (alert, animated: true, completion: nil);
-            }
+            sleep(0)
+        }
+        if (!x) {
+            let alert = UIAlertController(title: "cannot connect to server", message: "Press OK to exit", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: {
+                (action) in
+                exit (0)
+            }))
+            delegate?.window?.rootViewController?.present (alert, animated: true, completion: nil)
         }
     }
     
@@ -127,7 +130,6 @@ class UserDataSettings
                         }
                         x += 1;
                     }
-                    print ("updated")
                     CoreDataStack.saveContext()
                 }
         })
@@ -261,7 +263,6 @@ class UserDataSettings
                 else
                 {
                     //deletes all the existing periods and flipday schedules
-                    self.deleteSchedules () //the delete rule of schedules is set to cascade, so if the schedule is deleted, all the period is deleted
                     self.deleteFlipDay()
                     //Creates a FlipDay Entity
                     guard let entityFlip = NSEntityDescription.entity (forEntityName: "FlipDay", in: CoreDataStack.managedObjectContext) else
@@ -275,7 +276,7 @@ class UserDataSettings
                          //creates a flipday object
                         let Flip = FlipDay (entity: entityFlip, insertInto: CoreDataStack.managedObjectContext)
                         Flip.normalToFlip = arr;
-                        Flip.expirationDate = self.nextSunday()
+                        Flip.expirationDate = Util.nextSunday()
                         CoreDataStack.saveContext()
                     }
                 }
@@ -290,6 +291,7 @@ class UserDataSettings
                 }
                 else
                 {
+                    self.deleteSchedules () //the delete rule of schedules is set to cascade, so if the schedule is deleted, all the period is deleted
                     //Creates a Period Entity
                     guard let entityPeriod = NSEntityDescription.entity(forEntityName: "Period", in: CoreDataStack.managedObjectContext) else
                     {
@@ -320,7 +322,7 @@ class UserDataSettings
                         schedule.kind = document.documentID
                         //sets the expirationDate of this schedule to the nearest future Sunday at midnight (so like the one
                         //between Saturday and Sunday)
-                        schedule.expirationDate = self.nextSunday ()
+                        schedule.expirationDate = Util.nextSunday ()
                         
                         //loops through the arrays
                         for x in 0..<min(corres.count,min(min(min(names.count, stime.count), etime.count), notes.count))
@@ -344,34 +346,5 @@ class UserDataSettings
                     CoreDataStack.saveContext()
                 }
         }
-    }
-    
-    //The function returns the nearest Sunday from now
-    static func nextSunday () -> NSDate
-    {
-        //gets the current user calendar
-        let calendar = Calendar.current;
-        
-        //gets today's date
-        var today: Date = Date();
-        
-        //initialize weekday
-        var weekday = -1;
-        
-        //loop until the weekday variable says 1, which indicates a Sunday
-        while (weekday != 1)
-        {
-            //Adds one day to "today"'s date
-            today = calendar.date(byAdding: .day, value: 1, to: today)!
-            
-            //The week day value is set to the weekday component of the Date Object with name "today"
-            weekday = calendar.component (.weekday, from: today);
-        }
-        
-        //Calling start of day makes the Date referring to the midnight of the current date
-        today = calendar.startOfDay(for: today);
-        
-        //returns the value as NSDate because Core Data hates Date
-        return today as NSDate
     }
 }

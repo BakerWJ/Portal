@@ -175,104 +175,117 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Tell us a bit more." textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dgu-OA-QYK">
-                                <rect key="frame" x="112" y="118" width="158" height="31"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="dgu-OA-QYK" secondAttribute="height" multiplier="158:31" id="0B4-ct-dtR"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="SegoeUI" family="Segoe UI" pointSize="34"/>
-                                <color key="textColor" red="0.066666666666666666" green="0.12156862745098039" blue="0.12156862745098039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Tell us a bit more about your daily schedule. This will help us customize your experience." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="xOI-bk-TtA">
-                                <rect key="frame" x="52" y="145" width="271" height="49"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="xOI-bk-TtA" secondAttribute="height" multiplier="271:49" id="SE0-Ex-3dA"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="SegoeUI" family="Segoe UI" pointSize="29"/>
-                                <color key="textColor" red="0.51764705882352935" green="0.51764705882352935" blue="0.51764705882352935" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="WHAT IS YOUR FIRST PERIOD CLASS?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" minimumFontSize="12" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fqy-8v-M72">
-                                <rect key="frame" x="76" y="208" width="225" height="104"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="fqy-8v-M72" secondAttribute="height" multiplier="225:104" id="3pO-bL-QB1"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="SegoeUI" family="Segoe UI" pointSize="50"/>
-                                <color key="textColor" red="0.066666666666666666" green="0.12156862745098039" blue="0.12156862745098039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="ON MONDAY..." textAlignment="natural" lineBreakMode="tailTruncation" minimumFontSize="7" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rS3-c0-bQ3">
-                                <rect key="frame" x="55" y="320" width="92" height="23"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="rS3-c0-bQ3" secondAttribute="height" multiplier="4:1" id="ZFd-G0-MOc"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="SegoeUI" family="Segoe UI" pointSize="26"/>
-                                <color key="textColor" red="0.51764705879999995" green="0.51764705879999995" blue="0.51764705879999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="ON TUESDAY..." textAlignment="natural" lineBreakMode="tailTruncation" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="jbe-7E-80d">
-                                <rect key="frame" x="54.666666666666742" y="431" width="90" height="23"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="jbe-7E-80d" secondAttribute="height" multiplier="90:23" id="F0C-SQ-PJH"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="SegoeUI" family="Segoe UI" pointSize="27"/>
-                                <color key="textColor" red="0.51764705879999995" green="0.51764705879999995" blue="0.51764705879999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Th9-d8-bcz">
-                                <rect key="frame" x="46" y="648" width="283" height="43"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="Th9-d8-bcz" secondAttribute="height" multiplier="283:43" id="xRr-ke-a0J"/>
-                                </constraints>
-                                <state key="normal" image="Next"/>
-                                <connections>
-                                    <action selector="isClicked:" destination="rcl-pN-vkI" eventType="touchUpInside" id="rKM-c7-a7m"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vae-ei-J6m">
-                                <rect key="frame" x="56" y="363" width="264" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="Vae-ei-J6m" secondAttribute="height" multiplier="44:5" id="jZ6-bK-7Tu"/>
-                                </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" name="SegoeUI" family="Segoe UI" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cp5-9b-zyi">
-                                <rect key="frame" x="56" y="474" width="264" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="cp5-9b-zyi" secondAttribute="height" multiplier="44:5" id="xfP-Xe-eaB"/>
-                                </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" name="SegoeUI" family="Segoe UI" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mBX-7w-an7" userLabel="Im done">
-                                <rect key="frame" x="47" y="648" width="283" height="43"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="mBX-7w-an7" secondAttribute="height" multiplier="283:43" id="eVc-vu-aXP"/>
-                                </constraints>
-                                <state key="normal" image="I'm Done"/>
-                                <connections>
-                                    <segue destination="Shi-Lm-Jvz" kind="custom" customClass="HorizontalRightShiftTransition" customModule="TimeStamp" customModuleProvider="target" id="09h-mp-YXM"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U8E-T7-yPa">
-                                <rect key="frame" x="149" y="710" width="78" height="23"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="U8E-T7-yPa" secondAttribute="height" multiplier="78:23" id="g1W-EJ-M0U"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="SegoeUI" family="Segoe UI" pointSize="12"/>
-                                <state key="normal" title="Skip for Now.">
-                                    <color key="titleColor" red="0.51764705882352935" green="0.51764705882352935" blue="0.51764705882352935" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <segue destination="Shi-Lm-Jvz" kind="custom" customClass="HorizontalRightShiftTransition" customModule="TimeStamp" customModuleProvider="target" id="hMh-E8-IOY"/>
-                                </connections>
-                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Zf-ds-Nt6" userLabel="outerView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Tell us a bit more." textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dgu-OA-QYK">
+                                        <rect key="frame" x="108" y="116" width="158" height="31"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="dgu-OA-QYK" secondAttribute="height" multiplier="158:31" id="0B4-ct-dtR"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="SegoeUI" family="Segoe UI" pointSize="34"/>
+                                        <color key="textColor" red="0.066666666666666666" green="0.12156862745098039" blue="0.12156862745098039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Tell us a bit more about your daily schedule. This will help us customize your experience." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="xOI-bk-TtA">
+                                        <rect key="frame" x="52" y="145" width="271" height="49"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="xOI-bk-TtA" secondAttribute="height" multiplier="271:49" id="SE0-Ex-3dA"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="SegoeUI" family="Segoe UI" pointSize="29"/>
+                                        <color key="textColor" red="0.51764705882352935" green="0.51764705882352935" blue="0.51764705882352935" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="WHAT IS YOUR FIRST PERIOD CLASS?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" minimumFontSize="12" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fqy-8v-M72">
+                                        <rect key="frame" x="75" y="202" width="225" height="104"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="fqy-8v-M72" secondAttribute="height" multiplier="225:104" id="3pO-bL-QB1"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="SegoeUI" family="Segoe UI" pointSize="50"/>
+                                        <color key="textColor" red="0.066666666666666666" green="0.12156862745098039" blue="0.12156862745098039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Th9-d8-bcz">
+                                        <rect key="frame" x="46" y="649" width="283" height="43"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="Th9-d8-bcz" secondAttribute="height" multiplier="283:43" id="xRr-ke-a0J"/>
+                                        </constraints>
+                                        <state key="normal" image="Next"/>
+                                        <connections>
+                                            <action selector="isClicked:" destination="rcl-pN-vkI" eventType="touchUpInside" id="rKM-c7-a7m"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vae-ei-J6m">
+                                        <rect key="frame" x="46" y="376" width="264" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="Vae-ei-J6m" secondAttribute="height" multiplier="44:5" id="jZ6-bK-7Tu"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" name="SegoeUI" family="Segoe UI" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cp5-9b-zyi">
+                                        <rect key="frame" x="55" y="522" width="264" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="cp5-9b-zyi" secondAttribute="height" multiplier="44:5" id="xfP-Xe-eaB"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" name="SegoeUI" family="Segoe UI" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mBX-7w-an7" userLabel="Im done">
+                                        <rect key="frame" x="46" y="649" width="283" height="43"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="mBX-7w-an7" secondAttribute="height" multiplier="283:43" id="eVc-vu-aXP"/>
+                                        </constraints>
+                                        <state key="normal" image="I'm Done"/>
+                                        <connections>
+                                            <action selector="isDone:" destination="rcl-pN-vkI" eventType="touchUpInside" id="xEa-qQ-Qg1"/>
+                                            <segue destination="Shi-Lm-Jvz" kind="custom" customClass="HorizontalRightShiftTransition" customModule="TimeStamp" customModuleProvider="target" id="09h-mp-YXM"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U8E-T7-yPa">
+                                        <rect key="frame" x="148" y="700" width="78" height="23"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="U8E-T7-yPa" secondAttribute="height" multiplier="78:23" id="g1W-EJ-M0U"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="SegoeUI" family="Segoe UI" pointSize="12"/>
+                                        <state key="normal" title="Skip for Now.">
+                                            <color key="titleColor" red="0.51764705882352935" green="0.51764705882352935" blue="0.51764705882352935" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="Shi-Lm-Jvz" kind="custom" customClass="HorizontalRightShiftTransition" customModule="TimeStamp" customModuleProvider="target" id="hMh-E8-IOY"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="ON MONDAY..." textAlignment="natural" lineBreakMode="tailTruncation" minimumFontSize="7" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rS3-c0-bQ3">
+                                        <rect key="frame" x="46" y="345" width="92" height="23"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="rS3-c0-bQ3" secondAttribute="height" multiplier="4:1" id="ZFd-G0-MOc"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="SegoeUI" family="Segoe UI" pointSize="26"/>
+                                        <color key="textColor" red="0.51764705879999995" green="0.51764705879999995" blue="0.51764705879999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="ON TUESDAY..." textAlignment="natural" lineBreakMode="tailTruncation" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="jbe-7E-80d">
+                                        <rect key="frame" x="52" y="491" width="90" height="23"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="jbe-7E-80d" secondAttribute="height" multiplier="90:23" id="F0C-SQ-PJH"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="SegoeUI" family="Segoe UI" pointSize="27"/>
+                                        <color key="textColor" red="0.51764705879999995" green="0.51764705879999995" blue="0.51764705879999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="8Zf-ds-Nt6" firstAttribute="height" secondItem="2j2-yi-FXF" secondAttribute="height" id="AgR-LI-Tln"/>
+                            <constraint firstItem="8Zf-ds-Nt6" firstAttribute="centerX" secondItem="Wfz-Wk-auH" secondAttribute="centerX" id="NnO-qb-cSq"/>
+                            <constraint firstItem="8Zf-ds-Nt6" firstAttribute="width" secondItem="2j2-yi-FXF" secondAttribute="width" id="YmX-rr-Usb"/>
+                            <constraint firstItem="8Zf-ds-Nt6" firstAttribute="top" secondItem="2j2-yi-FXF" secondAttribute="top" id="epu-rr-uNb"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Wfz-Wk-auH"/>
                     </view>
                     <connections>
@@ -280,10 +293,12 @@
                         <outlet property="mondayLabel" destination="rS3-c0-bQ3" id="4bm-6z-pf4"/>
                         <outlet property="mondayTextView" destination="Vae-ei-J6m" id="0ox-pb-T8g"/>
                         <outlet property="nextButton" destination="Th9-d8-bcz" id="RcW-Gm-L6d"/>
+                        <outlet property="outerView" destination="8Zf-ds-Nt6" id="8KQ-q4-q8Q"/>
                         <outlet property="questionLabel" destination="fqy-8v-M72" id="f7f-av-W6z"/>
                         <outlet property="skipButton" destination="U8E-T7-yPa" id="rbr-SY-2a0"/>
                         <outlet property="tellusmoreExplainLabel" destination="xOI-bk-TtA" id="xS6-TK-gwd"/>
                         <outlet property="tellusmoreLabel" destination="dgu-OA-QYK" id="8Dq-2C-JlL"/>
+                        <outlet property="topConstraint" destination="epu-rr-uNb" id="PLp-WE-jj8"/>
                         <outlet property="tuesdayLabel" destination="jbe-7E-80d" id="ZaG-2i-ibx"/>
                         <outlet property="tuesdayTextView" destination="cp5-9b-zyi" id="X3w-5h-JoC"/>
                     </connections>
@@ -300,23 +315,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="TODAY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ryn-v3-9Lw">
-                                <rect key="frame" x="76" y="77" width="223" height="62"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="TODAY" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ryn-v3-9Lw">
+                                <rect key="frame" x="69" y="77" width="223" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="32"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="29 April" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wbc-TX-iN5">
-                                <rect key="frame" x="103" y="120" width="168" height="19"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="29 April" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wbc-TX-iN5">
+                                <rect key="frame" x="103" y="120" width="168" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="SegoeUI" family="Segoe UI" pointSize="14"/>
                                 <color key="textColor" red="0.51764705879999995" green="0.51764705879999995" blue="0.51764705879999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Rectangle 1020" translatesAutoresizingMaskIntoConstraints="NO" id="M3l-kQ-RyG">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="Rectangle 1020" translatesAutoresizingMaskIntoConstraints="NO" id="M3l-kQ-RyG">
                                 <rect key="frame" x="32" y="213" width="311" height="59"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="M3l-kQ-RyG" secondAttribute="height" multiplier="311:59" id="Shk-wW-nzO"/>
+                                </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Today is a Normal Start!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pkz-EC-jyB">
                                 <rect key="frame" x="86" y="221" width="189" height="23"/>
@@ -362,7 +379,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SCHOOL STARTS AT 8:55" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pUP-bd-60G">
-                                <rect key="frame" x="98" y="246" width="165" height="11"/>
+                                <rect key="frame" x="98" y="245" width="165" height="11"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="SegoeUI" family="Segoe UI" pointSize="14"/>
                                 <color key="textColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -377,6 +394,13 @@
                             <outletCollection property="gestureRecognizers" destination="CCf-hO-FWs" appends="YES" id="zeS-ZZ-vmm"/>
                         </connections>
                     </view>
+                    <connections>
+                        <outlet property="dateLabel" destination="Wbc-TX-iN5" id="8GW-iV-HXp"/>
+                        <outlet property="redImage" destination="M3l-kQ-RyG" id="OIr-Ld-2gt"/>
+                        <outlet property="schoolStartTimeLabel" destination="pUP-bd-60G" id="kxd-M6-0lH"/>
+                        <outlet property="todayLabel" destination="ryn-v3-9Lw" id="EWL-NX-JIj"/>
+                        <outlet property="typeOfDayLabel" destination="pkz-EC-jyB" id="YjD-FM-LLL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hHd-6b-UJa" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <swipeGestureRecognizer direction="right" id="MBh-KU-sef">
@@ -390,7 +414,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2288.8000000000002" y="732.26600985221683"/>
+            <point key="canvasLocation" x="2288.8000000000002" y="657.63546798029563"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="LIn-eu-cPP">
@@ -673,12 +697,36 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3126" y="732"/>
+            <point key="canvasLocation" x="3114" y="658"/>
         </scene>
-        <!--Schedule View Controller-->
+        <!--Tomorrow View Controller-->
+        <scene sceneID="YCR-Xq-SGG">
+            <objects>
+                <viewController id="3KH-96-mpF" customClass="TomorrowViewController" customModule="TimeStamp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gtu-bx-ZXr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
+                        <viewLayoutGuide key="safeArea" id="oFq-pc-e3z"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="gzb-9x-UNO" appends="YES" id="oxP-Io-jdS"/>
+                        </connections>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mki-1o-XLw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="left" id="gzb-9x-UNO">
+                    <connections>
+                        <segue destination="Vy2-Vx-pG9" kind="custom" customClass="HorizontalRightShiftTransition" customModule="TimeStamp" customModuleProvider="target" id="MVJ-iw-fCK"/>
+                    </connections>
+                </swipeGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="667" y="658"/>
+        </scene>
+        <!--Today View Controller-->
         <scene sceneID="fKN-ix-CcW">
             <objects>
-                <viewController id="Vy2-Vx-pG9" customClass="ScheduleViewController" customModule="TimeStamp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Vy2-Vx-pG9" customClass="TodayViewController" customModule="TimeStamp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ddl-wZ-Mkx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -687,6 +735,7 @@
                         <viewLayoutGuide key="safeArea" id="yD9-oW-ig9"/>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="bbh-xB-hcg" appends="YES" id="j7Z-z0-kfk"/>
+                            <outletCollection property="gestureRecognizers" destination="rvh-8f-Q4U" appends="YES" id="uxQ-pB-ewF"/>
                         </connections>
                     </view>
                 </viewController>
@@ -696,8 +745,13 @@
                         <segue destination="Shi-Lm-Jvz" kind="custom" customClass="HorizontalRightShiftTransition" customModule="TimeStamp" customModuleProvider="target" id="9cE-TZ-mMA"/>
                     </connections>
                 </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="rvh-8f-Q4U">
+                    <connections>
+                        <segue destination="3KH-96-mpF" kind="custom" customClass="HorizontalLeftShiftTransition" customModule="TimeStamp" customModuleProvider="target" id="UvW-QH-XNT"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1506" y="732"/>
+            <point key="canvasLocation" x="1505" y="658"/>
         </scene>
     </scenes>
     <resources>
@@ -715,6 +769,7 @@
         <image name="Toggle - On" width="68" height="39"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="hMh-E8-IOY"/>
+        <segue reference="MVJ-iw-fCK"/>
+        <segue reference="9cE-TZ-mMA"/>
     </inferredMetricsTieBreakers>
 </document>
