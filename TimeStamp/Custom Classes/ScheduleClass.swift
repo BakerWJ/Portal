@@ -112,8 +112,7 @@ class ScheduleView: UIStackView
             {
                 
                 //Generates a PeriodView
-                let period = PeriodView (periodName: periodNames [x], startTime: startTimes [x], endTime: endTimes [x], additionalNotes: additionalNotes [x], ADay: ADay, flipped: flipped, classnumber: corresponds [x])
-                period.keyboardDelegate = self.delegate;
+                let period = PeriodView (periodName: periodNames [x], startTime: startTimes [x], endTime: endTimes [x], additionalNotes: additionalNotes [x], ADay: ADay, flipped: flipped, classnumber: corresponds [x], delegate: self.delegate!);
                 //Adds it to the stackview's subview in order.
                 //temp.backgroundColor = UIColor(patternImage: UIImage(named: "Rounded Rectangle")!);
                 addArrangedSubview(period)

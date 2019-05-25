@@ -106,7 +106,13 @@ class MainPageViewController: UIViewController {
                     break;
                 }
             }
+            
         }
+        typeOfDayLabel.font = UIFont(name: "SegoeUI", size: 16/812.0*view.frame.height);
+        todayLabel.font = UIFont (name: "Arial-BoldMT", size: 32.0/812.0*view.frame.height);
+        schoolStartTimeLabel.font = UIFont (name: "SegoeUI", size: 14/812.0*view.frame.height);
+        dateLabel.font = UIFont (name: "SegoeUI", size: 14/812.0*view.frame.height);
+
     }
     private func setConstraints ()
     {
@@ -137,7 +143,7 @@ class MainPageViewController: UIViewController {
         typeOfDayLabel.trailingAnchor.constraint (equalTo: view.trailingAnchor).isActive = true;
         schoolStartTimeLabel.topAnchor.constraint (equalTo: view.topAnchor, constant: 245/812.0*view.frame.height).isActive = true;
         schoolStartTimeLabel.centerXAnchor.constraint (equalTo: view.centerXAnchor).isActive = true;
-        schoolStartTimeLabel.heightAnchor.constraint (equalToConstant: 11/812.0*view.frame.height).isActive = true;
+        schoolStartTimeLabel.heightAnchor.constraint (equalToConstant: 15/812.0*view.frame.height).isActive = true;
         schoolStartTimeLabel.leadingAnchor.constraint (equalTo: view.leadingAnchor).isActive = true;
         schoolStartTimeLabel.trailingAnchor.constraint (equalTo: view.trailingAnchor).isActive = true;
     }
