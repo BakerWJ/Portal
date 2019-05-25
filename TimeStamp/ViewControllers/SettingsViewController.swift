@@ -204,6 +204,7 @@ class SettingsViewController: UIViewController {
         setConstraints()
     }
     
+    //172 lines of constraints 😵
     private func setConstraints ()
     {
         settingsLabel.translatesAutoresizingMaskIntoConstraints = false;
