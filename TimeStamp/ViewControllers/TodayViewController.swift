@@ -198,20 +198,19 @@ class TodayViewController: UIViewController, KeyboardShiftingDelegate, UIScrollV
         let date = Date();
         //Sunday is 1, Saturday is 7, gets today's weekday count
         let weekday = calendar.component(.weekday, from: date);
-        print (schedules.count)
         //fetch data from firebase database about the daily schedules.
         if weeklySchedule?.typeOfDay [weekday - 1] == 4
         {
             //creates an image that says enjoy the weekend
-            let image = UIImageView(image: UIImage (named: "enjoyWeekend"));
+            let image = UIImageView (image: UIImage.gifImageWithName("enjoyWeekend"));
             //adds the image to the view to display
             self.outerView.addSubview (image);
             //sets layout constraints
             image.translatesAutoresizingMaskIntoConstraints = false;
             image.centerXAnchor.constraint(equalTo: self.outerView.centerXAnchor).isActive = true;
             image.centerYAnchor.constraint(equalTo: self.outerView.centerYAnchor).isActive = true;
-            image.widthAnchor.constraint(equalToConstant: 320/812*view.frame.height).isActive = true;
-            image.heightAnchor.constraint (equalToConstant: 360/812*view.frame.height).isActive = true;
+            image.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true;
+            image.heightAnchor.constraint (equalToConstant: 400/812*view.frame.height).isActive = true;
         }
         else
         {
@@ -369,4 +368,6 @@ class TodayViewController: UIViewController, KeyboardShiftingDelegate, UIScrollV
     {
         performSegue(withIdentifier: "returnFromToday", sender: self);
     }
+    
+    @IBAction func returnFromTomorrow (sender: UIStoryboardSegue) {}
 }

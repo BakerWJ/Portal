@@ -169,6 +169,7 @@ class TomorrowViewController: UIViewController, KeyboardShiftingDelegate, UIScro
                 //if the schedule has the same value as the value of the wanted schedule
                 if each.value == Int32((weeklySchedule?.typeOfDay [weekday - 1])!)
                 {
+                    
                     //The things/decorations on top of the actual schedule starts
                     //label that says schedule
                     let labelSchedule = UILabel ()
