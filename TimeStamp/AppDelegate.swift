@@ -93,57 +93,70 @@ class AppDelegate: UIResponder, UIApplicationDelegate
             if let results = try CoreDataStack.managedObjectContext.fetch(fetchRequest) as? [Settings] {
                 if let days = try CoreDataStack.managedObjectContext.fetch(fetchRequest2) as? [WeeklySchedule] {
                     
-                        if (results[0].generalNotifications){
-                            var lateStartDay = -1;
-                            for x in 0...6 {
-                                if(days[0].typeOfDay[x] == 3){
-                                    
-                                    lateStartDay = x;
-                                    break;
-                                }
+                    if (results[0].generalNotifications){
+                        var lateStartDay = -1;
+                        for x in 0...6 {
+                            if(days[0].typeOfDay[x] == 3){
                                 
+                                lateStartDay = x;
+                                break;
                             }
-                            if(lateStartDay != -1){
-                                print(lateStartDay);
-                                //Late Starts
-                                let latestart = UNMutableNotificationContent()
-                                if(results[0].daysBefore == 0){
-                                    latestart.title = "There is a late start today"
-                                    
-                                }else{
-                                    latestart.title = "There is a late start in " + String(results[0].daysBefore) + " days"
-                                }
+                            
+                        }
+                        if(lateStartDay != -1){
+                            print(lateStartDay);
+                            //Late Starts
+                            let latestart = UNMutableNotificationContent()
+                            if(results[0].daysBefore == 0){
+                                latestart.title = "There is a late start today"
                                 
-                                
-                                //Determining time
-                                var latestartTime = DateComponents()
-                                latestartTime.calendar = Calendar.current
-                                
-                                latestartTime.weekday = (Int)(lateStartDay + 7 - Int(results[0].daysBefore)%7)
-                                
-                                if(results[0].notificationTime == 1){ //morning
-                                    latestartTime.hour = 8;
-                                }else if(results[0].notificationTime == 2){
-                                    latestartTime.hour = 12;
-                                }else if(results[0].notificationTime == 3){//evening
-                                    latestartTime.hour = 16;
-                                }
-                                
-                                let trigger = UNCalendarNotificationTrigger(
-                                    dateMatching: latestartTime, repeats: false)
-                                
-                                let uuidString = UUID().uuidString
-                                let request = UNNotificationRequest(identifier: uuidString,
-                                                                    content: latestart, trigger: trigger)
+                            }else{
+                                latestart.title = "There is a late start in " + String(results[0].daysBefore) + " days"
+                            }
+                            
+                            
+                            //Determining time
+                            var latestartTime = DateComponents()
+                            latestartTime.calendar = Calendar.current
+                            
+                            latestartTime.weekday = (Int)(lateStartDay + 7 - Int(results[0].daysBefore)%7)
+                            
+                            if(results[0].notificationTime == 1){ //morning
+                                latestartTime.hour = 8;
+                            }else if(results[0].notificationTime == 2){
+                                latestartTime.hour = 12;
+                            }else if(results[0].notificationTime == 3){//evening
+                                latestartTime.hour = 16;
+                            }
+                            
+                            let trigger = UNCalendarNotificationTrigger(
+                                dateMatching: latestartTime, repeats: false)
+                            
+                            let uuidString = UUID().uuidString
+                            let request = UNNotificationRequest(identifier: uuidString,
+                                                                content: latestart, trigger: trigger)
 
-                                let notificationCenter = UNUserNotificationCenter.current()
-                                notificationCenter.add(request) { (error) in
-                                    if error != nil {
+                            let notificationCenter = UNUserNotificationCenter.current()
+                            notificationCenter.add(request) { (error) in
+                                if error != nil {
 
-                                    }
                                 }
                             }
                         }
+                    }
+                    
+                    if(results[0].eventNotifications){
+                        
+                        
+                    }
+                    
+                    if(results[0].houseNotifications){
+                        
+                        
+                    }
+                    
+                    
+                    
                 }
             
             }
