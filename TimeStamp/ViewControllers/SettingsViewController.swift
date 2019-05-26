@@ -382,6 +382,8 @@ class SettingsViewController: UIViewController {
     
     @IBAction func triggerUnwind ()
     {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.setNotifications()
         performSegue(withIdentifier: "returnFromSettings", sender: self)
     }
 }

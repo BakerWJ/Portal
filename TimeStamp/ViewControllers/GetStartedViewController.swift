@@ -137,5 +137,10 @@ class GetStartedViewController: UIViewController {
         }
         CoreDataStack.saveContext()
     }
+    
+    @IBAction func Done(_ sender: Any) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.setNotifications()
+    }
 }
 
