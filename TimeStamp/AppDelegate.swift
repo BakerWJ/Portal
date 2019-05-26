@@ -80,11 +80,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate
             }
         }
         UserDataSettings.updateAll()
-
         setNotifications ();
+        
+        self.window = UIWindow (frame: UIScreen.main.bounds)
+        let mainStoryboard = UIStoryboard (name: "Main", bundle: nil);
+        var viewControllerName: String;
+    
+        if (UserDataSettings.firstTimeLaunch())
+        {
+            viewControllerName = "Get Started View Controller";
+        }
+        else
+        {
+            viewControllerName = "Main Page View Controller";
+        }
+        
+        let entranceViewController = mainStoryboard.instantiateViewController(withIdentifier: viewControllerName);
+        self.window?.rootViewController = entranceViewController;
+        self.window?.makeKeyAndVisible()
         return true
     }
-    
+
     func setNotifications(){
         
         let fetchRequest = NSFetchRequest <NSFetchRequestResult> (entityName: "Settings");

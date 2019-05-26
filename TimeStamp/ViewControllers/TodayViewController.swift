@@ -52,6 +52,7 @@ class TodayViewController: UIViewController, KeyboardShiftingDelegate, UIScrollV
     {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        timer.suspend();
     }
     override func viewDidLoad ()
     {
@@ -81,7 +82,9 @@ class TodayViewController: UIViewController, KeyboardShiftingDelegate, UIScrollV
         
         //sets up the super big text on the top
         today.text = "TODAY";
-        today.font = UIFont (name: "Arial-BoldMT", size: 32);
+        today.font = UIFont (name: "Arial-BoldMT", size: 32.0/812.0*view.frame.height);
+        today.numberOfLines = 1;
+        today.adjustsFontSizeToFitWidth = true;
         today.textAlignment = .center;
         outerView.addSubview (today);
         today.translatesAutoresizingMaskIntoConstraints = false;
@@ -96,7 +99,9 @@ class TodayViewController: UIViewController, KeyboardShiftingDelegate, UIScrollV
         let tempstring = formatter.string(from: Date()).uppercased();
         formatter.dateFormat = "d";
         label.text = formatter.string (from: Date()) + " " + tempstring;
-        label.font = UIFont (name: "SegoeUI", size: 14);
+        label.font = UIFont (name: "SegoeUI", size: 14/812.0*view.frame.height);
+        label.adjustsFontSizeToFitWidth = true;
+        label.numberOfLines = 1;
         label.textAlignment = .center
         label.textColor = UIColor (red: 132/255.0, green: 132.0/255, blue: 132.0/255, alpha: 1.0);
         outerView.addSubview (label);
@@ -220,7 +225,7 @@ class TodayViewController: UIViewController, KeyboardShiftingDelegate, UIScrollV
                     //label that says schedule
                     let labelSchedule = UILabel ()
                     labelSchedule.textAlignment = .center;
-                    labelSchedule.font = UIFont (name: "SegoeUI-Bold", size: 16);
+                    labelSchedule.font = UIFont (name: "SegoeUI-Bold", size: 16/812.0*view.frame.height);
                     labelSchedule.text = "Schedule";
                     labelSchedule.layer.opacity = 0;
                     self.outerView.addSubview (labelSchedule);
@@ -250,7 +255,7 @@ class TodayViewController: UIViewController, KeyboardShiftingDelegate, UIScrollV
                     //set up the label for what kind of day today is
                     let dayLabel = UILabel();
                     dayLabel.textAlignment = .center;
-                    dayLabel.font = UIFont(name: "SegoeUI", size: 16);
+                    dayLabel.font = UIFont(name: "SegoeUI", size: 16/812.0*view.frame.height);
                     dayLabel.textColor = .white;
                     dayLabel.text = "It's " + each.kind;
                     biggerview.addSubview (dayLabel);
@@ -276,7 +281,7 @@ class TodayViewController: UIViewController, KeyboardShiftingDelegate, UIScrollV
                     currentSchedule.bottomAnchor.constraint (equalTo: self.tempView.bottomAnchor).isActive = true;
                     currentSchedule.leadingAnchor.constraint (equalTo: self.tempView.leadingAnchor).isActive = true;
                     currentSchedule.trailingAnchor.constraint (equalTo: self.tempView.trailingAnchor).isActive = true;
-                    currentSchedule.spacing = 6;
+                    currentSchedule.spacing = 6/812.0*view.frame.height;
                     currentSchedule.backgroundColor = .clear
 
                     //sets layoutConstraints for tempView
@@ -358,5 +363,10 @@ class TodayViewController: UIViewController, KeyboardShiftingDelegate, UIScrollV
     func didReceiveData(_ data: Float)
     {
         textFieldCoordinateY = Double(data);
+    }
+    
+    @IBAction func triggerSegue ()
+    {
+        performSegue(withIdentifier: "returnFromToday", sender: self);
     }
 }

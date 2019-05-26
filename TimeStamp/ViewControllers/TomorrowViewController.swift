@@ -41,7 +41,6 @@ class TomorrowViewController: UIViewController, KeyboardShiftingDelegate, UIScro
     override func viewWillAppear (_ animated: Bool)
     {
         super.viewWillAppear (animated);
-        //printFonts()
         //add observer of the keyboard showing
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -79,7 +78,9 @@ class TomorrowViewController: UIViewController, KeyboardShiftingDelegate, UIScro
         
         //sets up the super big text on the top
         tomorrow.text = "TOMORROW";
-        tomorrow.font = UIFont (name: "Arial-BoldMT", size: 32);
+        tomorrow.font = UIFont (name: "Arial-BoldMT", size: 32/812.0*view.frame.height);
+        tomorrow.adjustsFontSizeToFitWidth = true;
+        tomorrow.numberOfLines = 1;
         tomorrow.textAlignment = .center;
         outerView.addSubview (tomorrow);
         tomorrow.translatesAutoresizingMaskIntoConstraints = false;
@@ -94,9 +95,11 @@ class TomorrowViewController: UIViewController, KeyboardShiftingDelegate, UIScro
         let tempstring = formatter.string(from: Calendar.current.date(byAdding: .day, value: 1, to: Date())!).uppercased();
         formatter.dateFormat = "d";
         label.text = formatter.string (from: Calendar.current.date(byAdding: .day, value: 1, to: Date())!) + " " + tempstring;
-        label.font = UIFont (name: "SegoeUI", size: 14);
+        label.font = UIFont (name: "SegoeUI", size: 14/812.0*view.frame.height);
         label.textAlignment = .center
         label.textColor = UIColor (red: 132/255.0, green: 132.0/255, blue: 132.0/255, alpha: 1.0);
+        label.adjustsFontSizeToFitWidth = true;
+        label.numberOfLines = 1;
         outerView.addSubview (label);
         label.translatesAutoresizingMaskIntoConstraints = false;
         label.leadingAnchor.constraint (equalTo: outerView.leadingAnchor).isActive = true;
@@ -144,20 +147,19 @@ class TomorrowViewController: UIViewController, KeyboardShiftingDelegate, UIScro
         let date = Calendar.current.date(byAdding: .day, value: 1, to: Date())!;
         //Sunday is 1, Saturday is 7, gets tomorrow's weekday count
         let weekday = calendar.component(.weekday, from: date);
-        print (schedules.count)
         //fetch data from firebase database about the daily schedules.
         if weeklySchedule?.typeOfDay [weekday - 1] == 4
         {
             //creates an image that says enjoy the weekend
-            let image = UIImageView(image: UIImage (named: "enjoyWeekend"));
+            let image = UIImageView (image: UIImage.gifImageWithName("enjoyWeekend"));
             //adds the image to the view to display
             self.outerView.addSubview (image);
             //sets layout constraints
             image.translatesAutoresizingMaskIntoConstraints = false;
             image.centerXAnchor.constraint(equalTo: self.outerView.centerXAnchor).isActive = true;
             image.centerYAnchor.constraint(equalTo: self.outerView.centerYAnchor).isActive = true;
-            image.widthAnchor.constraint(equalToConstant: 320/812*view.frame.height).isActive = true;
-            image.heightAnchor.constraint (equalToConstant: 360/812*view.frame.height).isActive = true;
+            image.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true;
+            image.heightAnchor.constraint (equalToConstant: 400/812*view.frame.height).isActive = true;
         }
         else
         {
@@ -171,7 +173,7 @@ class TomorrowViewController: UIViewController, KeyboardShiftingDelegate, UIScro
                     //label that says schedule
                     let labelSchedule = UILabel ()
                     labelSchedule.textAlignment = .center;
-                    labelSchedule.font = UIFont (name: "SegoeUI-Bold", size: 16);
+                    labelSchedule.font = UIFont (name: "SegoeUI-Bold", size: 16/812.0*view.frame.height);
                     labelSchedule.text = "Schedule";
                     labelSchedule.layer.opacity = 0;
                     self.outerView.addSubview (labelSchedule);
@@ -201,7 +203,7 @@ class TomorrowViewController: UIViewController, KeyboardShiftingDelegate, UIScro
                     //set up the label for what kind of day tomorrow is
                     let dayLabel = UILabel();
                     dayLabel.textAlignment = .center;
-                    dayLabel.font = UIFont(name: "SegoeUI", size: 16);
+                    dayLabel.font = UIFont(name: "SegoeUI", size: 16/812.0*view.frame.height);
                     dayLabel.textColor = .white;
                     dayLabel.text = "It's " + each.kind;
                     biggerview.addSubview (dayLabel);
@@ -227,7 +229,7 @@ class TomorrowViewController: UIViewController, KeyboardShiftingDelegate, UIScro
                     currentSchedule.bottomAnchor.constraint (equalTo: self.tempView.bottomAnchor).isActive = true;
                     currentSchedule.leadingAnchor.constraint (equalTo: self.tempView.leadingAnchor).isActive = true;
                     currentSchedule.trailingAnchor.constraint (equalTo: self.tempView.trailingAnchor).isActive = true;
-                    currentSchedule.spacing = 6;
+                    currentSchedule.spacing = 6/812.0*view.frame.height;
                     currentSchedule.backgroundColor = .clear
                     
                     //sets layoutConstraints for tempView
@@ -308,5 +310,10 @@ class TomorrowViewController: UIViewController, KeyboardShiftingDelegate, UIScro
     func didReceiveData(_ data: Float)
     {
         textFieldCoordinateY = Double(data);
+    }
+    
+    @IBAction func triggerSegue ()
+    {
+        performSegue(withIdentifier: "returnFromTomorrow", sender: self);
     }
 }

@@ -30,7 +30,6 @@ class HorizontalLeftShiftTransition: UIStoryboardSegue
             {
                 (Finished) in
                 self.source.present(self.destination, animated: false, completion: nil)
-                self.source.navigationController?.popViewController(animated: true)
             })
         }
     }

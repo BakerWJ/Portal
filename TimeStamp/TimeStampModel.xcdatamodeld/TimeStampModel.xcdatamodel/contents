@@ -21,6 +21,7 @@
     <entity name="Settings" representedClassName="Settings" syncable="YES">
         <attribute name="daysBefore" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="eventNotifications" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="firstTimeOpen" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="generalNotifications" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="houseNotifications" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="notificationTime" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -38,7 +39,7 @@
         <element name="FlipDay" positionX="-54" positionY="-9" width="128" height="75"/>
         <element name="Period" positionX="-63" positionY="-18" width="128" height="135"/>
         <element name="Schedule" positionX="-36" positionY="9" width="128" height="105"/>
-        <element name="Settings" positionX="-18" positionY="27" width="128" height="120"/>
+        <element name="Settings" positionX="-18" positionY="27" width="128" height="135"/>
         <element name="Timetable" positionX="0" positionY="45" width="128" height="75"/>
         <element name="WeeklySchedule" positionX="-27" positionY="45" width="128" height="90"/>
     </elements>
