@@ -104,6 +104,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
     func setNotifications(){
         let dayName = ["", "a Regular School Day", "an Assembly Day", "a Late Start", "No School", "a Fajita Fiesta", "Last Day of School"]
         
+        let daysWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
         let center = UNUserNotificationCenter.current()
 
         center.removeAllPendingNotificationRequests();
@@ -114,8 +115,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate
             if let results = try CoreDataStack.managedObjectContext.fetch(fetchRequest) as? [Settings] {
                 if let days = try CoreDataStack.managedObjectContext.fetch(fetchRequest2) as? [WeeklySchedule] {
                     
-                    for x in 0...6 {
+                    for x in 0...6 { //checks every day
                         var notify = false;
+                        //determines if that day requires a notification
                         if((days[0].typeOfDay[x] == 2 || days[0].typeOfDay[x] == 3) && results[0].generalNotifications){
                             notify = true;
                             
@@ -126,21 +128,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate
                             //No house events thus far
                             
                         }
-
                         if(notify == true){
-                            //Late Starts
-                            let general = UNMutableNotificationContent()
+                            
+                            let general = UNMutableNotificationContent() //Notification content
                             if(results[0].daysBefore == 0){
                                 general.title = "There is " + dayName[ days[0].typeOfDay[x] ] + " today.";
                                 
                             }else{
-                                general.title = "There is " + dayName[ days[0].typeOfDay[x] ] + " in " + String(results[0].daysBefore) + " days"
+                                general.title = "There is " + dayName[ days[0].typeOfDay[x] ] + " in " + String(results[0].daysBefore) + " days on " + daysWeek[x];
+                                
                             }
                             
-                            
+                            print(general.title);
                             //Determining time
                             var time = DateComponents()
-                            time.calendar = Calendar.current
                             
                             time.weekday = (Int)(x + 7 - Int(results[0].daysBefore)%7)
                             
@@ -151,20 +152,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate
                             }else if(results[0].notificationTime == 3){//evening
                                 time.hour = 16;
                             }
-                            
-                            let trigger = UNCalendarNotificationTrigger(
-                                dateMatching: time, repeats: false)
+
+                            let trigger = UNCalendarNotificationTrigger(dateMatching: time, repeats: false)
                             
                             let uuidString = UUID().uuidString
-                            let request = UNNotificationRequest(identifier: uuidString,
-                                                                content: general, trigger: trigger)
+                            let request = UNNotificationRequest(identifier: uuidString, content: general, trigger: trigger)
                             
                             let notificationCenter = UNUserNotificationCenter.current()
-                            notificationCenter.add(request) { (error) in
-                                if error != nil {
-                                    
-                                }
-                            }
+                            notificationCenter.add(request)
                         }
                         
                     }
