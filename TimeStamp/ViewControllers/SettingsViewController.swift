@@ -90,16 +90,25 @@ class SettingsViewController: UIViewController {
     @IBAction func generalClick(_ sender: Any) {
         generalButton.isSelected = !generalButton.isSelected
         settings?.generalNotifications = generalButton.isSelected
+        CoreDataStack.saveContext()
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.setNotifications()
     }
     
     @IBAction func houseClick(_ sender: Any) {
         houseButton.isSelected = !houseButton.isSelected
         settings?.houseNotifications = houseButton.isSelected
+        CoreDataStack.saveContext()
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.setNotifications()
     }
     
     @IBAction func eventClick(_ sender: Any) {
         eventButton.isSelected = !eventButton.isSelected
         settings?.eventNotifications = eventButton.isSelected
+        CoreDataStack.saveContext()
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.setNotifications()
     }
     
     @IBAction func oneClick(_ sender: Any) {
@@ -107,6 +116,9 @@ class SettingsViewController: UIViewController {
         oneDay.isSelected = true
         oneLabel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         settings?.daysBefore = 1;
+        CoreDataStack.saveContext()
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.setNotifications()
     }
     
     @IBAction func twoClick(_ sender: Any) {
@@ -114,6 +126,9 @@ class SettingsViewController: UIViewController {
         twoDay.isSelected = true
         twoLabel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         settings?.daysBefore = 2;
+        CoreDataStack.saveContext()
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.setNotifications()
     }
     
     @IBAction func threeClick(_ sender: Any) {
@@ -121,6 +136,9 @@ class SettingsViewController: UIViewController {
         threeDay.isSelected = true
         threeLabel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         settings?.daysBefore = 3;
+        CoreDataStack.saveContext()
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.setNotifications()
     }
     
     @IBAction func fourClick(_ sender: Any) {
@@ -128,6 +146,9 @@ class SettingsViewController: UIViewController {
         fourDay.isSelected = true
         fourLabel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         settings?.daysBefore = 4;
+        CoreDataStack.saveContext()
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.setNotifications()
     }
     
     @IBAction func fiveClick(_ sender: Any) {
@@ -135,6 +156,9 @@ class SettingsViewController: UIViewController {
         fiveDay.isSelected = true
         fiveLabel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         settings?.daysBefore = 5;
+        CoreDataStack.saveContext()
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.setNotifications()
     }
     
     @IBAction func morningClick(_ sender: Any) {
@@ -142,6 +166,9 @@ class SettingsViewController: UIViewController {
         morningButton.isSelected = true
         morningLabel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         settings?.notificationTime = 1;
+        CoreDataStack.saveContext()
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.setNotifications()
     }
     
     @IBAction func afternoonClick(_ sender: Any) {
@@ -149,6 +176,9 @@ class SettingsViewController: UIViewController {
         afternoonButton.isSelected = true
         afternoonLabel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         settings?.notificationTime = 2;
+        CoreDataStack.saveContext()
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.setNotifications()
     }
     
     @IBAction func eveningClick(_ sender: Any) {
@@ -156,6 +186,9 @@ class SettingsViewController: UIViewController {
         eveningButton.isSelected = true
         eveningLabel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         settings?.notificationTime = 3;
+        CoreDataStack.saveContext()
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.setNotifications()
     }
     
     
@@ -382,8 +415,6 @@ class SettingsViewController: UIViewController {
     
     @IBAction func triggerUnwind ()
     {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.setNotifications()
         performSegue(withIdentifier: "returnFromSettings", sender: self)
     }
 }
