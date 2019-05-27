@@ -86,7 +86,7 @@ class MainPageViewController: UIViewController {
         }
         else
         {
-            formatter.dateFormat = "h mm";
+            formatter.dateFormat = "h:mm";
             for each in self.schedules
             {
                 if each.value == Int32 ((weeklySchedule?.typeOfDay [weekday - 1])!)
@@ -150,6 +150,5 @@ class MainPageViewController: UIViewController {
     
     @IBAction func returnFromSettings (sender: UIStoryboardSegue) {}
     @IBAction func returnFromToday (sender: UIStoryboardSegue) {}
-    @IBAction func returnFromTomorrow (sender: UIStoryboardSegue) {}
 
 }
