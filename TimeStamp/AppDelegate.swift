@@ -102,66 +102,79 @@ class AppDelegate: UIResponder, UIApplicationDelegate
     }
 
     func setNotifications(){
-        let dayName = ["", "a Regular School Day", "an Assembly Day", "a Late Start", "No School", "a Fajita Fiesta", "Last Day of School"]
+
         
         let daysWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
         let center = UNUserNotificationCenter.current()
-
         center.removeAllPendingNotificationRequests();
 
         let fetchRequest = NSFetchRequest <NSFetchRequestResult> (entityName: "Settings");
         let fetchRequest2 = NSFetchRequest <NSFetchRequestResult> (entityName: "WeeklySchedule");
+        let fetchRequest3 = NSFetchRequest <NSFetchRequestResult> (entityName: "Schedule");
+
         do {
             if let results = try CoreDataStack.managedObjectContext.fetch(fetchRequest) as? [Settings] {
                 if let days = try CoreDataStack.managedObjectContext.fetch(fetchRequest2) as? [WeeklySchedule] {
                     
-                    for x in 0...6 { //checks every day
-                        var notify = false;
-                        //determines if that day requires a notification
-                        if((days[0].typeOfDay[x] == 2 || days[0].typeOfDay[x] == 3) && results[0].generalNotifications){
-                            notify = true;
-                            
-                        }else if(results[0].eventNotifications && (days[0].typeOfDay[x]==5 || days[0].typeOfDay[x] == 6)){
-                            notify = true;
-                            
-                        }else if(results[0].houseNotifications){
-                            //No house events thus far
-                            
-                        }
-                        if(notify == true){
-                            
-                            let general = UNMutableNotificationContent() //Notification content
-                            if(results[0].daysBefore == 0){
-                                general.title = "There is " + dayName[ days[0].typeOfDay[x] ] + " today.";
+                    if let schedule = try CoreDataStack.managedObjectContext.fetch(fetchRequest3) as? [Schedule] {
+                        for x in 0...6 { //checks every day
+                            var notify = false;
+                            //determines if that day requires a notification
+                            if((days[0].typeOfDay[x] == 2 || days[0].typeOfDay[x] == 3) && results[0].generalNotifications){
+                                notify = true;
                                 
-                            }else{
-                                general.title = "There is " + dayName[ days[0].typeOfDay[x] ] + " in " + String(results[0].daysBefore) + " days on " + daysWeek[x];
+                            }else if(results[0].eventNotifications && (days[0].typeOfDay[x]==5 || days[0].typeOfDay[x] == 6 || days[0].typeOfDay[x] == 7)){
+                                notify = true;
+                                
+                            }else if(results[0].houseNotifications){
+                                //No house events thus far
                                 
                             }
-                            
-                            print(general.title);
-                            //Determining time
-                            var time = DateComponents()
-                            
-                            time.weekday = (Int)(x + 8 - Int(results[0].daysBefore)%7)
-                            
-                            if(results[0].notificationTime == 1){ //morning
-                                time.hour = 8;
-                            }else if(results[0].notificationTime == 2){
-                                time.hour = 12;
-                            }else if(results[0].notificationTime == 3){//evening
-                                time.hour = 16;
-                            }
+                            if(notify == true){
+                                
+                                let general = UNMutableNotificationContent() //Notification content
+                                var eventName = "";
+                                for z in schedule{
+                                    if(z.value == days[0].typeOfDay[x]){
+                                        eventName = z.kind;
+                                        
+                                    }
+                                }
+                                
+                                if(results[0].daysBefore == 0){
+                                    general.title = "There is " + eventName + " today.";
+                                    
+                                }else{
+                                    general.title = "There is " + eventName + " in " + String(results[0].daysBefore) + " days on " + daysWeek[x];
+                                    
+                                }
+                                
+                                print(general.title);
+                                //Determining time
+                                var time = DateComponents()
+                                
+                                time.weekday = (Int)(x + 8 - Int(results[0].daysBefore)%7)
+                                
+                                if(results[0].notificationTime == 1){ //morning
+                                    time.hour = 8;
+                                    time.minute = 10;
+                                }else if(results[0].notificationTime == 2){
+                                    time.hour = 12;
+                                    time.minute = 40;
+                                }else if(results[0].notificationTime == 3){//evening
+                                    time.hour = 16;
+                                }
 
-                            let trigger = UNCalendarNotificationTrigger(dateMatching: time, repeats: false)
+                                let trigger = UNCalendarNotificationTrigger(dateMatching: time, repeats: false)
+                                
+                                let uuidString = UUID().uuidString
+                                let request = UNNotificationRequest(identifier: uuidString, content: general, trigger: trigger)
+                                
+                                let notificationCenter = UNUserNotificationCenter.current()
+                                notificationCenter.add(request)
+                            }
                             
-                            let uuidString = UUID().uuidString
-                            let request = UNNotificationRequest(identifier: uuidString, content: general, trigger: trigger)
-                            
-                            let notificationCenter = UNUserNotificationCenter.current()
-                            notificationCenter.add(request)
                         }
-                        
                     }
                 }
             
