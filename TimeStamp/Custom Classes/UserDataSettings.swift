@@ -67,14 +67,6 @@ class UserDataSettings
                 }
             }
         }
-        if (!x) {
-            let alert = UIAlertController(title: "cannot connect to server", message: "Press OK to exit", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: {
-                (action) in
-                exit (0)
-            }))
-            delegate?.window?.rootViewController?.present (alert, animated: true, completion: nil)
-        }
     }
     
     //This creates the setttngs and default values
@@ -304,7 +296,7 @@ class UserDataSettings
                          //creates a flipday object
                         let Flip = FlipDay (entity: entityFlip, insertInto: CoreDataStack.managedObjectContext)
                         Flip.normalToFlip = arr;
-                        Flip.expirationDate = Util.nextSunday()
+                        Flip.expirationDate = Util.nextDay()
                         CoreDataStack.saveContext()
                     }
                 }
@@ -350,7 +342,7 @@ class UserDataSettings
                         schedule.kind = document.documentID
                         //sets the expirationDate of this schedule to the nearest future Sunday at midnight (so like the one
                         //between Saturday and Sunday)
-                        schedule.expirationDate = Util.nextSunday ()
+                        schedule.expirationDate = Util.nextDay ()
                         
                         //loops through the arrays
                         for x in 0..<min(corres.count,min(min(min(names.count, stime.count), etime.count), notes.count))

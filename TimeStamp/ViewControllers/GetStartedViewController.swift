@@ -105,7 +105,7 @@ class GetStartedViewController: UIViewController {
             }
         }
         catch {
-            fatalError("There was an error fetching the list of timetables");
+            fatalError("There was an er ror fetching the list of timetables");
         }
         CoreDataStack.saveContext()
     }

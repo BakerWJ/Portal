@@ -98,6 +98,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         let entranceViewController = mainStoryboard.instantiateViewController(withIdentifier: viewControllerName);
         self.window?.rootViewController = entranceViewController;
         self.window?.makeKeyAndVisible()
+        
+        //updates the data in the background every 10 minutes
+        UIApplication.shared.setMinimumBackgroundFetchInterval(600);
         return true
     }
 
@@ -115,73 +118,69 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         do {
             if let results = try CoreDataStack.managedObjectContext.fetch(fetchRequest) as? [Settings] {
                 if let days = try CoreDataStack.managedObjectContext.fetch(fetchRequest2) as? [WeeklySchedule] {
-                    
                     if let schedule = try CoreDataStack.managedObjectContext.fetch(fetchRequest3) as? [Schedule] {
-                        for x in 0...6 { //checks every day
-                            var notify = false;
-                            //determines if that day requires a notification
-                            if((days[0].typeOfDay[x] == 2 || days[0].typeOfDay[x] == 3) && results[0].generalNotifications){
-                                notify = true;
-                                
-                            }else if(results[0].eventNotifications && (days[0].typeOfDay[x]==5 || days[0].typeOfDay[x] == 6 || days[0].typeOfDay[x] == 7)){
-                                notify = true;
-                                
-                            }else if(results[0].houseNotifications){
-                                //No house events thus far
-                                
-                            }
-                            if(notify == true){
-                                
-                                let general = UNMutableNotificationContent() //Notification content
-                                var eventName = "";
-                                for z in schedule{
-                                    if(z.value == days[0].typeOfDay[x]){
-                                        eventName = z.kind;
+                        if (results.count != 0 && days.count != 0 && schedule.count != 0)
+                        {
+                            for x in 0...6 { //checks every day
+                                var notify = false;
+                                //determines if that day requires a notification
+                                if((days[0].typeOfDay[x] == 2 || days[0].typeOfDay[x] == 3) && results[0].generalNotifications){
+                                    notify = true;
+                                    
+                                }else if(results[0].eventNotifications && (days[0].typeOfDay[x]==5 || days[0].typeOfDay[x] == 6 || days[0].typeOfDay[x] == 7)){
+                                    notify = true;
+                                    
+                                }else if(results[0].houseNotifications){
+                                    //No house events thus far
+                                    
+                                }
+                                if(notify == true){
+                                    
+                                    let general = UNMutableNotificationContent() //Notification content
+                                    var eventName = "";
+                                    for z in schedule{
+                                        if(z.value == days[0].typeOfDay[x]){
+                                            eventName = z.kind;
+                                            
+                                        }
+                                    }
+                                    
+                                    if(results[0].daysBefore == 0){
+                                        general.title = "There is " + eventName + " today.";
+                                        
+                                    }else{
+                                        general.title = "There is " + eventName + " in " + String(results[0].daysBefore) + " days on " + daysWeek[x];
                                         
                                     }
-                                }
-                                
-                                if(results[0].daysBefore == 0){
-                                    general.title = "There is " + eventName + " today.";
                                     
-                                }else{
-                                    general.title = "There is " + eventName + " in " + String(results[0].daysBefore) + " days on " + daysWeek[x];
+                                    print(general.title);
+                                    //Determining time
+                                    var time = DateComponents()
                                     
+                                    time.weekday = (Int)(x + 8 - Int(results[0].daysBefore)%7)
+                                    
+                                    if(results[0].notificationTime == 1){ //morning
+                                        time.hour = 8;
+                                        time.minute = 10;
+                                    }else if(results[0].notificationTime == 2){
+                                        time.hour = 12;
+                                        time.minute = 40;
+                                    }else if(results[0].notificationTime == 3){//evening
+                                        time.hour = 16;
+                                    }
+                                    
+                                    let trigger = UNCalendarNotificationTrigger(dateMatching: time, repeats: false)
+                                    
+                                    let uuidString = UUID().uuidString
+                                    let request = UNNotificationRequest(identifier: uuidString, content: general, trigger: trigger)
+                                    
+                                    let notificationCenter = UNUserNotificationCenter.current()
+                                    notificationCenter.add(request)
                                 }
-                                
-                                print(general.title);
-                                //Determining time
-                                var time = DateComponents()
-                                
-                                time.weekday = (Int)(x + 8 - Int(results[0].daysBefore)%7)
-                                
-                                if(results[0].notificationTime == 1){ //morning
-                                    time.hour = 8;
-                                    time.minute = 10;
-                                }else if(results[0].notificationTime == 2){
-                                    time.hour = 12;
-                                    time.minute = 40;
-                                }else if(results[0].notificationTime == 3){//evening
-                                    time.hour = 16;
-                                }
-
-                                let trigger = UNCalendarNotificationTrigger(dateMatching: time, repeats: false)
-                                
-                                let uuidString = UUID().uuidString
-                                let request = UNNotificationRequest(identifier: uuidString, content: general, trigger: trigger)
-                                
-                                let notificationCenter = UNUserNotificationCenter.current()
-                                notificationCenter.add(request)
                             }
-                            
                         }
                     }
                 }
-            
-                
-                
-            
-            
             }
         }
         catch {
@@ -194,8 +193,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         
     }
  
-    
-    
     func applicationWillResignActive(_ application: UIApplication)
     {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -225,5 +222,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         //This saves any changes to the CoreDataStack NSManagedContext before the app terminates so the changes
         //by the users can be saved
         CoreDataStack.saveContext()
+    }
+    
+    //this is the code that gets executed every 10 minutes for background updates
+    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void)
+    {
+        UserDataSettings.updateAll();
     }
 }
