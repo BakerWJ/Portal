@@ -19,7 +19,6 @@ class MainPageViewController: UIViewController {
     @IBOutlet weak var typeOfDayLabel: UILabel!
     @IBOutlet weak var schoolStartTimeLabel: UILabel!
     
-    
     //formates the date
     let formatter = DateFormatter()
     //user calendar
@@ -30,6 +29,8 @@ class MainPageViewController: UIViewController {
     var weeklySchedule: WeeklySchedule?
     //an array of schedules for the day
     var schedules = [Schedule] ()
+    let Q_AIcon = UIButton ();
+    let ToDoIcon = UIButton ();
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -113,6 +114,10 @@ class MainPageViewController: UIViewController {
         schoolStartTimeLabel.font = UIFont (name: "SegoeUI", size: 14/812.0*view.frame.height);
         dateLabel.font = UIFont (name: "SegoeUI", size: 14/812.0*view.frame.height);
 
+        //makes navigation bar transparent
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default);
+        self.navigationController?.navigationBar.shadowImage = UIImage();
+        self.navigationController?.navigationBar.isTranslucent = true;
     }
     private func setConstraints ()
     {
@@ -124,31 +129,56 @@ class MainPageViewController: UIViewController {
         
         todayLabel.leadingAnchor.constraint (equalTo: view.leadingAnchor).isActive = true;
         todayLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true;
-        todayLabel.topAnchor.constraint (equalTo: view.topAnchor, constant: 60/812.0*view.frame.height).isActive = true;
+        todayLabel.topAnchor.constraint (equalTo: view.topAnchor, constant: 100/812.0*view.frame.height).isActive = true;
         todayLabel.heightAnchor.constraint (equalToConstant: 35/812.0*view.frame.height);
         
         dateLabel.leadingAnchor.constraint (equalTo: view.leadingAnchor).isActive = true;
         dateLabel.trailingAnchor.constraint (equalTo: view.trailingAnchor).isActive = true;
-        dateLabel.topAnchor.constraint (equalTo: view.topAnchor, constant: 95/812.0*view.frame.height).isActive = true;
+        dateLabel.topAnchor.constraint (equalTo: view.topAnchor, constant: 135/812.0*view.frame.height).isActive = true;
         dateLabel.heightAnchor.constraint (equalToConstant: 25/812.0*view.frame.height);
         
         redImage.heightAnchor.constraint (equalToConstant: 59/812.0*view.frame.height).isActive = true;
-        redImage.topAnchor.constraint (equalTo: view.topAnchor, constant: 213/812.0*view.frame.height).isActive = true;
+        redImage.topAnchor.constraint (equalTo: view.topAnchor, constant: 253/812.0*view.frame.height).isActive = true;
         redImage.centerXAnchor.constraint (equalTo: view.centerXAnchor).isActive = true;
         
-        typeOfDayLabel.topAnchor.constraint (equalTo: view.topAnchor, constant: 221/812.0*view.frame.height).isActive = true;
+        typeOfDayLabel.topAnchor.constraint (equalTo: view.topAnchor, constant: 261/812.0*view.frame.height).isActive = true;
         typeOfDayLabel.centerXAnchor.constraint (equalTo: view.centerXAnchor).isActive = true;
         typeOfDayLabel.heightAnchor.constraint (equalToConstant: 23/812.0*view.frame.height).isActive = true;
         typeOfDayLabel.leadingAnchor.constraint (equalTo: view.leadingAnchor).isActive = true;
         typeOfDayLabel.trailingAnchor.constraint (equalTo: view.trailingAnchor).isActive = true;
-        schoolStartTimeLabel.topAnchor.constraint (equalTo: view.topAnchor, constant: 245/812.0*view.frame.height).isActive = true;
+        
+        schoolStartTimeLabel.topAnchor.constraint (equalTo: view.topAnchor, constant: 285/812.0*view.frame.height).isActive = true;
         schoolStartTimeLabel.centerXAnchor.constraint (equalTo: view.centerXAnchor).isActive = true;
         schoolStartTimeLabel.heightAnchor.constraint (equalToConstant: 15/812.0*view.frame.height).isActive = true;
         schoolStartTimeLabel.leadingAnchor.constraint (equalTo: view.leadingAnchor).isActive = true;
         schoolStartTimeLabel.trailingAnchor.constraint (equalTo: view.trailingAnchor).isActive = true;
+        
+        //sets up the two icons that appear at the top in the navigation bar
+        Q_AIcon.setBackgroundImage (UIImage(named: "Q&AIcon"), for: .normal);
+        Q_AIcon.addTarget(self, action: #selector (goToQ_A), for: .touchUpInside);
+        let barItem = UIBarButtonItem (customView: Q_AIcon);
+        navigationItem.leftBarButtonItem = barItem;
+        Q_AIcon.translatesAutoresizingMaskIntoConstraints = false;
+        Q_AIcon.heightAnchor.constraint (equalToConstant: 30/812.0*view.frame.height).isActive = true;
+        Q_AIcon.widthAnchor.constraint (equalToConstant: 30/812.0*view.frame.height).isActive = true;
+        
+        ToDoIcon.setBackgroundImage (UIImage (named: "toDoIcon"), for: .normal);
+        ToDoIcon.addTarget (self, action: #selector (goToToDo), for: .touchUpInside);
+        let barItem2 = UIBarButtonItem(customView: ToDoIcon);
+        navigationItem.rightBarButtonItem = barItem2;
+        ToDoIcon.translatesAutoresizingMaskIntoConstraints = false;
+        ToDoIcon.heightAnchor.constraint (equalToConstant: 30/812.0*view.frame.height).isActive = true;
+        ToDoIcon.widthAnchor.constraint (equalToConstant: 30/812.0*view.frame.height).isActive = true;
+}
+    
+    @objc func goToQ_A ()
+    {
+        performSegue(withIdentifier: "toQ&A", sender: self);
     }
     
-    @IBAction func returnFromSettings (sender: UIStoryboardSegue) {}
-    @IBAction func returnFromToday (sender: UIStoryboardSegue) {}
+    @objc func goToToDo ()
+    {
+        performSegue(withIdentifier: "toToDoList", sender: self);
+    }
 
 }

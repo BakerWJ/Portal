@@ -244,8 +244,16 @@ class TomorrowViewController: UIViewController, KeyboardShiftingDelegate, UIScro
                     self.tempView.layer.opacity = 0;
                     
                     //set scrollview stuff
-                    tempView.isScrollEnabled = true;
-                    tempView.alwaysBounceVertical = true;
+                    currentSchedule.layoutIfNeeded();
+                    if (currentSchedule.frame.height < 450/812.0*view.frame.height)
+                    {
+                        tempView.isScrollEnabled = false;
+                    }
+                    else
+                    {
+                        tempView.isScrollEnabled = true;
+                        tempView.alwaysBounceVertical = true;
+                    }
                     
                     //makes the schedule and everything fade in
                     UIView.animate(withDuration: 1.0, delay: 0, options: .curveEaseInOut, animations: {

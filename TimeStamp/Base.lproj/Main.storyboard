@@ -15,6 +15,40 @@
         </array>
     </customFonts>
     <scenes>
+        <!--Sign In View Controller-->
+        <scene sceneID="iFV-Xw-TS9">
+            <objects>
+                <viewController storyboardIdentifier="Sign In View Controller" id="ziH-lx-4S2" customClass="SignInViewController" customModule="TimeStamp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kmp-Ch-g2C">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1VP-pA-1QB">
+                                <rect key="frame" x="46" y="665" width="283" height="43"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="1VP-pA-1QB" secondAttribute="height" multiplier="283:43" id="2Jj-4C-5Nm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SegoeUI" family="Segoe UI" pointSize="15"/>
+                                <state key="normal" image="I'm Done"/>
+                                <connections>
+                                    <action selector="Done:" destination="vXe-ls-4tL" eventType="touchUpInside" id="gRl-2v-3Q3"/>
+                                    <segue destination="vXe-ls-4tL" kind="custom" customClass="HorizontalRightShiftTransition" customModule="TimeStamp" customModuleProvider="target" id="NM0-aS-PUF"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="1VP-pA-1QB" firstAttribute="top" secondItem="7wX-A4-QWQ" secondAttribute="top" constant="621" id="E1Y-QF-NO7"/>
+                            <constraint firstItem="1VP-pA-1QB" firstAttribute="width" secondItem="1VP-pA-1QB" secondAttribute="height" multiplier="283:43" id="cqk-Uk-bOf"/>
+                            <constraint firstItem="1VP-pA-1QB" firstAttribute="centerX" secondItem="7wX-A4-QWQ" secondAttribute="centerX" id="lw0-G1-9YV"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="7wX-A4-QWQ"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Psi-nb-uuy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2610" y="881"/>
+        </scene>
         <!--Get Started View Controller-->
         <scene sceneID="VHP-uL-jlV">
             <objects>
@@ -166,7 +200,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sw6-73-FDc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1505" y="-100"/>
+            <point key="canvasLocation" x="-1417" y="881"/>
         </scene>
         <!--Set Up1 View Controller-->
         <scene sceneID="IaH-yi-kxE">
@@ -242,7 +276,7 @@
                                         <state key="normal" image="I'm Done"/>
                                         <connections>
                                             <action selector="isDone:" destination="rcl-pN-vkI" eventType="touchUpInside" id="xEa-qQ-Qg1"/>
-                                            <segue destination="Shi-Lm-Jvz" kind="custom" customClass="HorizontalRightShiftTransition" customModule="TimeStamp" customModuleProvider="target" id="09h-mp-YXM"/>
+                                            <segue destination="m1C-yP-uYK" kind="custom" customClass="HorizontalRightShiftTransition" customModule="TimeStamp" customModuleProvider="target" id="xBP-OI-xbz"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U8E-T7-yPa">
@@ -254,9 +288,6 @@
                                         <state key="normal" title="Skip for Now.">
                                             <color key="titleColor" red="0.51764705882352935" green="0.51764705882352935" blue="0.51764705882352935" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
-                                        <connections>
-                                            <segue destination="Shi-Lm-Jvz" kind="custom" customClass="HorizontalRightShiftTransition" customModule="TimeStamp" customModuleProvider="target" id="hMh-E8-IOY"/>
-                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="ON MONDAY..." textAlignment="natural" lineBreakMode="tailTruncation" minimumFontSize="7" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rS3-c0-bQ3">
                                         <rect key="frame" x="46" y="345" width="92" height="23"/>
@@ -306,25 +337,36 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ayJ-ea-TXN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2288.8000000000002" y="-100.49261083743843"/>
+            <point key="canvasLocation" x="-422" y="881"/>
+        </scene>
+        <!--Home-->
+        <scene sceneID="etT-Ou-Vjg">
+            <objects>
+                <navigationController id="EEt-2r-1ne" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Home" id="0KT-7z-SN3"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="jda-gL-WGx">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Shi-Lm-Jvz" kind="relationship" relationship="rootViewController" id="DOi-zl-hWV"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wDR-G1-5Lc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1681" y="178"/>
         </scene>
         <!--Main Page View Controller-->
         <scene sceneID="A0g-wO-Z7d">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hHd-6b-UJa" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="Main Page View Controller" title="Main Page View Controller" id="Shi-Lm-Jvz" customClass="MainPageViewController" customModule="TimeStamp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Qj6-98-5sO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="TODAY" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ryn-v3-9Lw">
-                                <rect key="frame" x="69" y="77" width="223" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="32"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="29 April" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wbc-TX-iN5">
-                                <rect key="frame" x="103" y="120" width="168" height="25"/>
+                                <rect key="frame" x="103" y="141" width="168" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="SegoeUI" family="Segoe UI" pointSize="14"/>
                                 <color key="textColor" red="0.51764705879999995" green="0.51764705879999995" blue="0.51764705879999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -350,36 +392,231 @@
                                 <color key="textColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="TODAY" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ryn-v3-9Lw">
+                                <rect key="frame" x="69" y="109" width="223" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="32"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
                         <viewLayoutGuide key="safeArea" id="Hdx-uh-FM9"/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="MBh-KU-sef" appends="YES" id="4V3-Sx-foj"/>
-                            <outletCollection property="gestureRecognizers" destination="CCf-hO-FWs" appends="YES" id="zeS-ZZ-vmm"/>
-                        </connections>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="2cW-n4-hb0"/>
+                    <navigationItem key="navigationItem" id="Hyc-BD-YaF"/>
                     <connections>
                         <outlet property="dateLabel" destination="Wbc-TX-iN5" id="8GW-iV-HXp"/>
                         <outlet property="redImage" destination="M3l-kQ-RyG" id="OIr-Ld-2gt"/>
                         <outlet property="schoolStartTimeLabel" destination="pUP-bd-60G" id="kxd-M6-0lH"/>
                         <outlet property="todayLabel" destination="ryn-v3-9Lw" id="EWL-NX-JIj"/>
                         <outlet property="typeOfDayLabel" destination="pkz-EC-jyB" id="YjD-FM-LLL"/>
+                        <segue destination="deH-3h-9VO" kind="show" identifier="toQ&amp;A" id="qXi-kJ-Zg4"/>
+                        <segue destination="l4K-YH-3go" kind="show" identifier="toToDoList" id="jg7-Be-rfG"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hHd-6b-UJa" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="right" id="MBh-KU-sef">
-                    <connections>
-                        <segue destination="Vy2-Vx-pG9" kind="custom" customClass="HorizontalLeftShiftTransition" customModule="TimeStamp" customModuleProvider="target" id="RlR-hY-k4E"/>
-                    </connections>
-                </swipeGestureRecognizer>
-                <swipeGestureRecognizer direction="left" id="CCf-hO-FWs">
-                    <connections>
-                        <segue destination="oFc-jc-KNZ" kind="custom" customClass="HorizontalRightShiftTransition" customModule="TimeStamp" customModuleProvider="target" id="8ES-yy-3qt"/>
-                    </connections>
-                </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2288.8000000000002" y="657.63546798029563"/>
+            <point key="canvasLocation" x="2582" y="177"/>
+        </scene>
+        <!--To Do List View Controller-->
+        <scene sceneID="sDx-eC-y9Y">
+            <objects>
+                <viewController id="l4K-YH-3go" customClass="ToDoListViewController" customModule="TimeStamp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QSa-jB-kRt">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="rz2-kC-c9s"/>
+                    </view>
+                    <connections>
+                        <segue destination="7X1-ax-wYc" kind="presentation" identifier="toToDoListItem" id="v3e-Si-Quj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mwc-kh-fmD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3445" y="589"/>
+        </scene>
+        <!--To Do List Item View Controller-->
+        <scene sceneID="aki-Cd-Y01">
+            <objects>
+                <viewController id="7X1-ax-wYc" customClass="ToDoListItemViewController" customModule="TimeStamp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4Mc-S7-0ZA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="7ck-K4-Qhh"/>
+                    </view>
+                    <connections>
+                        <segue destination="epg-KI-GGU" kind="unwind" identifier="fromItem" unwindAction="returnFromItemWithSender:" id="e6A-dH-yGN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tfS-zC-CyH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="epg-KI-GGU" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="4449" y="589"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="HJ0-iy-HRd">
+            <objects>
+                <viewController id="deH-3h-9VO" customClass="Q_AViewController" customModule="TimeStamp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OhV-Vg-3pH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="ocD-F3-NyC"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TIq-Yw-dyA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3460" y="-109"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="fl9-5w-jVE">
+            <objects>
+                <tableViewController id="C1b-2B-x1H" customClass="NewsTableViewController" customModule="TimeStamp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="4dA-el-ZF2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="VsT-fF-cuS">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VsT-fF-cuS" id="38J-El-cY6">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="C1b-2B-x1H" id="TUP-gN-uW3"/>
+                            <outlet property="delegate" destination="C1b-2B-x1H" id="o5m-zq-3Eh"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Item" id="oaz-zx-GGe"/>
+                    <navigationItem key="navigationItem" id="Euu-EO-oYG"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qv9-Bq-dEx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2582" y="1330"/>
+        </scene>
+        <!--News-->
+        <scene sceneID="w9H-at-8RK">
+            <objects>
+                <navigationController navigationBarHidden="YES" id="UxZ-UN-vfD" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="News" id="oUl-tX-mU9"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="4It-Vd-nMt">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="C1b-2B-x1H" kind="relationship" relationship="rootViewController" id="fa7-6k-sMC"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kdk-sp-BJd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1681" y="1329"/>
+        </scene>
+        <!--Utilities-->
+        <scene sceneID="aJ0-Ke-r1S">
+            <objects>
+                <navigationController id="NSq-KZ-Iuk" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Utilities" id="0cK-rn-dmp"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="sdV-z6-KSg">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="OHW-u9-kMi" kind="relationship" relationship="rootViewController" id="pPU-fO-hKt"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ekp-KR-wre" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1681" y="2705"/>
+        </scene>
+        <!--Utilities-->
+        <scene sceneID="oyO-tm-ULS">
+            <objects>
+                <viewController id="OHW-u9-kMi" customClass="UtilityViewController" customModule="TimeStamp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fSP-lh-zZL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="IEw-hD-3h5"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Utilities" id="IXV-1e-Rc2"/>
+                    <navigationItem key="navigationItem" id="kXp-cJ-20R"/>
+                    <connections>
+                        <segue destination="oFc-jc-KNZ" kind="show" identifier="toNotifSettings" id="9UC-Zz-hgj"/>
+                        <segue destination="i0b-SZ-mg2" kind="show" identifier="toHouseInfo" id="jei-sw-ke7"/>
+                        <segue destination="GiU-Y3-9oK" kind="show" identifier="toCustomTheme" id="a4y-SZ-IGd"/>
+                        <segue destination="21D-Tr-abJ" kind="show" identifier="toRoomBooking" id="sSZ-I3-fiv"/>
+                        <segue destination="r0J-Q0-NfY" kind="show" identifier="toLostAndFound" id="U7Y-Ay-fuw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kRJ-Ct-maS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2582" y="2705"/>
+        </scene>
+        <!--House Info View Controller-->
+        <scene sceneID="onh-Bf-TdL">
+            <objects>
+                <viewController id="i0b-SZ-mg2" customClass="HouseInfoViewController" customModule="TimeStamp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rQ3-VM-JBU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="AjA-qN-TX4"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mPQ-iZ-j6q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3460" y="2704"/>
+        </scene>
+        <!--Custom Theme View Controller-->
+        <scene sceneID="VGz-V9-uZw">
+            <objects>
+                <viewController id="GiU-Y3-9oK" customClass="CustomThemeViewController" customModule="TimeStamp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xMI-T5-0c6">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="qBS-aP-OVw"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Us1-XZ-Qcx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3460" y="3440"/>
+        </scene>
+        <!--Room Booking View Controller-->
+        <scene sceneID="52v-MC-ZjE">
+            <objects>
+                <viewController id="21D-Tr-abJ" customClass="RoomBookingViewController" customModule="TimeStamp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pZj-aR-2vk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="smX-cj-VyO"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cSx-Jz-Sca" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3460" y="4148"/>
+        </scene>
+        <!--Lost And Found View Controller-->
+        <scene sceneID="UIX-4d-Yh0">
+            <objects>
+                <viewController id="r0J-Q0-NfY" customClass="LostAndFoundViewController" customModule="TimeStamp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="g2Z-CV-SQm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="eqh-7a-47g"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DKp-ZF-8pF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3460" y="4834"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="LIn-eu-cPP">
@@ -645,9 +882,6 @@
                         <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
                         <viewLayoutGuide key="safeArea" id="ziA-du-aup"/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="UJf-F8-ye5" appends="YES" id="TNf-OF-Xcm"/>
-                        </connections>
                     </view>
                     <connections>
                         <outlet property="afternoonButton" destination="tV9-c9-DDc" id="qcL-eR-WEb"/>
@@ -681,18 +915,36 @@
                         <outlet property="twoDay" destination="sN0-XJ-Bz1" id="fn1-qZ-JR4"/>
                         <outlet property="twoLabel" destination="pGe-I3-x9p" id="14C-oS-KEZ"/>
                         <outlet property="upperSection" destination="Xgg-6i-DbX" id="WTi-Vw-phr"/>
-                        <segue destination="KDz-FQ-FJt" kind="unwind" identifier="returnFromSettings" customClass="HorizontalRightShiftTransitionUnwind" customModule="TimeStamp" customModuleProvider="target" unwindAction="returnFromSettingsWithSender:" id="dWM-l0-GbB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rw8-yR-y0e" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="KDz-FQ-FJt" userLabel="Exit" sceneMemberID="exit"/>
-                <swipeGestureRecognizer direction="right" id="UJf-F8-ye5">
-                    <connections>
-                        <action selector="triggerUnwind" destination="oFc-jc-KNZ" id="pdh-r1-IQg"/>
-                    </connections>
-                </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3112.8000000000002" y="657.63546798029563"/>
+            <point key="canvasLocation" x="3460" y="2011"/>
+        </scene>
+        <!--Main Tab Bar View Controller-->
+        <scene sceneID="8ha-ew-v31">
+            <objects>
+                <tabBarController storyboardIdentifier="Main Tab Bar View Controller" id="m1C-yP-uYK" customClass="MainTabBarViewController" customModule="TimeStamp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="LPl-R7-1v2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="defaultIndex">
+                            <integer key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <segue destination="xwW-LH-Wpb" kind="relationship" relationship="viewControllers" id="QGB-2B-KZi"/>
+                        <segue destination="EEt-2r-1ne" kind="relationship" relationship="viewControllers" id="Vae-gU-2GX"/>
+                        <segue destination="UxZ-UN-vfD" kind="relationship" relationship="viewControllers" id="PfS-xk-PzO"/>
+                        <segue destination="NSq-KZ-Iuk" kind="relationship" relationship="viewControllers" id="qmq-5y-jtF"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="M5e-XO-FgI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="670" y="881"/>
         </scene>
         <!--Tomorrow View Controller-->
         <scene sceneID="YCR-Xq-SGG">
@@ -721,9 +973,25 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2289" y="1476"/>
+            <point key="canvasLocation" x="3460" y="-913"/>
         </scene>
-        <!--Today View Controller-->
+        <!--Schedule-->
+        <scene sceneID="rQi-th-GB1">
+            <objects>
+                <navigationController navigationBarHidden="YES" id="xwW-LH-Wpb" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Schedule" id="qo5-in-jZ4"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="HKf-Cd-8ph">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Vy2-Vx-pG9" kind="relationship" relationship="rootViewController" id="hs9-xF-CW8"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Q6d-bZ-iTe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1681" y="-913"/>
+        </scene>
+        <!--Schedule-->
         <scene sceneID="fKN-ix-CcW">
             <objects>
                 <viewController id="Vy2-Vx-pG9" customClass="TodayViewController" customModule="TimeStamp" customModuleProvider="target" sceneMemberID="viewController">
@@ -733,29 +1001,13 @@
                         <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <viewLayoutGuide key="safeArea" id="yD9-oW-ig9"/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="bbh-xB-hcg" appends="YES" id="j7Z-z0-kfk"/>
-                            <outletCollection property="gestureRecognizers" destination="pyM-Xz-OUK" appends="YES" id="HRA-IQ-RXQ"/>
-                        </connections>
                     </view>
-                    <connections>
-                        <segue destination="1Iy-uy-ROd" kind="unwind" identifier="returnFromToday" customClass="HorizontalLeftShiftTransitionUnwind" customModule="TimeStamp" customModuleProvider="target" unwindAction="returnFromTodayWithSender:" id="oYR-ZC-pdf"/>
-                    </connections>
+                    <tabBarItem key="tabBarItem" title="Schedule" id="GyX-1O-KPY"/>
+                    <navigationItem key="navigationItem" id="5lz-ib-fQP"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="85e-6S-0ab" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="1Iy-uy-ROd" userLabel="Exit" sceneMemberID="exit"/>
-                <swipeGestureRecognizer direction="left" id="bbh-xB-hcg">
-                    <connections>
-                        <action selector="triggerSegue" destination="Vy2-Vx-pG9" id="1bA-u8-Oz1"/>
-                    </connections>
-                </swipeGestureRecognizer>
-                <swipeGestureRecognizer direction="up" id="pyM-Xz-OUK">
-                    <connections>
-                        <segue destination="3KH-96-mpF" kind="custom" customClass="VerticalUpShiftTransition" customModule="TimeStamp" customModuleProvider="target" id="9Ny-mW-uRj"/>
-                    </connections>
-                </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1412" y="658"/>
+            <point key="canvasLocation" x="2582" y="-913"/>
         </scene>
     </scenes>
     <resources>
@@ -771,7 +1023,4 @@
         <image name="Symbol 4 – 1" width="68" height="39"/>
         <image name="Toggle - On" width="68" height="39"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="hMh-E8-IOY"/>
-    </inferredMetricsTieBreakers>
 </document>

@@ -84,6 +84,8 @@ class SettingsViewController: UIViewController {
         catch {
             fatalError("There was an error fetching the list of timetables");
         }
+        
+        self.tabBarController?.tabBar
         // Do any additional setup after loading the view.
     }
     
@@ -235,6 +237,7 @@ class SettingsViewController: UIViewController {
         afternoonLabel.font = UIFont (name: "SegoeUI", size: 16/812.0*view.frame.height);
         eveningLabel.font = UIFont (name: "SegoeUI", size: 16/812.0*view.frame.height);
         setConstraints()
+
     }
     
     //172 lines of constraints 😵

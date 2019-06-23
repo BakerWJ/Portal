@@ -8,6 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		3F1A47B2B1D9B6C8A9CDD880 /* Pods_TimeStamp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12817475A8496AB78A3C28C3 /* Pods_TimeStamp.framework */; };
+		8A1B79FA22BEC0C6006FE52A /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B79F922BEC0C6006FE52A /* SignInViewController.swift */; };
+		8A1B79FC22BEC2AF006FE52A /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B79FB22BEC2AF006FE52A /* MainTabBarViewController.swift */; };
+		8A1B79FE22BEC31D006FE52A /* UtilityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B79FD22BEC31D006FE52A /* UtilityViewController.swift */; };
+		8A1B7A0022BEC40E006FE52A /* NewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B79FF22BEC40E006FE52A /* NewsTableViewController.swift */; };
+		8A1B7A0222BEC878006FE52A /* Q&AViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B7A0122BEC878006FE52A /* Q&AViewController.swift */; };
+		8A1B7A0422BEC924006FE52A /* ToDoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B7A0322BEC924006FE52A /* ToDoListViewController.swift */; };
+		8A1B7A0622BEC94A006FE52A /* ToDoListItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B7A0522BEC94A006FE52A /* ToDoListItemViewController.swift */; };
+		8A1B7A0822BECAC7006FE52A /* HouseInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B7A0722BECAC7006FE52A /* HouseInfoViewController.swift */; };
+		8A1B7A0A22BECB36006FE52A /* CustomThemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B7A0922BECB36006FE52A /* CustomThemeViewController.swift */; };
+		8A1B7A0C22BECBCD006FE52A /* RoomBookingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B7A0B22BECBCD006FE52A /* RoomBookingViewController.swift */; };
+		8A1B7A0E22BECC58006FE52A /* LostAndFoundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B7A0D22BECC58006FE52A /* LostAndFoundViewController.swift */; };
 		8A6780792298C81B00748848 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6780782298C81B00748848 /* Event.swift */; };
 		8AA2F04422811FF90091EF0F /* HorizontalRightShiftTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA2F04322811FF90091EF0F /* HorizontalRightShiftTransition.swift */; };
 		8AA2F046228123890091EF0F /* HorizontalLeftShiftTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA2F045228123890091EF0F /* HorizontalLeftShiftTransition.swift */; };
@@ -60,6 +71,17 @@
 		12817475A8496AB78A3C28C3 /* Pods_TimeStamp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TimeStamp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D9C7440C79988B274B1F14A /* Pods-TimeStamp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeStamp.release.xcconfig"; path = "Target Support Files/Pods-TimeStamp/Pods-TimeStamp.release.xcconfig"; sourceTree = "<group>"; };
 		7C118D26195145B6F602CD7A /* Pods-TimeStamp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeStamp.debug.xcconfig"; path = "Target Support Files/Pods-TimeStamp/Pods-TimeStamp.debug.xcconfig"; sourceTree = "<group>"; };
+		8A1B79F922BEC0C6006FE52A /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		8A1B79FB22BEC2AF006FE52A /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
+		8A1B79FD22BEC31D006FE52A /* UtilityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityViewController.swift; sourceTree = "<group>"; };
+		8A1B79FF22BEC40E006FE52A /* NewsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewController.swift; sourceTree = "<group>"; };
+		8A1B7A0122BEC878006FE52A /* Q&AViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Q&AViewController.swift"; sourceTree = "<group>"; };
+		8A1B7A0322BEC924006FE52A /* ToDoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListViewController.swift; sourceTree = "<group>"; };
+		8A1B7A0522BEC94A006FE52A /* ToDoListItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListItemViewController.swift; sourceTree = "<group>"; };
+		8A1B7A0722BECAC7006FE52A /* HouseInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseInfoViewController.swift; sourceTree = "<group>"; };
+		8A1B7A0922BECB36006FE52A /* CustomThemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomThemeViewController.swift; sourceTree = "<group>"; };
+		8A1B7A0B22BECBCD006FE52A /* RoomBookingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomBookingViewController.swift; sourceTree = "<group>"; };
+		8A1B7A0D22BECC58006FE52A /* LostAndFoundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostAndFoundViewController.swift; sourceTree = "<group>"; };
 		8A6780782298C81B00748848 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		8AA2F04322811FF90091EF0F /* HorizontalRightShiftTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalRightShiftTransition.swift; sourceTree = "<group>"; };
 		8AA2F045228123890091EF0F /* HorizontalLeftShiftTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalLeftShiftTransition.swift; sourceTree = "<group>"; };
@@ -242,9 +264,20 @@
 				CEDC433322760BBE00A78890 /* GetStartedViewController.swift */,
 				CEDC43502276816C00A78890 /* SetUp1ViewController.swift */,
 				CEDC435C22773FAC00A78890 /* TodayViewController.swift */,
+				8A1B79FD22BEC31D006FE52A /* UtilityViewController.swift */,
 				8AD8620E229796D100412EFF /* TomorrowViewController.swift */,
+				8A1B7A0722BECAC7006FE52A /* HouseInfoViewController.swift */,
 				CEDC435A22773F8400A78890 /* MainPageViewController.swift */,
 				CEDC435E22775DFA00A78890 /* SettingsViewController.swift */,
+				8A1B79F922BEC0C6006FE52A /* SignInViewController.swift */,
+				8A1B79FF22BEC40E006FE52A /* NewsTableViewController.swift */,
+				8A1B7A0922BECB36006FE52A /* CustomThemeViewController.swift */,
+				8A1B7A0122BEC878006FE52A /* Q&AViewController.swift */,
+				8A1B7A0D22BECC58006FE52A /* LostAndFoundViewController.swift */,
+				8A1B79FB22BEC2AF006FE52A /* MainTabBarViewController.swift */,
+				8A1B7A0322BEC924006FE52A /* ToDoListViewController.swift */,
+				8A1B7A0522BEC94A006FE52A /* ToDoListItemViewController.swift */,
+				8A1B7A0B22BECBCD006FE52A /* RoomBookingViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -403,13 +436,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A1B7A0422BEC924006FE52A /* ToDoListViewController.swift in Sources */,
 				CE927FF9227A0BCD00EE0A22 /* ScheduleClass.swift in Sources */,
 				8AD8621C22984A9600412EFF /* VerticalUpShiftTransitionUnwind.swift in Sources */,
 				CEDC433422760BBE00A78890 /* GetStartedViewController.swift in Sources */,
+				8A1B7A0222BEC878006FE52A /* Q&AViewController.swift in Sources */,
 				CEDC435F22775DFA00A78890 /* SettingsViewController.swift in Sources */,
+				8A1B7A0022BEC40E006FE52A /* NewsTableViewController.swift in Sources */,
+				8A1B7A0C22BECBCD006FE52A /* RoomBookingViewController.swift in Sources */,
 				8A6780792298C81B00748848 /* Event.swift in Sources */,
 				CE2D71492280C71E00F4D89A /* TimeStampModel.xcdatamodeld in Sources */,
 				8AA2F046228123890091EF0F /* HorizontalLeftShiftTransition.swift in Sources */,
+				8A1B7A0622BEC94A006FE52A /* ToDoListItemViewController.swift in Sources */,
 				8AD8621622983D1B00412EFF /* VerticalDownShiftTransition.swift in Sources */,
 				8AD8620D2297824000412EFF /* Util.swift in Sources */,
 				CEDC43512276816C00A78890 /* SetUp1ViewController.swift in Sources */,
@@ -420,7 +458,9 @@
 				CE927FF8227A0BCD00EE0A22 /* RepeatingTimer.swift in Sources */,
 				CE146D982280BD9900B3922D /* Settings+CoreDataProperties.swift in Sources */,
 				8AD8620F229796D100412EFF /* TomorrowViewController.swift in Sources */,
+				8A1B7A0E22BECC58006FE52A /* LostAndFoundViewController.swift in Sources */,
 				CEC26E02227B3E9E00FFFC67 /* Timetable+CoreDataProperties.swift in Sources */,
+				8A1B7A0822BECAC7006FE52A /* HouseInfoViewController.swift in Sources */,
 				CEC26E04227B3E9E00FFFC67 /* FlipDay+CoreDataProperties.swift in Sources */,
 				CEDC433222760BBE00A78890 /* AppDelegate.swift in Sources */,
 				CEC26E01227B3E9E00FFFC67 /* Schedule+CoreDataProperties.swift in Sources */,
@@ -431,13 +471,17 @@
 				8ABCA53E2282176000A30D36 /* WeeklySchedule+CoreDataClass.swift in Sources */,
 				CEC26E03227B3E9E00FFFC67 /* FlipDay+CoreDataClass.swift in Sources */,
 				CEC26E06227B3E9E00FFFC67 /* Timetable+CoreDataClass.swift in Sources */,
+				8A1B79FA22BEC0C6006FE52A /* SignInViewController.swift in Sources */,
 				8AD8621822984A3500412EFF /* HorizontalRightShiftTransitionUnwind.swift in Sources */,
 				CEDC435B22773F8400A78890 /* MainPageViewController.swift in Sources */,
 				8AD8621E22984AB800412EFF /* VerticallyDownShiftTransitionUnwind.swift in Sources */,
 				CEC26E05227B3E9E00FFFC67 /* Schedule+CoreDataClass.swift in Sources */,
+				8A1B79FE22BEC31D006FE52A /* UtilityViewController.swift in Sources */,
+				8A1B79FC22BEC2AF006FE52A /* MainTabBarViewController.swift in Sources */,
 				8AEA785122851D5C0031B030 /* UserDataSettings.swift in Sources */,
 				CE927FF4227A0BCD00EE0A22 /* UserTimetable.swift in Sources */,
 				CE927FF6227A0BCD00EE0A22 /* ArticleClass.swift in Sources */,
+				8A1B7A0A22BECB36006FE52A /* CustomThemeViewController.swift in Sources */,
 				8AA2F04422811FF90091EF0F /* HorizontalRightShiftTransition.swift in Sources */,
 				8AD8621422983D0B00412EFF /* VerticalUpShiftTransition.swift in Sources */,
 			);

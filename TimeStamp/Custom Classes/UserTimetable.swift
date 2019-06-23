@@ -24,7 +24,10 @@ class UserTimetable
         {
             if let results = try CoreDataStack.managedObjectContext.fetch (fetchRequest) as? [FlipDay]
             {
-                normalToFlip = results [0].normalToFlip;
+                if (results.count != 0)
+                {
+                    normalToFlip = results [0].normalToFlip;
+                }
             }
         }
         catch

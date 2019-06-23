@@ -88,11 +88,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate
     
         if (UserDataSettings.firstTimeLaunch())
         {
-            viewControllerName = "Get Started View Controller";
+            viewControllerName = "Sign In View Controller";
         }
         else
         {
-            viewControllerName = "Main Page View Controller";
+            viewControllerName = "Main Tab Bar View Controller";
         }
         
         let entranceViewController = mainStoryboard.instantiateViewController(withIdentifier: viewControllerName);
