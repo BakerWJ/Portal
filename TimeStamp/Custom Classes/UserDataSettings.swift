@@ -22,32 +22,6 @@ class UserDataSettings
         updateSchedules()
     }
 
-    static func firstTimeLaunch () -> Bool
-    {
-        let fetchRequest = NSFetchRequest <NSFetchRequestResult> (entityName: "Settings");
-        do {
-            if let results = try CoreDataStack.managedObjectContext.fetch(fetchRequest) as? [Settings] {
-                if results.count == 0 {
-                    return true;
-                }
-                else
-                {
-                    if (results [0].firstTimeOpen)
-                    {
-                        results [0].firstTimeOpen = false;
-                        CoreDataStack.saveContext();
-                        return true;
-                    }
-                    return false;
-                }
-            }
-        }
-        catch {
-            fatalError("There was an error fetching the list of timetables");
-        }
-        return true;
-    }
-    
     static func updateWithInternet ()
     {
         let connectedRef = Database.database().reference(withPath: ".info/connected");
@@ -113,6 +87,10 @@ class UserDataSettings
                     newWeeklySchedule.typeOfDay = [Int] (repeating: 0, count: 7);
                     weekly = newWeeklySchedule;
                     CoreDataStack.saveContext()
+                }
+                else
+                {
+                    weekly = results [0];
                 }
             }
         }

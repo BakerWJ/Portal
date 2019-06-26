@@ -22,28 +22,13 @@
                     <view key="view" contentMode="scaleToFill" id="kmp-Ch-g2C">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1VP-pA-1QB">
-                                <rect key="frame" x="46" y="665" width="283" height="43"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="1VP-pA-1QB" secondAttribute="height" multiplier="283:43" id="2Jj-4C-5Nm"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="SegoeUI" family="Segoe UI" pointSize="15"/>
-                                <state key="normal" image="I'm Done"/>
-                                <connections>
-                                    <action selector="Done:" destination="vXe-ls-4tL" eventType="touchUpInside" id="gRl-2v-3Q3"/>
-                                    <segue destination="vXe-ls-4tL" kind="custom" customClass="HorizontalRightShiftTransition" customModule="TimeStamp" customModuleProvider="target" id="NM0-aS-PUF"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="1VP-pA-1QB" firstAttribute="top" secondItem="7wX-A4-QWQ" secondAttribute="top" constant="621" id="E1Y-QF-NO7"/>
-                            <constraint firstItem="1VP-pA-1QB" firstAttribute="width" secondItem="1VP-pA-1QB" secondAttribute="height" multiplier="283:43" id="cqk-Uk-bOf"/>
-                            <constraint firstItem="1VP-pA-1QB" firstAttribute="centerX" secondItem="7wX-A4-QWQ" secondAttribute="centerX" id="lw0-G1-9YV"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="7wX-A4-QWQ"/>
                     </view>
+                    <connections>
+                        <segue destination="vXe-ls-4tL" kind="presentation" identifier="toGetStarted" animates="NO" id="eQA-HG-FeU"/>
+                        <segue destination="m1C-yP-uYK" kind="presentation" identifier="toTabBar" animates="NO" id="O4V-Zp-R5V"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Psi-nb-uuy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -288,6 +273,9 @@
                                         <state key="normal" title="Skip for Now.">
                                             <color key="titleColor" red="0.51764705882352935" green="0.51764705882352935" blue="0.51764705882352935" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="m1C-yP-uYK" kind="custom" customClass="HorizontalRightShiftTransition" customModule="TimeStamp" customModuleProvider="target" id="qsP-ZH-5DC"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="ON MONDAY..." textAlignment="natural" lineBreakMode="tailTruncation" minimumFontSize="7" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rS3-c0-bQ3">
                                         <rect key="frame" x="46" y="345" width="92" height="23"/>
@@ -359,7 +347,6 @@
         <!--Main Page View Controller-->
         <scene sceneID="A0g-wO-Z7d">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hHd-6b-UJa" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="Main Page View Controller" title="Main Page View Controller" id="Shi-Lm-Jvz" customClass="MainPageViewController" customModule="TimeStamp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Qj6-98-5sO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
@@ -416,6 +403,7 @@
                         <segue destination="l4K-YH-3go" kind="show" identifier="toToDoList" id="jg7-Be-rfG"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hHd-6b-UJa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2582" y="177"/>
         </scene>
@@ -940,9 +928,11 @@
                         <segue destination="EEt-2r-1ne" kind="relationship" relationship="viewControllers" id="Vae-gU-2GX"/>
                         <segue destination="UxZ-UN-vfD" kind="relationship" relationship="viewControllers" id="PfS-xk-PzO"/>
                         <segue destination="NSq-KZ-Iuk" kind="relationship" relationship="viewControllers" id="qmq-5y-jtF"/>
+                        <segue destination="u3n-9T-soJ" kind="unwind" identifier="fromTabBar" unwindAction="returnFromTabBarWithSender:" id="bks-JK-Egc"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M5e-XO-FgI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="u3n-9T-soJ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="670" y="881"/>
         </scene>
@@ -957,19 +947,20 @@
                         <gestureRecognizers/>
                         <viewLayoutGuide key="safeArea" id="oFq-pc-e3z"/>
                         <connections>
-                            <outletCollection property="gestureRecognizers" destination="PPP-ih-Pf8" appends="YES" id="5Zf-Xn-nvo"/>
+                            <outletCollection property="gestureRecognizers" destination="VFI-nW-VNO" appends="YES" id="bfv-Ot-9lB"/>
                         </connections>
                     </view>
+                    <navigationItem key="navigationItem" id="b9p-b1-C2N"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <segue destination="2DG-2x-yvv" kind="unwind" identifier="returnFromTomorrow" customClass="VerticalUpShiftTransitionUnwind" customModule="TimeStamp" customModuleProvider="target" unwindAction="returnFromTomorrowWithSender:" id="us6-Kk-D8p"/>
-                        <segue destination="2DG-2x-yvv" kind="unwind" identifier="returnFromTomorrow" customClass="VerticalUpShiftTransitionUnwind" customModule="TimeStamp" customModuleProvider="target" unwindAction="returnFromTomorrowWithSender:" id="BLw-E9-O6L"/>
+                        <segue destination="2DG-2x-yvv" kind="unwind" identifier="fromTomorrow" customClass="TomorrowToTodayShift" customModule="TimeStamp" customModuleProvider="target" unwindAction="returnFromTomorrowWithSender:" id="WSA-rd-8Yg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mki-1o-XLw" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="2DG-2x-yvv" userLabel="Exit" sceneMemberID="exit"/>
-                <swipeGestureRecognizer direction="down" id="PPP-ih-Pf8">
+                <swipeGestureRecognizer direction="right" id="VFI-nW-VNO">
                     <connections>
-                        <action selector="triggerSegue" destination="3KH-96-mpF" id="6Ir-Nx-1BN"/>
+                        <action selector="triggerUnwind:" destination="3KH-96-mpF" id="NZI-JX-c6o"/>
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
@@ -983,6 +974,9 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="HKf-Cd-8ph">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="sdb-4V-k2f">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="Vy2-Vx-pG9" kind="relationship" relationship="rootViewController" id="hs9-xF-CW8"/>
                     </connections>
@@ -1001,11 +995,19 @@
                         <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <viewLayoutGuide key="safeArea" id="yD9-oW-ig9"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="AAm-iP-ZIA" appends="YES" id="JLs-oa-kCd"/>
+                        </connections>
                     </view>
                     <tabBarItem key="tabBarItem" title="Schedule" id="GyX-1O-KPY"/>
                     <navigationItem key="navigationItem" id="5lz-ib-fQP"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="85e-6S-0ab" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="left" id="AAm-iP-ZIA">
+                    <connections>
+                        <segue destination="3KH-96-mpF" kind="custom" customClass="TodayToTomorrowShift" customModule="TimeStamp" customModuleProvider="target" id="y4c-p3-Gn5"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2582" y="-913"/>
         </scene>
@@ -1023,4 +1025,7 @@
         <image name="Symbol 4 – 1" width="68" height="39"/>
         <image name="Toggle - On" width="68" height="39"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="O4V-Zp-R5V"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -85,7 +85,6 @@ class SettingsViewController: UIViewController {
             fatalError("There was an error fetching the list of timetables");
         }
         
-        self.tabBarController?.tabBar
         // Do any additional setup after loading the view.
     }
     

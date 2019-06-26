@@ -1,15 +1,14 @@
 //
-//  HorozontalRightShiftTransitionUnwind.swift
+//  TomorrowToTodayShift.swift
 //  TimeStamp
 //
-//  Created by Jacky He on 2019-05-24.
+//  Created by Jacky He on 2019-06-25.
 //  Copyright © 2019 Baker Jackson. All rights reserved.
 //
 
 import UIKit
 
-class HorizontalRightShiftTransitionUnwind: UIStoryboardSegue {
-
+class TomorrowToTodayShift: UIStoryboardSegue {
     override func perform()
     {
         let firstControllerView = self.source.view;
@@ -30,7 +29,6 @@ class HorizontalRightShiftTransitionUnwind: UIStoryboardSegue {
                 {
                     (Finished) in
                     self.source.navigationController?.popViewController(animated: false);
-                    self.source.dismiss(animated: false, completion: nil)
             })
         }
     }

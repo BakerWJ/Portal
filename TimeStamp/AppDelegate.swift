@@ -12,8 +12,11 @@ import Firebase
 import FirebaseFirestore
 import CoreData
 import UserNotifications
+import GoogleSignIn
+
+
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate
+class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
 {
     // Setup for Notifications
     let notificationCenter = UNUserNotificationCenter.current()
@@ -28,44 +31,101 @@ class AppDelegate: UIResponder, UIApplicationDelegate
     //an weekly schedule object
     var weeklySchedule: WeeklySchedule?
     
-    /*
-     //Code for Google Signins
-     func applicationDidFinishLaunching(_ application: UIApplication)
-     {
-     // Initialize sign-in
-     var configureError: NSError?
-     GGLContext.sharedInstance().configureWithError(&configureError)
-     assert(configureError == nil, "Error configuring Google services: \(String(describing: configureError))")
-     }
-     
-     func application(_ application: UIApplication,
-     open url: URL, sourceApplication: String?, annotation: Any) -> Bool
-     {
-     return GIDSignIn.sharedInstance().handle(url,
-     sourceApplication: sourceApplication,
-     annotation: annotation)
-     }
-     
-     @available(iOS 9.0, *)
-     func application(_ app: UIApplication, open url: URL,
-     options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool
-     {
-     let sourceApplication = options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String
-     let annotation = options[UIApplication.OpenURLOptionsKey.annotation]
-     return GIDSignIn.sharedInstance().handle(url,
-     sourceApplication: sourceApplication,
-     annotation: annotation)
-     }
-     */
-    //Template code
+    //MARK: Google Sign In
+    //handle the url received at the end of the authentification process
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool
+    {
+        return GIDSignIn.sharedInstance().handle(url as URL?,
+                                                 sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
+                                                 annotation: options[UIApplication.OpenURLOptionsKey.annotation])
+    }
     
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!,
+              withError error: Error!)
+    {
+        if let error = error
+        {
+            print("\(error.localizedDescription)")
+        }
+        else
+        {
+            // Perform any operations on signed in user here.
+            
+            guard let authentication = user.authentication else {return}
+            let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
+            
+            Auth.auth().signInAndRetrieveData(with: credential, completion: {
+                (authResult, error) in
+                if let error = error
+                {
+                    print (error.localizedDescription)
+                    return;
+                }
+                
+                if let vc = self.window?.rootViewController as? SignInViewController
+                {
+                    
+                    if (user.profile.email.suffix(13) == "@utschools.ca")
+                    {
+                        UserDefaults.standard.set(true, forKey: "loggedin");
+                        if (UserDefaults.standard.bool(forKey: "notFirstTimeLaunch"))
+                        {
+                            vc.performSegue(withIdentifier: "toTabBar", sender: vc)
+                        }
+                        else
+                        {
+                            vc.performSegue(withIdentifier: "toGetStarted", sender: vc)
+                        }
+                    }
+                    else
+                    {
+                        vc.showWarning ();
+                        do {
+                            try Auth.auth().signOut()
+                            GIDSignIn.sharedInstance().signOut();
+                        }
+                        catch let signOutError as NSError
+                        {
+                            print ("Error signing out: %@", signOutError)
+                            return;
+                        }
+                    }
+                }
+            })
+            
+            let userId = user.userID                  // For client-side use only!
+            let idToken = user.authentication.idToken // Safe to send to the server
+            let fullName = user.profile.name
+            let givenName = user.profile.givenName
+            let familyName = user.profile.familyName
+            let email = user.profile.email
+            
+            // ...
+            
+        }
+    }
 
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!,
+              withError error: Error!) {
+        // Perform any operations when the user disconnects from app here.
+        // ...
+    }
+    
+    // Implement these methods only if the GIDSignInUIDelegate is not a subclass of
+    // UIViewController.
+    
+    // Stop the UIActivityIndicatorView animation that was started when the user
+    // pressed the Sign In button
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool
     {
-
-        
         //Connection to firebase
         FirebaseApp.configure();
+        
+        //Initialize sign-in
+        GIDSignIn.sharedInstance()?.clientID = FirebaseApp.app()?.options.clientID;
+        GIDSignIn.sharedInstance()?.delegate = self;
+        
         //After the app launches, it will check if the current schedule stored locally is up to date
         UserDataSettings.delegate = self;
         //if notifications are not allowed, it is asked for
@@ -84,16 +144,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         
         self.window = UIWindow (frame: UIScreen.main.bounds)
         let mainStoryboard = UIStoryboard (name: "Main", bundle: nil);
+        
         var viewControllerName: String;
-    
-        if (UserDataSettings.firstTimeLaunch())
-        {
-            viewControllerName = "Sign In View Controller";
-        }
-        else
-        {
-            viewControllerName = "Main Tab Bar View Controller";
-        }
+
+        viewControllerName = "Sign In View Controller";
         
         let entranceViewController = mainStoryboard.instantiateViewController(withIdentifier: viewControllerName);
         self.window?.rootViewController = entranceViewController;

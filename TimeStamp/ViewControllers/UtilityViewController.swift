@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import GoogleSignIn
 
 class UtilityViewController: UIViewController {
 
@@ -38,7 +40,7 @@ class UtilityViewController: UIViewController {
         stackView.centerXAnchor.constraint (equalTo: view.centerXAnchor).isActive = true;
         stackView.centerYAnchor.constraint (equalTo: view.centerYAnchor).isActive = true;
 
-        for _ in 0..<5
+        for _ in 0..<6
         {
             let button = UIButton();
             button.titleLabel?.font = UIFont (name: "SegoeUI", size: 14/812.0*view.frame.height);
@@ -62,7 +64,9 @@ class UtilityViewController: UIViewController {
         buttons [3].addTarget(self, action: #selector (toRoomBooking), for: .touchUpInside);
         buttons [4].setTitle("Lost and Found", for: .normal);
         buttons [4].addTarget(self, action: #selector (toLostAndFound), for: .touchUpInside);
-        
+        buttons [5].setTitle("Sign Out", for: .normal);
+        buttons [5].backgroundColor = .red;
+        buttons [5].addTarget (self, action: #selector (signOut), for: .touchUpInside);
     }
     
     @objc func toNotifSettings () {performSegue (withIdentifier: "toNotifSettings", sender: self);}
@@ -74,6 +78,20 @@ class UtilityViewController: UIViewController {
     @objc func toRoomBooking () {performSegue (withIdentifier: "toRoomBooking", sender: self);}
     
     @objc func toLostAndFound () {performSegue (withIdentifier: "toLostAndFound", sender: self);}
+    
+    @objc func signOut () {
+        do {
+            try Auth.auth().signOut()
+            GIDSignIn.sharedInstance().signOut();
+        }
+        catch let signOutError as NSError
+        {
+            print ("Error signing out: %@", signOutError)
+            return;
+        }
+        UserDefaults.standard.set(false, forKey: "loggedin");
+        self.tabBarController?.performSegue(withIdentifier: "fromTabBar", sender: self.tabBarController);
+    }
     /*
     // MARK: - Navigation
 
@@ -83,5 +101,6 @@ class UtilityViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
 
 }

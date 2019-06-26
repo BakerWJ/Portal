@@ -28,6 +28,9 @@ class TomorrowViewController: UIViewController, KeyboardShiftingDelegate, UIScro
     //formates the date
     let formatter = DateFormatter ()
     let calendar = Calendar.current;
+    let rightarrow = UIImageView (image: UIImage.gifImageWithName("swipetoright"));
+    
+    var interactor: Interactor?;
     
     //constraint for keyboard shifting
     var topConstraint: NSLayoutConstraint!
@@ -84,11 +87,19 @@ class TomorrowViewController: UIViewController, KeyboardShiftingDelegate, UIScro
         tomorrow.textAlignment = .center;
         outerView.addSubview (tomorrow);
         tomorrow.translatesAutoresizingMaskIntoConstraints = false;
-        tomorrow.leadingAnchor.constraint (equalTo: outerView.leadingAnchor).isActive = true;
-        tomorrow.trailingAnchor.constraint (equalTo: outerView.trailingAnchor).isActive = true;
+        tomorrow.centerXAnchor.constraint (equalTo: outerView.centerXAnchor).isActive = true;
+        tomorrow.widthAnchor.constraint (equalToConstant: 180/812.0*view.frame.height).isActive = true;
         tomorrow.topAnchor.constraint(equalTo: outerView.topAnchor, constant: 60/812.0*view.frame.height).isActive = true;
         tomorrow.heightAnchor.constraint (equalToConstant: 35/812.0*view.frame.height);
         
+        
+        //sets up the right arrow
+        outerView.addSubview(rightarrow);
+        rightarrow.translatesAutoresizingMaskIntoConstraints = false;
+        rightarrow.centerYAnchor.constraint (equalTo: tomorrow.centerYAnchor).isActive = true;
+        rightarrow.trailingAnchor.constraint (equalTo: tomorrow.leadingAnchor).isActive = true;
+        rightarrow.heightAnchor.constraint (equalToConstant: 35/812.0*view.frame.height).isActive = true;
+        rightarrow.widthAnchor.constraint (equalToConstant: 55/812.0*view.frame.height).isActive = true;
         
         //sets the frame and alignment for the label at the top of the page
         formatter.dateFormat = "MMMM";
@@ -137,7 +148,6 @@ class TomorrowViewController: UIViewController, KeyboardShiftingDelegate, UIScro
         {
             fatalError("There was an error fetching the list of weeklySchedules!")
         }
-        
     }
     
     //This method gets information necessary for the day and updates the view
@@ -321,8 +331,18 @@ class TomorrowViewController: UIViewController, KeyboardShiftingDelegate, UIScro
         textFieldCoordinateY = Double(data);
     }
     
-    @IBAction func triggerSegue ()
+    /*
+    @IBAction func handleGesture (sender: UIPanGestureRecognizer)
     {
-        performSegue(withIdentifier: "returnFromTomorrow", sender: self);
+        let translation = sender.translation(in: view);
+        
+        let progress = MenuHelper.calculateProgress(translationInView: translation, viewBounds: view.bounds, direction: .Right);
+        
+        MenuHelper.mapGestureStateToInteractor(gestureState: sender.state, progress: progress, interactor: interactor, triggerSegue: {
+            dismiss(animated: true, completion: nil);
+        })
+    }*/
+    @IBAction func triggerUnwind(_ sender: Any) {
+        performSegue(withIdentifier: "fromTomorrow", sender: self)
     }
 }

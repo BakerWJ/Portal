@@ -30,6 +30,9 @@ class TodayViewController: UIViewController, KeyboardShiftingDelegate, UIScrollV
     //a timer that triggers an event every 2 seconds
     let timer = RepeatingTimer (timeInterval: 2);
     let calendar = Calendar.current;
+    let leftarrow = UIImageView (image: UIImage.gifImageWithName("swipetoleft"));
+    
+    var interactor: Interactor = Interactor ();
     
     //constraint for keyboard shifting
     var topConstraint: NSLayoutConstraint!
@@ -88,11 +91,18 @@ class TodayViewController: UIViewController, KeyboardShiftingDelegate, UIScrollV
         today.textAlignment = .center;
         outerView.addSubview (today);
         today.translatesAutoresizingMaskIntoConstraints = false;
-        today.leadingAnchor.constraint (equalTo: outerView.leadingAnchor).isActive = true;
-        today.trailingAnchor.constraint (equalTo: outerView.trailingAnchor).isActive = true;
+        today.centerXAnchor.constraint (equalTo: outerView.centerXAnchor).isActive = true;
+        today.widthAnchor.constraint (equalToConstant: 100/812.0*view.frame.height).isActive = true;
         today.topAnchor.constraint(equalTo: outerView.topAnchor, constant: 60/812.0*view.frame.height).isActive = true;
         today.heightAnchor.constraint (equalToConstant: 35/812.0*view.frame.height);
 
+        //sets up the left arrow
+        outerView.addSubview(leftarrow);
+        leftarrow.translatesAutoresizingMaskIntoConstraints = false;
+        leftarrow.centerYAnchor.constraint (equalTo: today.centerYAnchor).isActive = true;
+        leftarrow.leadingAnchor.constraint (equalTo: today.trailingAnchor).isActive = true;
+        leftarrow.heightAnchor.constraint (equalToConstant: 35/812.0*view.frame.height).isActive = true;
+        leftarrow.widthAnchor.constraint (equalToConstant: 55/812.0*view.frame.height).isActive = true;
         
         //sets the frame and alignment for the label at the top of the page
         formatter.dateFormat = "MMMM";
@@ -322,12 +332,16 @@ class TodayViewController: UIViewController, KeyboardShiftingDelegate, UIScrollV
     }
     // MARK: - Navigation
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    /*
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
+
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+     {
+        if let dest = segue.destination as? TomorrowViewController
+        {
+            dest.transitioningDelegate = self;
+            dest.interactor = interactor;
+        }
      }
-     */
+    
     
     //When the keyboard will show, get the keyboard height and animate the textfield to the appropriate position by changing the top constraint of the outerView
     @objc func keyboardWillShow (notification: NSNotification)
@@ -372,10 +386,37 @@ class TodayViewController: UIViewController, KeyboardShiftingDelegate, UIScrollV
         textFieldCoordinateY = Double(data);
     }
     
-    @IBAction func triggerSegue ()
+    /*
+    @IBAction func handleGesture (sender: UIPanGestureRecognizer)
     {
-        performSegue(withIdentifier: "returnFromToday", sender: self);
-    }
+        let translation = sender.translation(in: view);
+        
+        let progress = MenuHelper.calculateProgress(translationInView: translation, viewBounds: view.bounds, direction: .Left);
+        
+        MenuHelper.mapGestureStateToInteractor(gestureState: sender.state, progress: progress, interactor: interactor, triggerSegue: {
+            performSegue(withIdentifier: "toTomorrow", sender: self);
+        })
+    }*/
     
     @IBAction func returnFromTomorrow (sender: UIStoryboardSegue) {}
+    
+}
+
+extension TodayViewController: UIViewControllerTransitioningDelegate
+{
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return TodayToTomorrowAnimator()
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return TomorrowToTodayAnimator()
+    }
+    
+    func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return interactor.hasStarted ? interactor : nil;
+    }
+    
+    func interactionControllerForPresentation(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return interactor.hasStarted ? interactor : nil;
+    }
 }

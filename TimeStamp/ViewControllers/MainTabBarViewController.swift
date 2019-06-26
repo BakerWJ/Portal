@@ -22,6 +22,10 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         tabBar.shadowImage = UIImage ();
         tabBar.backgroundColor = .clear;
         // Do any additional setup after loading the view.
+        
+        //set it as not the first time launching the app
+        UserDefaults.standard.set(true, forKey: "notFirstTimeLaunch");
+        UserDataSettings.updateAll()
     }
     
 

@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		3F1A47B2B1D9B6C8A9CDD880 /* Pods_TimeStamp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12817475A8496AB78A3C28C3 /* Pods_TimeStamp.framework */; };
+		8A1AEDC722C11598005282FD /* credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8A1AEDC622C11598005282FD /* credentials.plist */; };
+		8A1AEDC922C2BDFF005282FD /* TodayToTomorrowShift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1AEDC822C2BDFF005282FD /* TodayToTomorrowShift.swift */; };
+		8A1AEDCB22C2BE25005282FD /* TomorrowToTodayShift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1AEDCA22C2BE25005282FD /* TomorrowToTodayShift.swift */; };
 		8A1B79FA22BEC0C6006FE52A /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B79F922BEC0C6006FE52A /* SignInViewController.swift */; };
 		8A1B79FC22BEC2AF006FE52A /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B79FB22BEC2AF006FE52A /* MainTabBarViewController.swift */; };
 		8A1B79FE22BEC31D006FE52A /* UtilityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B79FD22BEC31D006FE52A /* UtilityViewController.swift */; };
@@ -19,6 +22,12 @@
 		8A1B7A0A22BECB36006FE52A /* CustomThemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B7A0922BECB36006FE52A /* CustomThemeViewController.swift */; };
 		8A1B7A0C22BECBCD006FE52A /* RoomBookingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B7A0B22BECBCD006FE52A /* RoomBookingViewController.swift */; };
 		8A1B7A0E22BECC58006FE52A /* LostAndFoundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B7A0D22BECC58006FE52A /* LostAndFoundViewController.swift */; };
+		8A1B7A1822BF2995006FE52A /* swipetoright.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8A1B7A1722BF2995006FE52A /* swipetoright.gif */; };
+		8A1B7A1C22BF2A7C006FE52A /* swipetoleft.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8A1B7A1B22BF2A7C006FE52A /* swipetoleft.gif */; };
+		8A1B7A1F22C0072D006FE52A /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B7A1E22C0072D006FE52A /* Interactor.swift */; };
+		8A1B7A2122C00804006FE52A /* MenuHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B7A2022C00804006FE52A /* MenuHelper.swift */; };
+		8A1B7A2322C018F1006FE52A /* TodayToTomorrowAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B7A2222C018F1006FE52A /* TodayToTomorrowAnimator.swift */; };
+		8A1B7A2522C01D6F006FE52A /* TomorrowToTodayAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B7A2422C01D6F006FE52A /* TomorrowToTodayAnimator.swift */; };
 		8A6780792298C81B00748848 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6780782298C81B00748848 /* Event.swift */; };
 		8AA2F04422811FF90091EF0F /* HorizontalRightShiftTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA2F04322811FF90091EF0F /* HorizontalRightShiftTransition.swift */; };
 		8AA2F046228123890091EF0F /* HorizontalLeftShiftTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA2F045228123890091EF0F /* HorizontalLeftShiftTransition.swift */; };
@@ -71,6 +80,9 @@
 		12817475A8496AB78A3C28C3 /* Pods_TimeStamp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TimeStamp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D9C7440C79988B274B1F14A /* Pods-TimeStamp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeStamp.release.xcconfig"; path = "Target Support Files/Pods-TimeStamp/Pods-TimeStamp.release.xcconfig"; sourceTree = "<group>"; };
 		7C118D26195145B6F602CD7A /* Pods-TimeStamp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeStamp.debug.xcconfig"; path = "Target Support Files/Pods-TimeStamp/Pods-TimeStamp.debug.xcconfig"; sourceTree = "<group>"; };
+		8A1AEDC622C11598005282FD /* credentials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = credentials.plist; sourceTree = "<group>"; };
+		8A1AEDC822C2BDFF005282FD /* TodayToTomorrowShift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayToTomorrowShift.swift; sourceTree = "<group>"; };
+		8A1AEDCA22C2BE25005282FD /* TomorrowToTodayShift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TomorrowToTodayShift.swift; sourceTree = "<group>"; };
 		8A1B79F922BEC0C6006FE52A /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		8A1B79FB22BEC2AF006FE52A /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		8A1B79FD22BEC31D006FE52A /* UtilityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityViewController.swift; sourceTree = "<group>"; };
@@ -82,6 +94,12 @@
 		8A1B7A0922BECB36006FE52A /* CustomThemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomThemeViewController.swift; sourceTree = "<group>"; };
 		8A1B7A0B22BECBCD006FE52A /* RoomBookingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomBookingViewController.swift; sourceTree = "<group>"; };
 		8A1B7A0D22BECC58006FE52A /* LostAndFoundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostAndFoundViewController.swift; sourceTree = "<group>"; };
+		8A1B7A1722BF2995006FE52A /* swipetoright.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = swipetoright.gif; sourceTree = "<group>"; };
+		8A1B7A1B22BF2A7C006FE52A /* swipetoleft.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = swipetoleft.gif; sourceTree = "<group>"; };
+		8A1B7A1E22C0072D006FE52A /* Interactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
+		8A1B7A2022C00804006FE52A /* MenuHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuHelper.swift; sourceTree = "<group>"; };
+		8A1B7A2222C018F1006FE52A /* TodayToTomorrowAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayToTomorrowAnimator.swift; sourceTree = "<group>"; };
+		8A1B7A2422C01D6F006FE52A /* TomorrowToTodayAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TomorrowToTodayAnimator.swift; sourceTree = "<group>"; };
 		8A6780782298C81B00748848 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		8AA2F04322811FF90091EF0F /* HorizontalRightShiftTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalRightShiftTransition.swift; sourceTree = "<group>"; };
 		8AA2F045228123890091EF0F /* HorizontalLeftShiftTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalLeftShiftTransition.swift; sourceTree = "<group>"; };
@@ -162,10 +180,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8A1B7A1D22C006ED006FE52A /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				8A1B7A1E22C0072D006FE52A /* Interactor.swift */,
+				8A1B7A2022C00804006FE52A /* MenuHelper.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		8AD862102298385E00412EFF /* GIFs */ = {
 			isa = PBXGroup;
 			children = (
 				8AD862112298387600412EFF /* enjoyWeekend.gif */,
+				8A1B7A1722BF2995006FE52A /* swipetoright.gif */,
+				8A1B7A1B22BF2A7C006FE52A /* swipetoleft.gif */,
 			);
 			path = GIFs;
 			sourceTree = "<group>";
@@ -173,6 +202,11 @@
 		8AD8621F22984ACB00412EFF /* Custom Segues */ = {
 			isa = PBXGroup;
 			children = (
+				8A1B7A2222C018F1006FE52A /* TodayToTomorrowAnimator.swift */,
+				8A1B7A2422C01D6F006FE52A /* TomorrowToTodayAnimator.swift */,
+				8A1AEDC822C2BDFF005282FD /* TodayToTomorrowShift.swift */,
+				8A1AEDCA22C2BE25005282FD /* TomorrowToTodayShift.swift */,
+				8A1B7A1D22C006ED006FE52A /* Helpers */,
 				8AA2F04322811FF90091EF0F /* HorizontalRightShiftTransition.swift */,
 				8AD8621722984A3500412EFF /* HorizontalRightShiftTransitionUnwind.swift */,
 				8AA2F045228123890091EF0F /* HorizontalLeftShiftTransition.swift */,
@@ -253,6 +287,7 @@
 				CEDC4347227612E500A78890 /* Fonts */,
 				CE927FFA227A0EFB00EE0A22 /* GoogleService-Info.plist */,
 				CEDC434022760BC000A78890 /* Info.plist */,
+				8A1AEDC622C11598005282FD /* credentials.plist */,
 				CE2D71472280C71E00F4D89A /* TimeStampModel.xcdatamodeld */,
 			);
 			path = TimeStamp;
@@ -305,6 +340,7 @@
 				CEDC432B22760BBE00A78890 /* Frameworks */,
 				CEDC432C22760BBE00A78890 /* Resources */,
 				41BC878BDE903694F037D218 /* [CP] Embed Pods Frameworks */,
+				B2CAD4C3ED3D2F3FAC87CCE0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -359,12 +395,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEDC434C2276130900A78890 /* Segoe UI Bold Italic.ttf in Resources */,
+				8A1AEDC722C11598005282FD /* credentials.plist in Resources */,
 				8AD862122298387600412EFF /* enjoyWeekend.gif in Resources */,
+				8A1B7A1C22BF2A7C006FE52A /* swipetoleft.gif in Resources */,
 				CE927FFB227A0EFB00EE0A22 /* GoogleService-Info.plist in Resources */,
 				CEDC434E2276130900A78890 /* Segoe UI Bold.ttf in Resources */,
 				CEDC434F2276130900A78890 /* Segoe UI.ttf in Resources */,
 				CEDC434D2276130900A78890 /* Segoe UI Italic.ttf in Resources */,
 				CEDC433F22760BC000A78890 /* LaunchScreen.storyboard in Resources */,
+				8A1B7A1822BF2995006FE52A /* swipetoright.gif in Resources */,
 				CEDC433C22760BC000A78890 /* Assets.xcassets in Resources */,
 				CEDC433722760BBE00A78890 /* Main.storyboard in Resources */,
 			);
@@ -383,6 +422,8 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-TimeStamp/Pods-TimeStamp-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
@@ -395,6 +436,8 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
@@ -405,6 +448,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TimeStamp/Pods-TimeStamp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B2CAD4C3ED3D2F3FAC87CCE0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TimeStamp/Pods-TimeStamp-resources.sh",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TimeStamp/Pods-TimeStamp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CFCFC21001C6E985F11D6495 /* [CP] Check Pods Manifest.lock */ = {
@@ -440,6 +505,8 @@
 				CE927FF9227A0BCD00EE0A22 /* ScheduleClass.swift in Sources */,
 				8AD8621C22984A9600412EFF /* VerticalUpShiftTransitionUnwind.swift in Sources */,
 				CEDC433422760BBE00A78890 /* GetStartedViewController.swift in Sources */,
+				8A1AEDCB22C2BE25005282FD /* TomorrowToTodayShift.swift in Sources */,
+				8A1AEDC922C2BDFF005282FD /* TodayToTomorrowShift.swift in Sources */,
 				8A1B7A0222BEC878006FE52A /* Q&AViewController.swift in Sources */,
 				CEDC435F22775DFA00A78890 /* SettingsViewController.swift in Sources */,
 				8A1B7A0022BEC40E006FE52A /* NewsTableViewController.swift in Sources */,
@@ -454,12 +521,14 @@
 				8ABCA53F2282176000A30D36 /* WeeklySchedule+CoreDataProperties.swift in Sources */,
 				CEDC435D22773FAC00A78890 /* TodayViewController.swift in Sources */,
 				CE927FF7227A0BCD00EE0A22 /* PeriodClass.swift in Sources */,
+				8A1B7A2122C00804006FE52A /* MenuHelper.swift in Sources */,
 				CEC26E07227B3E9E00FFFC67 /* Period+CoreDataProperties.swift in Sources */,
 				CE927FF8227A0BCD00EE0A22 /* RepeatingTimer.swift in Sources */,
 				CE146D982280BD9900B3922D /* Settings+CoreDataProperties.swift in Sources */,
 				8AD8620F229796D100412EFF /* TomorrowViewController.swift in Sources */,
 				8A1B7A0E22BECC58006FE52A /* LostAndFoundViewController.swift in Sources */,
 				CEC26E02227B3E9E00FFFC67 /* Timetable+CoreDataProperties.swift in Sources */,
+				8A1B7A2522C01D6F006FE52A /* TomorrowToTodayAnimator.swift in Sources */,
 				8A1B7A0822BECAC7006FE52A /* HouseInfoViewController.swift in Sources */,
 				CEC26E04227B3E9E00FFFC67 /* FlipDay+CoreDataProperties.swift in Sources */,
 				CEDC433222760BBE00A78890 /* AppDelegate.swift in Sources */,
@@ -481,8 +550,10 @@
 				8AEA785122851D5C0031B030 /* UserDataSettings.swift in Sources */,
 				CE927FF4227A0BCD00EE0A22 /* UserTimetable.swift in Sources */,
 				CE927FF6227A0BCD00EE0A22 /* ArticleClass.swift in Sources */,
+				8A1B7A2322C018F1006FE52A /* TodayToTomorrowAnimator.swift in Sources */,
 				8A1B7A0A22BECB36006FE52A /* CustomThemeViewController.swift in Sources */,
 				8AA2F04422811FF90091EF0F /* HorizontalRightShiftTransition.swift in Sources */,
+				8A1B7A1F22C0072D006FE52A /* Interactor.swift in Sources */,
 				8AD8621422983D0B00412EFF /* VerticalUpShiftTransition.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -638,7 +709,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.jackyjh-";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.UTS-development.timestamp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -658,7 +729,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.jackyjh-";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.UTS-development.timestamp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
