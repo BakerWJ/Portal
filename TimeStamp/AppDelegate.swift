@@ -13,7 +13,8 @@ import FirebaseFirestore
 import CoreData
 import UserNotifications
 import GoogleSignIn
-
+import GoogleAPIClientForREST
+import GTMAppAuth
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
@@ -68,6 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
                     if (user.profile.email.suffix(13) == "@utschools.ca")
                     {
                         UserDefaults.standard.set(true, forKey: "loggedin");
+                        UserDataSettings.updateAll()
                         if (UserDefaults.standard.bool(forKey: "notFirstTimeLaunch"))
                         {
                             vc.performSegue(withIdentifier: "toTabBar", sender: vc)
@@ -123,8 +125,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
         FirebaseApp.configure();
         
         //Initialize sign-in
+        //need to later prompt the additionalScope for consent
+        let calendarScope = "https://www.googleapis.com/auth/calendar.events";
+        let calendarScope2 = "https://www.googleapis.com/auth/calendar";
+        let classroomScope = "https://www.googleapis.com/auth/classroom.coursework.me";
         GIDSignIn.sharedInstance()?.clientID = FirebaseApp.app()?.options.clientID;
         GIDSignIn.sharedInstance()?.delegate = self;
+        GIDSignIn.sharedInstance()?.scopes.append(calendarScope);
+        GIDSignIn.sharedInstance().scopes.append (calendarScope2);
+        GIDSignIn.sharedInstance().scopes.append (classroomScope);
         
         //After the app launches, it will check if the current schedule stored locally is up to date
         UserDataSettings.delegate = self;

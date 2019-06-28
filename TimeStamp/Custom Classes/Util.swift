@@ -71,12 +71,33 @@ class Util
         return today as NSDate;
     }
     
+    static func next (days: Int) -> NSDate
+    {
+        //ges the current user calendar
+        let calendar = Calendar.current;
+        
+        //gets today's date
+        var today: Date = Date();
+        
+        //add days to today's date
+        today = calendar.date(byAdding: .day, value: days, to: today)!
+        
+        //set the date to the start of that day
+        today = calendar.startOfDay(for: today);
+        return today as NSDate;
+    }
 }
 
 protocol KeyboardShiftingDelegate: class
 {
     func didReceiveData (_ data: Float);
 }
+
+protocol EventPressedDelegate: class
+{
+    func eventPressed (startTime: Date, endTime: Date, title: String?, detail: String?, xpos: CGFloat, ypos: CGFloat);
+}
+
 
 extension UIImage {
     
@@ -235,4 +256,3 @@ extension UIImage {
         return animation
     }
 }
-

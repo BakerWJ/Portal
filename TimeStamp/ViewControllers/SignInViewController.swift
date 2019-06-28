@@ -20,6 +20,7 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 243.0/255, green: 243.0/255, blue: 243.0/255, alpha: 1.0);
         GIDSignIn.sharedInstance()?.uiDelegate = self;
+        GIDSignIn.sharedInstance()?.signInSilently();
         setup ()
         // Do any additional setup after loading the view.
     }
@@ -29,7 +30,7 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate
         super.viewDidAppear(animated);
         if (UserDefaults.standard.bool(forKey: "loggedin"))
         {
-            if (UserDataSettings.firstTimeLaunch())
+            if (!UserDefaults.standard.bool (forKey: "notFirstTimeLaunch"))
             {
                 performSegue(withIdentifier: "toGetStarted", sender: self)
             }

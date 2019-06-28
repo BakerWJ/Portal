@@ -37,6 +37,7 @@ class UserDataSettings
                         x = true;
                         self.updateData()
                         self.updateWeeklySchedule()
+                        self.updateEvents ();
                     }
                 }
             }
@@ -343,6 +344,77 @@ class UserDataSettings
                     //Saves the existing changes
                     CoreDataStack.saveContext()
                 }
+        }
+    }
+    
+    static func deleteEvents ()
+    {
+        let fetchRequest = NSFetchRequest <NSFetchRequestResult> (entityName: "Event");
+        do
+        {
+            if let results = try CoreDataStack.managedObjectContext.fetch (fetchRequest) as? [Event]
+            {
+                for each in results
+                {
+                    CoreDataStack.managedObjectContext.delete (each)
+                }
+                CoreDataStack.saveContext()
+            }
+        }
+        catch
+        {
+            fatalError ("There was an error fetching the list of events")
+        }
+    }
+    
+    //updates the events
+    static func updateEvents ()
+    {
+        let formatter = DateFormatter ();
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        
+        let ref = Database.database().reference();
+        ref.child("Events").observeSingleEvent(of: .value) { (snapshot) in
+            if let data = snapshot.value as? [Any]
+            {
+                //deletes existing events
+                self.deleteEvents ()
+                for each in data
+                {
+                    if let specifics = each as? [Any]
+                    {
+                        //creates an entity description
+                        guard let entityEvent = NSEntityDescription.entity(forEntityName: "Event", in: CoreDataStack.managedObjectContext) else
+                        {
+                            fatalError("Could not find entity description");
+                        }
+                        //creates the event object and insert it into the coredata managed object context
+                        let event = Event (entity: entityEvent, insertInto: CoreDataStack.managedObjectContext);
+                        
+                        if let startTime = specifics [0] as? String
+                        {
+                            event.startTime = formatter.date(from: startTime)! as NSDate;
+                        }
+                        if let endTime = specifics [1] as? String
+                        {
+                            event.endTime = formatter.date(from: endTime)! as NSDate ;
+                        }
+                        if let title = specifics [2] as? String
+                        {
+                            event.title = title;
+                        }
+                        if let detail = specifics [3] as? String
+                        {
+                            event.detail = detail;
+                        }
+                        if let kind = specifics [4] as? Int
+                        {
+                            event.kind = Int32 (kind);
+                        }
+                    }
+                }
+                CoreDataStack.saveContext()
+            }
         }
     }
 }

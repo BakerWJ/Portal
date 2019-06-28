@@ -27,12 +27,11 @@ class PeriodView: UIStackView, UITextFieldDelegate
     let timeLabel = UILabel ()
     let classLabel = UILabel ()
     let classTextField = UITextField ();
-    var screenHeight: CGFloat?
-    var screenWidth: CGFloat?
+    var screenHeight = UIScreen.main.bounds.size.height;
+    var screenWidth = UIScreen.main.bounds.size.width;
     
     //delegate set to an instance of secondviewcontroller
     weak var keyboardDelegate: KeyboardShiftingDelegate?
-    weak var viewControllerDelegate: UIViewController?
     
     //formats dates
     let formatter = DateFormatter ();
@@ -55,9 +54,7 @@ class PeriodView: UIStackView, UITextFieldDelegate
         self.flipped = flipped;
         self.classnumber = classnumber;
         self.keyboardDelegate = delegate;
-        self.viewControllerDelegate = delegate as? UIViewController;
-        self.screenHeight = viewControllerDelegate?.view.frame.height;
-        self.screenWidth = viewControllerDelegate?.view.frame.width;
+        
         //Makes the textfield's delegate self
         classTextField.delegate = self;
         
@@ -156,7 +153,7 @@ class PeriodView: UIStackView, UITextFieldDelegate
             classLabel.text = periodName
             classLabel.textAlignment = .center
             classLabel.numberOfLines = 1
-            classLabel.font = UIFont (name: "SegoeUI", size: 16/812.0*screenHeight!);
+            classLabel.font = UIFont (name: "SegoeUI", size: 16/812.0*screenHeight);
             classLabel.minimumScaleFactor = 6.0/classLabel.font.pointSize;
 
             
@@ -172,7 +169,7 @@ class PeriodView: UIStackView, UITextFieldDelegate
             timeLabel.text = formatter.string(from: startTime) + " - " + formatter.string (from: endTime);
             timeLabel.textAlignment = .center
             timeLabel.numberOfLines = 1
-            timeLabel.font = UIFont (name: "SegoeUI", size: 14/812.0*screenHeight!);
+            timeLabel.font = UIFont (name: "SegoeUI", size: 14/812.0*screenHeight);
             
             //set background color to white
             timeLabel.backgroundColor = .white
@@ -184,14 +181,14 @@ class PeriodView: UIStackView, UITextFieldDelegate
             
             //set layout constraints for classLabel and timeLabel
             classLabelView.translatesAutoresizingMaskIntoConstraints = false;
-            classLabelView.heightAnchor.constraint(equalToConstant: 30/812.0*screenHeight!).isActive = true
+            classLabelView.heightAnchor.constraint(equalToConstant: 30/812.0*screenHeight).isActive = true
             classLabel.translatesAutoresizingMaskIntoConstraints = false;
             classLabel.topAnchor.constraint(equalTo: classLabelView.topAnchor).isActive = true;
             classLabel.bottomAnchor.constraint (equalTo: classLabelView.bottomAnchor).isActive = true;
             classLabel.leadingAnchor.constraint (equalTo: classLabelView.leadingAnchor).isActive = true;
             classLabel.trailingAnchor.constraint (equalTo: classLabelView.trailingAnchor).isActive = true;
             timeLabel.translatesAutoresizingMaskIntoConstraints = false;
-            timeLabel.heightAnchor.constraint(equalToConstant: 30/812.0*screenHeight!).isActive = true;
+            timeLabel.heightAnchor.constraint(equalToConstant: 30/812.0*screenHeight).isActive = true;
             
             //enable user interaction for the labels
             classLabel.isUserInteractionEnabled = true;
@@ -203,7 +200,7 @@ class PeriodView: UIStackView, UITextFieldDelegate
             
             //set the attributes of classTextField
             classTextField.textAlignment = .center
-            classTextField.font = UIFont (name: "SegoeUI", size: 16/812.0*screenHeight!);
+            classTextField.font = UIFont (name: "SegoeUI", size: 16/812.0*screenHeight);
             classTextField.adjustsFontSizeToFitWidth = true;
             classTextField.minimumFontSize = 6;
             classTextField.returnKeyType = .done
@@ -227,7 +224,7 @@ class PeriodView: UIStackView, UITextFieldDelegate
             classLabel.text = periodName
             classLabel.textAlignment = .center
             classLabel.numberOfLines = 1
-            classLabel.font = UIFont (name: "SegoeUI-Bold", size: 16/812.0*screenHeight!);
+            classLabel.font = UIFont (name: "SegoeUI-Bold", size: 16/812.0*screenHeight);
             classLabel.adjustsFontSizeToFitWidth = true;
             classLabel.minimumScaleFactor = 6.0/classLabel.font.pointSize;
 
@@ -243,7 +240,7 @@ class PeriodView: UIStackView, UITextFieldDelegate
             timeLabel.text = formatter.string(from: startTime) + " - " + formatter.string (from: endTime);
             timeLabel.textAlignment = .left
             timeLabel.numberOfLines = 1
-            timeLabel.font = UIFont (name: "SegoeUI", size: 14/812.0*screenHeight!);
+            timeLabel.font = UIFont (name: "SegoeUI", size: 14/812.0*screenHeight);
             
             //set background color to white
             timeLabel.backgroundColor = .clear
@@ -255,15 +252,15 @@ class PeriodView: UIStackView, UITextFieldDelegate
             
             //set layout constraints for classLabel and timeLabel
             classLabelView.translatesAutoresizingMaskIntoConstraints = false;
-            classLabelView.heightAnchor.constraint(equalToConstant: 30/812.0*screenHeight!).isActive = true
-            classLabelView.widthAnchor.constraint (equalToConstant: 140/375.0*screenWidth!).isActive = true;
+            classLabelView.heightAnchor.constraint(equalToConstant: 30/812.0*screenHeight).isActive = true
+            classLabelView.widthAnchor.constraint (equalToConstant: 140/375.0*screenWidth).isActive = true;
             classLabel.translatesAutoresizingMaskIntoConstraints = false;
             classLabel.topAnchor.constraint(equalTo: classLabelView.topAnchor).isActive = true;
             classLabel.bottomAnchor.constraint (equalTo: classLabelView.bottomAnchor).isActive = true;
             classLabel.leadingAnchor.constraint (equalTo: classLabelView.leadingAnchor).isActive = true;
             classLabel.trailingAnchor.constraint (equalTo: classLabelView.trailingAnchor).isActive = true;
             timeLabel.translatesAutoresizingMaskIntoConstraints = false;
-            timeLabel.heightAnchor.constraint(equalToConstant: 30/812.0*screenHeight!).isActive = true;
+            timeLabel.heightAnchor.constraint(equalToConstant: 30/812.0*screenHeight).isActive = true;
         }
     }
     

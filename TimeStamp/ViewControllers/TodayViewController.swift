@@ -32,6 +32,9 @@ class TodayViewController: UIViewController, KeyboardShiftingDelegate, UIScrollV
     let calendar = Calendar.current;
     let leftarrow = UIImageView (image: UIImage.gifImageWithName("swipetoleft"));
     
+    //the label shows when there is no data loaded
+    let noDataLabel = UILabel ();
+    
     var interactor: Interactor = Interactor ();
     
     //constraint for keyboard shifting
@@ -120,6 +123,17 @@ class TodayViewController: UIViewController, KeyboardShiftingDelegate, UIScrollV
         label.trailingAnchor.constraint (equalTo: outerView.trailingAnchor).isActive = true;
         label.topAnchor.constraint(equalTo: outerView.topAnchor, constant: 95/812.0*view.frame.height).isActive = true;
         label.heightAnchor.constraint (equalToConstant: 25/812.0*view.frame.height);
+        
+        //adds the no Data Label at the center but only shows it if there is no data;
+        noDataLabel.font = UIFont (name: "SegoeUI", size: 15);
+        noDataLabel.textColor = .black;
+        noDataLabel.text = "No Available Data"
+        noDataLabel.layer.opacity = 0;
+        outerView.addSubview (noDataLabel);
+        noDataLabel.translatesAutoresizingMaskIntoConstraints = false;
+        noDataLabel.centerXAnchor.constraint (equalTo: outerView.centerXAnchor).isActive = true;
+        noDataLabel.centerYAnchor.constraint (equalTo: outerView.centerYAnchor).isActive = true;
+        
 
     }
     
@@ -224,12 +238,14 @@ class TodayViewController: UIViewController, KeyboardShiftingDelegate, UIScrollV
         }
         else
         {
+            showNoData()
             //loops through all the possible schedules
             for each in self.schedules
             {
                 //if the schedule has the same value as the value of the wanted schedule
                 if each.value == Int32((weeklySchedule?.typeOfDay [weekday - 1])!)
                 {
+                    hideNoData()
                     //The things/decorations on top of the actual schedule starts
                     //label that says schedule
                     let labelSchedule = UILabel ()
@@ -367,6 +383,15 @@ class TodayViewController: UIViewController, KeyboardShiftingDelegate, UIScrollV
                 }
             }
         }
+    }
+    
+    private func showNoData ()
+    {
+        noDataLabel.layer.opacity = 1;
+    }
+    private func hideNoData ()
+    {
+        noDataLabel.layer.opacity = 0;
     }
     
     //When the keyboard hides, then animate back to the normal position
