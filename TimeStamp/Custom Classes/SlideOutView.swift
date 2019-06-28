@@ -60,7 +60,7 @@ class SlideOutView: UIView
     var monthOpen: Bool = false;
     
     //maximum heights
-    let MAXH: CGFloat = 300.0;
+    let MAXH: CGFloat = 350.0/812.0*UIScreen.main.bounds.size.height;
     var maxToday: CGFloat = 0;
     var maxWeek: CGFloat = 0;
     var maxMonth: CGFloat = 0;
