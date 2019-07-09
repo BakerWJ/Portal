@@ -90,7 +90,7 @@ class Util
 
 protocol KeyboardShiftingDelegate: class
 {
-    func didReceiveData (_ data: Float);
+    func didReceiveData (_ data: CGPoint);
 }
 
 protocol EventPressedDelegate: class
@@ -254,5 +254,20 @@ extension UIImage {
                                               duration: Double(duration) / 1000.0)
         
         return animation
+    }
+}
+
+extension UIView
+{
+    func addContraintsWithFormat (_ format: String, views: UIView...)
+    {
+        var viewsDictionary = [String: UIView]();
+        for (index, view) in views.enumerated()
+        {
+            let key = "v\(index)";
+            view.translatesAutoresizingMaskIntoConstraints = false;
+            viewsDictionary [key] = view;
+        }
+        addConstraints (NSLayoutConstraint.constraints(withVisualFormat: format, options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: viewsDictionary))
     }
 }

@@ -936,36 +936,6 @@
             </objects>
             <point key="canvasLocation" x="670" y="881"/>
         </scene>
-        <!--Tomorrow View Controller-->
-        <scene sceneID="YCR-Xq-SGG">
-            <objects>
-                <viewController id="3KH-96-mpF" customClass="TomorrowViewController" customModule="TimeStamp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="gtu-bx-ZXr">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <gestureRecognizers/>
-                        <viewLayoutGuide key="safeArea" id="oFq-pc-e3z"/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="VFI-nW-VNO" appends="YES" id="bfv-Ot-9lB"/>
-                        </connections>
-                    </view>
-                    <navigationItem key="navigationItem" id="b9p-b1-C2N"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <segue destination="2DG-2x-yvv" kind="unwind" identifier="fromTomorrow" customClass="TomorrowToTodayShift" customModule="TimeStamp" customModuleProvider="target" unwindAction="returnFromTomorrowWithSender:" id="WSA-rd-8Yg"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Mki-1o-XLw" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="2DG-2x-yvv" userLabel="Exit" sceneMemberID="exit"/>
-                <swipeGestureRecognizer direction="right" id="VFI-nW-VNO">
-                    <connections>
-                        <action selector="triggerUnwind:" destination="3KH-96-mpF" id="NZI-JX-c6o"/>
-                    </connections>
-                </swipeGestureRecognizer>
-            </objects>
-            <point key="canvasLocation" x="3460" y="-913"/>
-        </scene>
         <!--Schedule-->
         <scene sceneID="rQi-th-GB1">
             <objects>
@@ -988,26 +958,18 @@
         <!--Schedule-->
         <scene sceneID="fKN-ix-CcW">
             <objects>
-                <viewController id="Vy2-Vx-pG9" customClass="TodayViewController" customModule="TimeStamp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Vy2-Vx-pG9" customClass="ScheduleViewController" customModule="TimeStamp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ddl-wZ-Mkx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <viewLayoutGuide key="safeArea" id="yD9-oW-ig9"/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="AAm-iP-ZIA" appends="YES" id="JLs-oa-kCd"/>
-                        </connections>
                     </view>
                     <tabBarItem key="tabBarItem" title="Schedule" id="GyX-1O-KPY"/>
                     <navigationItem key="navigationItem" id="5lz-ib-fQP"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="85e-6S-0ab" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="left" id="AAm-iP-ZIA">
-                    <connections>
-                        <segue destination="3KH-96-mpF" kind="custom" customClass="TodayToTomorrowShift" customModule="TimeStamp" customModuleProvider="target" id="y4c-p3-Gn5"/>
-                    </connections>
-                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2582" y="-913"/>
         </scene>

@@ -31,13 +31,13 @@
 		8A1B7A2122C00804006FE52A /* MenuHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B7A2022C00804006FE52A /* MenuHelper.swift */; };
 		8A1B7A2322C018F1006FE52A /* TodayToTomorrowAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B7A2222C018F1006FE52A /* TodayToTomorrowAnimator.swift */; };
 		8A1B7A2522C01D6F006FE52A /* TomorrowToTodayAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B7A2422C01D6F006FE52A /* TomorrowToTodayAnimator.swift */; };
+		8A5F822222D4F34B00443020 /* TodayTomorrowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5F822122D4F34B00443020 /* TodayTomorrowView.swift */; };
 		8A6780792298C81B00748848 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6780782298C81B00748848 /* EventView.swift */; };
 		8AA2F04422811FF90091EF0F /* HorizontalRightShiftTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA2F04322811FF90091EF0F /* HorizontalRightShiftTransition.swift */; };
 		8AA2F046228123890091EF0F /* HorizontalLeftShiftTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA2F045228123890091EF0F /* HorizontalLeftShiftTransition.swift */; };
 		8ABCA53E2282176000A30D36 /* WeeklySchedule+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABCA53C2282176000A30D36 /* WeeklySchedule+CoreDataClass.swift */; };
 		8ABCA53F2282176000A30D36 /* WeeklySchedule+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABCA53D2282176000A30D36 /* WeeklySchedule+CoreDataProperties.swift */; };
 		8AD8620D2297824000412EFF /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD8620C2297824000412EFF /* Util.swift */; };
-		8AD8620F229796D100412EFF /* TomorrowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD8620E229796D100412EFF /* TomorrowViewController.swift */; };
 		8AD862122298387600412EFF /* enjoyWeekend.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8AD862112298387600412EFF /* enjoyWeekend.gif */; };
 		8AD8621422983D0B00412EFF /* VerticalUpShiftTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD8621322983D0B00412EFF /* VerticalUpShiftTransition.swift */; };
 		8AD8621622983D1B00412EFF /* VerticalDownShiftTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD8621522983D1B00412EFF /* VerticalDownShiftTransition.swift */; };
@@ -51,9 +51,9 @@
 		CE2D71492280C71E00F4D89A /* TimeStampModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE2D71472280C71E00F4D89A /* TimeStampModel.xcdatamodeld */; };
 		CE927FF4227A0BCD00EE0A22 /* UserTimetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE927FEE227A0BCD00EE0A22 /* UserTimetable.swift */; };
 		CE927FF6227A0BCD00EE0A22 /* ArticleClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE927FF0227A0BCD00EE0A22 /* ArticleClass.swift */; };
-		CE927FF7227A0BCD00EE0A22 /* PeriodClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE927FF1227A0BCD00EE0A22 /* PeriodClass.swift */; };
+		CE927FF7227A0BCD00EE0A22 /* PeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE927FF1227A0BCD00EE0A22 /* PeriodView.swift */; };
 		CE927FF8227A0BCD00EE0A22 /* RepeatingTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE927FF2227A0BCD00EE0A22 /* RepeatingTimer.swift */; };
-		CE927FF9227A0BCD00EE0A22 /* ScheduleClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE927FF3227A0BCD00EE0A22 /* ScheduleClass.swift */; };
+		CE927FF9227A0BCD00EE0A22 /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE927FF3227A0BCD00EE0A22 /* ScheduleView.swift */; };
 		CE927FFB227A0EFB00EE0A22 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE927FFA227A0EFB00EE0A22 /* GoogleService-Info.plist */; };
 		CEC26E00227B3E9E00FFFC67 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC26DF7227B3E9E00FFFC67 /* CoreDataStack.swift */; };
 		CEC26E01227B3E9E00FFFC67 /* Schedule+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC26DF8227B3E9E00FFFC67 /* Schedule+CoreDataProperties.swift */; };
@@ -75,7 +75,7 @@
 		CEDC434F2276130900A78890 /* Segoe UI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEDC434B2276130900A78890 /* Segoe UI.ttf */; };
 		CEDC43512276816C00A78890 /* SetUp1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDC43502276816C00A78890 /* SetUp1ViewController.swift */; };
 		CEDC435B22773F8400A78890 /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDC435A22773F8400A78890 /* MainPageViewController.swift */; };
-		CEDC435D22773FAC00A78890 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDC435C22773FAC00A78890 /* TodayViewController.swift */; };
+		CEDC435D22773FAC00A78890 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDC435C22773FAC00A78890 /* ScheduleViewController.swift */; };
 		CEDC435F22775DFA00A78890 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDC435E22775DFA00A78890 /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -106,13 +106,13 @@
 		8A1B7A2022C00804006FE52A /* MenuHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuHelper.swift; sourceTree = "<group>"; };
 		8A1B7A2222C018F1006FE52A /* TodayToTomorrowAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayToTomorrowAnimator.swift; sourceTree = "<group>"; };
 		8A1B7A2422C01D6F006FE52A /* TomorrowToTodayAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TomorrowToTodayAnimator.swift; sourceTree = "<group>"; };
+		8A5F822122D4F34B00443020 /* TodayTomorrowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTomorrowView.swift; sourceTree = "<group>"; };
 		8A6780782298C81B00748848 /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
 		8AA2F04322811FF90091EF0F /* HorizontalRightShiftTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalRightShiftTransition.swift; sourceTree = "<group>"; };
 		8AA2F045228123890091EF0F /* HorizontalLeftShiftTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalLeftShiftTransition.swift; sourceTree = "<group>"; };
 		8ABCA53C2282176000A30D36 /* WeeklySchedule+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeeklySchedule+CoreDataClass.swift"; sourceTree = "<group>"; };
 		8ABCA53D2282176000A30D36 /* WeeklySchedule+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeeklySchedule+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8AD8620C2297824000412EFF /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
-		8AD8620E229796D100412EFF /* TomorrowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TomorrowViewController.swift; sourceTree = "<group>"; };
 		8AD862112298387600412EFF /* enjoyWeekend.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = enjoyWeekend.gif; sourceTree = "<group>"; };
 		8AD8621322983D0B00412EFF /* VerticalUpShiftTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalUpShiftTransition.swift; sourceTree = "<group>"; };
 		8AD8621522983D1B00412EFF /* VerticalDownShiftTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalDownShiftTransition.swift; sourceTree = "<group>"; };
@@ -126,9 +126,9 @@
 		CE2D71482280C71E00F4D89A /* TimeStampModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TimeStampModel.xcdatamodel; sourceTree = "<group>"; };
 		CE927FEE227A0BCD00EE0A22 /* UserTimetable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTimetable.swift; sourceTree = "<group>"; };
 		CE927FF0227A0BCD00EE0A22 /* ArticleClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleClass.swift; sourceTree = "<group>"; };
-		CE927FF1227A0BCD00EE0A22 /* PeriodClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeriodClass.swift; sourceTree = "<group>"; };
+		CE927FF1227A0BCD00EE0A22 /* PeriodView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeriodView.swift; sourceTree = "<group>"; };
 		CE927FF2227A0BCD00EE0A22 /* RepeatingTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepeatingTimer.swift; sourceTree = "<group>"; };
-		CE927FF3227A0BCD00EE0A22 /* ScheduleClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleClass.swift; sourceTree = "<group>"; };
+		CE927FF3227A0BCD00EE0A22 /* ScheduleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleView.swift; sourceTree = "<group>"; };
 		CE927FFA227A0EFB00EE0A22 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CEC26DF7227B3E9E00FFFC67 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		CEC26DF8227B3E9E00FFFC67 /* Schedule+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Schedule+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -152,7 +152,7 @@
 		CEDC434B2276130900A78890 /* Segoe UI.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Segoe UI.ttf"; sourceTree = "<group>"; };
 		CEDC43502276816C00A78890 /* SetUp1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUp1ViewController.swift; sourceTree = "<group>"; };
 		CEDC435A22773F8400A78890 /* MainPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
-		CEDC435C22773FAC00A78890 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		CEDC435C22773FAC00A78890 /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 		CEDC435E22775DFA00A78890 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -195,6 +195,26 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		8A5F821F22D4505B00443020 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CE927FF0227A0BCD00EE0A22 /* ArticleClass.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8A5F822022D4506700443020 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CE927FF1227A0BCD00EE0A22 /* PeriodView.swift */,
+				8A6780782298C81B00748848 /* EventView.swift */,
+				CE927FF3227A0BCD00EE0A22 /* ScheduleView.swift */,
+				8A5F822122D4F34B00443020 /* TodayTomorrowView.swift */,
+				8A1AEDD022C6861D005282FD /* SlideOutView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		8AD862102298385E00412EFF /* GIFs */ = {
 			isa = PBXGroup;
 			children = (
@@ -229,12 +249,7 @@
 			isa = PBXGroup;
 			children = (
 				8AD8620C2297824000412EFF /* Util.swift */,
-				CE927FF0227A0BCD00EE0A22 /* ArticleClass.swift */,
-				CE927FF1227A0BCD00EE0A22 /* PeriodClass.swift */,
 				CE927FF2227A0BCD00EE0A22 /* RepeatingTimer.swift */,
-				CE927FF3227A0BCD00EE0A22 /* ScheduleClass.swift */,
-				8A6780782298C81B00748848 /* EventView.swift */,
-				8A1AEDD022C6861D005282FD /* SlideOutView.swift */,
 				CE927FEE227A0BCD00EE0A22 /* UserTimetable.swift */,
 				8AEA785022851D5C0031B030 /* UserDataSettings.swift */,
 				8AD8621F22984ACB00412EFF /* Custom Segues */,
@@ -286,7 +301,9 @@
 			isa = PBXGroup;
 			children = (
 				CEDC433122760BBE00A78890 /* AppDelegate.swift */,
-				CEDC43462276108F00A78890 /* ViewControllers */,
+				8A5F821F22D4505B00443020 /* Models */,
+				8A5F822022D4506700443020 /* Views */,
+				CEDC43462276108F00A78890 /* Controllers */,
 				CEDC433522760BBE00A78890 /* Main.storyboard */,
 				CEDC433D22760BC000A78890 /* LaunchScreen.storyboard */,
 				CEDC433B22760BC000A78890 /* Assets.xcassets */,
@@ -302,14 +319,13 @@
 			path = TimeStamp;
 			sourceTree = "<group>";
 		};
-		CEDC43462276108F00A78890 /* ViewControllers */ = {
+		CEDC43462276108F00A78890 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				CEDC433322760BBE00A78890 /* GetStartedViewController.swift */,
 				CEDC43502276816C00A78890 /* SetUp1ViewController.swift */,
-				CEDC435C22773FAC00A78890 /* TodayViewController.swift */,
+				CEDC435C22773FAC00A78890 /* ScheduleViewController.swift */,
 				8A1B79FD22BEC31D006FE52A /* UtilityViewController.swift */,
-				8AD8620E229796D100412EFF /* TomorrowViewController.swift */,
 				8A1B7A0722BECAC7006FE52A /* HouseInfoViewController.swift */,
 				CEDC435A22773F8400A78890 /* MainPageViewController.swift */,
 				CEDC435E22775DFA00A78890 /* SettingsViewController.swift */,
@@ -323,7 +339,7 @@
 				8A1B7A0522BEC94A006FE52A /* ToDoListItemViewController.swift */,
 				8A1B7A0B22BECBCD006FE52A /* RoomBookingViewController.swift */,
 			);
-			path = ViewControllers;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		CEDC4347227612E500A78890 /* Fonts */ = {
@@ -517,7 +533,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A1B7A0422BEC924006FE52A /* ToDoListViewController.swift in Sources */,
-				CE927FF9227A0BCD00EE0A22 /* ScheduleClass.swift in Sources */,
+				CE927FF9227A0BCD00EE0A22 /* ScheduleView.swift in Sources */,
 				8AD8621C22984A9600412EFF /* VerticalUpShiftTransitionUnwind.swift in Sources */,
 				CEDC433422760BBE00A78890 /* GetStartedViewController.swift in Sources */,
 				8A1AEDCB22C2BE25005282FD /* TomorrowToTodayShift.swift in Sources */,
@@ -534,14 +550,13 @@
 				8AD8620D2297824000412EFF /* Util.swift in Sources */,
 				CEDC43512276816C00A78890 /* SetUp1ViewController.swift in Sources */,
 				8ABCA53F2282176000A30D36 /* WeeklySchedule+CoreDataProperties.swift in Sources */,
-				CEDC435D22773FAC00A78890 /* TodayViewController.swift in Sources */,
-				CE927FF7227A0BCD00EE0A22 /* PeriodClass.swift in Sources */,
+				CEDC435D22773FAC00A78890 /* ScheduleViewController.swift in Sources */,
+				CE927FF7227A0BCD00EE0A22 /* PeriodView.swift in Sources */,
 				8A1B7A2122C00804006FE52A /* MenuHelper.swift in Sources */,
 				8A1AEDD122C6861D005282FD /* SlideOutView.swift in Sources */,
 				CEC26E07227B3E9E00FFFC67 /* Period+CoreDataProperties.swift in Sources */,
 				CE927FF8227A0BCD00EE0A22 /* RepeatingTimer.swift in Sources */,
 				CE146D982280BD9900B3922D /* Settings+CoreDataProperties.swift in Sources */,
-				8AD8620F229796D100412EFF /* TomorrowViewController.swift in Sources */,
 				8A1B7A0E22BECC58006FE52A /* LostAndFoundViewController.swift in Sources */,
 				CEC26E02227B3E9E00FFFC67 /* Timetable+CoreDataProperties.swift in Sources */,
 				8A1B7A2522C01D6F006FE52A /* TomorrowToTodayAnimator.swift in Sources */,
@@ -564,6 +579,7 @@
 				CEC26E05227B3E9E00FFFC67 /* Schedule+CoreDataClass.swift in Sources */,
 				8A1B79FE22BEC31D006FE52A /* UtilityViewController.swift in Sources */,
 				8A1B79FC22BEC2AF006FE52A /* MainTabBarViewController.swift in Sources */,
+				8A5F822222D4F34B00443020 /* TodayTomorrowView.swift in Sources */,
 				8AEA785122851D5C0031B030 /* UserDataSettings.swift in Sources */,
 				CE927FF4227A0BCD00EE0A22 /* UserTimetable.swift in Sources */,
 				CE927FF6227A0BCD00EE0A22 /* ArticleClass.swift in Sources */,

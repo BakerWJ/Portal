@@ -266,7 +266,11 @@ class PeriodView: UIStackView, UITextFieldDelegate
     
     @objc func classLabelTapped ()
     {
-        keyboardDelegate?.didReceiveData (Float (self.frame.minY));
+        layoutIfNeeded();
+        if let point = self.superview?.convert(self.frame.origin, to: UIApplication.shared.keyWindow)
+        {
+            keyboardDelegate?.didReceiveData(point)
+        }
         classLabel.isHidden = true
         classTextField.isHidden = false;
         classTextField.text = classLabel.text;

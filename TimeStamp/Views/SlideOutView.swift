@@ -142,13 +142,13 @@ class SlideOutView: UIView
             tapviews [x].addSubview (images [x]);
             titlelabels [x].translatesAutoresizingMaskIntoConstraints = false;
             images [x].translatesAutoresizingMaskIntoConstraints = false;
-            tapviews [x].heightAnchor.constraint (equalToConstant: 15/812.0*screenHeight).isActive = true;
+            tapviews [x].heightAnchor.constraint (equalToConstant: 20/812.0*screenHeight).isActive = true;
             tapviews [x].centerXAnchor.constraint (equalTo: self.centerXAnchor).isActive = true;
             tapviews [x].widthAnchor.constraint (equalToConstant: screenWidth).isActive = true;
             tapviews [x].isUserInteractionEnabled = true;
             images [x].leadingAnchor.constraint (equalTo: tapviews [x].leadingAnchor, constant: 10/375.0*screenWidth).isActive = true;
             images [x].heightAnchor.constraint (equalTo: tapviews [x].heightAnchor).isActive = true;
-            images [x].widthAnchor.constraint (equalToConstant: 15/812.0*screenHeight).isActive = true;
+            images [x].widthAnchor.constraint (equalToConstant: 20/812.0*screenHeight).isActive = true;
             images [x].topAnchor.constraint (equalTo: tapviews [x].topAnchor).isActive = true;
             titlelabels [x].heightAnchor.constraint (equalTo: tapviews [x].heightAnchor).isActive = true;
             titlelabels [x].leadingAnchor.constraint (equalTo: images [x].trailingAnchor, constant: 10/375.0*screenWidth).isActive = true;

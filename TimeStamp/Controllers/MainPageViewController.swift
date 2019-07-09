@@ -223,7 +223,7 @@ class MainPageViewController: UIViewController, EventPressedDelegate {
         slideout.topAnchor.constraint (equalTo: view.topAnchor, constant: 285/812.0*view.frame.height).isActive = true;
         slideout.widthAnchor.constraint (equalTo: view.widthAnchor).isActive = true;
         slideout.centerXAnchor.constraint (equalTo: view.centerXAnchor).isActive = true;
-        slideout.heightAnchor.constraint(equalToConstant: 400).isActive = true;
+        slideout.heightAnchor.constraint(equalToConstant: 450/812.0*view.frame.height).isActive = true;
         
         view.bringSubviewToFront(addEventButton)
     }
