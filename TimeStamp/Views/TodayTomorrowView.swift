@@ -12,6 +12,7 @@ class TodayTomorrowView: UICollectionViewCell
 {
     var schedules = [Schedule]();
     var todaynottomo = true;
+    
     var weeklySchedule: WeeklySchedule?
     
     var tempView = UIScrollView()
@@ -36,7 +37,7 @@ class TodayTomorrowView: UICollectionViewCell
 
     let noDataLabel = UILabel ();
     
-    var delegate : KeyboardShiftingDelegate?
+    weak var delegate : KeyboardShiftingDelegate?
     
     var loaded = false;
     
@@ -79,6 +80,9 @@ class TodayTomorrowView: UICollectionViewCell
             leftarrow.leadingAnchor.constraint (equalTo: today.trailingAnchor).isActive = true;
             leftarrow.heightAnchor.constraint (equalToConstant: 35/812.0*screenHeight).isActive = true;
             leftarrow.widthAnchor.constraint (equalToConstant: 55/812.0*screenHeight).isActive = true;
+            
+            //caches image
+            leftarrow.layer.shouldRasterize = true;
         }
         else
         {
@@ -103,6 +107,9 @@ class TodayTomorrowView: UICollectionViewCell
             rightarrow.trailingAnchor.constraint (equalTo: tomorrow.leadingAnchor).isActive = true;
             rightarrow.heightAnchor.constraint (equalToConstant: 35/812.0*screenHeight).isActive = true;
             rightarrow.widthAnchor.constraint (equalToConstant: 55/812.0*screenHeight).isActive = true;
+            
+            //caches image
+            rightarrow.layer.shouldRasterize = true;
         }
         
         let date = Util.next(days: todaynottomo ? 0 : 1) as Date;
@@ -205,6 +212,7 @@ class TodayTomorrowView: UICollectionViewCell
         {
             //creates an image that says enjoy the weekend
             let image = UIImageView (image: UIImage.gifImageWithName("enjoyWeekend"));
+            image.layer.shouldRasterize = true;
             //adds the image to the view to display
             addSubview (image);
             //sets layout constraints
@@ -239,6 +247,8 @@ class TodayTomorrowView: UICollectionViewCell
                     labelSchedule.topAnchor.constraint (equalTo: self.label.topAnchor, constant: 50.0/812*screenHeight).isActive = true;
                     //make an image for the title on top
                     let image = UIImageView (image: UIImage (named: "Rectangle 1028"));
+                    //caches image
+                    image.layer.shouldRasterize = true;
                     let biggerview = UIView();
                     biggerview.layer.opacity = 0;
                     addSubview (biggerview);

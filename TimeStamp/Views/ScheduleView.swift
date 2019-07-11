@@ -21,7 +21,8 @@ class ScheduleView: UIStackView
     var ADay = false;
     var flipped = false;
     let changeTimetable = UserTimetable ()
-    var delegate: KeyboardShiftingDelegate?
+    
+    weak var delegate: KeyboardShiftingDelegate?
     
     //MARK: Constructors
     

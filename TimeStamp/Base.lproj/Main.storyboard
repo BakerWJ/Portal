@@ -400,7 +400,7 @@
                         <outlet property="todayLabel" destination="ryn-v3-9Lw" id="EWL-NX-JIj"/>
                         <outlet property="typeOfDayLabel" destination="pkz-EC-jyB" id="YjD-FM-LLL"/>
                         <segue destination="deH-3h-9VO" kind="show" identifier="toQ&amp;A" id="qXi-kJ-Zg4"/>
-                        <segue destination="l4K-YH-3go" kind="show" identifier="toToDoList" id="jg7-Be-rfG"/>
+                        <segue destination="l4K-YH-3go" kind="presentation" identifier="toToDoList" id="jg7-Be-rfG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hHd-6b-UJa" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -418,17 +418,39 @@
                         <viewLayoutGuide key="safeArea" id="rz2-kC-c9s"/>
                     </view>
                     <connections>
-                        <segue destination="7X1-ax-wYc" kind="presentation" identifier="toToDoListItem" id="v3e-Si-Quj"/>
+                        <segue destination="7X1-ax-wYc" kind="presentation" identifier="toEventItem" id="v3e-Si-Quj"/>
+                        <segue destination="Otd-vv-2fJ" kind="unwind" identifier="returnFromToDoList" unwindAction="returnFromToDoListWithSender:" id="Pab-64-0LW"/>
+                        <segue destination="Hk6-Tt-vaQ" kind="presentation" identifier="toTaskItem" id="1Rf-Hv-GgP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mwc-kh-fmD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Otd-vv-2fJ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3445" y="589"/>
         </scene>
-        <!--To Do List Item View Controller-->
+        <!--Task Item View Controller-->
+        <scene sceneID="2B6-gS-xoS">
+            <objects>
+                <viewController id="Hk6-Tt-vaQ" customClass="TaskItemViewController" customModule="TimeStamp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wd6-rh-8lR">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="tyO-07-xSQ"/>
+                    </view>
+                    <connections>
+                        <segue destination="cAS-M1-oTo" kind="unwind" identifier="fromTaskItem" unwindAction="returnFromItemWithSender:" id="COx-1c-ZJh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0xR-8p-p1p" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="cAS-M1-oTo" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="4470" y="980"/>
+        </scene>
+        <!--Event Item View Controller-->
         <scene sceneID="aki-Cd-Y01">
             <objects>
-                <viewController id="7X1-ax-wYc" customClass="ToDoListItemViewController" customModule="TimeStamp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="7X1-ax-wYc" customClass="EventItemViewController" customModule="TimeStamp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4Mc-S7-0ZA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -436,13 +458,13 @@
                         <viewLayoutGuide key="safeArea" id="7ck-K4-Qhh"/>
                     </view>
                     <connections>
-                        <segue destination="epg-KI-GGU" kind="unwind" identifier="fromItem" unwindAction="returnFromItemWithSender:" id="e6A-dH-yGN"/>
+                        <segue destination="epg-KI-GGU" kind="unwind" identifier="fromEventItem" unwindAction="returnFromItemWithSender:" id="e6A-dH-yGN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tfS-zC-CyH" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="epg-KI-GGU" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4449" y="589"/>
+            <point key="canvasLocation" x="4470" y="293"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="HJ0-iy-HRd">

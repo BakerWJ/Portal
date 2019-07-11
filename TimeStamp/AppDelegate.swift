@@ -101,6 +101,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
             let givenName = user.profile.givenName
             let familyName = user.profile.familyName
             let email = user.profile.email
+            if (user.profile.hasImage)
+            {
+                let url = user.profile.imageURL(withDimension: UInt(60/812.0*UIScreen.main.bounds.height))
+                DispatchQueue.main.async {
+                    let data = try? Data (contentsOf: url!);
+                    UserDefaults.standard.set(data, forKey: "userimage");
+                }
+            }
+            UserDefaults.standard.set(fullName, forKey: "username");
             // ...
             
         }

@@ -34,6 +34,9 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate, UIScro
     
     var todaytomorrowviews = [true, false];
     
+    let screenHeight = UIScreen.main.bounds.height;
+    let screenWidth = UIScreen.main.bounds.width;
+    
     //collectionView that contains the the two views
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -71,8 +74,8 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate, UIScro
         topConstraint = collectionView.topAnchor.constraint (equalTo: view.topAnchor);
         topConstraint.isActive = true;
         collectionView.leadingAnchor.constraint (equalTo: view.leadingAnchor).isActive = true;
-        collectionView.heightAnchor.constraint (equalToConstant: view.frame.height).isActive = true;
-        collectionView.widthAnchor.constraint (equalToConstant: view.frame.width).isActive = true;
+        collectionView.heightAnchor.constraint (equalToConstant: screenHeight).isActive = true;
+        collectionView.widthAnchor.constraint (equalToConstant: screenWidth).isActive = true;
         
     }
     
@@ -89,7 +92,7 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate, UIScro
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize (width: view.frame.width, height: view.frame.height);
+        return CGSize (width: screenWidth, height: screenHeight);
     }
     
     func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
@@ -134,7 +137,8 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate, UIScro
         if let keyboardSize = (notification.userInfo? [UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
         {
             keyboardHeight = Double(keyboardSize.height)
-            let targetY = CGFloat(Double(self.view.frame.height) - self.keyboardHeight - 60);
+            let periodheight = 60/812.0*self.screenHeight;
+            let targetY = CGFloat(self.screenHeight - CGFloat(self.keyboardHeight) - periodheight);
             let textFieldY = textFieldCoordinate.y;
             let difference = targetY - textFieldY;
             if (difference < 0)

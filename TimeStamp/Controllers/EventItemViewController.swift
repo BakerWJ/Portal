@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ToDoListItemViewController: UIViewController {
+class EventItemViewController: UIViewController {
 
     let backButton = UIButton ();
     

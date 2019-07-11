@@ -27,6 +27,7 @@ class GetStartedViewController: UIViewController {
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        view.backgroundColor = UIColor(red: 243.0/255, green: 243.0/255, blue: 243.0/255, alpha: 1.0);
         setConstraints ();
         let fetchRequest = NSFetchRequest <NSFetchRequestResult> (entityName: "Settings");
         do {
