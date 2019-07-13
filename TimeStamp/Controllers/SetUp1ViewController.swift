@@ -11,6 +11,7 @@ import UIKit
 class SetUp1ViewController: UIViewController, UITextFieldDelegate {
 
     //outlets
+    
     @IBOutlet weak var mondayTextView: UITextField!
     @IBOutlet weak var tuesdayTextView: UITextField!
     @IBOutlet weak var questionLabel: UILabel!

@@ -8,8 +8,22 @@
 
 import UIKit
 
-class TaskListView: UIView {
-
+class TaskListView: UITableView, UITableViewDelegate
+{
+    override init(frame: CGRect, style: UITableView.Style) {
+        super.init(frame: frame, style: style);
+        setup ();
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init (coder: coder);
+    }
+    
+    private func setup ()
+    {
+        backgroundColor = UIColor(red: 243.0/255, green: 243.0/255, blue: 243.0/255, alpha: 1.0);
+    }
+    
     /*
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.

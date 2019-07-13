@@ -417,4 +417,78 @@ class UserDataSettings
             }
         }
     }
+    
+    static func addTaskTag (colour: UIColor, name: String)
+    {
+        guard let entity = NSEntityDescription.entity (forEntityName: "ToDo_TaskTag", in: CoreDataStack.managedObjectContext) else
+        {
+            fatalError ("Could not find entity description!")
+        }
+        let newTag = ToDo_TaskTag(entity: entity, insertInto: CoreDataStack.managedObjectContext)
+        newTag.colour = colour;
+        newTag.name = name;
+        CoreDataStack.saveContext()
+    }
+    
+    static func deleteTaskTag (tag: ToDo_TaskTag)
+    {
+        CoreDataStack.managedObjectContext.delete(tag);
+        CoreDataStack.saveContext()
+    }
+    
+    static func addTask (dueDate: Date?, completed: Bool, title: String, detail: String?, tag: ToDo_TaskTag)
+    {
+        guard let entity = NSEntityDescription.entity (forEntityName: "ToDo_Task", in: CoreDataStack.managedObjectContext) else
+        {
+            fatalError ("Could not find entity description!")
+        }
+        let newTask = ToDo_Task(entity: entity, insertInto: CoreDataStack.managedObjectContext)
+        newTask.tag = tag;
+        tag.addToTasks(newTask);
+        newTask.dueDate = dueDate as NSDate?;
+        newTask.completed = completed;
+        newTask.title = title;
+        newTask.detail = detail;
+        CoreDataStack.saveContext()
+    }
+    
+    static func deleteTask (task: ToDo_Task)
+    {
+        CoreDataStack.managedObjectContext.delete (task);
+        CoreDataStack.saveContext();
+    }
+    
+    static func fetchAllTasks () -> [ToDo_Task]?
+    {
+        let fetchRequest = NSFetchRequest <NSFetchRequestResult> (entityName: "ToDo_Task");
+        do
+        {
+            if let results = try CoreDataStack.managedObjectContext.fetch (fetchRequest) as? [ToDo_Task]
+            {
+                return results;
+            }
+        }
+        catch
+        {
+            fatalError ("There was an error fetching the list of tasks")
+        }
+        return nil;
+    }
+    
+    static func fetchAllTaskTags () -> [ToDo_TaskTag]?
+    {
+        let fetchRequest = NSFetchRequest <NSFetchRequestResult> (entityName: "ToDo_TaskTag");
+        do
+        {
+            if let results = try CoreDataStack.managedObjectContext.fetch (fetchRequest) as? [ToDo_TaskTag]
+            {
+                return results;
+            }
+        }
+        catch
+        {
+            fatalError ("There was an error fetching the list of taskTags")
+        }
+        return nil;
+    }
 }

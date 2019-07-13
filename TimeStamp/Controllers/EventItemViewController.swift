@@ -10,34 +10,36 @@ import UIKit
 
 class EventItemViewController: UIViewController {
 
-    let backButton = UIButton ();
+    let cancelButton: UIButton = {
+        let button = UIButton();
+        button.setBackgroundImage(UIImage(named: "cancelIcon"), for: .normal);
+        button.backgroundColor = .clear;
+        return button;
+    }()
+    
+    let screenHeight = UIScreen.main.bounds.height;
+    let screenWidth = UIScreen.main.bounds.width;
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setup ()
+    }
+    
+    private func setup ()
+    {
         view.backgroundColor = UIColor(red: 243.0/255, green: 243.0/255, blue: 243.0/255, alpha: 1.0);
-        setConstraints ();
-        // Do any additional setup after loading the view.
+        cancelButton.addTarget(self, action: #selector (back), for: .touchUpInside);
+        view.addSubview (cancelButton);
+        cancelButton.translatesAutoresizingMaskIntoConstraints = false;
+        cancelButton.heightAnchor.constraint (equalToConstant: 20/812.0*screenHeight).isActive = true;
+        cancelButton.widthAnchor.constraint (equalTo: cancelButton.heightAnchor).isActive = true;
+        cancelButton.topAnchor.constraint (equalTo: view.topAnchor, constant: 60/812.0*screenHeight).isActive = true;
+        cancelButton.leadingAnchor.constraint (equalTo: view.leadingAnchor, constant: 60/812.0*screenWidth).isActive = true;
     }
     
-    private func setConstraints ()
+    @objc func back()
     {
-        backButton.setTitleColor(.black, for: .normal);
-        backButton.setTitle("Dismiss", for: .normal);
-        backButton.titleLabel?.font = UIFont (name: "SegoeUI-Bold", size: 20/812.0*view.frame.height);
-        backButton.backgroundColor = .clear
-        backButton.addTarget(self, action: #selector(backToList), for: .touchUpInside);
-        view.addSubview(backButton);
-        backButton.translatesAutoresizingMaskIntoConstraints = false;
-        backButton.heightAnchor.constraint (equalToConstant: 20/812.0*view.frame.height).isActive = true;
-        backButton.widthAnchor.constraint (equalToConstant: 100/812.0*view.frame.height).isActive = true;
-        backButton.leadingAnchor.constraint (equalTo: view.leadingAnchor, constant: 40/375.0*view.frame.width).isActive = true;
-        backButton.topAnchor.constraint (equalTo: view.topAnchor, constant: 60/812.0*view.frame.height).isActive = true;
-        
-    }
-    
-    @objc func backToList ()
-    {
-        performSegue (withIdentifier: "fromItem", sender: self);
+        performSegue(withIdentifier: "fromEventItem", sender: self);
     }
 
     /*
