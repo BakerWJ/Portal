@@ -34,7 +34,7 @@ class EventItemViewController: UIViewController {
         cancelButton.heightAnchor.constraint (equalToConstant: 20/812.0*screenHeight).isActive = true;
         cancelButton.widthAnchor.constraint (equalTo: cancelButton.heightAnchor).isActive = true;
         cancelButton.topAnchor.constraint (equalTo: view.topAnchor, constant: 60/812.0*screenHeight).isActive = true;
-        cancelButton.leadingAnchor.constraint (equalTo: view.leadingAnchor, constant: 60/812.0*screenWidth).isActive = true;
+        cancelButton.leadingAnchor.constraint (equalTo: view.leadingAnchor, constant: 30/375.0*screenWidth).isActive = true;
     }
     
     @objc func back()

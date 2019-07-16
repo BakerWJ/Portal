@@ -87,7 +87,7 @@ class ToDoListViewController: UIViewController, UITableViewDataSource, UITableVi
         addButton.heightAnchor.constraint (equalToConstant: 80/812.0*screenHeight).isActive = true;
         addButton.widthAnchor.constraint (equalToConstant: 80/812.0*screenHeight).isActive = true;
         addButton.bottomAnchor.constraint (equalTo: view.bottomAnchor, constant: -50/812.0*screenHeight).isActive = true;
-        addButton.leadingAnchor.constraint (equalTo: view.leadingAnchor, constant: 50/812.0*screenHeight).isActive = true;
+        addButton.leadingAnchor.constraint (equalTo: view.leadingAnchor, constant: 40/375.0*screenWidth).isActive = true;
         addButton.layoutIfNeeded();
         //creates a shadow
         let shadowLayer = CAShapeLayer();
@@ -109,7 +109,7 @@ class ToDoListViewController: UIViewController, UITableViewDataSource, UITableVi
         cancelButton.heightAnchor.constraint (equalToConstant: 20/812.0*screenHeight).isActive = true;
         cancelButton.widthAnchor.constraint (equalTo: cancelButton.heightAnchor).isActive = true;
         cancelButton.topAnchor.constraint (equalTo: view.topAnchor, constant: 60/812.0*screenHeight).isActive = true;
-        cancelButton.leadingAnchor.constraint (equalTo: view.leadingAnchor, constant: 60/812.0*screenWidth).isActive = true;
+        cancelButton.leadingAnchor.constraint (equalTo: view.leadingAnchor, constant: 30/375.0*screenWidth).isActive = true;
         
         //sets up the taskeventmenu
         view.addSubview (taskeventmenu);

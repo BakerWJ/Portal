@@ -138,6 +138,7 @@ class TaskView: UITableViewCell
         wrapperView.addGestureRecognizer(panGestureRecognizer);
     }
     
+    //update the appearance by reading the values of the stored task and displaying it onto the view
     func reload ()
     {
         var targetOpacity: Float = 1.0;
