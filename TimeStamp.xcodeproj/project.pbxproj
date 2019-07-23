@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		31BB397F22E6B48F004D2DE5 /* AppEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BB397E22E6B48F004D2DE5 /* AppEntryViewController.swift */; };
 		3F1A47B2B1D9B6C8A9CDD880 /* Pods_TimeStamp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12817475A8496AB78A3C28C3 /* Pods_TimeStamp.framework */; };
 		8A1AEDC722C11598005282FD /* credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8A1AEDC622C11598005282FD /* credentials.plist */; };
 		8A1AEDC922C2BDFF005282FD /* TodayToTomorrowShift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1AEDC822C2BDFF005282FD /* TodayToTomorrowShift.swift */; };
@@ -16,15 +17,10 @@
 		8A1AEDD122C6861D005282FD /* SlideOutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1AEDD022C6861D005282FD /* SlideOutView.swift */; };
 		8A1B79FA22BEC0C6006FE52A /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B79F922BEC0C6006FE52A /* SignInViewController.swift */; };
 		8A1B79FC22BEC2AF006FE52A /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B79FB22BEC2AF006FE52A /* MainTabBarViewController.swift */; };
-		8A1B79FE22BEC31D006FE52A /* UtilityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B79FD22BEC31D006FE52A /* UtilityViewController.swift */; };
 		8A1B7A0022BEC40E006FE52A /* NewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B79FF22BEC40E006FE52A /* NewsTableViewController.swift */; };
-		8A1B7A0222BEC878006FE52A /* Q&AViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B7A0122BEC878006FE52A /* Q&AViewController.swift */; };
 		8A1B7A0422BEC924006FE52A /* ToDoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B7A0322BEC924006FE52A /* ToDoListViewController.swift */; };
 		8A1B7A0622BEC94A006FE52A /* EventItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B7A0522BEC94A006FE52A /* EventItemViewController.swift */; };
 		8A1B7A0822BECAC7006FE52A /* HouseInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B7A0722BECAC7006FE52A /* HouseInfoViewController.swift */; };
-		8A1B7A0A22BECB36006FE52A /* CustomThemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B7A0922BECB36006FE52A /* CustomThemeViewController.swift */; };
-		8A1B7A0C22BECBCD006FE52A /* RoomBookingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B7A0B22BECBCD006FE52A /* RoomBookingViewController.swift */; };
-		8A1B7A0E22BECC58006FE52A /* LostAndFoundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B7A0D22BECC58006FE52A /* LostAndFoundViewController.swift */; };
 		8A1B7A1822BF2995006FE52A /* swipetoright.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8A1B7A1722BF2995006FE52A /* swipetoright.gif */; };
 		8A1B7A1C22BF2A7C006FE52A /* swipetoleft.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8A1B7A1B22BF2A7C006FE52A /* swipetoleft.gif */; };
 		8A1B7A1F22C0072D006FE52A /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B7A1E22C0072D006FE52A /* Interactor.swift */; };
@@ -92,6 +88,7 @@
 
 /* Begin PBXFileReference section */
 		12817475A8496AB78A3C28C3 /* Pods_TimeStamp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TimeStamp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		31BB397E22E6B48F004D2DE5 /* AppEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEntryViewController.swift; sourceTree = "<group>"; };
 		3D9C7440C79988B274B1F14A /* Pods-TimeStamp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeStamp.release.xcconfig"; path = "Target Support Files/Pods-TimeStamp/Pods-TimeStamp.release.xcconfig"; sourceTree = "<group>"; };
 		7C118D26195145B6F602CD7A /* Pods-TimeStamp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeStamp.debug.xcconfig"; path = "Target Support Files/Pods-TimeStamp/Pods-TimeStamp.debug.xcconfig"; sourceTree = "<group>"; };
 		8A1AEDC622C11598005282FD /* credentials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = credentials.plist; sourceTree = "<group>"; };
@@ -102,15 +99,10 @@
 		8A1AEDD022C6861D005282FD /* SlideOutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOutView.swift; sourceTree = "<group>"; };
 		8A1B79F922BEC0C6006FE52A /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		8A1B79FB22BEC2AF006FE52A /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
-		8A1B79FD22BEC31D006FE52A /* UtilityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityViewController.swift; sourceTree = "<group>"; };
 		8A1B79FF22BEC40E006FE52A /* NewsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewController.swift; sourceTree = "<group>"; };
-		8A1B7A0122BEC878006FE52A /* Q&AViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Q&AViewController.swift"; sourceTree = "<group>"; };
 		8A1B7A0322BEC924006FE52A /* ToDoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListViewController.swift; sourceTree = "<group>"; };
 		8A1B7A0522BEC94A006FE52A /* EventItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventItemViewController.swift; sourceTree = "<group>"; };
 		8A1B7A0722BECAC7006FE52A /* HouseInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseInfoViewController.swift; sourceTree = "<group>"; };
-		8A1B7A0922BECB36006FE52A /* CustomThemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomThemeViewController.swift; sourceTree = "<group>"; };
-		8A1B7A0B22BECBCD006FE52A /* RoomBookingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomBookingViewController.swift; sourceTree = "<group>"; };
-		8A1B7A0D22BECC58006FE52A /* LostAndFoundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostAndFoundViewController.swift; sourceTree = "<group>"; };
 		8A1B7A1722BF2995006FE52A /* swipetoright.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = swipetoright.gif; sourceTree = "<group>"; };
 		8A1B7A1B22BF2A7C006FE52A /* swipetoleft.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = swipetoleft.gif; sourceTree = "<group>"; };
 		8A1B7A1E22C0072D006FE52A /* Interactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
@@ -206,6 +198,16 @@
 				12817475A8496AB78A3C28C3 /* Pods_TimeStamp.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		31BB398022E6C485004D2DE5 /* Old */ = {
+			isa = PBXGroup;
+			children = (
+				8A1B7A0322BEC924006FE52A /* ToDoListViewController.swift */,
+				8A1B7A0522BEC94A006FE52A /* EventItemViewController.swift */,
+				8A5F822E22D6DB3100443020 /* TaskItemViewController.swift */,
+			);
+			path = Old;
 			sourceTree = "<group>";
 		};
 		8A1B7A1D22C006ED006FE52A /* Helpers */ = {
@@ -365,20 +367,14 @@
 				CEDC433322760BBE00A78890 /* GetStartedViewController.swift */,
 				CEDC43502276816C00A78890 /* SetUp1ViewController.swift */,
 				CEDC435C22773FAC00A78890 /* ScheduleViewController.swift */,
-				8A1B79FD22BEC31D006FE52A /* UtilityViewController.swift */,
 				8A1B7A0722BECAC7006FE52A /* HouseInfoViewController.swift */,
 				CEDC435A22773F8400A78890 /* MainPageViewController.swift */,
 				CEDC435E22775DFA00A78890 /* SettingsViewController.swift */,
 				8A1B79F922BEC0C6006FE52A /* SignInViewController.swift */,
 				8A1B79FF22BEC40E006FE52A /* NewsTableViewController.swift */,
-				8A1B7A0922BECB36006FE52A /* CustomThemeViewController.swift */,
-				8A1B7A0122BEC878006FE52A /* Q&AViewController.swift */,
-				8A1B7A0D22BECC58006FE52A /* LostAndFoundViewController.swift */,
 				8A1B79FB22BEC2AF006FE52A /* MainTabBarViewController.swift */,
-				8A1B7A0322BEC924006FE52A /* ToDoListViewController.swift */,
-				8A1B7A0522BEC94A006FE52A /* EventItemViewController.swift */,
-				8A5F822E22D6DB3100443020 /* TaskItemViewController.swift */,
-				8A1B7A0B22BECBCD006FE52A /* RoomBookingViewController.swift */,
+				31BB397E22E6B48F004D2DE5 /* AppEntryViewController.swift */,
+				31BB398022E6C485004D2DE5 /* Old */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -550,10 +546,8 @@
 				CEDC433422760BBE00A78890 /* GetStartedViewController.swift in Sources */,
 				8A1AEDCB22C2BE25005282FD /* TomorrowToTodayShift.swift in Sources */,
 				8A1AEDC922C2BDFF005282FD /* TodayToTomorrowShift.swift in Sources */,
-				8A1B7A0222BEC878006FE52A /* Q&AViewController.swift in Sources */,
 				CEDC435F22775DFA00A78890 /* SettingsViewController.swift in Sources */,
 				8A1B7A0022BEC40E006FE52A /* NewsTableViewController.swift in Sources */,
-				8A1B7A0C22BECBCD006FE52A /* RoomBookingViewController.swift in Sources */,
 				8A6780792298C81B00748848 /* EventView.swift in Sources */,
 				CE2D71492280C71E00F4D89A /* TimeStampModel.xcdatamodeld in Sources */,
 				8AA2F046228123890091EF0F /* HorizontalLeftShiftTransition.swift in Sources */,
@@ -574,7 +568,6 @@
 				CEC26E07227B3E9E00FFFC67 /* Period+CoreDataProperties.swift in Sources */,
 				CE927FF8227A0BCD00EE0A22 /* RepeatingTimer.swift in Sources */,
 				CE146D982280BD9900B3922D /* Settings+CoreDataProperties.swift in Sources */,
-				8A1B7A0E22BECC58006FE52A /* LostAndFoundViewController.swift in Sources */,
 				CEC26E02227B3E9E00FFFC67 /* Timetable+CoreDataProperties.swift in Sources */,
 				8A1B7A2522C01D6F006FE52A /* TomorrowToTodayAnimator.swift in Sources */,
 				8A1B7A0822BECAC7006FE52A /* HouseInfoViewController.swift in Sources */,
@@ -595,14 +588,13 @@
 				8AD8621E22984AB800412EFF /* VerticallyDownShiftTransitionUnwind.swift in Sources */,
 				8A5F822622D581F300443020 /* TaskListView.swift in Sources */,
 				CEC26E05227B3E9E00FFFC67 /* Schedule+CoreDataClass.swift in Sources */,
-				8A1B79FE22BEC31D006FE52A /* UtilityViewController.swift in Sources */,
+				31BB397F22E6B48F004D2DE5 /* AppEntryViewController.swift in Sources */,
 				8A1B79FC22BEC2AF006FE52A /* MainTabBarViewController.swift in Sources */,
 				8A5F822222D4F34B00443020 /* TodayTomorrowView.swift in Sources */,
 				8AEA785122851D5C0031B030 /* UserDataSettings.swift in Sources */,
 				CE927FF4227A0BCD00EE0A22 /* UserTimetable.swift in Sources */,
 				CE927FF6227A0BCD00EE0A22 /* ArticleClass.swift in Sources */,
 				8A1B7A2322C018F1006FE52A /* TodayToTomorrowAnimator.swift in Sources */,
-				8A1B7A0A22BECB36006FE52A /* CustomThemeViewController.swift in Sources */,
 				8AA2F04422811FF90091EF0F /* HorizontalRightShiftTransition.swift in Sources */,
 				8A5F822822D581FF00443020 /* EventListView.swift in Sources */,
 				8A1AEDCE22C4148F005282FD /* Event+CoreDataClass.swift in Sources */,

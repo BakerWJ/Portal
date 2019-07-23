@@ -270,4 +270,15 @@ extension UIView
         }
         addConstraints (NSLayoutConstraint.constraints(withVisualFormat: format, options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: viewsDictionary))
     }
+    
+    //this creates a drop shadow given that the corner radius has already been set
+    func dropShadow ()
+    {
+        layer.shadowColor = UIColor.black.cgColor;
+        layer.shadowOpacity = 0.5
+        layer.masksToBounds = false;
+        layer.shadowRadius = 3;
+        layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: layer.cornerRadius).cgPath;
+        layer.shadowOffset = CGSize(width: 0.0, height: 1.0);
+    }
 }

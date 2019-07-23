@@ -142,6 +142,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
         GIDSignIn.sharedInstance()?.scopes.append(calendarScope);
         GIDSignIn.sharedInstance().scopes.append (calendarScope2);
         GIDSignIn.sharedInstance().scopes.append (classroomScope);
+        Util.printFonts()
         
         //After the app launches, it will check if the current schedule stored locally is up to date
         UserDataSettings.delegate = self;

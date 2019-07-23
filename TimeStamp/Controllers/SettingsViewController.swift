@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreData
+import GoogleSignIn
+import FirebaseAuth
 
 class SettingsViewController: UIViewController {
 
@@ -45,11 +47,38 @@ class SettingsViewController: UIViewController {
     
     var settings: Settings?
     
+    var unwind = false;
+    
+    let screenWidth = UIScreen.main.bounds.width;
+    let screenHeight = UIScreen.main.bounds.height;
+    
+    
+    //this is a temperary placeholder for the back button
+    lazy var backButton: UIButton = {
+        let button = UIButton ();
+        button.setBackgroundImage(UIImage(named: "backButton"), for: .normal);
+        button.addTarget(self, action: #selector (back), for: .touchUpInside);
+        return button;
+    }()
+    
+    //this could be the sign out button if you decide to use it
+    lazy var signOutButton: UIButton = {
+        let button = UIButton ();
+        button.backgroundColor = UIColor(red: 40/255.0, green: 73/255.0, blue: 164/255.0, alpha: 1);
+        button.setTitleColor(.white, for: .normal);
+        button.setTitleColor(.white, for: .highlighted);
+        button.setTitle("Sign Out", for: .normal);
+        button.setTitle("Sign Out", for: .highlighted);
+        button.addTarget(self, action: #selector (signOut), for: .touchUpInside);
+        return button;
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
         clearDay()
         clearTime()
+        setUpBackButtonAndSignOut() //this is just for temporary use and avoid crowding out the other views.
         let fetchRequest = NSFetchRequest <NSFetchRequestResult> (entityName: "Settings");
         do {
             if let results = try CoreDataStack.managedObjectContext.fetch(fetchRequest) as? [Settings] {
@@ -86,6 +115,25 @@ class SettingsViewController: UIViewController {
         }
         
         // Do any additional setup after loading the view.
+    }
+    private func setUpBackButtonAndSignOut ()
+    {
+        view.addSubview(backButton);
+        backButton.translatesAutoresizingMaskIntoConstraints = false;
+        backButton.topAnchor.constraint (equalTo: view.topAnchor, constant: 30/812.0*view.frame.height).isActive = true;
+        backButton.widthAnchor.constraint (equalToConstant: 40/375*view.frame.width).isActive = true;
+        backButton.heightAnchor.constraint (equalTo: backButton.widthAnchor).isActive = true;
+        backButton.leadingAnchor.constraint (equalTo: view.leadingAnchor, constant: 30/812.0*view.frame.height).isActive = true;
+        
+        //should put this somewhere other than where it is
+        view.addSubview(signOutButton);
+        signOutButton.translatesAutoresizingMaskIntoConstraints = false;
+        signOutButton.centerXAnchor.constraint (equalTo: view.centerXAnchor).isActive = true;
+        signOutButton.centerYAnchor.constraint (equalTo: view.centerYAnchor).isActive = true;
+        signOutButton.heightAnchor.constraint (equalToConstant: 41/375.0*screenWidth).isActive = true;
+        signOutButton.widthAnchor.constraint (equalToConstant: 267/375.0*screenWidth).isActive = true;
+        signOutButton.layoutIfNeeded();
+        signOutButton.layer.cornerRadius = signOutButton.frame.height/3;
     }
     
     @IBAction func generalClick(_ sender: Any) {
@@ -412,11 +460,36 @@ class SettingsViewController: UIViewController {
         
         eveningLabel.centerXAnchor.constraint (equalTo: view.centerXAnchor).isActive = true;
         eveningLabel.centerYAnchor.constraint (equalTo: eveningButton.centerYAnchor).isActive = true;
-        
     }
     
-    @IBAction func triggerUnwind ()
+    //this triggers a unwind segue back to the tab bar controller
+    @objc func back ()
     {
-        performSegue(withIdentifier: "returnFromSettings", sender: self)
+        performSegue (withIdentifier: "returnFromSettings", sender: self);
+    }
+    
+    //when making a sign out button, just connect the selector to this function
+    //signs the user out of this place and segues to the login view
+    @objc func signOut () {
+        do {
+            try Auth.auth().signOut()
+            GIDSignIn.sharedInstance().signOut();
+        }
+        catch let signOutError as NSError
+        {
+            print ("Error signing out: %@", signOutError)
+            return;
+        }
+        UserDefaults.standard.set(false, forKey: "loggedin");
+        unwind = true;
+        back();
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let dest = segue.destination as? MainTabBarViewController
+        {
+            dest.unwind = unwind;
+            unwind = false;
+        }
     }
 }
