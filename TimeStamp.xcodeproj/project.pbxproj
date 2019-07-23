@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		31BB397F22E6B48F004D2DE5 /* AppEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BB397E22E6B48F004D2DE5 /* AppEntryViewController.swift */; };
+		31BB399122E76493004D2DE5 /* SitkaBanner-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 31BB398D22E76492004D2DE5 /* SitkaBanner-Bold.ttf */; };
+		31BB399222E76493004D2DE5 /* SitkaBanner-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 31BB398E22E76492004D2DE5 /* SitkaBanner-Italic.ttf */; };
+		31BB399322E76493004D2DE5 /* SimSun.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 31BB398F22E76492004D2DE5 /* SimSun.ttf */; };
+		31BB399422E76493004D2DE5 /* SitkaBanner.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 31BB399022E76492004D2DE5 /* SitkaBanner.ttf */; };
+		31BB399622E764A9004D2DE5 /* SitkaBanner-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 31BB399522E764A9004D2DE5 /* SitkaBanner-BoldItalic.ttf */; };
 		3F1A47B2B1D9B6C8A9CDD880 /* Pods_TimeStamp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12817475A8496AB78A3C28C3 /* Pods_TimeStamp.framework */; };
 		8A1AEDC722C11598005282FD /* credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8A1AEDC622C11598005282FD /* credentials.plist */; };
 		8A1AEDC922C2BDFF005282FD /* TodayToTomorrowShift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1AEDC822C2BDFF005282FD /* TodayToTomorrowShift.swift */; };
@@ -89,6 +94,11 @@
 /* Begin PBXFileReference section */
 		12817475A8496AB78A3C28C3 /* Pods_TimeStamp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TimeStamp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		31BB397E22E6B48F004D2DE5 /* AppEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEntryViewController.swift; sourceTree = "<group>"; };
+		31BB398D22E76492004D2DE5 /* SitkaBanner-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SitkaBanner-Bold.ttf"; sourceTree = "<group>"; };
+		31BB398E22E76492004D2DE5 /* SitkaBanner-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SitkaBanner-Italic.ttf"; sourceTree = "<group>"; };
+		31BB398F22E76492004D2DE5 /* SimSun.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimSun.ttf; sourceTree = "<group>"; };
+		31BB399022E76492004D2DE5 /* SitkaBanner.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SitkaBanner.ttf; sourceTree = "<group>"; };
+		31BB399522E764A9004D2DE5 /* SitkaBanner-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SitkaBanner-BoldItalic.ttf"; sourceTree = "<group>"; };
 		3D9C7440C79988B274B1F14A /* Pods-TimeStamp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeStamp.release.xcconfig"; path = "Target Support Files/Pods-TimeStamp/Pods-TimeStamp.release.xcconfig"; sourceTree = "<group>"; };
 		7C118D26195145B6F602CD7A /* Pods-TimeStamp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeStamp.debug.xcconfig"; path = "Target Support Files/Pods-TimeStamp/Pods-TimeStamp.debug.xcconfig"; sourceTree = "<group>"; };
 		8A1AEDC622C11598005282FD /* credentials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = credentials.plist; sourceTree = "<group>"; };
@@ -386,6 +396,11 @@
 				CEDC434A2276130900A78890 /* Segoe UI Bold.ttf */,
 				CEDC43492276130900A78890 /* Segoe UI Italic.ttf */,
 				CEDC434B2276130900A78890 /* Segoe UI.ttf */,
+				31BB398F22E76492004D2DE5 /* SimSun.ttf */,
+				31BB398D22E76492004D2DE5 /* SitkaBanner-Bold.ttf */,
+				31BB398E22E76492004D2DE5 /* SitkaBanner-Italic.ttf */,
+				31BB399022E76492004D2DE5 /* SitkaBanner.ttf */,
+				31BB399522E764A9004D2DE5 /* SitkaBanner-BoldItalic.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -460,13 +475,18 @@
 				CEDC434C2276130900A78890 /* Segoe UI Bold Italic.ttf in Resources */,
 				8A1AEDC722C11598005282FD /* credentials.plist in Resources */,
 				8AD862122298387600412EFF /* enjoyWeekend.gif in Resources */,
+				31BB399122E76493004D2DE5 /* SitkaBanner-Bold.ttf in Resources */,
 				8A1B7A1C22BF2A7C006FE52A /* swipetoleft.gif in Resources */,
 				CE927FFB227A0EFB00EE0A22 /* GoogleService-Info.plist in Resources */,
 				CEDC434E2276130900A78890 /* Segoe UI Bold.ttf in Resources */,
+				31BB399322E76493004D2DE5 /* SimSun.ttf in Resources */,
 				CEDC434F2276130900A78890 /* Segoe UI.ttf in Resources */,
 				CEDC434D2276130900A78890 /* Segoe UI Italic.ttf in Resources */,
+				31BB399622E764A9004D2DE5 /* SitkaBanner-BoldItalic.ttf in Resources */,
 				CEDC433F22760BC000A78890 /* LaunchScreen.storyboard in Resources */,
 				8A1B7A1822BF2995006FE52A /* swipetoright.gif in Resources */,
+				31BB399222E76493004D2DE5 /* SitkaBanner-Italic.ttf in Resources */,
+				31BB399422E76493004D2DE5 /* SitkaBanner.ttf in Resources */,
 				CEDC433C22760BC000A78890 /* Assets.xcassets in Resources */,
 				CEDC433722760BBE00A78890 /* Main.storyboard in Resources */,
 			);
