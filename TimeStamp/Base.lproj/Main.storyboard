@@ -482,36 +482,6 @@
             </objects>
             <point key="canvasLocation" x="6270" y="284"/>
         </scene>
-        <!--Item-->
-        <scene sceneID="fl9-5w-jVE">
-            <objects>
-                <tableViewController id="C1b-2B-x1H" customClass="NewsTableViewController" customModule="TimeStamp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="4dA-el-ZF2">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="VsT-fF-cuS">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VsT-fF-cuS" id="38J-El-cY6">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="C1b-2B-x1H" id="TUP-gN-uW3"/>
-                            <outlet property="delegate" destination="C1b-2B-x1H" id="o5m-zq-3Eh"/>
-                        </connections>
-                    </tableView>
-                    <tabBarItem key="tabBarItem" title="Item" id="oaz-zx-GGe"/>
-                    <navigationItem key="navigationItem" id="Euu-EO-oYG"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qv9-Bq-dEx" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2582" y="1330"/>
-        </scene>
         <!--News-->
         <scene sceneID="w9H-at-8RK">
             <objects>
@@ -521,12 +491,28 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="C1b-2B-x1H" kind="relationship" relationship="rootViewController" id="fa7-6k-sMC"/>
+                        <segue destination="PYt-bz-Qut" kind="relationship" relationship="rootViewController" id="eGM-TI-ijf"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kdk-sp-BJd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1681" y="1329"/>
+        </scene>
+        <!--News View Controller-->
+        <scene sceneID="GfA-Ux-raw">
+            <objects>
+                <viewController id="PYt-bz-Qut" customClass="NewsViewController" customModule="TimeStamp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cxg-Uu-q6Z">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.15686274509803921" green="0.28627450980392155" blue="0.64313725490196072" alpha="1" colorSpace="calibratedRGB"/>
+                        <viewLayoutGuide key="safeArea" id="jCE-B3-4Zo"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="uIg-jC-dVq"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3Jm-Ot-hfJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2496.8000000000002" y="1328.5714285714287"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="LIn-eu-cPP">
