@@ -22,6 +22,9 @@ class ScheduleView: UIStackView
     var flipped = false;
     let changeTimetable = UserTimetable ()
     
+    let screenHeight = UIScreen.main.bounds.height;
+    let screenWidth = UIScreen.main.bounds.width;
+    
     weak var delegate: KeyboardShiftingDelegate?
     
     //MARK: Constructors

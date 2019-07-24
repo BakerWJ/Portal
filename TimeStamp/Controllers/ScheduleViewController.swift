@@ -34,37 +34,59 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate, UIScro
     
     var todaytomorrowviews = [true, false];
     
+    var daysDisplayed = [Date]();
+    var scheduleDisplayed = [Schedule?]();
+    var coloursDisplayed = [UIColor]();
+    var ADaysDisplayed = [Bool]()
+    var flippedDisplayed = [Bool]();
+    
     let screenHeight = UIScreen.main.bounds.height;
     let screenWidth = UIScreen.main.bounds.width;
+    
+    //current user calendar
+    let calendar = Calendar.current;
     
     //collectionView that contains the the two views
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal;
-        layout.minimumLineSpacing = 0;
+        layout.minimumLineSpacing = 32;
         let cv = UICollectionView (frame: .zero, collectionViewLayout: layout);
         cv.backgroundColor = .clear;
         cv.showsVerticalScrollIndicator = false;
         cv.showsHorizontalScrollIndicator = false;
+        cv.contentInset = UIEdgeInsets(top: 0, left: 33/375.0*screenWidth, bottom: 0, right: 33/375.0*screenWidth)
         cv.delegate = self;
         cv.dataSource = self;
         return cv;
     }()
     
+    lazy var topLabel: UILabel = {
+        let label = UILabel ()
+        label.text = "What's Going On Today?     ";
+        label.font = UIFont (name: "SitkaBanner", size: 40/375.0*screenWidth);
+        label.textColor = .white;
+        label.textAlignment = .left;
+        label.numberOfLines = 0;
+        label.baselineAdjustment = .alignCenters;
+        return label;
+    }()
+    
     override func viewDidLoad() {
-        view.backgroundColor = UIColor(red: 243.0/255, green: 243.0/255, blue: 243.0/255, alpha: 1.0);
+        view.backgroundColor = .white;
         //as the name suggests, fetches schedules from core Data and stores them in the array "schedules"
         fetchSchedules ()
+        reloadScheduleData()
         setup ()
+        view.backgroundColor = coloursDisplayed [0]
     }
     
     private func setup ()
     {
         self.automaticallyAdjustsScrollViewInsets = false;
-        
         //set up the collectionView
         //register the todaytomorrowview as the cell type
-        collectionView.register(TodayTomorrowView.self, forCellWithReuseIdentifier: cellId);
+        collectionView.register(DailyScheduleCell.self, forCellWithReuseIdentifier: cellId);
         //so the user can pan
         collectionView.isPagingEnabled = true;
         
@@ -77,27 +99,63 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate, UIScro
         collectionView.heightAnchor.constraint (equalToConstant: screenHeight).isActive = true;
         collectionView.widthAnchor.constraint (equalToConstant: screenWidth).isActive = true;
         
+        //setUp the top label
+        view.addSubview (topLabel);
+        topLabel.translatesAutoresizingMaskIntoConstraints = false;
+        topLabel.topAnchor.constraint (equalTo: view.topAnchor, constant: 45/812.0*screenHeight).isActive = true;
+        topLabel.centerXAnchor.constraint (equalTo: view.centerXAnchor).isActive = true;
+        topLabel.heightAnchor.constraint (equalToConstant: 100/812.0*screenHeight).isActive = true;
+        topLabel.widthAnchor.constraint (equalToConstant: 276/375.0*screenWidth).isActive = true;
     }
     
+    private func reloadScheduleData()
+    {
+        daysDisplayed = [Date]()
+        scheduleDisplayed = [Schedule?]()
+        ADaysDisplayed = [Bool]()
+        flippedDisplayed = [Bool]();
+        coloursDisplayed = [UIColor]()
+        for x in 0..<5
+        {
+            daysDisplayed.append (Util.next(days: x) as Date);
+        }
+        for day in daysDisplayed
+        {
+            let weekday = calendar.component(.weekday, from: day);
+            var selected: Schedule?
+            selected = nil;
+            for schedule in schedules
+            {
+                if (schedule.value == Int32((weeklySchedule?.typeOfDay [weekday - 1])!))
+                {
+                    selected = schedule;
+                    break;
+                }
+            }
+            scheduleDisplayed.append (selected);
+            ADaysDisplayed.append ((weeklySchedule?.abDay [weekday - 1])!);
+            flippedDisplayed.append (((weeklySchedule?.flipOrNot [weekday - 1])!));
+        }
+        coloursDisplayed.append (UIColor(red: 183/255.0, green: 139/255.0, blue: 122/255.0, alpha: 1.0));
+        coloursDisplayed.append (UIColor(red: 40/255.0, green: 73/255.0, blue: 164/255.0, alpha: 1.0));
+        coloursDisplayed.append (UIColor(red: 91/255.0, green: 21/255.0, blue: 42/255.0, alpha: 1.0));
+        coloursDisplayed.append (UIColor(red: 42/255.0, green: 138/255.0, blue: 135/255.0, alpha: 1.0));
+        coloursDisplayed.append (UIColor(red: 42/255.0, green: 90/255.0, blue: 138/255.0, alpha: 1.0));
+    }
     //COLLECTION VIEW DELEGATE METHODS
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2;
+        return daysDisplayed.count;
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! TodayTomorrowView
-        cell.reloadData(schedules: schedules, today: todaytomorrowviews [indexPath.item], weeklySchedule: weeklySchedule, delegate: self, reload: cell.loaded ? false : true);
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! DailyScheduleCell
+        cell.reloadData(schedule: scheduleDisplayed [indexPath.item], day: daysDisplayed [indexPath.item], ADay: ADaysDisplayed [indexPath.item], flipped: flippedDisplayed [indexPath.item], delegate: self, reload: true)
         return cell;
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize (width: screenWidth, height: screenHeight);
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        let cell = cell as! TodayTomorrowView
-        cell.timer.suspend();
+        return CGSize (width: 303/375.0*screenWidth, height: screenHeight);
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -111,13 +169,6 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate, UIScro
         super.viewWillAppear(animated)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-        for view in collectionView.subviews
-        {
-            if let view = view as? TodayTomorrowView
-            {
-                view.timer.suspend();
-            }
-        }
     }
     
     //When the keyboard hides, then animate back to the normal position
@@ -187,25 +238,3 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate, UIScro
         }
     }
 }
-
-/*
-extension TodayViewController: UIViewControllerTransitioningDelegate
-{
-    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return TodayToTomorrowAnimator()
-    }
-    
-    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return TomorrowToTodayAnimator()
-    }
-    
-    func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
-        return interactor.hasStarted ? interactor : nil;
-    }
-    
-    func interactionControllerForPresentation(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
-        return interactor.hasStarted ? interactor : nil;
-    }
-}
- */
-

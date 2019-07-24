@@ -12,6 +12,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
 
     @IBInspectable var defaultIndex: Int = 0;
     
+    
     //the screen width and height
     let screenWidth = UIScreen.main.bounds.width;
     let screenHeight = UIScreen.main.bounds.height;
@@ -23,7 +24,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
     lazy var settingsButton: UIView = {
         let view = UIView ();
         //adds the image
-        view.frame = CGRect (x: 284/375.0*screenWidth, y: 734/375.0*screenWidth, width: 51/375.0*screenWidth, height: 51/375.0*screenWidth);
+        view.frame = CGRect (x: 284/375.0*screenWidth, y: 734/812.0*screenHeight, width: 51/375.0*screenWidth, height: 51/375.0*screenWidth);
         //add the settingsImage
         let image = UIImageView(image: UIImage(named: "settingsTabBarIcon"));
         view.addSubview(image);
@@ -56,7 +57,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         super.viewDidLoad()
         selectedIndex = defaultIndex;
         self.delegate = self;
-        
+        update()
         initialsetup()
         // Do any additional setup after loading the view.
     }
@@ -101,6 +102,11 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         selected = index!;
     }
     
+    //returns the animation necessary for the viewcontrollers
+    func tabBarController(_ tabBarController: UITabBarController, animationControllerForTransitionFrom fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return TabBarTransition (viewControllers: tabBarController.viewControllers);
+    }
+    
     private func initialsetup ()
     {
         view.addSubview(settingsButton);
@@ -115,7 +121,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
     private func update ()
     {
         //tabBar positioning
-        tabBar.frame = CGRect(x: 34/375*screenWidth, y: 737/375.0*screenWidth, width: 217/375.0*screenWidth, height: 46/375.0*screenWidth);
+        tabBar.frame = CGRect(x: 34/375.0*screenWidth, y: 737/812.0*screenHeight, width: 217/375.0*screenWidth, height: 46/375.0*screenWidth);
         //makes the tab bar transparent
         tabBar.backgroundImage = UIImage();
         tabBar.shadowImage = UIImage ();
@@ -148,7 +154,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
             view.addSubview(each);
             each.frame.size = CGSize (width: 45/375.0*screenWidth, height: 45/375.0*screenWidth);
         }
-        homeIcon.frame.origin = CGPoint (x: 63.5/375.0*screenWidth, y: 736/375.0*screenWidth);
+        homeIcon.frame.origin = CGPoint (x: 63.5/375.0*screenWidth, y: 736/812.0*screenHeight);
         scheduleIcon.frame.origin = CGPoint (x: 122.5/375.0*screenWidth, y: homeIcon.frame.origin.y);
         newsIcon.frame.origin = CGPoint (x: 180.5/375.0*screenWidth, y: homeIcon.frame.origin.y);
     }
@@ -158,7 +164,15 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         //at the beginning, the homescreen is selected, so it should be higher placed
         homeIcon.frame = homeIcon.frame.offsetBy(dx: 0, dy: -5/375.0*screenWidth);
         //the underline should be placed right beneath the image
-        underline.frame.origin.y = 773/375.0*screenWidth;
+        //depend on the aspect ratio of the phone:
+        if (screenHeight/screenWidth == 812.0/375.0)
+        {print ("X")
+            underline.frame.origin.y = 773/812.0*screenHeight;
+        }
+        else
+        {print ("Y")
+            underline.frame.origin.y = 780/812.0*screenHeight;
+        }
         underline.center.x = homeIcon.center.x;
         view.addSubview(underline);
     }
@@ -184,6 +198,63 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         {
             unwind = false;
             performSegue(withIdentifier: "fromTabBar", sender: self.tabBarController);
+        }
+    }
+}
+
+//the animation between transition of tab bar items
+class TabBarTransition: NSObject, UIViewControllerAnimatedTransitioning {
+    
+    let viewControllers: [UIViewController]?
+    let transitionDuration: Double = 0.5
+    
+    init (viewControllers: [UIViewController]?)
+    {
+        self.viewControllers = viewControllers;
+    }
+    
+    //set the animation duration to whatever is specified above
+    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+        return TimeInterval(transitionDuration)
+    }
+    
+    //animate the transition
+    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        
+        //shorten the names so that it's easier to type
+        guard let fromVC = transitionContext.viewController(forKey: .from),
+            let fromView = fromVC.view,
+            let toVC = transitionContext.viewController(forKey: .to),
+            let toView = toVC.view
+        else {
+            transitionContext.completeTransition(false)
+            return
+        }
+        
+        //since the background without anyview is black, this is just for padding the view so that it seems like the background is white
+        let whiteView = UIView ();
+        whiteView.backgroundColor = .white;
+        whiteView.frame = fromView.frame;
+        
+        //the animation
+        DispatchQueue.main.async {
+            transitionContext.containerView.addSubview(whiteView); //adds the white padding view
+            transitionContext.containerView.sendSubviewToBack(whiteView); //sends it to the very bottom for padding
+            transitionContext.containerView.addSubview(toView) //add the view destination
+            fromView.layer.opacity = 1; //set the original opacity so that the destination view is not visible and the original view is visible
+            toView.layer.opacity = 0;
+            UIView.animate(withDuration: self.transitionDuration, animations: {
+                fromView.layer.opacity = 0;  //animates the opacity
+                toView.layer.opacity = 1;
+            }) {
+                (Finished) in
+                if (Finished)
+                {
+                    fromView.removeFromSuperview()  //if transition is finished (not interrupted) then remove the source view and padding from superview
+                    whiteView.removeFromSuperview()  //leaving only the destination view visible
+                }
+                transitionContext.completeTransition(Finished)  //pass in the boolean as a parameter to indicate if the transition is finished or not
+            }
         }
     }
 }

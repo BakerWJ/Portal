@@ -319,8 +319,7 @@ class UserDataSettings
                         //sets the attribute of schedules
                         schedule.value = Int32(value)
                         schedule.kind = document.documentID
-                        //sets the expirationDate of this schedule to the nearest future Sunday at midnight (so like the one
-                        //between Saturday and Sunday)
+                        //sets the expirationDate of this schedule to the next day)
                         schedule.expirationDate = Util.nextDay ()
                         
                         //loops through the arrays

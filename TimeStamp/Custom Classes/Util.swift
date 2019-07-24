@@ -281,4 +281,15 @@ extension UIView
         layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: layer.cornerRadius).cgPath;
         layer.shadowOffset = CGSize(width: 0.0, height: 1.0);
     }
+    
+    func pushTransition (_ duration: CFTimeInterval)
+    {
+        let animation = CATransition ()
+        animation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+        animation.type = .push
+        animation.subtype = .fromTop
+        animation.duration = duration;
+        animation.isRemovedOnCompletion = false;
+        self.layer.add (animation, forKey: "transition");
+    }
 }

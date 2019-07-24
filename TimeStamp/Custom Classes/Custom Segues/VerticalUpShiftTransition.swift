@@ -24,7 +24,7 @@ class VerticalUpShiftTransition: UIStoryboardSegue
         if let window = UIApplication.shared.keyWindow
         {
             window.insertSubview (secondControllerView!, aboveSubview: firstControllerView!)
-            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations:
+            UIView.animate(withDuration: 1, delay: 0, options: .curveEaseInOut, animations:
             {
                     firstControllerView?.frame = (firstControllerView?.frame)!.offsetBy(dx: 0, dy: -screenHeight)
                     secondControllerView?.frame = (secondControllerView?.frame)!.offsetBy (dx: 0, dy: -screenHeight)
