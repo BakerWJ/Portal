@@ -28,6 +28,7 @@ class NewsViewController: UIViewController {
     }
     
     func setupScroll() {
+        scrollview.bounces = false
         scrollview.showsVerticalScrollIndicator = false
         scrollview.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         scrollview.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
