@@ -48,6 +48,8 @@ class DailyScheduleCell: UICollectionViewCell {
     }()
     
     let scrollView = UIScrollView()
+    let imageContainerView = UIView()
+    let imageView = UIImageView()
     
     var loaded = false; //indicate if the view is loaded
     var schedule: Schedule?
@@ -56,6 +58,8 @@ class DailyScheduleCell: UICollectionViewCell {
     var flipped = false;
     
     let formatter = DateFormatter()
+    
+    var imageTop = NSLayoutConstraint();
     
     weak var delegate: KeyboardShiftingDelegate?
     
@@ -80,12 +84,32 @@ class DailyScheduleCell: UICollectionViewCell {
     
     private func setUp ()
     {
+        
         addSubview(whiteView);
         whiteView.translatesAutoresizingMaskIntoConstraints = false;
         whiteView.leadingAnchor.constraint (equalTo: leadingAnchor).isActive = true;
         whiteView.trailingAnchor.constraint (equalTo: trailingAnchor).isActive = true;
         whiteView.topAnchor.constraint (equalTo: topAnchor, constant: 296/812.0*screenHeight).isActive = true;
         whiteView.bottomAnchor.constraint (equalTo: bottomAnchor, constant: -110/812.0*screenHeight).isActive = true;
+        
+        addSubview(imageContainerView);
+        imageContainerView.translatesAutoresizingMaskIntoConstraints = false;
+        imageContainerView.leadingAnchor.constraint (equalTo: leadingAnchor).isActive = true;
+        imageContainerView.trailingAnchor.constraint (equalTo: trailingAnchor).isActive = true;
+        imageContainerView.heightAnchor.constraint (equalToConstant: 354/812.0*screenHeight).isActive = true;
+        imageTop = imageContainerView.topAnchor.constraint (equalTo: whiteView.topAnchor)
+        imageTop.isActive = true;
+        imageContainerView.clipsToBounds = true;
+        imageContainerView.layer.cornerRadius = 25/375.0*screenWidth;
+        imageContainerView.layer.masksToBounds = true;
+        
+        imageContainerView.addSubview(imageView);
+        imageContainerView.addContraintsWithFormat("V:|[v0]|", views: imageView);
+        imageContainerView.addContraintsWithFormat("H:|[v0]|", views: imageView);
+        
+        addImage()
+        
+        bringSubviewToFront(whiteView);
         
         //setup no dataLabel
         whiteView.addSubview(noDataLabel);
@@ -154,6 +178,30 @@ class DailyScheduleCell: UICollectionViewCell {
             showNoDataLabel ()
         }
     }
+    
+    private func addImage ()
+    {
+        if let schedule = schedule
+        {
+            if (schedule.value == 3)
+            {
+                imageView.image = UIImage(named: "lateStartImage");
+            }
+            else if (schedule.value == 7)
+            {
+                imageView.image = UIImage(named: "equitySurveyImage")
+            }
+            else
+            {
+                imageView.image = nil;
+            }
+        }
+        else
+        {
+            imageView.image = nil;
+        }
+    }
+    
     private func showNoDataLabel ()
     {
         noDataLabel.layer.opacity = 1;

@@ -55,7 +55,8 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate, UIScro
         cv.backgroundColor = .clear;
         cv.showsVerticalScrollIndicator = false;
         cv.showsHorizontalScrollIndicator = false;
-        cv.contentInset = UIEdgeInsets(top: 0, left: 33/375.0*screenWidth, bottom: 0, right: 33/375.0*screenWidth)
+        cv.bounces = false;
+        cv.contentInset = UIEdgeInsets(top: 0, left: 32/375.0*screenWidth, bottom: 0, right: 32/375.0*screenWidth)
         cv.delegate = self;
         cv.dataSource = self;
         return cv;
@@ -72,40 +73,85 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate, UIScro
         return label;
     }()
     
+    let blockView = UIView ();
+    let containerView = UIView ();
+    
+    let view1 = UIView();
+    let view2 = UIView();
+    var lastContentOffset = CGFloat()
+    var lastIndex = 0;
+    
+    var firstTimeLoad = true;
+    
     override func viewDidLoad() {
         view.backgroundColor = .white;
         //as the name suggests, fetches schedules from core Data and stores them in the array "schedules"
         fetchSchedules ()
         reloadScheduleData()
         setup ()
-        view.backgroundColor = coloursDisplayed [0]
     }
     
     private func setup ()
     {
+        view.addSubview(view1);
+        view.addSubview(view2);
+        view1.translatesAutoresizingMaskIntoConstraints = false;
+        view2.translatesAutoresizingMaskIntoConstraints = false;
+        view.addContraintsWithFormat("V:|[v0]|", views: view1);
+        view.addContraintsWithFormat("V:|[v0]|", views: view2);
+        view.addContraintsWithFormat("H:|[v0]|", views: view1);
+        view.addContraintsWithFormat("H:|[v0]|", views: view2);
+        
+        view1.backgroundColor = coloursDisplayed [0];
+        view1.layer.opacity = 1;
+        view2.backgroundColor = coloursDisplayed [1];
+        view2.layer.opacity = 0;
+        
+        view.addSubview(containerView);
+        containerView.translatesAutoresizingMaskIntoConstraints = false;
+        view.addContraintsWithFormat("H:|[v0]|", views: containerView);
+        containerView.heightAnchor.constraint (equalTo: view.heightAnchor).isActive = true;
+        topConstraint = containerView.topAnchor.constraint (equalTo: view.topAnchor);
+        topConstraint.isActive = true;
+        containerView.backgroundColor = .clear;
+        
         self.automaticallyAdjustsScrollViewInsets = false;
         //set up the collectionView
         //register the todaytomorrowview as the cell type
         collectionView.register(DailyScheduleCell.self, forCellWithReuseIdentifier: cellId);
-        //so the user can pan
-        collectionView.isPagingEnabled = true;
         
         //set constraints
-        view.addSubview(collectionView);
+        containerView.addSubview(collectionView);
         collectionView.translatesAutoresizingMaskIntoConstraints = false;
-        topConstraint = collectionView.topAnchor.constraint (equalTo: view.topAnchor);
-        topConstraint.isActive = true;
-        collectionView.leadingAnchor.constraint (equalTo: view.leadingAnchor).isActive = true;
+        collectionView.topAnchor.constraint (equalTo: containerView.topAnchor).isActive = true;
+        collectionView.leadingAnchor.constraint (equalTo: containerView.leadingAnchor).isActive = true;
         collectionView.heightAnchor.constraint (equalToConstant: screenHeight).isActive = true;
         collectionView.widthAnchor.constraint (equalToConstant: screenWidth).isActive = true;
+        collectionView.reloadData()
+        DispatchQueue.main.async {
+            if let firstCell = self.collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as? DailyScheduleCell
+            {
+                firstCell.imageTop.constant = -151/812.0*self.screenHeight;
+            }
+        }
         
         //setUp the top label
-        view.addSubview (topLabel);
+        containerView.addSubview (topLabel);
         topLabel.translatesAutoresizingMaskIntoConstraints = false;
-        topLabel.topAnchor.constraint (equalTo: view.topAnchor, constant: 45/812.0*screenHeight).isActive = true;
-        topLabel.centerXAnchor.constraint (equalTo: view.centerXAnchor).isActive = true;
+        topLabel.topAnchor.constraint (equalTo: containerView.topAnchor, constant: 45/812.0*screenHeight).isActive = true;
+        topLabel.centerXAnchor.constraint (equalTo: containerView.centerXAnchor).isActive = true;
         topLabel.heightAnchor.constraint (equalToConstant: 100/812.0*screenHeight).isActive = true;
         topLabel.widthAnchor.constraint (equalToConstant: 276/375.0*screenWidth).isActive = true;
+        
+        //blocks everything and prevents them from interfering with the status bar above when keyboard is shown
+        view.addSubview(blockView);
+        blockView.translatesAutoresizingMaskIntoConstraints = false;
+        blockView.topAnchor.constraint (equalTo: view.topAnchor).isActive = true;
+        blockView.leadingAnchor.constraint (equalTo: view.leadingAnchor).isActive = true;
+        blockView.trailingAnchor.constraint (equalTo: view.trailingAnchor).isActive = true;
+        blockView.heightAnchor.constraint (equalToConstant: 30/812.0*screenHeight).isActive = true;
+        //hidden when keyboard is not shown
+        blockView.layer.opacity = 0;
     }
     
     private func reloadScheduleData()
@@ -158,6 +204,11 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate, UIScro
         return CGSize (width: 303/375.0*screenWidth, height: screenHeight);
     }
     
+    //this function is called when the collection view is loaded, so here we can access the first element and set its constant
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         //add observer of the keyboard showing
@@ -171,24 +222,88 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate, UIScro
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
+    //customize the paging effect
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        //stops the scrollview from sliding (stop the physics)
+        targetContentOffset.pointee = scrollView.contentOffset
+        let numCellsShifted = abs(scrollView.contentOffset.x/(335/375.0*screenWidth));
+        let roundedCell = Int(round(numCellsShifted + 0.1));
+        let indexOfMajorCell = min(roundedCell, 4);
+        let indexPath = IndexPath (row: indexOfMajorCell, section: 0);
+        collectionView.scrollToItem(at: indexPath, at: .left, animated: true);
+    }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        let numCellsShifted = abs(scrollView.contentOffset.x/(355/375.0*screenWidth));
+        let roundedCell = Int (round (numCellsShifted));
+        view1.backgroundColor = coloursDisplayed [roundedCell];
+        view1.layer.opacity = 1;
+        view2.layer.opacity = 0;
+        lastIndex = roundedCell
+        lastContentOffset = scrollView.contentOffset.x
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+
+        if (self.lastContentOffset < scrollView.contentOffset.x) //moved right
+        {
+            view2.backgroundColor = coloursDisplayed [min(4, lastIndex + 1)];
+            let diff = scrollView.contentOffset.x - self.lastContentOffset;
+            let ratio = diff/(355/375*screenWidth)
+            view2.layer.opacity = Float(ratio);
+            view1.layer.opacity = 1 - view2.layer.opacity;
+            guard let thisCell = collectionView.cellForItem(at: IndexPath(row: lastIndex, section: 0)) as? DailyScheduleCell,
+                let nextCell = collectionView.cellForItem(at: IndexPath(row: lastIndex + 1, section: 0)) as? DailyScheduleCell
+                else {
+                    return;
+                }
+            nextCell.imageTop.constant = ratio*(-151/812.0*screenHeight);
+            thisCell.imageTop.constant = -151/812.0*screenHeight - nextCell.imageTop.constant;
+        }
+        else if (self.lastContentOffset > scrollView.contentOffset.x) //moved left
+        {
+            view2.backgroundColor = coloursDisplayed [max(0, lastIndex - 1)];
+            let diff = self.lastContentOffset - scrollView.contentOffset.x
+            let ratio = diff/(355/375*screenWidth)
+            view2.layer.opacity = Float(ratio);
+            view1.layer.opacity = 1 - view2.layer.opacity;
+            guard let thisCell = collectionView.cellForItem(at: IndexPath(row: lastIndex, section: 0)) as? DailyScheduleCell,
+                let nextCell = collectionView.cellForItem(at: IndexPath(row: lastIndex - 1, section: 0)) as? DailyScheduleCell
+                else {
+                    return;
+            }
+            nextCell.imageTop.constant = ratio*(-151/812.0*screenHeight);
+            thisCell.imageTop.constant = -151/812.0*screenHeight - nextCell.imageTop.constant;
+        }
+        else
+        {
+            view1.layer.opacity = 1;
+            view2.layer.opacity = 0;
+        }
+    }
+    
     //When the keyboard hides, then animate back to the normal position
     @objc func keyboardWillHide (notification: NSNotification)
     {
         UIView.animate (withDuration: 0.3, animations: {
             self.topConstraint.constant = 0;
             self.view.layoutIfNeeded()
-        }, completion: nil)
-        collectionView.isScrollEnabled = true;
+        }) { (Finished) in
+            self.collectionView.isScrollEnabled = true;
+            self.blockView.layer.opacity = 0;
+        }
     }
     
     //When the keyboard will show, get the keyboard height and animate the textfield to the appropriate position by changing the top constraint of the outerView
     @objc func keyboardWillShow (notification: NSNotification)
     {
         collectionView.isScrollEnabled = false;
+        blockView.backgroundColor = coloursDisplayed [Int(round(abs(collectionView.contentOffset.x/(355/375.0*screenWidth))))]
+        blockView.layer.opacity = 1;
         if let keyboardSize = (notification.userInfo? [UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
         {
             keyboardHeight = Double(keyboardSize.height)
-            let periodheight = 60/812.0*self.screenHeight;
+            let periodheight = 30/812.0*self.screenHeight;
             let targetY = CGFloat(self.screenHeight - CGFloat(self.keyboardHeight) - periodheight);
             let textFieldY = textFieldCoordinate.y;
             let difference = targetY - textFieldY;
