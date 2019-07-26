@@ -300,5 +300,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
     func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void)
     {
         UserDataSettings.updateAll();
+        print ("Data Refreshed")
     }
 }

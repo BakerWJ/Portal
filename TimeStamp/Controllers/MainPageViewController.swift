@@ -12,7 +12,6 @@ import CoreData
 import GoogleAPIClientForREST
 import GoogleSignIn
 
-
 class MainPageViewController: UIViewController {
    
     let screenWidth = UIScreen.main.bounds.width;
@@ -40,6 +39,18 @@ class MainPageViewController: UIViewController {
         return label;
     }()
     
+    lazy var topArticleLabel: UILabel = {
+        let label = UILabel();
+        label.font = UIFont (name: "SitkaBanner-Bold", size: 20/375.0*screenWidth);
+        label.numberOfLines = 1
+        label.textAlignment = .left;
+        label.baselineAdjustment = .alignCenters;
+        label.backgroundColor = .clear;
+        label.text = "Top Article";
+        label.adjustsFontSizeToFitWidth = true;
+        return label;
+    }()
+    
     //gets the user's google image
     lazy var userImage: UIImageView = {
         var image = UIImageView()
@@ -52,34 +63,24 @@ class MainPageViewController: UIViewController {
         return image;
     }()
     
-    //this view contains the next class label, and the time when it starts
-    lazy var nextClassView: UIView = {
-        let view = UIView ();
-        view.backgroundColor = .clear
-        view.layer.borderColor = UIColor.black.cgColor
-        view.layer.borderWidth = 1;
+    let nextClassView = NextPeriodView()
+    
+    lazy var profileView: UIView = {
+        let view = UIView();
+        view.backgroundColor = .clear;
+        return view
+    }()
+    
+    lazy var nextFewDaysView: UpcomingDaysView = {
+        let view = UpcomingDaysView(numDays: 3, delegate: self);
         return view;
     }()
     
-    //this shows what the next class is
-    lazy var nextClassLabel: UILabel = {
-        let label = UILabel();
-        label.backgroundColor = .clear;
-        label.textAlignment = .left;
-        label.baselineAdjustment = .alignCenters;
-        label.numberOfLines = 2;
-        label.adjustsFontSizeToFitWidth = true;
-        return label
-    }()
-    
-    //this shows when the next class is
-    lazy var nextClassTimeLabel: UILabel = {
-        let label = UILabel();
-        label.backgroundColor = .clear;
-        label.textAlignment = .left;
-        label.baselineAdjustment = .alignBaselines;
-        return label;
-    }()
+    //for animation between tab bar items
+    var nextClassCenter = NSLayoutConstraint()
+    var profileTop = NSLayoutConstraint()
+    var profileLeading = NSLayoutConstraint()
+    var nextDaysCenter = NSLayoutConstraint()
     
     override func viewDidLoad ()
     {
@@ -90,7 +91,7 @@ class MainPageViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated);
         self.refresh()
-        timer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector (fireTimer), userInfo: nil, repeats: true);
+        timer = Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector (fireTimer), userInfo: nil, repeats: true);
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -107,51 +108,70 @@ class MainPageViewController: UIViewController {
         self.navigationController?.navigationBar.isTranslucent = true;
         
         view.backgroundColor = .white;
-        view.addSubview(helloLabel);
+        
+        view.addSubview(profileView);
+        profileView.translatesAutoresizingMaskIntoConstraints = false;
+        profileLeading = profileView.leadingAnchor.constraint (equalTo: view.leadingAnchor);
+        profileLeading.isActive = true;
+        profileTop = profileView.topAnchor.constraint (equalTo: view.topAnchor);
+        profileTop.isActive = true;
+        profileView.widthAnchor.constraint (equalToConstant: screenWidth).isActive = true;
+        profileView.heightAnchor.constraint (equalToConstant: 120/812.0*screenHeight).isActive = true;
+        
+        profileView.addSubview(helloLabel);
         helloLabel.translatesAutoresizingMaskIntoConstraints = false;
-        helloLabel.topAnchor.constraint (equalTo: view.topAnchor, constant: 54/812.0*screenHeight).isActive = true;
-        helloLabel.leadingAnchor.constraint (equalTo: view.leadingAnchor, constant: 34/375.0*screenWidth).isActive = true;
-        helloLabel.trailingAnchor.constraint (equalTo: view.trailingAnchor, constant: -100/375.0*screenWidth).isActive = true;
+        helloLabel.topAnchor.constraint (equalTo: profileView.topAnchor, constant: 54/812.0*screenHeight).isActive = true;
+        helloLabel.leadingAnchor.constraint (equalTo: profileView.leadingAnchor, constant: 34/375.0*screenWidth).isActive = true;
+        helloLabel.trailingAnchor.constraint (equalTo: profileView.trailingAnchor, constant: -100/375.0*screenWidth).isActive = true;
         helloLabel.heightAnchor.constraint (equalToConstant: 90/812.0*screenHeight).isActive = true;
         
-        view.addSubview(userImage);
+        profileView.addSubview(userImage);
         userImage.translatesAutoresizingMaskIntoConstraints = false;
         userImage.heightAnchor.constraint (equalToConstant: 45/375.0*screenWidth).isActive = true;
         userImage.widthAnchor.constraint (equalTo: userImage.heightAnchor).isActive = true;
         userImage.topAnchor.constraint (equalTo: helloLabel.topAnchor).isActive = true;
-        userImage.trailingAnchor.constraint (equalTo: view.trailingAnchor, constant: -20/375.0*screenWidth).isActive = true;
+        userImage.trailingAnchor.constraint (equalTo: profileView.trailingAnchor, constant: -20/375.0*screenWidth).isActive = true;
         
         //set the image rounded corner
         userImage.layoutIfNeeded();
         userImage.layer.cornerRadius = userImage.frame.height/2;
         
-        setUpNextClassView ()
-    }
-    
-    private func setUpNextClassView ()
-    {
+        //set up next class view
         view.addSubview(nextClassView);
         nextClassView.translatesAutoresizingMaskIntoConstraints = false;
-        nextClassView.centerXAnchor.constraint (equalTo: view.centerXAnchor).isActive = true;
+        nextClassCenter = nextClassView.centerXAnchor.constraint (equalTo: view.centerXAnchor)
+        nextClassCenter.isActive = true;
         nextClassView.topAnchor.constraint (equalTo: view.topAnchor, constant: 160/812.0*screenHeight).isActive = true;
         nextClassView.heightAnchor.constraint(equalToConstant: 54/812.0*screenHeight).isActive = true;
         nextClassView.widthAnchor.constraint (equalToConstant: 334/375.0*screenWidth).isActive = true;
         nextClassView.layoutIfNeeded();
         nextClassView.layer.cornerRadius = nextClassView.frame.height/3;
         
-        nextClassView.addSubview(nextClassLabel);
-        nextClassLabel.translatesAutoresizingMaskIntoConstraints = false;
-        nextClassLabel.leadingAnchor.constraint (equalTo: nextClassView.leadingAnchor, constant: 20.54/375.0*screenWidth).isActive = true;
-        nextClassLabel.centerYAnchor.constraint (equalTo: nextClassView.centerYAnchor).isActive = true;
-        nextClassLabel.widthAnchor.constraint (equalToConstant: 138/375.0*screenWidth).isActive = true;
-        nextClassLabel.heightAnchor.constraint (equalTo: nextClassView.heightAnchor).isActive = true;
+        //the top article label
+        view.addSubview(topArticleLabel);
+        topArticleLabel.translatesAutoresizingMaskIntoConstraints = false;
+        topArticleLabel.topAnchor.constraint (equalTo: view.topAnchor, constant: 232/812.0*screenHeight).isActive = true;
+        topArticleLabel.leadingAnchor.constraint (equalTo: view.leadingAnchor, constant: 34/375.0*screenWidth).isActive = true;
+        topArticleLabel.heightAnchor.constraint (equalToConstant: 30/812.0*screenHeight).isActive = true;
+        topArticleLabel.widthAnchor.constraint (equalToConstant: 200/375.0*screenHeight).isActive = true;
+        
+        view.addSubview(nextFewDaysView);
+        nextFewDaysView.translatesAutoresizingMaskIntoConstraints = false;
+        nextDaysCenter = nextFewDaysView.centerXAnchor.constraint (equalTo: view.centerXAnchor)
+        nextDaysCenter.isActive = true;
+        nextFewDaysView.topAnchor.constraint (equalTo: view.topAnchor, constant: 499/812.0*screenHeight).isActive = true;
+        nextFewDaysView.heightAnchor.constraint (equalToConstant: 207/812.0*screenHeight).isActive = true;
+        nextFewDaysView.widthAnchor.constraint (equalToConstant: 335/375.0*screenWidth).isActive = true;
+    }
     
-        nextClassView.addSubview(nextClassTimeLabel);
-        nextClassTimeLabel.translatesAutoresizingMaskIntoConstraints = false;
-        nextClassTimeLabel.trailingAnchor.constraint (equalTo: nextClassView.trailingAnchor, constant: -20.54/375.0*screenWidth).isActive = true;
-        nextClassTimeLabel.heightAnchor.constraint (equalTo: nextClassView.heightAnchor).isActive = true;
-        nextClassTimeLabel.centerYAnchor.constraint (equalTo: nextClassView.centerYAnchor).isActive = true;
-        nextClassTimeLabel.widthAnchor.constraint (equalToConstant: 138.35/375.0*screenWidth).isActive = true;
+    //delegate method for upcoming days view (called when one of the days is pressed to go to the corresponding day in the schedule tab
+    //idx: the index in the collection view that needs to be shifted to
+    func goCheckDay (date: Date)
+    {
+        guard let scheduleNavControll = self.tabBarController?.viewControllers? [1] as? UINavigationController else {return}
+        guard let scheduleTab = scheduleNavControll.topViewController as? ScheduleViewController else {return}
+        scheduleTab.defaultIndex = (date, true);
+        tabBarController?.selectedIndex = 1; //goes to the schedule tab
     }
     
     //the timer refreshes the view after a certain interval
@@ -162,138 +182,11 @@ class MainPageViewController: UIViewController {
     
     private func refresh ()
     {
-        var text = NSMutableAttributedString()
-        var time = NSMutableAttributedString()
-        //if today there is a next period
-        if let nextPeriod = getNextPeriod()
-        {
-            text = NSMutableAttributedString(string: nextPeriod.0 + "\n", attributes: [.font : UIFont(name: "SitkaBanner-Bold", size: 20/375.0*screenWidth) ?? UIFont.systemFont(ofSize: 20/375.0*screenWidth, weight: .bold)])
-            text.append(NSMutableAttributedString(string: "is next. Starts at...", attributes: [.font : UIFont (name: "SitkaBanner", size: 14/375.0*screenWidth) ?? UIFont.systemFont(ofSize: 14/375.0*screenWidth)]))
-            
-            formatter.dateFormat = "hh:mm";
-            time = NSMutableAttributedString(string: formatter.string(from: nextPeriod.1) + " ", attributes: [.font: UIFont (name: "SimSun", size: 40/375.0*screenWidth) ?? UIFont.systemFont(ofSize: 40/375.0*screenWidth)]);
-            formatter.dateFormat = "a";
-            time.append (NSMutableAttributedString(string: formatter.string (from: nextPeriod.1).uppercased(), attributes: [.font: UIFont(name: "SitkaBanner", size: 14/375.0*screenWidth) ?? UIFont.systemFont(ofSize: 14/375.0*screenWidth)]))
-        }
-        else if let nextSchoolDay = getNextSchoolDay() //if there isn't a next period in today, then find the next school day there is
-        {
-            var displayed = "";
-            if nextSchoolDay.1 == Util.nextDay() as Date
-            {
-                displayed = "Tomorrow";
-            }
-            else
-            {
-                formatter.dateFormat = "EEEE"
-                displayed = formatter.string (from: nextSchoolDay.1)
-            }
-            text = NSMutableAttributedString(string: displayed + "\n", attributes: [.font : UIFont(name: "SitkaBanner-Bold", size: 20/375.0*screenWidth) ?? UIFont.systemFont(ofSize: 20/375.0*screenWidth, weight: .bold)])
-            text.append(NSMutableAttributedString(string: "School starts at...", attributes: [.font : UIFont (name: "SitkaBanner", size: 14/375.0*screenWidth) ?? UIFont.systemFont(ofSize: 14/375.0*screenWidth)]))
-            
-            formatter.dateFormat = "hh:mm";
-            time = NSMutableAttributedString(string: formatter.string(from: nextSchoolDay.0) + " ", attributes: [.font: UIFont (name: "SimSun", size: 40/375.0*screenWidth) ?? UIFont.systemFont(ofSize: 40/375.0*screenWidth)]);
-            formatter.dateFormat = "a";
-            time.append (NSMutableAttributedString(string: formatter.string (from: nextSchoolDay.0).uppercased(), attributes: [.font: UIFont(name: "SitkaBanner", size: 14/375.0*screenWidth) ?? UIFont.systemFont(ofSize: 14/375.0*screenWidth)]))
-        }
-        nextClassLabel.attributedText = text;
-        nextClassTimeLabel.attributedText = time;
+        nextClassView.refresh()
+        nextFewDaysView.refresh();
     }
     
-    private func getNextSchoolDay () -> (Date, Date)?
-    {
-        if let schedules = UserDataSettings.fetchAllSchedules(),
-        let weeklySchedule = UserDataSettings.fetchWeeklySchedule()
-        {
-            for x in 1..<5
-            {
-                let day = Util.next(days: x);
-                let weekday = calendar.component(.weekday, from: day as Date);
-                if (weeklySchedule.typeOfDay [weekday - 1] != 4)
-                {
-                    for schedule in schedules
-                    {
-                        if (schedule.value == weeklySchedule.typeOfDay [weekday - 1])
-                        {
-                            if let period = schedule.periods?.object(at: 0) as? Period
-                            {
-                                return (period.startTime as Date, day as Date);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        return nil;
-    }
     
-    private func getNextPeriod () -> (String, Date)?
-    {
-        //get the schedules and weeklySchedules
-        if let schedules = UserDataSettings.fetchAllSchedules(),
-            let weeklySchedule = UserDataSettings.fetchWeeklySchedule()
-        {
-            //get the schedule for today
-            let today = Util.next(days: 0);
-            let weekday = calendar.component(.weekday, from: today as Date);
-            var todaySchedule: Schedule?
-            var flipped: Bool?
-            var ADay: Bool?
-            for schedule in schedules
-            {
-                if (schedule.value == weeklySchedule.typeOfDay [weekday - 1])
-                {
-                    todaySchedule = schedule;
-                    flipped = weeklySchedule.flipOrNot [weekday - 1];
-                    ADay = weeklySchedule.abDay[weekday - 1]
-                    break;
-                }
-            }
-            //if there is a schedule for today
-            if let todaySchedule = todaySchedule,
-                let flipped = flipped,
-                let ADay = ADay
-            {
-                if let todayPeriods = todaySchedule.periods
-                {
-                    //loop through the periods in today (orderd in time of date)
-                    for period in todayPeriods
-                    {
-                        if let period = period as? Period
-                        {
-                            if period.startTime as Date > Date()
-                            {
-                                //finds what the name of this period should be after accounting for flipped day, a day, or irregular days as well as what the user inputed
-                                if Int(period.correspond) == 0
-                                {
-                                    return (period.periodName, period.startTime as Date);
-                                }
-                                var userInput = "";
-                                if (period.additionalNotes == "A")
-                                {
-                                    userInput = changeTimetable.query (ADay: true, flipped: flipped, classnumber: Int (period.correspond));
-                                }
-                                else if (period.additionalNotes == "B")
-                                {
-                                    userInput = changeTimetable.query (ADay: false, flipped: flipped, classnumber: Int (period.correspond));
-                                }
-                                else
-                                {
-                                    userInput = changeTimetable.query (ADay: ADay, flipped: flipped, classnumber: Int(period.correspond))
-                                }
-                                if userInput == ""
-                                {
-                                    return (period.periodName, period.startTime as Date);
-                                }
-                                return (userInput, period.startTime as Date)
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        return nil;
-    }
-
     
     
     /*

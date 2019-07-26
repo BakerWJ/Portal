@@ -309,8 +309,8 @@ class PeriodView: UIStackView, UITextFieldDelegate
         classTextField.isHidden = true;
         classLabel.isHidden = false;
         classLabel.text = classTextField.text;
-        let changeTimetable = UserTimetable ();
-        changeTimetable.update(ADay: ADay, flipped: flipped, classnumber: classnumber, newValue: textField.text ?? "");
+        UserTimetable.update(ADay: ADay, flipped: flipped, classnumber: classnumber, newValue: textField.text ?? "");
+        CoreDataStack.saveContext()
     }
     
     func textFieldShouldReturn (_ textField: UITextField) -> Bool

@@ -186,7 +186,7 @@ class AppEntryViewController: UIViewController {
         entryCampImage.translatesAutoresizingMaskIntoConstraints = false;
         entryCampImage.topAnchor.constraint (equalTo: view.topAnchor, constant: -22/812.0*screenHeight).isActive = true;
         entryCampImage.leadingAnchor.constraint (equalTo: view.leadingAnchor, constant: -49/812.0*screenHeight).isActive = true;
-        entryCampImage.heightAnchor.constraint (equalToConstant: 690/812.0*screenHeight).isActive = true;
+        entryCampImage.heightAnchor.constraint (equalToConstant: 689.5/812.0*screenHeight).isActive = true;
         entryCampImage.widthAnchor.constraint (equalToConstant: 553/812.0*screenHeight).isActive = true;
         //hides the image at the start
         entryCampImage.layer.opacity = 0;
@@ -197,7 +197,7 @@ class AppEntryViewController: UIViewController {
         entryAirplaneImage.topAnchor.constraint(equalTo: view.topAnchor, constant: -56/812.0*screenHeight).isActive = true;
         entryAirplaneImage.leadingAnchor.constraint (equalTo: view.leadingAnchor, constant: -90/812.0*screenHeight).isActive = true;
         entryAirplaneImage.widthAnchor.constraint (equalToConstant: 892/812.0*screenHeight).isActive = true;
-        entryAirplaneImage.heightAnchor.constraint (equalToConstant: 668/812.0*screenHeight).isActive = true;
+        entryAirplaneImage.heightAnchor.constraint (equalToConstant: 667.5/812.0*screenHeight).isActive = true;
         entryAirplaneImage.layer.opacity = 1;
         
         //add the circle
@@ -244,7 +244,7 @@ class AppEntryViewController: UIViewController {
         entryClimbingImage.topAnchor.constraint (equalTo: view.topAnchor, constant: -30/812.0*screenHeight).isActive = true;
         entryClimbingImage.leadingAnchor.constraint (equalTo: view.leadingAnchor, constant: -175/812.0*screenHeight).isActive = true;
         entryClimbingImage.widthAnchor.constraint(equalToConstant: 870/812.0*screenHeight).isActive = true;
-        entryClimbingImage.heightAnchor.constraint (equalToConstant: 642/812.0*screenHeight).isActive = true;
+        entryClimbingImage.heightAnchor.constraint (equalToConstant: 641.5/812.0*screenHeight).isActive = true;
         entryClimbingImage.layer.opacity = 0;
         
         //add the mountain image (initailly hidden)
@@ -253,7 +253,7 @@ class AppEntryViewController: UIViewController {
         entryMountainImage.topAnchor.constraint (equalTo: view.topAnchor, constant: -90/812.0*screenHeight).isActive = true;
         entryMountainImage.leadingAnchor.constraint (equalTo: view.leadingAnchor).isActive = true;
         entryMountainImage.widthAnchor.constraint (equalToConstant: 468/812.0*screenHeight).isActive = true;
-        entryMountainImage.heightAnchor.constraint (equalToConstant: 702/812.0*screenHeight).isActive = true;
+        entryMountainImage.heightAnchor.constraint (equalToConstant: 701.5/812.0*screenHeight).isActive = true;
         entryMountainImage.layer.opacity = 0;
         
         //adds the window of opportunity

@@ -46,6 +46,8 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate, UIScro
     //current user calendar
     let calendar = Calendar.current;
     
+    var defaultIndex : (Date, Bool) = (Date(), false)
+    
     //collectionView that contains the the two views
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -89,6 +91,21 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate, UIScro
         fetchSchedules ()
         reloadScheduleData()
         setup ()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if (defaultIndex.1)
+        {
+            print (daysDisplayed.count)
+            for x in 0..<daysDisplayed.count
+            {
+                if (daysDisplayed [x] == defaultIndex.0)
+                {
+                    collectionView.scrollToItem(at: IndexPath(row: x, section: 0), at: .left, animated: true);
+                }
+            }
+        }
     }
     
     private func setup ()
@@ -218,6 +235,7 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate, UIScro
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        defaultIndex.1 = false;
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }

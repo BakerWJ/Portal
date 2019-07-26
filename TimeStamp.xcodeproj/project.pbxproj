@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		314635B922EB78B400F522B4 /* UpcomingDaysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314635B822EB78B400F522B4 /* UpcomingDaysView.swift */; };
+		314635BB22EB8A5000F522B4 /* NextPeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314635BA22EB8A5000F522B4 /* NextPeriodView.swift */; };
 		31BB397F22E6B48F004D2DE5 /* AppEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BB397E22E6B48F004D2DE5 /* AppEntryViewController.swift */; };
 		31BB399122E76493004D2DE5 /* SitkaBanner-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 31BB398D22E76492004D2DE5 /* SitkaBanner-Bold.ttf */; };
 		31BB399222E76493004D2DE5 /* SitkaBanner-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 31BB398E22E76492004D2DE5 /* SitkaBanner-Italic.ttf */; };
@@ -31,7 +33,6 @@
 		8A1B7A2122C00804006FE52A /* MenuHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B7A2022C00804006FE52A /* MenuHelper.swift */; };
 		8A1B7A2322C018F1006FE52A /* TodayToTomorrowAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B7A2222C018F1006FE52A /* TodayToTomorrowAnimator.swift */; };
 		8A1B7A2522C01D6F006FE52A /* TomorrowToTodayAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B7A2422C01D6F006FE52A /* TomorrowToTodayAnimator.swift */; };
-		8A5F822222D4F34B00443020 /* TodayTomorrowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5F822122D4F34B00443020 /* TodayTomorrowView.swift */; };
 		8A5F822422D531D700443020 /* TaskEventMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5F822322D531D700443020 /* TaskEventMenu.swift */; };
 		8A5F822622D581F300443020 /* TaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5F822522D581F300443020 /* TaskListView.swift */; };
 		8A5F822822D581FF00443020 /* EventListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5F822722D581FF00443020 /* EventListView.swift */; };
@@ -93,6 +94,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		314635B822EB78B400F522B4 /* UpcomingDaysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingDaysView.swift; sourceTree = "<group>"; };
+		314635BA22EB8A5000F522B4 /* NextPeriodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextPeriodView.swift; sourceTree = "<group>"; };
 		31BB397E22E6B48F004D2DE5 /* AppEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEntryViewController.swift; sourceTree = "<group>"; };
 		31BB398D22E76492004D2DE5 /* SitkaBanner-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SitkaBanner-Bold.ttf"; sourceTree = "<group>"; };
 		31BB398E22E76492004D2DE5 /* SitkaBanner-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SitkaBanner-Italic.ttf"; sourceTree = "<group>"; };
@@ -120,7 +123,6 @@
 		8A1B7A2022C00804006FE52A /* MenuHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuHelper.swift; sourceTree = "<group>"; };
 		8A1B7A2222C018F1006FE52A /* TodayToTomorrowAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayToTomorrowAnimator.swift; sourceTree = "<group>"; };
 		8A1B7A2422C01D6F006FE52A /* TomorrowToTodayAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TomorrowToTodayAnimator.swift; sourceTree = "<group>"; };
-		8A5F822122D4F34B00443020 /* TodayTomorrowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTomorrowView.swift; sourceTree = "<group>"; };
 		8A5F822322D531D700443020 /* TaskEventMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskEventMenu.swift; sourceTree = "<group>"; };
 		8A5F822522D581F300443020 /* TaskListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListView.swift; sourceTree = "<group>"; };
 		8A5F822722D581FF00443020 /* EventListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListView.swift; sourceTree = "<group>"; };
@@ -243,9 +245,10 @@
 			isa = PBXGroup;
 			children = (
 				CE927FF1227A0BCD00EE0A22 /* PeriodView.swift */,
+				314635B822EB78B400F522B4 /* UpcomingDaysView.swift */,
+				314635BA22EB8A5000F522B4 /* NextPeriodView.swift */,
 				8A6780782298C81B00748848 /* EventView.swift */,
 				CE927FF3227A0BCD00EE0A22 /* ScheduleView.swift */,
-				8A5F822122D4F34B00443020 /* TodayTomorrowView.swift */,
 				31BB399722E8CEEC004D2DE5 /* DailyScheduleCell.swift */,
 				8A1AEDD022C6861D005282FD /* SlideOutView.swift */,
 				8A5F822D22D6020000443020 /* To-Do List */,
@@ -586,12 +589,14 @@
 				8A5F822A22D5821500443020 /* TaskMenuView.swift in Sources */,
 				8AD8621C22984A9600412EFF /* VerticalUpShiftTransitionUnwind.swift in Sources */,
 				CEDC433422760BBE00A78890 /* GetStartedViewController.swift in Sources */,
+				314635BB22EB8A5000F522B4 /* NextPeriodView.swift in Sources */,
 				8A1AEDCB22C2BE25005282FD /* TomorrowToTodayShift.swift in Sources */,
 				8A1AEDC922C2BDFF005282FD /* TodayToTomorrowShift.swift in Sources */,
 				CEDC435F22775DFA00A78890 /* SettingsViewController.swift in Sources */,
 				8A6780792298C81B00748848 /* EventView.swift in Sources */,
 				CE2D71492280C71E00F4D89A /* TimeStampModel.xcdatamodeld in Sources */,
 				8AA2F046228123890091EF0F /* HorizontalLeftShiftTransition.swift in Sources */,
+				314635B922EB78B400F522B4 /* UpcomingDaysView.swift in Sources */,
 				8A1B7A0622BEC94A006FE52A /* EventItemViewController.swift in Sources */,
 				31BB399822E8CEEC004D2DE5 /* DailyScheduleCell.swift in Sources */,
 				8A5F823622D7A00B00443020 /* ToDo_Task+CoreDataClass.swift in Sources */,
@@ -632,7 +637,6 @@
 				CEC26E05227B3E9E00FFFC67 /* Schedule+CoreDataClass.swift in Sources */,
 				31BB397F22E6B48F004D2DE5 /* AppEntryViewController.swift in Sources */,
 				8A1B79FC22BEC2AF006FE52A /* MainTabBarViewController.swift in Sources */,
-				8A5F822222D4F34B00443020 /* TodayTomorrowView.swift in Sources */,
 				8AEA785122851D5C0031B030 /* UserDataSettings.swift in Sources */,
 				CE927FF4227A0BCD00EE0A22 /* UserTimetable.swift in Sources */,
 				CE927FF6227A0BCD00EE0A22 /* ArticleClass.swift in Sources */,

@@ -12,7 +12,6 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
 
     @IBInspectable var defaultIndex: Int = 0;
     
-    
     //the screen width and height
     let screenWidth = UIScreen.main.bounds.width;
     let screenHeight = UIScreen.main.bounds.height;
@@ -52,6 +51,12 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
     let newsIcon = UIImageView (image: UIImage (named: "newsTabBarIcon"));
     var iconImages = [UIImageView] ();
     
+    override var selectedIndex: Int {
+        didSet {
+            tabChangedTo(index: selectedIndex)
+        }
+    }
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -69,6 +74,40 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
 
     var selected = 0;
     
+    //programmatically changing tabs
+    private func tabChangedTo (index: Int)
+    {
+        for x in 0..<3
+        {
+            if x == index
+            {
+                //if it was not previously selected then execute the animation, otherwise do nothing
+                if (selected != x)
+                {
+                    DispatchQueue.main.async {
+                        UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseOut, animations: {
+                            self.iconImages [x].frame = self.iconImages [x].frame.offsetBy(dx: 0, dy: -5/375.0*self.screenWidth);
+                            self.underline.center.x = self.iconImages [x].center.x;
+                        }, completion: nil)
+                    }
+                }
+            }
+            else //unselect the other icons
+            {
+                if (selected == x) //if it was previously selected, then execute the animation
+                {
+                    DispatchQueue.main.async {
+                        UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseOut, animations: {
+                            self.iconImages [x].frame = self.iconImages [x].frame.offsetBy(dx: 0, dy: 5/375.0*self.screenWidth);
+                        }, completion: nil)
+                    }
+                }
+            }
+        }
+        selected = index;
+    }
+    
+    //user changing tabs
     //does some thing when a certain tabbaritem is selected (passed in as a parameter)
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         let index = tabBar.items?.firstIndex(of: item);
@@ -165,12 +204,12 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         homeIcon.frame = homeIcon.frame.offsetBy(dx: 0, dy: -5/375.0*screenWidth);
         //the underline should be placed right beneath the image
         //depend on the aspect ratio of the phone:
-        if (screenHeight/screenWidth == 812.0/375.0)
-        {print ("X")
+        if (812.0/375.0 + 0.1 > screenHeight/screenWidth && screenHeight/screenWidth > 812.0/375.0 - 0.1) //accounts for some double precision error
+        {
             underline.frame.origin.y = 773/812.0*screenHeight;
         }
         else
-        {print ("Y")
+        {
             underline.frame.origin.y = 780/812.0*screenHeight;
         }
         underline.center.x = homeIcon.center.x;
@@ -207,6 +246,8 @@ class TabBarTransition: NSObject, UIViewControllerAnimatedTransitioning {
     
     let viewControllers: [UIViewController]?
     let transitionDuration: Double = 0.5
+    let screenWidth = UIScreen.main.bounds.width;
+    let screenHeight = UIScreen.main.bounds.height;
     
     init (viewControllers: [UIViewController]?)
     {
@@ -243,18 +284,69 @@ class TabBarTransition: NSObject, UIViewControllerAnimatedTransitioning {
             transitionContext.containerView.addSubview(toView) //add the view destination
             fromView.layer.opacity = 1; //set the original opacity so that the destination view is not visible and the original view is visible
             toView.layer.opacity = 0;
-            UIView.animate(withDuration: self.transitionDuration, animations: {
+            
+            //makse sure no unnecessary animations are present
+            fromView.layoutIfNeeded()
+            toView.layoutIfNeeded()
+            
+            //set animations target constraints
+            if let source = fromVC as? UINavigationController,
+                let dest = toVC as? UINavigationController
+            {
+                if let source = source.topViewController as? MainPageViewController
+                {
+                    if let dest = dest.topViewController as? ScheduleViewController
+                    {
+                        source.profileLeading.constant = 0;
+                        source.profileTop.constant = 0;
+                        source.view.layoutIfNeeded();
+                        source.profileTop.constant = -self.screenHeight/2;
+                    }
+                    else if let dest = dest.topViewController as? NewsViewController
+                    {
+                        source.profileTop.constant = 0;
+                        source.profileLeading.constant = 0;
+                        source.view.layoutIfNeeded();
+                        source.profileLeading.constant = -self.screenWidth;
+                    }
+                    source.nextClassCenter.constant = self.screenWidth;
+                    source.nextDaysCenter.constant = -self.screenWidth;
+                }
+                if let dest = dest.topViewController as? MainPageViewController
+                {
+                    if let source = source.topViewController as? ScheduleViewController
+                    {
+                        dest.profileLeading.constant = 0;
+                        dest.profileTop.constant = -self.screenHeight/2
+                        dest.view.layoutIfNeeded()
+                        dest.profileTop.constant = 0;
+                    }
+                    else if let source = source.topViewController as? NewsViewController
+                    {
+                        dest.profileLeading.constant = -self.screenWidth;
+                        dest.profileTop.constant = 0;
+                        dest.view.layoutIfNeeded()
+                        dest.profileLeading.constant = 0;
+                    }
+                    dest.nextClassCenter.constant = 0;
+                    dest.nextDaysCenter.constant = 0;
+                }
+            }
+            
+            //perform the animations
+            UIView.animate(withDuration: self.transitionDuration, delay: 0, options: .curveEaseOut, animations: {
+                fromView.layoutIfNeeded()  //animates constraints
+                toView.layoutIfNeeded()    //animates constraints
                 fromView.layer.opacity = 0;  //animates the opacity
                 toView.layer.opacity = 1;
-            }) {
-                (Finished) in
+            }, completion: { (Finished) in
                 if (Finished)
                 {
                     fromView.removeFromSuperview()  //if transition is finished (not interrupted) then remove the source view and padding from superview
                     whiteView.removeFromSuperview()  //leaving only the destination view visible
                 }
                 transitionContext.completeTransition(Finished)  //pass in the boolean as a parameter to indicate if the transition is finished or not
-            }
+            })
         }
     }
 }

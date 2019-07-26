@@ -20,12 +20,12 @@ class ScheduleView: UIStackView
     var corresponds: [Int] = [Int] ()
     var ADay = false;
     var flipped = false;
-    let changeTimetable = UserTimetable ()
     
     let screenHeight = UIScreen.main.bounds.height;
     let screenWidth = UIScreen.main.bounds.width;
     
     weak var delegate: KeyboardShiftingDelegate?
+
     
     //MARK: Constructors
     
@@ -46,15 +46,15 @@ class ScheduleView: UIStackView
                     var userInput = "";
                     if (period.additionalNotes == "A")
                     {
-                        userInput = changeTimetable.query (ADay: true, flipped: flipped, classnumber: Int (period.correspond));
+                        userInput = UserTimetable.query (ADay: true, flipped: flipped, classnumber: Int (period.correspond));
                     }
                     else if (period.additionalNotes == "B")
                     {
-                        userInput = changeTimetable.query (ADay: false, flipped: flipped, classnumber: Int (period.correspond));
+                        userInput = UserTimetable.query (ADay: false, flipped: flipped, classnumber: Int (period.correspond));
                     }
                     else
                     {
-                        userInput = changeTimetable.query (ADay: ADay, flipped: flipped, classnumber: Int(period.correspond))
+                        userInput = UserTimetable.query (ADay: ADay, flipped: flipped, classnumber: Int(period.correspond))
                     }
                     if userInput == ""
                     {

@@ -10,13 +10,14 @@ import Foundation
 import CoreData
 class UserTimetable
 {
-    var normalToFlip: [Int] = [Int] (repeating: 0, count: 6);
-    var flipToNormal: [Int] = [Int] (repeating: 0, count: 6);
-    var ADaySchedule: [String] = [String] (repeating: "", count: 6);
-    var BDaySchedule: [String] = [String] (repeating: "" , count: 6);
-    var ADayTimetable: Timetable?
-    var BDayTimetable: Timetable?
-    init ()
+    static var normalToFlip: [Int] = [Int] (repeating: 0, count: 6);
+    static var flipToNormal: [Int] = [Int] (repeating: 0, count: 6);
+    static var ADaySchedule: [String] = [String] (repeating: "", count: 6);
+    static var BDaySchedule: [String] = [String] (repeating: "" , count: 6);
+    static var ADayTimetable: Timetable?
+    static var BDayTimetable: Timetable?
+    
+    static private func fetchData ()
     {
         let fetchRequest = NSFetchRequest <NSFetchRequestResult> (entityName: "FlipDay");
         let fetchRequest2 = NSFetchRequest <NSFetchRequestResult> (entityName: "Timetable");
@@ -63,8 +64,9 @@ class UserTimetable
         }
     }
     
-    func update (ADay: Bool, flipped: Bool, classnumber: Int, newValue: String)
+    static func update (ADay: Bool, flipped: Bool, classnumber: Int, newValue: String)
     {
+        fetchData()
         if (ADay)
         {
             if (flipped)
@@ -95,8 +97,9 @@ class UserTimetable
         CoreDataStack.saveContext()
     }
     
-    func query (ADay: Bool, flipped: Bool, classnumber: Int) -> String
+    static func query (ADay: Bool, flipped: Bool, classnumber: Int) -> String
     {
+        fetchData()
         if (ADay)
         {
             if (flipped)
