@@ -490,4 +490,41 @@ class UserDataSettings
         }
         return nil;
     }
+    
+    static func fetchAllSchedules () -> [Schedule]?
+    {
+        let fetchRequest = NSFetchRequest <NSFetchRequestResult> (entityName: "Schedule");
+        do
+        {
+            if let results = try CoreDataStack.managedObjectContext.fetch(fetchRequest) as? [Schedule]
+            {
+                return results;
+            }
+        }
+        catch
+        {
+            fatalError("There was an error fetching the list of schedules")
+        }
+        return nil;
+    }
+    
+    static func fetchWeeklySchedule () -> WeeklySchedule?
+    {
+        let fetchRequest = NSFetchRequest <NSFetchRequestResult> (entityName: "WeeklySchedule");
+        do
+        {
+            if let results = try CoreDataStack.managedObjectContext.fetch(fetchRequest) as? [WeeklySchedule]
+            {
+                if (results.count > 0)
+                {
+                    return results [0]
+                }
+            }
+        }
+        catch
+        {
+            fatalError("There was an error fetching the list of schedules")
+        }
+        return nil;
+    }
 }

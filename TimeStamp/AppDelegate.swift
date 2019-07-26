@@ -109,7 +109,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
                     UserDefaults.standard.set(data, forKey: "userimage");
                 }
             }
-            UserDefaults.standard.set(fullName, forKey: "username");
+            UserDefaults.standard.set(givenName, forKey: "username");
             // ...
             
         }

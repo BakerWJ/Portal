@@ -131,7 +131,7 @@ class EventView: UIStackView {
         if (gesture.state == .began)
         {
             let pressedLocation = gesture.location (in: delegate?.view);
-            delegate?.eventPressed(startTime: startTime, endTime: endTime, title: titleLabel.text, detail: detailLabel.text, xpos: pressedLocation.x, ypos: pressedLocation.y)
+            //delegate?.eventPressed(startTime: startTime, endTime: endTime, title: titleLabel.text, detail: detailLabel.text, xpos: pressedLocation.x, ypos: pressedLocation.y)
         }
     }
 }

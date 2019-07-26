@@ -369,55 +369,12 @@
                     <view key="view" contentMode="scaleToFill" id="Qj6-98-5sO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="29 April" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wbc-TX-iN5">
-                                <rect key="frame" x="103" y="141" width="168" height="25"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="SegoeUI" family="Segoe UI" pointSize="14"/>
-                                <color key="textColor" red="0.51764705879999995" green="0.51764705879999995" blue="0.51764705879999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="Rectangle 1020" translatesAutoresizingMaskIntoConstraints="NO" id="M3l-kQ-RyG">
-                                <rect key="frame" x="32" y="213" width="311" height="59"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="M3l-kQ-RyG" secondAttribute="height" multiplier="311:59" id="Shk-wW-nzO"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Today is a Normal Start!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pkz-EC-jyB">
-                                <rect key="frame" x="86" y="221" width="189" height="23"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="SegoeUI" family="Segoe UI" pointSize="16"/>
-                                <color key="textColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SCHOOL STARTS AT 8:55" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pUP-bd-60G">
-                                <rect key="frame" x="98" y="245" width="165" height="11"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="SegoeUI" family="Segoe UI" pointSize="14"/>
-                                <color key="textColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="TODAY" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ryn-v3-9Lw">
-                                <rect key="frame" x="69" y="109" width="223" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="32"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
                         <viewLayoutGuide key="safeArea" id="Hdx-uh-FM9"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="2cW-n4-hb0"/>
                     <navigationItem key="navigationItem" id="Hyc-BD-YaF"/>
-                    <connections>
-                        <outlet property="dateLabel" destination="Wbc-TX-iN5" id="8GW-iV-HXp"/>
-                        <outlet property="redImage" destination="M3l-kQ-RyG" id="OIr-Ld-2gt"/>
-                        <outlet property="schoolStartTimeLabel" destination="pUP-bd-60G" id="kxd-M6-0lH"/>
-                        <outlet property="todayLabel" destination="ryn-v3-9Lw" id="EWL-NX-JIj"/>
-                        <outlet property="typeOfDayLabel" destination="pkz-EC-jyB" id="YjD-FM-LLL"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hHd-6b-UJa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -889,7 +846,6 @@
         <image name="Ellipse 37-1" width="34" height="34"/>
         <image name="I'm Done" width="283" height="43"/>
         <image name="Next" width="283" height="43"/>
-        <image name="Rectangle 1020" width="311" height="59"/>
         <image name="Rectangle 1031" width="375" height="342"/>
         <image name="Rectangle 1033" width="375" height="317"/>
         <image name="Rectangle 1034" width="280" height="32"/>

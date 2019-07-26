@@ -136,11 +136,6 @@ class AppEntryViewController: UIViewController {
     var readyTop = NSLayoutConstraint();
     var awaitsTop = NSLayoutConstraint();
     
-    var path1 = CGMutablePath ();
-    var path2 = CGMutablePath ();
-    var path3 = CGMutablePath ();
-    var path4 = CGMutablePath ();
-  
     override func viewDidLoad() {
         super.viewDidLoad()
         setup ()
@@ -316,7 +311,6 @@ class AppEntryViewController: UIViewController {
         maskLayer.fillRule = .evenOdd;
         maskLayer.path = path1;
         maskLayer.bounds = self.circle.layer.mask!.bounds;
-        
 
         self.circle.layer.mask = maskLayer;
         CATransaction.begin()
@@ -336,7 +330,6 @@ class AppEntryViewController: UIViewController {
             }
         }
     }
-    
     
     private func toAwait ()
     {
@@ -374,7 +367,6 @@ class AppEntryViewController: UIViewController {
         maskLayer.fillRule = .evenOdd;
         maskLayer.path = path1;
         maskLayer.bounds = self.circle.layer.mask!.bounds;
-        
         
         self.circle.layer.mask = maskLayer;
         CATransaction.begin()
@@ -439,7 +431,6 @@ class AppEntryViewController: UIViewController {
         maskLayer.fillRule = .evenOdd;
         maskLayer.path = path1;
         maskLayer.bounds = self.circle.layer.mask!.bounds;
-        
         
         self.circle.layer.mask = maskLayer;
         CATransaction.begin()

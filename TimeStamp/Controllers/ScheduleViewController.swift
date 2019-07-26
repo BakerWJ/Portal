@@ -226,11 +226,20 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate, UIScro
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         //stops the scrollview from sliding (stop the physics)
         targetContentOffset.pointee = scrollView.contentOffset
-        let numCellsShifted = abs(scrollView.contentOffset.x/(335/375.0*screenWidth));
-        let roundedCell = Int(round(numCellsShifted + 0.1));
-        let indexOfMajorCell = min(roundedCell, 4);
-        let indexPath = IndexPath (row: indexOfMajorCell, section: 0);
-        collectionView.scrollToItem(at: indexPath, at: .left, animated: true);
+        if (abs (velocity.x) > 0.5)
+        {
+            var target = lastIndex + (velocity.x > 0 ? 1 : -1);
+            target = min(max (0, target), 4);
+            collectionView.scrollToItem(at: IndexPath(row: target, section: 0), at: .left, animated: true)
+        }
+        else
+        {
+            let numCellsShifted = abs(scrollView.contentOffset.x/(335/375.0*screenWidth));
+            let roundedCell = Int(round(numCellsShifted + 0.1));
+            let indexOfMajorCell = min(roundedCell, 4);
+            let indexPath = IndexPath (row: indexOfMajorCell, section: 0);
+            collectionView.scrollToItem(at: indexPath, at: .left, animated: true);
+        }
     }
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
