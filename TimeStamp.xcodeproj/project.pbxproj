@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		314635B922EB78B400F522B4 /* UpcomingDaysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314635B822EB78B400F522B4 /* UpcomingDaysView.swift */; };
 		314635BB22EB8A5000F522B4 /* NextPeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314635BA22EB8A5000F522B4 /* NextPeriodView.swift */; };
+		314635BD22ECBD2C00F522B4 /* SetUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314635BC22ECBD2C00F522B4 /* SetUpViewController.swift */; };
 		31BB397F22E6B48F004D2DE5 /* AppEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BB397E22E6B48F004D2DE5 /* AppEntryViewController.swift */; };
 		31BB399122E76493004D2DE5 /* SitkaBanner-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 31BB398D22E76492004D2DE5 /* SitkaBanner-Bold.ttf */; };
 		31BB399222E76493004D2DE5 /* SitkaBanner-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 31BB398E22E76492004D2DE5 /* SitkaBanner-Italic.ttf */; };
@@ -87,7 +88,6 @@
 		CEDC434D2276130900A78890 /* Segoe UI Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEDC43492276130900A78890 /* Segoe UI Italic.ttf */; };
 		CEDC434E2276130900A78890 /* Segoe UI Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEDC434A2276130900A78890 /* Segoe UI Bold.ttf */; };
 		CEDC434F2276130900A78890 /* Segoe UI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEDC434B2276130900A78890 /* Segoe UI.ttf */; };
-		CEDC43512276816C00A78890 /* SetUp1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDC43502276816C00A78890 /* SetUp1ViewController.swift */; };
 		CEDC435B22773F8400A78890 /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDC435A22773F8400A78890 /* MainPageViewController.swift */; };
 		CEDC435D22773FAC00A78890 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDC435C22773FAC00A78890 /* ScheduleViewController.swift */; };
 		CEDC435F22775DFA00A78890 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDC435E22775DFA00A78890 /* SettingsViewController.swift */; };
@@ -96,6 +96,7 @@
 /* Begin PBXFileReference section */
 		314635B822EB78B400F522B4 /* UpcomingDaysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingDaysView.swift; sourceTree = "<group>"; };
 		314635BA22EB8A5000F522B4 /* NextPeriodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextPeriodView.swift; sourceTree = "<group>"; };
+		314635BC22ECBD2C00F522B4 /* SetUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpViewController.swift; sourceTree = "<group>"; };
 		31BB397E22E6B48F004D2DE5 /* AppEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEntryViewController.swift; sourceTree = "<group>"; };
 		31BB398D22E76492004D2DE5 /* SitkaBanner-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SitkaBanner-Bold.ttf"; sourceTree = "<group>"; };
 		31BB398E22E76492004D2DE5 /* SitkaBanner-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SitkaBanner-Italic.ttf"; sourceTree = "<group>"; };
@@ -178,7 +179,6 @@
 		CEDC43492276130900A78890 /* Segoe UI Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Segoe UI Italic.ttf"; sourceTree = "<group>"; };
 		CEDC434A2276130900A78890 /* Segoe UI Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Segoe UI Bold.ttf"; sourceTree = "<group>"; };
 		CEDC434B2276130900A78890 /* Segoe UI.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Segoe UI.ttf"; sourceTree = "<group>"; };
-		CEDC43502276816C00A78890 /* SetUp1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUp1ViewController.swift; sourceTree = "<group>"; };
 		CEDC435A22773F8400A78890 /* MainPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
 		CEDC435C22773FAC00A78890 /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 		CEDC435E22775DFA00A78890 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -381,7 +381,7 @@
 			isa = PBXGroup;
 			children = (
 				CEDC433322760BBE00A78890 /* GetStartedViewController.swift */,
-				CEDC43502276816C00A78890 /* SetUp1ViewController.swift */,
+				314635BC22ECBD2C00F522B4 /* SetUpViewController.swift */,
 				CEDC435C22773FAC00A78890 /* ScheduleViewController.swift */,
 				8A1B7A0722BECAC7006FE52A /* HouseInfoViewController.swift */,
 				CEDC435A22773F8400A78890 /* MainPageViewController.swift */,
@@ -602,7 +602,6 @@
 				8A5F823622D7A00B00443020 /* ToDo_Task+CoreDataClass.swift in Sources */,
 				8AD8621622983D1B00412EFF /* VerticalDownShiftTransition.swift in Sources */,
 				8AD8620D2297824000412EFF /* Util.swift in Sources */,
-				CEDC43512276816C00A78890 /* SetUp1ViewController.swift in Sources */,
 				8ABCA53F2282176000A30D36 /* WeeklySchedule+CoreDataProperties.swift in Sources */,
 				8A5F823822D7A00B00443020 /* ToDo_TaskTag+CoreDataClass.swift in Sources */,
 				CEDC435D22773FAC00A78890 /* ScheduleViewController.swift in Sources */,
@@ -626,6 +625,7 @@
 				CEC26E00227B3E9E00FFFC67 /* CoreDataStack.swift in Sources */,
 				CEC26E08227B3E9E00FFFC67 /* Period+CoreDataClass.swift in Sources */,
 				8ABCA53E2282176000A30D36 /* WeeklySchedule+CoreDataClass.swift in Sources */,
+				314635BD22ECBD2C00F522B4 /* SetUpViewController.swift in Sources */,
 				CEC26E03227B3E9E00FFFC67 /* FlipDay+CoreDataClass.swift in Sources */,
 				8A1AEDCF22C4148F005282FD /* Event+CoreDataProperties.swift in Sources */,
 				CEC26E06227B3E9E00FFFC67 /* Timetable+CoreDataClass.swift in Sources */,

@@ -97,7 +97,6 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate, UIScro
         super.viewDidAppear(animated)
         if (defaultIndex.1)
         {
-            print (daysDisplayed.count)
             for x in 0..<daysDisplayed.count
             {
                 if (daysDisplayed [x] == defaultIndex.0)
