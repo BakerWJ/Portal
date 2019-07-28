@@ -37,6 +37,7 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate, UIScro
     var daysDisplayed = [Date]();
     var scheduleDisplayed = [Schedule?]();
     var coloursDisplayed = [UIColor]();
+    var coloursDisplayedRGB = [(CGFloat, CGFloat, CGFloat)]() //r, g, b;
     var ADaysDisplayed = [Bool]()
     var flippedDisplayed = [Bool]();
     
@@ -52,13 +53,13 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate, UIScro
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal;
-        layout.minimumLineSpacing = 32;
+        layout.minimumLineSpacing = 0;
         let cv = UICollectionView (frame: .zero, collectionViewLayout: layout);
         cv.backgroundColor = .clear;
         cv.showsVerticalScrollIndicator = false;
         cv.showsHorizontalScrollIndicator = false;
         cv.bounces = false;
-        cv.contentInset = UIEdgeInsets(top: 0, left: 32/375.0*screenWidth, bottom: 0, right: 32/375.0*screenWidth)
+        cv.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 32/375.0*screenWidth)
         cv.delegate = self;
         cv.dataSource = self;
         return cv;
@@ -78,9 +79,9 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate, UIScro
     let blockView = UIView ();
     let containerView = UIView ();
     
-    let view1 = UIView();
-    let view2 = UIView();
-    var lastContentOffset = CGFloat()
+    lazy var fifthContentWidth = 327/375.0*screenWidth;
+    lazy var cellWidth = 335/375.0*screenWidth
+    lazy var movingImageConstraintMaxOffset = -151/812.0*screenHeight;
     var lastIndex = 0;
     
     var firstTimeLoad = true;
@@ -109,19 +110,7 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate, UIScro
     
     private func setup ()
     {
-        view.addSubview(view1);
-        view.addSubview(view2);
-        view1.translatesAutoresizingMaskIntoConstraints = false;
-        view2.translatesAutoresizingMaskIntoConstraints = false;
-        view.addContraintsWithFormat("V:|[v0]|", views: view1);
-        view.addContraintsWithFormat("V:|[v0]|", views: view2);
-        view.addContraintsWithFormat("H:|[v0]|", views: view1);
-        view.addContraintsWithFormat("H:|[v0]|", views: view2);
-        
-        view1.backgroundColor = coloursDisplayed [0];
-        view1.layer.opacity = 1;
-        view2.backgroundColor = coloursDisplayed [1];
-        view2.layer.opacity = 0;
+        view.backgroundColor = UIColor.getColor(coloursDisplayedRGB [0].0, coloursDisplayedRGB [0].1, coloursDisplayedRGB [0].2)
         
         view.addSubview(containerView);
         containerView.translatesAutoresizingMaskIntoConstraints = false;
@@ -176,7 +165,7 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate, UIScro
         scheduleDisplayed = [Schedule?]()
         ADaysDisplayed = [Bool]()
         flippedDisplayed = [Bool]();
-        coloursDisplayed = [UIColor]()
+        coloursDisplayedRGB = [(CGFloat, CGFloat, CGFloat)]()
         for x in 0..<5
         {
             daysDisplayed.append (Util.next(days: x) as Date);
@@ -198,11 +187,11 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate, UIScro
             ADaysDisplayed.append ((weeklySchedule?.abDay [weekday - 1])!);
             flippedDisplayed.append (((weeklySchedule?.flipOrNot [weekday - 1])!));
         }
-        coloursDisplayed.append (UIColor(red: 183/255.0, green: 139/255.0, blue: 122/255.0, alpha: 1.0));
-        coloursDisplayed.append (UIColor(red: 40/255.0, green: 73/255.0, blue: 164/255.0, alpha: 1.0));
-        coloursDisplayed.append (UIColor(red: 91/255.0, green: 21/255.0, blue: 42/255.0, alpha: 1.0));
-        coloursDisplayed.append (UIColor(red: 42/255.0, green: 138/255.0, blue: 135/255.0, alpha: 1.0));
-        coloursDisplayed.append (UIColor(red: 42/255.0, green: 90/255.0, blue: 138/255.0, alpha: 1.0));
+        coloursDisplayedRGB.append ((183, 139, 122));
+        coloursDisplayedRGB.append ((40, 73, 164));
+        coloursDisplayedRGB.append((91, 21, 42));
+        coloursDisplayedRGB.append ((42, 138, 135));
+        coloursDisplayedRGB.append ((42, 90, 138));
     }
     //COLLECTION VIEW DELEGATE METHODS
     
@@ -217,7 +206,7 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate, UIScro
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize (width: 303/375.0*screenWidth, height: screenHeight);
+        return CGSize (width: 335/375.0*screenWidth, height: screenHeight);
     }
     
     //this function is called when the collection view is loaded, so here we can access the first element and set its constant
@@ -261,51 +250,29 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate, UIScro
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         let numCellsShifted = abs(scrollView.contentOffset.x/(355/375.0*screenWidth));
-        let roundedCell = Int (round (numCellsShifted));
-        view1.backgroundColor = coloursDisplayed [roundedCell];
-        view1.layer.opacity = 1;
-        view2.layer.opacity = 0;
+        let roundedCell = Int (round (numCellsShifted + 0.1));
         lastIndex = roundedCell
-        lastContentOffset = scrollView.contentOffset.x
+    }
+    
+    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        self.scrollViewWillBeginDragging(scrollView)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-
-        if (self.lastContentOffset < scrollView.contentOffset.x) //moved right
-        {
-            view2.backgroundColor = coloursDisplayed [min(4, lastIndex + 1)];
-            let diff = scrollView.contentOffset.x - self.lastContentOffset;
-            let ratio = diff/(355/375*screenWidth)
-            view2.layer.opacity = Float(ratio);
-            view1.layer.opacity = 1 - view2.layer.opacity;
-            guard let thisCell = collectionView.cellForItem(at: IndexPath(row: lastIndex, section: 0)) as? DailyScheduleCell,
-                let nextCell = collectionView.cellForItem(at: IndexPath(row: lastIndex + 1, section: 0)) as? DailyScheduleCell
-                else {
-                    return;
-                }
-            nextCell.imageTop.constant = ratio*(-151/812.0*screenHeight);
-            thisCell.imageTop.constant = -151/812.0*screenHeight - nextCell.imageTop.constant;
-        }
-        else if (self.lastContentOffset > scrollView.contentOffset.x) //moved left
-        {
-            view2.backgroundColor = coloursDisplayed [max(0, lastIndex - 1)];
-            let diff = self.lastContentOffset - scrollView.contentOffset.x
-            let ratio = diff/(355/375*screenWidth)
-            view2.layer.opacity = Float(ratio);
-            view1.layer.opacity = 1 - view2.layer.opacity;
-            guard let thisCell = collectionView.cellForItem(at: IndexPath(row: lastIndex, section: 0)) as? DailyScheduleCell,
-                let nextCell = collectionView.cellForItem(at: IndexPath(row: lastIndex - 1, section: 0)) as? DailyScheduleCell
-                else {
-                    return;
-            }
-            nextCell.imageTop.constant = ratio*(-151/812.0*screenHeight);
-            thisCell.imageTop.constant = -151/812.0*screenHeight - nextCell.imageTop.constant;
-        }
-        else
-        {
-            view1.layer.opacity = 1;
-            view2.layer.opacity = 0;
-        }
+        let currOffset = scrollView.contentOffset.x;
+        let indexLo = Int(currOffset/cellWidth);
+        let progress = (currOffset - CGFloat(indexLo)*cellWidth)/(indexLo == 3 ? fifthContentWidth : cellWidth)
+        let colour1 = coloursDisplayedRGB [indexLo];
+        let colour2 = coloursDisplayedRGB [indexLo + 1];
+        view.backgroundColor = UIColor(red: (colour1.0 + (colour2.0 - colour1.0)*progress)/255.0, green: (colour1.1 + (colour2.1 - colour1.1)*progress)/255.0, blue: (colour1.2 + (colour2.2 - colour1.2)*progress)/255.0, alpha: 1);
+        blockView.backgroundColor = view.backgroundColor
+        
+        guard let thisCell = collectionView.cellForItem(at: IndexPath(row: indexLo, section: 0)) as? DailyScheduleCell,
+        let nextCell = collectionView.cellForItem(at: IndexPath(row: indexLo + 1, section: 0)) as? DailyScheduleCell
+        else {return;}
+        
+        nextCell.imageTop.constant = progress*(movingImageConstraintMaxOffset);
+        thisCell.imageTop.constant = movingImageConstraintMaxOffset - nextCell.imageTop.constant;
     }
     
     //When the keyboard hides, then animate back to the normal position
@@ -324,8 +291,7 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate, UIScro
     @objc func keyboardWillShow (notification: NSNotification)
     {
         collectionView.isScrollEnabled = false;
-        blockView.backgroundColor = coloursDisplayed [Int(round(abs(collectionView.contentOffset.x/(355/375.0*screenWidth))))]
-        blockView.layer.opacity = 1;
+        self.blockView.layer.opacity = 1;
         if let keyboardSize = (notification.userInfo? [UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
         {
             keyboardHeight = Double(keyboardSize.height)

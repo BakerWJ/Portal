@@ -87,14 +87,14 @@ class DailyScheduleCell: UICollectionViewCell {
         
         addSubview(whiteView);
         whiteView.translatesAutoresizingMaskIntoConstraints = false;
-        whiteView.leadingAnchor.constraint (equalTo: leadingAnchor).isActive = true;
+        whiteView.leadingAnchor.constraint (equalTo: leadingAnchor, constant: 32/375.0*screenWidth).isActive = true;
         whiteView.trailingAnchor.constraint (equalTo: trailingAnchor).isActive = true;
         whiteView.topAnchor.constraint (equalTo: topAnchor, constant: 296/812.0*screenHeight).isActive = true;
         whiteView.bottomAnchor.constraint (equalTo: bottomAnchor, constant: -110/812.0*screenHeight).isActive = true;
         
         addSubview(imageContainerView);
         imageContainerView.translatesAutoresizingMaskIntoConstraints = false;
-        imageContainerView.leadingAnchor.constraint (equalTo: leadingAnchor).isActive = true;
+        imageContainerView.leadingAnchor.constraint (equalTo: leadingAnchor, constant: 32/375.0*screenWidth).isActive = true;
         imageContainerView.trailingAnchor.constraint (equalTo: trailingAnchor).isActive = true;
         imageContainerView.heightAnchor.constraint (equalToConstant: 354/812.0*screenHeight).isActive = true;
         imageTop = imageContainerView.topAnchor.constraint (equalTo: whiteView.topAnchor)

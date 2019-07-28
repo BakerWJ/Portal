@@ -794,19 +794,20 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7C118D26195145B6F602CD7A /* Pods-TimeStamp.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = VZH52F2524;
+				DEVELOPMENT_TEAM = N8Z8T3YH7D;
 				INFOPLIST_FILE = TimeStamp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.UTS-development.2342342";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.UTS-development.23";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -815,19 +816,20 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3D9C7440C79988B274B1F14A /* Pods-TimeStamp.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = VZH52F2524;
+				DEVELOPMENT_TEAM = N8Z8T3YH7D;
 				INFOPLIST_FILE = TimeStamp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.UTS-development.2342342";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.UTS-development.23";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

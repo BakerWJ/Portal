@@ -32,8 +32,10 @@ class ScheduleView: UIStackView
     //This Constructor takes in a Schedule Object and creates a ScheduleView
     init (schedule: Schedule, ADay: Bool, flipped: Bool, delegate: KeyboardShiftingDelegate)
     {
+        super.init (frame: CGRect())
         //Loops through every Period objects in the Schedule Object to get their properties and inserts them into appropriate arrays
-        for period in schedule.periods!
+        guard let periods = schedule.periods else {return}
+        for period in periods
         {
             if let period = period as? Period
             {
@@ -75,7 +77,6 @@ class ScheduleView: UIStackView
         self.ADay = ADay;
         self.flipped = flipped
         //super class function
-        super.init (frame: CGRect())
         //Performs some setup
         setup ()
     }

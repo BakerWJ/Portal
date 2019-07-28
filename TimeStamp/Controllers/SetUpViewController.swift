@@ -13,6 +13,8 @@ class SetUpViewController: UIViewController, UITextFieldDelegate {
     let screenWidth = UIScreen.main.bounds.width;
     let screenHeight = UIScreen.main.bounds.height;
     
+    let blockView = UIView ();
+    
     //the top label
     lazy var dayGreetingLabel: UILabel = {
         let label = UILabel ()
@@ -67,7 +69,7 @@ class SetUpViewController: UIViewController, UITextFieldDelegate {
     
     lazy var movingRect: UIView = {
         let view = UIView ()
-        view.backgroundColor = UIColor(red: 223/255.0, green: 168/255.0, blue: 144/255.0, alpha: 1.0);
+        view.backgroundColor = UIColor.getColor(223, 168, 144)
         return view;
     }()
     
@@ -88,7 +90,7 @@ class SetUpViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad();
-        view.backgroundColor = UIColor(red: 40/255.0, green: 73/255.0, blue: 164/255.0, alpha: 1);
+        view.backgroundColor = UIColor.getColor(40, 73, 164);
         setup ()
     }
     
@@ -117,6 +119,7 @@ class SetUpViewController: UIViewController, UITextFieldDelegate {
         topConstraint.isActive = true;
         view.addContraintsWithFormat("H:|[v0]|", views: outerView);
         outerView.heightAnchor.constraint (equalTo: view.heightAnchor).isActive = true;
+        outerView.backgroundColor = .clear;
         
         outerView.addSubview(dayGreetingLabel);
         dayGreetingLabel.translatesAutoresizingMaskIntoConstraints = false;
@@ -167,6 +170,15 @@ class SetUpViewController: UIViewController, UITextFieldDelegate {
         movingRect.heightAnchor.constraint (equalToConstant: 2/812.0*screenHeight).isActive = true;
         movingRect.topAnchor.constraint (equalTo: almostThereLabel.bottomAnchor).isActive = true;
         movingRect.layoutIfNeeded()
+        
+        //adding the block view to avoid blocking the status bar
+        view.addSubview (blockView);
+        blockView.translatesAutoresizingMaskIntoConstraints = false;
+        blockView.topAnchor.constraint (equalTo: view.topAnchor).isActive = true;
+        blockView.leadingAnchor.constraint (equalTo: view.leadingAnchor).isActive = true;
+        blockView.trailingAnchor.constraint (equalTo: view.trailingAnchor).isActive = true;
+        blockView.heightAnchor.constraint (equalToConstant: 30/812.0*screenHeight).isActive = true;
+        blockView.backgroundColor = view.backgroundColor;
     }
     
     private func updateToTuesday ()
