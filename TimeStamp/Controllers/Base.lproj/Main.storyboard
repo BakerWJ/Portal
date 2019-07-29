@@ -347,7 +347,22 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Jm-Ot-hfJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2497" y="1341"/>
+            <point key="canvasLocation" x="2470" y="1329"/>
+        </scene>
+        <!--Article View Controller-->
+        <scene sceneID="KiD-5R-Dd8">
+            <objects>
+                <viewController id="BwQ-Ox-5Gd" customClass="ArticleViewController" customModule="TimeStamp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rkF-dc-xj9">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="ze0-yD-AcS"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="u24-NX-vUh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3314" y="1329"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="LIn-eu-cPP">
