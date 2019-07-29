@@ -74,9 +74,9 @@ class NextPeriodView: UIView {
             text.append(NSMutableAttributedString(string: "is next. Starts at...", attributes: [.font : UIFont (name: "SitkaBanner", size: 14/375.0*screenWidth) ?? UIFont.systemFont(ofSize: 14/375.0*screenWidth)]))
             
             formatter.dateFormat = "hh:mm";
-            time = NSMutableAttributedString(string: formatter.string(from: nextPeriod.1) + " ", attributes: [.font: UIFont (name: "SimSun", size: 40/375.0*screenWidth) ?? UIFont.systemFont(ofSize: 40/375.0*screenWidth)]);
+            time = NSMutableAttributedString(string: formatter.string(from: nextPeriod.1), attributes: [.font: UIFont (name: "SimSun", size: 40/375.0*screenWidth) ?? UIFont.systemFont(ofSize: 40/375.0*screenWidth)]);
             formatter.dateFormat = "a";
-            time.append (NSMutableAttributedString(string: formatter.string (from: nextPeriod.1).uppercased(), attributes: [.font: UIFont(name: "SitkaBanner", size: 14/375.0*screenWidth) ?? UIFont.systemFont(ofSize: 14/375.0*screenWidth)]))
+            time.append (NSMutableAttributedString(string: " " + formatter.string (from: nextPeriod.1).uppercased(), attributes: [.font: UIFont(name: "SitkaBanner", size: 14/375.0*screenWidth) ?? UIFont.systemFont(ofSize: 14/375.0*screenWidth)]))
         }
         else if let nextSchoolDay = getNextSchoolDay() //if there isn't a next period in today, then find the next school day there is
         {
@@ -94,9 +94,9 @@ class NextPeriodView: UIView {
             text.append(NSMutableAttributedString(string: "School starts at...", attributes: [.font : UIFont (name: "SitkaBanner", size: 14/375.0*screenWidth) ?? UIFont.systemFont(ofSize: 14/375.0*screenWidth)]))
             
             formatter.dateFormat = "hh:mm";
-            time = NSMutableAttributedString(string: formatter.string(from: nextSchoolDay.0) + " ", attributes: [.font: UIFont (name: "SimSun", size: 40/375.0*screenWidth) ?? UIFont.systemFont(ofSize: 40/375.0*screenWidth)]);
+            time = NSMutableAttributedString(string: formatter.string(from: nextSchoolDay.0), attributes: [.font: UIFont (name: "SimSun", size: 40/375.0*screenWidth) ?? UIFont.systemFont(ofSize: 40/375.0*screenWidth)]);
             formatter.dateFormat = "a";
-            time.append (NSMutableAttributedString(string: formatter.string (from: nextSchoolDay.0).uppercased(), attributes: [.font: UIFont(name: "SitkaBanner", size: 14/375.0*screenWidth) ?? UIFont.systemFont(ofSize: 14/375.0*screenWidth)]))
+            time.append (NSMutableAttributedString(string: " " + formatter.string (from: nextSchoolDay.0).uppercased(), attributes: [.font: UIFont(name: "SitkaBanner", size: 14/375.0*screenWidth) ?? UIFont.systemFont(ofSize: 14/375.0*screenWidth)]))
         }
         nextClassLabel.attributedText = text;
         nextClassTimeLabel.attributedText = time;
