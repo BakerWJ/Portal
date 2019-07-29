@@ -207,7 +207,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
                                     
                                 }
                                 if(notify == true){
-                                    
                                     let general = UNMutableNotificationContent() //Notification content
                                     var eventName = "";
                                     for z in schedule{
@@ -229,7 +228,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
                                     //Determining time
                                     var time = DateComponents()
                                     
-                                    time.weekday = (Int)(x + 8 - Int(results[0].daysBefore)%7)
+                                    time.weekday = (Int)(x + 7 - Int(results[0].daysBefore))%7+1
                                     
                                     if(results[0].notificationTime == 1){ //morning
                                         time.hour = 8;
