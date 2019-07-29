@@ -79,6 +79,7 @@
 		CEC26E06227B3E9E00FFFC67 /* Timetable+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC26DFD227B3E9E00FFFC67 /* Timetable+CoreDataClass.swift */; };
 		CEC26E07227B3E9E00FFFC67 /* Period+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC26DFE227B3E9E00FFFC67 /* Period+CoreDataProperties.swift */; };
 		CEC26E08227B3E9E00FFFC67 /* Period+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC26DFF227B3E9E00FFFC67 /* Period+CoreDataClass.swift */; };
+		CED50C0022EF2D1A00FC4851 /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED50BFF22EF2D1A00FC4851 /* ArticleViewController.swift */; };
 		CEDC433222760BBE00A78890 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDC433122760BBE00A78890 /* AppDelegate.swift */; };
 		CEDC433422760BBE00A78890 /* GetStartedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDC433322760BBE00A78890 /* GetStartedViewController.swift */; };
 		CEDC433722760BBE00A78890 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEDC433522760BBE00A78890 /* Main.storyboard */; };
@@ -168,6 +169,7 @@
 		CEC26DFD227B3E9E00FFFC67 /* Timetable+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Timetable+CoreDataClass.swift"; sourceTree = "<group>"; };
 		CEC26DFE227B3E9E00FFFC67 /* Period+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Period+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		CEC26DFF227B3E9E00FFFC67 /* Period+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Period+CoreDataClass.swift"; sourceTree = "<group>"; };
+		CED50BFF22EF2D1A00FC4851 /* ArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
 		CEDC432E22760BBE00A78890 /* TimeStamp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeStamp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEDC433122760BBE00A78890 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEDC433322760BBE00A78890 /* GetStartedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartedViewController.swift; sourceTree = "<group>"; };
@@ -362,7 +364,6 @@
 				8A5F821F22D4505B00443020 /* Models */,
 				8A5F822022D4506700443020 /* Views */,
 				CEDC43462276108F00A78890 /* Controllers */,
-				CEDC433522760BBE00A78890 /* Main.storyboard */,
 				CEDC433D22760BC000A78890 /* LaunchScreen.storyboard */,
 				CEDC433B22760BC000A78890 /* Assets.xcassets */,
 				8AD862102298385E00412EFF /* GIFs */,
@@ -380,6 +381,7 @@
 		CEDC43462276108F00A78890 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				CEDC433522760BBE00A78890 /* Main.storyboard */,
 				CEDC433322760BBE00A78890 /* GetStartedViewController.swift */,
 				314635BC22ECBD2C00F522B4 /* SetUpViewController.swift */,
 				CEDC435C22773FAC00A78890 /* ScheduleViewController.swift */,
@@ -391,6 +393,7 @@
 				8A1B79FB22BEC2AF006FE52A /* MainTabBarViewController.swift */,
 				31BB397E22E6B48F004D2DE5 /* AppEntryViewController.swift */,
 				31BB398022E6C485004D2DE5 /* Old */,
+				CED50BFF22EF2D1A00FC4851 /* ArticleViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -610,6 +613,7 @@
 				8A5F823122D79DFA00443020 /* TaskView.swift in Sources */,
 				8A1AEDD122C6861D005282FD /* SlideOutView.swift in Sources */,
 				8A5F823922D7A00B00443020 /* ToDo_TaskTag+CoreDataProperties.swift in Sources */,
+				CED50C0022EF2D1A00FC4851 /* ArticleViewController.swift in Sources */,
 				8A5F823722D7A00B00443020 /* ToDo_Task+CoreDataProperties.swift in Sources */,
 				CEC26E07227B3E9E00FFFC67 /* Period+CoreDataProperties.swift in Sources */,
 				CE927FF8227A0BCD00EE0A22 /* RepeatingTimer.swift in Sources */,
@@ -798,7 +802,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = N8Z8T3YH7D;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = TimeStamp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -820,7 +824,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = N8Z8T3YH7D;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = TimeStamp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
