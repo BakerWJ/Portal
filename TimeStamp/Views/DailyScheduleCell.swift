@@ -36,6 +36,8 @@ class DailyScheduleCell: UICollectionViewCell {
         return label
     }()
     
+    var titleLabel = UILabel()
+    
     lazy var noDataLabel: UILabel = {
         let label = UILabel ()
         label.text = "No Data Available";
@@ -107,8 +109,6 @@ class DailyScheduleCell: UICollectionViewCell {
         imageContainerView.addContraintsWithFormat("V:|[v0]|", views: imageView);
         imageContainerView.addContraintsWithFormat("H:|[v0]|", views: imageView);
         
-        addImage()
-        
         bringSubviewToFront(whiteView);
         
         //setup no dataLabel
@@ -177,9 +177,18 @@ class DailyScheduleCell: UICollectionViewCell {
         {
             showNoDataLabel ()
         }
+        
+        //adds the title label
+        titleLabel = UILabel() //create a new label for the title
+        titleLabel.baselineAdjustment = .alignCenters;
+        titleLabel.textAlignment = .center;
+        addSubview (titleLabel);
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false;
+        
+        addImageAndTitle();
     }
     
-    private func addImage ()
+    private func addImageAndTitle ()
     {
         if let schedule = schedule
         {
@@ -195,11 +204,91 @@ class DailyScheduleCell: UICollectionViewCell {
             {
                 imageView.image = nil;
             }
+            titleLabel.text = schedule.kind;
+            //titleLabel
+            if (schedule.value == 3)
+            {
+                titleLateStartConfig()
+            }
+            else
+            {
+                titleNormalConfig()
+            }
         }
         else
         {
             imageView.image = nil;
+            titleNormalConfig()
+            titleLabel.text = "";
         }
+    }
+    
+    private func titleLateStartConfig()
+    {
+        titleLabel.font = UIFont(name: "SitkaBanner-Bold", size: 20/375.0*screenWidth);
+        titleLabel.textColor = .white;
+        titleLabel.backgroundColor = UIColor.getColor(255, 95, 88);
+        titleLabel.topAnchor.constraint(equalTo: whiteView.topAnchor, constant: 26/812.0*screenHeight).isActive = true;
+        titleLabel.centerXAnchor.constraint (equalTo: whiteView.centerXAnchor).isActive = true;
+        titleLabel.widthAnchor.constraint (equalToConstant: 177/375.0*screenWidth).isActive = true;
+        titleLabel.heightAnchor.constraint (equalToConstant: 35/812.0*screenHeight).isActive = true;
+        titleLabel.clipsToBounds = true;
+        titleLabel.layer.masksToBounds = true;
+        titleLabel.layoutIfNeeded();
+        titleLabel.layer.cornerRadius = titleLabel.frame.height/2;
+    }
+    
+    private func titleNormalConfig ()
+    {
+        titleLabel.font = UIFont (name: "SitkaBanner", size: 20/375.0*screenWidth);
+        titleLabel.textColor = .clear;
+        titleLabel.backgroundColor = .clear;
+        titleLabel.topAnchor.constraint (equalTo: whiteView.topAnchor, constant: -19/812.0*screenHeight).isActive = true;
+        titleLabel.centerXAnchor.constraint (equalTo: whiteView.centerXAnchor).isActive = true;
+        titleLabel.heightAnchor.constraint(equalToConstant: 53/812.0*screenHeight).isActive = true;
+        titleLabel.widthAnchor.constraint(equalToConstant: 180/375.0*screenWidth).isActive = true;
+        titleLabel.clipsToBounds = false;
+        titleLabel.layer.masksToBounds = false;
+        titleLabel.layoutIfNeeded()
+        
+        titleLabel.layer.shadowColor = UIColor.black.cgColor;
+        titleLabel.layer.shadowOpacity = 0.2;
+        titleLabel.layer.masksToBounds = false;
+        titleLabel.layer.shadowRadius = 3;
+        titleLabel.layer.shadowPath = UIBezierPath(roundedRect: titleLabel.bounds, byRoundingCorners: [.topLeft, .topRight], cornerRadii: CGSize(width: titleLabel.frame.height/3, height: titleLabel.frame.height/3)).cgPath
+        titleLabel.layer.shadowOffset = CGSize(width: 0.0, height: 1.0);
+        
+        let maskLayer = CAShapeLayer()
+        maskLayer.fillColor = UIColor.white.cgColor;
+        maskLayer.path = UIBezierPath(roundedRect: titleLabel.bounds, byRoundingCorners: [.topLeft, .topRight], cornerRadii: CGSize(width: titleLabel.frame.height/3, height: titleLabel.frame.height/3)).cgPath
+        titleLabel.layer.insertSublayer(maskLayer, at: 0)
+
+        
+        //add a shadow
+        let layer2 = CAShapeLayer()
+        let shadowOffset = 10/375.0*screenWidth;
+        let rectMask = CGRect(x: -shadowOffset, y: titleLabel.frame.height - (shadowOffset*0.25), width: shadowOffset*2 + titleLabel.frame.width, height: shadowOffset)
+        layer2.shadowColor = UIColor.black.cgColor
+        layer2.shadowPath = UIBezierPath(roundedRect: rectMask, cornerRadius: rectMask.height/2).cgPath
+        //shadow radius of 0 makes it less loose
+        layer2.shadowRadius = 0;
+        //shadow opacity makes it look grey
+        layer2.shadowOpacity = 0.2;
+        titleLabel.layer.insertSublayer(layer2, at: 0)
+        
+        //add a subview to show the hidden text
+        let textView = UILabel()
+        titleLabel.addSubview(textView);
+        textView.translatesAutoresizingMaskIntoConstraints = false;
+        titleLabel.addContraintsWithFormat("V:|[v0]|", views: textView);
+        titleLabel.addContraintsWithFormat("H:|[v0]|", views: textView);
+        textView.font = titleLabel.font;
+        textView.text = titleLabel.text;
+        textView.adjustsFontSizeToFitWidth = true;
+        textView.backgroundColor = .clear;
+        textView.textAlignment = .center;
+        textView.baselineAdjustment = .alignCenters;
+        textView.textColor = .black;
     }
     
     private func showNoDataLabel ()

@@ -80,6 +80,8 @@ class NextPeriodView: UIView {
         }
         else if let nextSchoolDay = getNextSchoolDay() //if there isn't a next period in today, then find the next school day there is
         {
+            print (nextSchoolDay.0)
+            print (nextSchoolDay.1)
             var displayed = "";
             if nextSchoolDay.1 == Util.nextDay() as Date
             {
@@ -118,9 +120,18 @@ class NextPeriodView: UIView {
                     {
                         if (schedule.value == weeklySchedule.typeOfDay [weekday - 1])
                         {
-                            if let period = schedule.periods?.object(at: 0) as? Period
+                            if let periods = schedule.periods
                             {
-                                return (period.startTime as Date, day as Date);
+                                for period in periods
+                                {
+                                    if let period = period as? Period
+                                    {
+                                        if period.correspond != 0
+                                        {
+                                            return (period.startTime as Date, day as Date);
+                                        }
+                                    }
+                                }
                             }
                         }
                     }

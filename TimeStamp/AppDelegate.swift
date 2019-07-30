@@ -142,7 +142,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
         GIDSignIn.sharedInstance()?.scopes.append(calendarScope);
         GIDSignIn.sharedInstance().scopes.append (calendarScope2);
         GIDSignIn.sharedInstance().scopes.append (classroomScope);
-        Util.printFonts()
         
         //After the app launches, it will check if the current schedule stored locally is up to date
         UserDataSettings.delegate = self;
@@ -172,12 +171,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
         self.window?.makeKeyAndVisible()
         
         //updates the data in the background every 10 minutes
-        UIApplication.shared.setMinimumBackgroundFetchInterval(600);
+        UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum);
         return true
     }
 
     func setNotifications(){
-
         
         let daysWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
         let center = UNUserNotificationCenter.current()
@@ -247,6 +245,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
                                     
                                     let notificationCenter = UNUserNotificationCenter.current()
                                     notificationCenter.add(request)
+                                    
+                                    //latestart,
                                 }
                             }
                         }
@@ -257,11 +257,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
         catch {
             fatalError("There was an error fetching the list of timetables");
         }
-        
-
-        //latestart,
-        
-        
     }
  
     func applicationWillResignActive(_ application: UIApplication)
@@ -298,7 +293,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
     //this is the code that gets executed every 10 minutes for background updates
     func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void)
     {
-        UserDataSettings.updateAll();
+        completionHandler(.newData)
+        let uuidString = UUID().uuidString
+        let generalTest = UNMutableNotificationContent()
+        generalTest.title = "test";
+        let triggerTest =  UNTimeIntervalNotificationTrigger(timeInterval: (6), repeats: false)
+        let requestTest = UNNotificationRequest(identifier: uuidString, content: generalTest, trigger: triggerTest)
+        notificationCenter.add(requestTest)
         print ("Data Refreshed")
+        UserDataSettings.updateAll();
+        //latestart,
     }
 }
