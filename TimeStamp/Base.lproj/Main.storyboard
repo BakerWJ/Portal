@@ -253,6 +253,9 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="2cW-n4-hb0"/>
                     <navigationItem key="navigationItem" id="Hyc-BD-YaF"/>
+                    <connections>
+                        <segue destination="l4K-YH-3go" kind="presentation" identifier="toToDo" id="ATa-20-eam"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hHd-6b-UJa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -270,14 +273,14 @@
                     </view>
                     <connections>
                         <segue destination="7X1-ax-wYc" kind="presentation" identifier="toEventItem" id="v3e-Si-Quj"/>
-                        <segue destination="Otd-vv-2fJ" kind="unwind" identifier="returnFromToDoList" unwindAction="returnFromToDoListWithSender:" id="Pab-64-0LW"/>
                         <segue destination="Hk6-Tt-vaQ" kind="presentation" identifier="toTaskItem" id="1Rf-Hv-GgP"/>
+                        <segue destination="Otd-vv-2fJ" kind="unwind" identifier="returnFromToDo" unwindAction="returnFromToDoListWithSender:" id="IGP-Mz-hzG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mwc-kh-fmD" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Otd-vv-2fJ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="5244" y="581"/>
+            <point key="canvasLocation" x="4862" y="-145"/>
         </scene>
         <!--Task Item View Controller-->
         <scene sceneID="2B6-gS-xoS">
@@ -296,7 +299,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0xR-8p-p1p" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="cAS-M1-oTo" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="6270" y="972"/>
+            <point key="canvasLocation" x="5886" y="246"/>
         </scene>
         <!--Event Item View Controller-->
         <scene sceneID="aki-Cd-Y01">
@@ -315,7 +318,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tfS-zC-CyH" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="epg-KI-GGU" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="6270" y="284"/>
+            <point key="canvasLocation" x="5886" y="-442"/>
         </scene>
         <!--News-->
         <scene sceneID="w9H-at-8RK">
@@ -746,6 +749,6 @@
         <image name="Toggle - On" width="68" height="39"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="bQ3-U0-0AC"/>
+        <segue reference="O4V-Zp-R5V"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -70,13 +70,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
                     {
                         UserDefaults.standard.set(true, forKey: "loggedin");
                         UserDataSettings.updateAll()
+                        
                         if (UserDefaults.standard.bool(forKey: "notFirstTimeLaunch"))
                         {
-                            vc.performSegue(withIdentifier: "toTabBar", sender: vc)
+                            vc.transition (segueName: "toTabBar");
                         }
                         else
                         {
-                            vc.performSegue(withIdentifier: "toGetStarted", sender: vc)
+                            vc.transition (segueName: "toGetStarted");
                         }
                     }
                     else
@@ -293,15 +294,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
     //this is the code that gets executed every 10 minutes for background updates
     func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void)
     {
-        completionHandler(.newData)
-        let uuidString = UUID().uuidString
-        let generalTest = UNMutableNotificationContent()
-        generalTest.title = "test";
-        let triggerTest =  UNTimeIntervalNotificationTrigger(timeInterval: (6), repeats: false)
-        let requestTest = UNNotificationRequest(identifier: uuidString, content: generalTest, trigger: triggerTest)
-        notificationCenter.add(requestTest)
-        print ("Data Refreshed")
+        completionHandler(.newData);
+        setNotifications();
         UserDataSettings.updateAll();
-        //latestart,
     }
 }

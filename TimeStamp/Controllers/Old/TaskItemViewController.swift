@@ -45,9 +45,16 @@ class TaskItemViewController: UIViewController, UITextViewDelegate {
     let tagSelect: UILabel = {
         let label = UILabel ()
         label.backgroundColor = .clear;
+        label.textAlignment = .center;
         label.font = UIFont (name: "SegoeUI", size: 14);
         label.translatesAutoresizingMaskIntoConstraints = false;
         return label;
+    }()
+    
+    let selectTaskTagView: SelectTaskTagView = {
+        let view = SelectTaskTagView()
+        view.translatesAutoresizingMaskIntoConstraints = false;
+        return view;
     }()
     
     //initialize the completed (or not) button
@@ -141,12 +148,22 @@ class TaskItemViewController: UIViewController, UITextViewDelegate {
         //set up tag selection label;
         stackview.addArrangedSubview(tagSelect);
         //this gesture recognizes a press on the label and goes to the function "willSelectTag"
-        let longPressGestureRecognizer = UILongPressGestureRecognizer (target: self, action: #selector (willSelectTag));
-        tagSelect.addGestureRecognizer(longPressGestureRecognizer);
+        let gestureRecognizer = UITapGestureRecognizer (target: self, action: #selector (willSelectTag));
+        tagSelect.addGestureRecognizer(gestureRecognizer);
         //constraints
         tagSelect.widthAnchor.constraint (equalToConstant: screenWidth).isActive = true;
-        tagSelect.text = "23423423";
+        tagSelect.text = "Select Tag";
         tagSelect.heightAnchor.constraint (equalToConstant: 30/812.0*screenHeight).isActive = true;
+        tagSelect.isUserInteractionEnabled = true;
+        
+        //tag select view
+        view.addSubview(selectTaskTagView);
+        selectTaskTagView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true;
+        selectTaskTagView.widthAnchor.constraint (equalToConstant: 200/375.0*screenWidth).isActive = true;
+        selectTaskTagView.centerXAnchor.constraint (equalTo: view.centerXAnchor).isActive = true;
+        selectTaskTagView.heightAnchor.constraint(equalToConstant: 400/812.0*screenHeight).isActive = true;
+        selectTaskTagView.isHidden = true;
+        //selectTaskTagView.heightAnchor.constraint (equalToConstant: )
     }
     
     //MARK: TextView Delegate methods
@@ -188,9 +205,11 @@ class TaskItemViewController: UIViewController, UITextViewDelegate {
     }
     
     //MARK: gestures
-    @objc func willSelectTag (_ sender: UILongPressGestureRecognizer)
+    @objc func willSelectTag ()
     {
-        
+        print ("hello")
+        selectTaskTagView.reload()
+        selectTaskTagView.isHidden = false;
     }
     
     

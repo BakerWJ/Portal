@@ -18,7 +18,7 @@ extension ToDo_TaskTag {
     }
 
     @NSManaged public var colour: UIColor
-    @NSManaged public var name: String?
+    @NSManaged public var name: String
     @NSManaged public var tasks: NSOrderedSet?
 
 }

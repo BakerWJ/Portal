@@ -13,15 +13,56 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate
 {
     
     //creates an instance of a sign in button
-    let signInButton = GIDSignInButton();
     let warningLabel = UILabel ();
+    
+    let screenWidth = UIScreen.main.bounds.width;
+    let screenHeight = UIScreen.main.bounds.height;
+
+    //signin button
+    lazy var signInButton: UIButton = {
+        let button = UIButton ();
+        button.backgroundColor = UIColor.getColor(40, 73, 164);
+        button.addTarget(self, action: #selector (signIn), for: .touchUpInside);
+        button.setTitle("Sign in with Google", for: .normal);
+        button.setTitle("Sign in with Google", for: .highlighted);
+        button.setTitleColor(.white, for: .normal);
+        button.setTitleColor(.white, for: .highlighted);
+        button.titleLabel?.font = UIFont (name: "SitkaBanner-Bold", size: 20/375.0*screenWidth);
+        return button;
+    }()
+    
+    lazy var getStartedLabel: UILabel = {
+        let label = UILabel ();
+        let text = NSMutableAttributedString (string: "Hi! ", attributes: [.font: UIFont(name: "SitkaBanner-Bold", size: 20/375.0*screenWidth) ?? UIFont.systemFont(ofSize: 20/375.0*screenWidth, weight: .bold)]);
+        text.append(NSMutableAttributedString(string: "Let's get you Started!", attributes: [.font: UIFont(name: "SitkaBanner", size: 20/375.0*screenWidth) ?? UIFont.systemFont(ofSize: 20/375.0*screenWidth)]));
+        label.attributedText = text;
+        label.textColor = UIColor.getColor(40, 73, 164);
+        label.backgroundColor = .clear;
+        return label;
+    }()
+    
+    let imageView = UIImageView (image: UIImage(named: "surfingImage"));
+    
+    let purpleCircle = UIImageView(image: UIImage(named: "purpleCircle"));
+    
+    lazy var movingRect: UIView = {
+        let view = UIView ()
+        view.backgroundColor = UIColor.getColor(223, 168, 144)
+        return view;
+    }()
+    
+    var getStartedLeading = NSLayoutConstraint()
+    var imageWidth = NSLayoutConstraint();
+    var circleHeight = NSLayoutConstraint();
+    
+    @objc func signIn ()
+    {
+        GIDSignIn.sharedInstance()?.signIn()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(red: 243.0/255, green: 243.0/255, blue: 243.0/255, alpha: 1.0);
-        GIDSignIn.sharedInstance()?.uiDelegate = self;
-        GIDSignIn.sharedInstance()?.signInSilently();
-        setup ()
+        setup()
         // Do any additional setup after loading the view.
     }
     
@@ -41,14 +82,96 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated);
+        reset()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated);
+        reset()
+    }
+    
+    private func reset ()
+    {
+        //reset all the constraints to normal
+        signInButton.layer.opacity = 1;
+        purpleCircle.layer.opacity = 1;
+        imageView.layer.opacity = 1;
+        getStartedLeading.constant = 88/375.0*screenWidth;
+        imageWidth.constant = 559/812.0*screenHeight;
+        circleHeight.constant = 563/812.0*screenHeight;
+    }
+    
+    func transition (segueName: String)
+    {
+        self.getStartedLeading.constant -= self.screenWidth;
+        self.imageWidth.constant = 0;
+        self.circleHeight.constant = 0;
+        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn, animations: {
+            self.view.layoutIfNeeded()
+            self.signInButton.layer.opacity = 0;
+            self.purpleCircle.layer.opacity = 0;
+            self.imageView.layer.opacity = 0;
+        }) { (Finished) in
+            self.performSegue(withIdentifier: segueName, sender: self);
+        };
+    }
+    
     private func setup ()
     {
+        
+        view.backgroundColor = .white;
+        GIDSignIn.sharedInstance()?.uiDelegate = self;
+        GIDSignIn.sharedInstance()?.signInSilently();
+        
+        //add sign in button
         view.addSubview (signInButton);
         signInButton.translatesAutoresizingMaskIntoConstraints = false;
-        signInButton.heightAnchor.constraint (equalToConstant: 50/812.0*view.frame.height).isActive = true;
-        signInButton.widthAnchor.constraint (equalToConstant: 100/812.0*view.frame.height).isActive = true;
         signInButton.centerXAnchor.constraint (equalTo: view.centerXAnchor).isActive = true;
-        signInButton.centerYAnchor.constraint (equalTo: view.centerYAnchor).isActive = true;
+        signInButton.topAnchor.constraint (equalTo: view.topAnchor, constant: 696/812.0*screenHeight).isActive = true;
+        signInButton.heightAnchor.constraint (equalToConstant: 45/812.0*screenHeight).isActive = true;
+        signInButton.widthAnchor.constraint (equalToConstant: 307/375.0*screenWidth).isActive = true;
+        signInButton.layoutIfNeeded();
+        signInButton.layer.cornerRadius = signInButton.frame.height/3;
+        signInButton.dropShadow()
+        
+        //add the let's get you started label
+        view.addSubview(getStartedLabel);
+        getStartedLabel.translatesAutoresizingMaskIntoConstraints = false;
+        getStartedLeading = getStartedLabel.leadingAnchor.constraint (equalTo: view.leadingAnchor, constant: 88/375.0*screenWidth);
+        getStartedLeading.isActive = true;
+        getStartedLabel.topAnchor.constraint (equalTo: view.topAnchor, constant: 654/812.0*screenHeight).isActive = true;
+        getStartedLabel.widthAnchor.constraint (equalToConstant: 199/375.0*screenWidth).isActive = true;
+        getStartedLabel.heightAnchor.constraint (equalToConstant: 20/812.0*screenHeight).isActive = true;
+        
+        //add the moving rectangle (line)
+        view.addSubview(movingRect);
+        movingRect.translatesAutoresizingMaskIntoConstraints = false;
+        movingRect.leadingAnchor.constraint (equalTo: getStartedLabel.leadingAnchor).isActive = true;
+        movingRect.heightAnchor.constraint (equalToConstant: 2/812.0*screenHeight).isActive = true;
+        movingRect.widthAnchor.constraint (equalToConstant: 287/375.0*screenWidth).isActive = true;
+        movingRect.topAnchor.constraint (equalTo: getStartedLabel.bottomAnchor).isActive = true;
+        
+        //add the image
+        view.addSubview(imageView);
+        imageView.translatesAutoresizingMaskIntoConstraints = false;
+        imageView.centerXAnchor.constraint (equalTo: view.leadingAnchor, constant: 151.5/375.0*screenWidth).isActive = true;
+        imageView.centerYAnchor.constraint (equalTo: view.topAnchor, constant: 321.5/812.0*screenHeight).isActive = true;
+        imageWidth = imageView.widthAnchor.constraint (equalToConstant: 559/812.0*screenHeight);
+        imageWidth.isActive = true;
+        imageView.heightAnchor.constraint (equalTo: imageView.widthAnchor).isActive = true;
+        imageView.layoutIfNeeded()
+        
+        //add the purple circle
+        view.addSubview (purpleCircle);
+        purpleCircle.translatesAutoresizingMaskIntoConstraints = false;
+        purpleCircle.centerXAnchor.constraint (equalTo: imageView.centerXAnchor).isActive = true;
+        purpleCircle.centerYAnchor.constraint (equalTo: imageView.centerYAnchor, constant: 19/812.0*screenHeight).isActive = true;
+        circleHeight = purpleCircle.heightAnchor.constraint (equalToConstant: 563/812.0*screenHeight);
+        circleHeight.isActive = true;
+        purpleCircle.widthAnchor.constraint (equalTo: purpleCircle.heightAnchor).isActive = true;
+        view.bringSubviewToFront(imageView)
         
         view.addSubview (warningLabel);
         warningLabel.translatesAutoresizingMaskIntoConstraints = false;

@@ -76,6 +76,14 @@ class MainPageViewController: UIViewController {
         return view;
     }()
     
+    //temporary image placeholder for te todolist
+    /*let toDoIcon: UIButton = {
+        let button = UIButton ()
+        button.setBackgroundImage(UIImage(named: "toDoIcon"), for: .normal);
+        button.addTarget(self, action: #selector (goToToDo), for: .touchUpInside);
+        return button;
+    }()*/
+    
     //for animation between tab bar items
     var nextClassCenter = NSLayoutConstraint()
     var profileTop = NSLayoutConstraint()
@@ -132,6 +140,14 @@ class MainPageViewController: UIViewController {
         userImage.topAnchor.constraint (equalTo: helloLabel.topAnchor).isActive = true;
         userImage.trailingAnchor.constraint (equalTo: profileView.trailingAnchor, constant: -20/375.0*screenWidth).isActive = true;
         
+        //add the todo icon
+        /*view.addSubview(toDoIcon);
+        toDoIcon.translatesAutoresizingMaskIntoConstraints = false;
+        toDoIcon.heightAnchor.constraint (equalTo: userImage.heightAnchor).isActive = true;
+        toDoIcon.widthAnchor.constraint (equalTo: userImage.widthAnchor).isActive = true;
+        toDoIcon.topAnchor.constraint (equalTo: userImage.bottomAnchor, constant: 5/812.0*screenHeight).isActive = true;
+        toDoIcon.leadingAnchor.constraint (equalTo: userImage.leadingAnchor).isActive = true;*/
+
         //set the image rounded corner
         userImage.layoutIfNeeded();
         userImage.layer.cornerRadius = userImage.frame.height/2;
@@ -186,6 +202,14 @@ class MainPageViewController: UIViewController {
         nextFewDaysView.refresh();
     }
     
+    //MARK: Navigations
+    
+    @IBAction func returnFromToDoList (_ sender: UIStoryboardSegue){}
+    
+    @objc func goToToDo ()
+    {
+        performSegue (withIdentifier: "toToDo", sender: self);
+    }
     
     
     

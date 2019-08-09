@@ -40,12 +40,15 @@
 		8A5F822A22D5821500443020 /* TaskMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5F822922D5821500443020 /* TaskMenuView.swift */; };
 		8A5F822C22D5822500443020 /* EventMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5F822B22D5822500443020 /* EventMenuView.swift */; };
 		8A5F822F22D6DB3100443020 /* TaskItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5F822E22D6DB3100443020 /* TaskItemViewController.swift */; };
-		8A5F823122D79DFA00443020 /* TaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5F823022D79DFA00443020 /* TaskView.swift */; };
+		8A5F823122D79DFA00443020 /* TaskListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5F823022D79DFA00443020 /* TaskListTableViewCell.swift */; };
 		8A5F823622D7A00B00443020 /* ToDo_Task+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5F823222D7A00B00443020 /* ToDo_Task+CoreDataClass.swift */; };
 		8A5F823722D7A00B00443020 /* ToDo_Task+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5F823322D7A00B00443020 /* ToDo_Task+CoreDataProperties.swift */; };
 		8A5F823822D7A00B00443020 /* ToDo_TaskTag+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5F823422D7A00B00443020 /* ToDo_TaskTag+CoreDataClass.swift */; };
 		8A5F823922D7A00B00443020 /* ToDo_TaskTag+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5F823522D7A00B00443020 /* ToDo_TaskTag+CoreDataProperties.swift */; };
 		8A6780792298C81B00748848 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6780782298C81B00748848 /* EventView.swift */; };
+		8A9BC14F22F1C1DE0001B4F8 /* AddTaskTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9BC14E22F1C1DE0001B4F8 /* AddTaskTagView.swift */; };
+		8A9BC15222F1C1F40001B4F8 /* SelectTaskTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9BC15122F1C1F40001B4F8 /* SelectTaskTagView.swift */; };
+		8A9BC15422F1C74E0001B4F8 /* SelectTaskTagTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9BC15322F1C74E0001B4F8 /* SelectTaskTagTableViewCell.swift */; };
 		8AA2F04422811FF90091EF0F /* HorizontalRightShiftTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA2F04322811FF90091EF0F /* HorizontalRightShiftTransition.swift */; };
 		8AA2F046228123890091EF0F /* HorizontalLeftShiftTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA2F045228123890091EF0F /* HorizontalLeftShiftTransition.swift */; };
 		8ABCA53E2282176000A30D36 /* WeeklySchedule+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABCA53C2282176000A30D36 /* WeeklySchedule+CoreDataClass.swift */; };
@@ -131,12 +134,15 @@
 		8A5F822922D5821500443020 /* TaskMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskMenuView.swift; sourceTree = "<group>"; };
 		8A5F822B22D5822500443020 /* EventMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMenuView.swift; sourceTree = "<group>"; };
 		8A5F822E22D6DB3100443020 /* TaskItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskItemViewController.swift; sourceTree = "<group>"; };
-		8A5F823022D79DFA00443020 /* TaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskView.swift; sourceTree = "<group>"; };
+		8A5F823022D79DFA00443020 /* TaskListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListTableViewCell.swift; sourceTree = "<group>"; };
 		8A5F823222D7A00B00443020 /* ToDo_Task+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToDo_Task+CoreDataClass.swift"; sourceTree = "<group>"; };
 		8A5F823322D7A00B00443020 /* ToDo_Task+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToDo_Task+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8A5F823422D7A00B00443020 /* ToDo_TaskTag+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToDo_TaskTag+CoreDataClass.swift"; sourceTree = "<group>"; };
 		8A5F823522D7A00B00443020 /* ToDo_TaskTag+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToDo_TaskTag+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8A6780782298C81B00748848 /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
+		8A9BC14E22F1C1DE0001B4F8 /* AddTaskTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskTagView.swift; sourceTree = "<group>"; };
+		8A9BC15122F1C1F40001B4F8 /* SelectTaskTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTaskTagView.swift; sourceTree = "<group>"; };
+		8A9BC15322F1C74E0001B4F8 /* SelectTaskTagTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTaskTagTableViewCell.swift; sourceTree = "<group>"; };
 		8AA2F04322811FF90091EF0F /* HorizontalRightShiftTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalRightShiftTransition.swift; sourceTree = "<group>"; };
 		8AA2F045228123890091EF0F /* HorizontalLeftShiftTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalLeftShiftTransition.swift; sourceTree = "<group>"; };
 		8ABCA53C2282176000A30D36 /* WeeklySchedule+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeeklySchedule+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -261,7 +267,10 @@
 		8A5F822D22D6020000443020 /* To-Do List */ = {
 			isa = PBXGroup;
 			children = (
-				8A5F823022D79DFA00443020 /* TaskView.swift */,
+				8A5F823022D79DFA00443020 /* TaskListTableViewCell.swift */,
+				8A9BC14E22F1C1DE0001B4F8 /* AddTaskTagView.swift */,
+				8A9BC15122F1C1F40001B4F8 /* SelectTaskTagView.swift */,
+				8A9BC15322F1C74E0001B4F8 /* SelectTaskTagTableViewCell.swift */,
 				8A5F822322D531D700443020 /* TaskEventMenu.swift */,
 				8A5F822522D581F300443020 /* TaskListView.swift */,
 				8A5F822722D581FF00443020 /* EventListView.swift */,
@@ -365,6 +374,7 @@
 				8A5F822022D4506700443020 /* Views */,
 				CEDC43462276108F00A78890 /* Controllers */,
 				CEDC433D22760BC000A78890 /* LaunchScreen.storyboard */,
+				CEDC433522760BBE00A78890 /* Main.storyboard */,
 				CEDC433B22760BC000A78890 /* Assets.xcassets */,
 				8AD862102298385E00412EFF /* GIFs */,
 				CEC26DF6227B3E9E00FFFC67 /* Data */,
@@ -381,7 +391,6 @@
 		CEDC43462276108F00A78890 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				CEDC433522760BBE00A78890 /* Main.storyboard */,
 				CEDC433322760BBE00A78890 /* GetStartedViewController.swift */,
 				314635BC22ECBD2C00F522B4 /* SetUpViewController.swift */,
 				CEDC435C22773FAC00A78890 /* ScheduleViewController.swift */,
@@ -586,12 +595,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A9BC15422F1C74E0001B4F8 /* SelectTaskTagTableViewCell.swift in Sources */,
 				8A1B7A0422BEC924006FE52A /* ToDoListViewController.swift in Sources */,
 				CE927FF9227A0BCD00EE0A22 /* ScheduleView.swift in Sources */,
 				8A5F822C22D5822500443020 /* EventMenuView.swift in Sources */,
 				8A5F822A22D5821500443020 /* TaskMenuView.swift in Sources */,
 				8AD8621C22984A9600412EFF /* VerticalUpShiftTransitionUnwind.swift in Sources */,
 				CEDC433422760BBE00A78890 /* GetStartedViewController.swift in Sources */,
+				8A9BC15222F1C1F40001B4F8 /* SelectTaskTagView.swift in Sources */,
 				314635BB22EB8A5000F522B4 /* NextPeriodView.swift in Sources */,
 				8A1AEDCB22C2BE25005282FD /* TomorrowToTodayShift.swift in Sources */,
 				8A1AEDC922C2BDFF005282FD /* TodayToTomorrowShift.swift in Sources */,
@@ -610,7 +621,7 @@
 				CEDC435D22773FAC00A78890 /* ScheduleViewController.swift in Sources */,
 				CE927FF7227A0BCD00EE0A22 /* PeriodView.swift in Sources */,
 				8A1B7A2122C00804006FE52A /* MenuHelper.swift in Sources */,
-				8A5F823122D79DFA00443020 /* TaskView.swift in Sources */,
+				8A5F823122D79DFA00443020 /* TaskListTableViewCell.swift in Sources */,
 				8A1AEDD122C6861D005282FD /* SlideOutView.swift in Sources */,
 				8A5F823922D7A00B00443020 /* ToDo_TaskTag+CoreDataProperties.swift in Sources */,
 				CED50C0022EF2D1A00FC4851 /* ArticleViewController.swift in Sources */,
@@ -649,6 +660,7 @@
 				CE3A513C22E8F3E90056E536 /* NewsViewController.swift in Sources */,
 				8A5F822822D581FF00443020 /* EventListView.swift in Sources */,
 				8A1AEDCE22C4148F005282FD /* Event+CoreDataClass.swift in Sources */,
+				8A9BC14F22F1C1DE0001B4F8 /* AddTaskTagView.swift in Sources */,
 				8A5F822F22D6DB3100443020 /* TaskItemViewController.swift in Sources */,
 				8A1B7A1F22C0072D006FE52A /* Interactor.swift in Sources */,
 				8A5F822422D531D700443020 /* TaskEventMenu.swift in Sources */,
@@ -801,8 +813,9 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = N8Z8T3YH7D;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = TimeStamp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -811,6 +824,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.UTS-development.232";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -823,8 +837,9 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = N8Z8T3YH7D;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = TimeStamp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -833,6 +848,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.UTS-development.232";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

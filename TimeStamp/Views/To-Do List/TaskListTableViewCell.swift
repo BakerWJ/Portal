@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TaskView: UITableViewCell
+class TaskListTableViewCell: UITableViewCell
 {
     var task: ToDo_Task? {
         didSet {
@@ -20,7 +20,7 @@ class TaskView: UITableViewCell
     let screenWidth = UIScreen.main.bounds.width;
  
     //the delegate for passing in values for adjusting the views
-    weak var delegate: ToDoListViewController?
+    weak var delegate: TaskListView?
     
     var tagWidth = NSLayoutConstraint ()
     var leading = NSLayoutConstraint()
@@ -81,6 +81,17 @@ class TaskView: UITableViewCell
         setup ();
     }
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        
+        // Configure the view for the selected state
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews();
         reload();
@@ -93,7 +104,7 @@ class TaskView: UITableViewCell
     
     private func setup ()
     {
-        backgroundColor = UIColor(red: 243.0/255, green: 243.0/255, blue: 243.0/255, alpha: 1.0);
+        backgroundColor = .clear;
         formatter.dateFormat = "MMM d"
         
         //this wrapper view is created so the leading constraint can be manipulated
@@ -122,7 +133,7 @@ class TaskView: UITableViewCell
         titleLabel.widthAnchor.constraint (equalToConstant: 180/375.0*screenWidth).isActive = true;
         
         dateLabel.trailingAnchor.constraint (equalTo: wrapperView.trailingAnchor, constant: -12/375.0*screenWidth).isActive = true;
-        dateLabel.widthAnchor.constraint (equalToConstant: 30/275.0*screenWidth).isActive = true;
+        dateLabel.widthAnchor.constraint (equalToConstant: 35/275.0*screenWidth).isActive = true;
         dateLabel.centerYAnchor.constraint (equalTo: wrapperView.centerYAnchor).isActive = true;
         dateLabel.heightAnchor.constraint (equalTo: wrapperView.heightAnchor).isActive = true;
         

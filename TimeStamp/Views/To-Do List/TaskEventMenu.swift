@@ -68,8 +68,8 @@ class TaskEventMenu: UIView
     
     private func setup ()
     {
-        //set background color to gray
-        backgroundColor = UIColor(red: 243.0/255, green: 243.0/255, blue: 243.0/255, alpha: 1.0);
+        //set background color to clear;
+        backgroundColor = .clear;
         
         selectedFirst = true;
         addSubview (taskButton);

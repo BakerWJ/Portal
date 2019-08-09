@@ -477,11 +477,15 @@ class UserDataSettings
     static func fetchAllTaskTags () -> [ToDo_TaskTag]?
     {
         let fetchRequest = NSFetchRequest <NSFetchRequestResult> (entityName: "ToDo_TaskTag");
+        let sortDescriptor = NSSortDescriptor(key: "name", ascending: true);
+        fetchRequest.sortDescriptors = [sortDescriptor];
         do
         {
             if let results = try CoreDataStack.managedObjectContext.fetch (fetchRequest) as? [ToDo_TaskTag]
             {
-                return results;
+                return results.sorted(by: { (a, b) -> Bool in
+                    a.name.compare(b.name) == .orderedAscending;
+                })
             }
         }
         catch
