@@ -20,7 +20,9 @@ class ArticleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(scrollview)
+        setupScroll()
         articleContent()
+        backButton()
     }
     
     func setupScroll() {
@@ -30,6 +32,26 @@ class ArticleViewController: UIViewController {
         scrollview.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         scrollview.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         scrollview.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+    }
+    
+    @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
+        let mainStory = UIStoryboard(name: "Main", bundle: Bundle.main)
+        
+        let destinationViewController = mainStory.instantiateViewController(withIdentifier: "article")
+        navigationController?.setToolbarHidden(true, animated: false)
+        navigationController?.show(destinationViewController, sender: self)
+    }
+    
+    func backButton() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+        let articleImage = UIImage(named: "Taskbar")
+        let bgimage = UIImageView(image: articleImage)
+        bgimage.frame = CGRect(x: 17, y: 26, width: 40, height: 40)
+        bgimage.clipsToBounds = true
+        bgimage.contentMode = .scaleAspectFill
+        bgimage.isUserInteractionEnabled = true
+        bgimage.addGestureRecognizer(tap)
+        self.view.addSubview(bgimage)
     }
     
     func articleContent() {
@@ -43,7 +65,7 @@ class ArticleViewController: UIViewController {
         title.numberOfLines = 0
         title.textColor = UIColor.black
         title.alpha = 1
-        let titleContent = "We live in an \n age of change."
+        let titleContent = "We live in an \nage of change."
         let titleString = NSMutableAttributedString(string: titleContent, attributes: [
             NSAttributedString.Key.font: UIFont(name: "SitkaBanner", size: 40)!
             ])
@@ -55,6 +77,25 @@ class ArticleViewController: UIViewController {
         title.attributedText = titleString
         title.sizeToFit()
         self.scrollview.addSubview(title)
+        
+        let authorLayer = UILabel(frame: CGRect(x: 36.29, y: 506, width: 62, height: 14))
+        authorLayer.lineBreakMode = .byWordWrapping
+        authorLayer.numberOfLines = 0
+        authorLayer.textColor = UIColor.black
+        authorLayer.alpha = 1
+        let authorContent = "John Smith"
+        let authorString = NSMutableAttributedString(string: authorContent, attributes: [
+            NSAttributedString.Key.font: UIFont(name: "SitkaBanner", size: 14)!
+            ])
+        let authorRange = NSRange(location: 0, length: authorString.length)
+        let authorStyle = NSMutableParagraphStyle()
+        authorStyle.lineSpacing = 1
+        authorString.addAttribute(NSAttributedString.Key.paragraphStyle, value: authorStyle, range: authorRange)
+        authorString.addAttribute(NSAttributedString.Key.kern, value: 0.21, range: authorRange)
+        authorLayer.attributedText = authorString
+        authorLayer.sizeToFit()
+        self.scrollview.addSubview(authorLayer)
+        
         
     }
 
