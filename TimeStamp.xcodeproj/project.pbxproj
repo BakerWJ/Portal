@@ -34,6 +34,7 @@
 		8A1B7A2122C00804006FE52A /* MenuHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B7A2022C00804006FE52A /* MenuHelper.swift */; };
 		8A1B7A2322C018F1006FE52A /* TodayToTomorrowAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B7A2222C018F1006FE52A /* TodayToTomorrowAnimator.swift */; };
 		8A1B7A2522C01D6F006FE52A /* TomorrowToTodayAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B7A2422C01D6F006FE52A /* TomorrowToTodayAnimator.swift */; };
+		8A445BB22301AC370020C29B /* AnimatingButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A445BB12301AC370020C29B /* AnimatingButtonView.swift */; };
 		8A5F822422D531D700443020 /* TaskEventMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5F822322D531D700443020 /* TaskEventMenu.swift */; };
 		8A5F822622D581F300443020 /* TaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5F822522D581F300443020 /* TaskListView.swift */; };
 		8A5F822822D581FF00443020 /* EventListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5F822722D581FF00443020 /* EventListView.swift */; };
@@ -128,6 +129,7 @@
 		8A1B7A2022C00804006FE52A /* MenuHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuHelper.swift; sourceTree = "<group>"; };
 		8A1B7A2222C018F1006FE52A /* TodayToTomorrowAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayToTomorrowAnimator.swift; sourceTree = "<group>"; };
 		8A1B7A2422C01D6F006FE52A /* TomorrowToTodayAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TomorrowToTodayAnimator.swift; sourceTree = "<group>"; };
+		8A445BB12301AC370020C29B /* AnimatingButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatingButtonView.swift; sourceTree = "<group>"; };
 		8A5F822322D531D700443020 /* TaskEventMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskEventMenu.swift; sourceTree = "<group>"; };
 		8A5F822522D581F300443020 /* TaskListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListView.swift; sourceTree = "<group>"; };
 		8A5F822722D581FF00443020 /* EventListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListView.swift; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 			isa = PBXGroup;
 			children = (
 				CE927FF1227A0BCD00EE0A22 /* PeriodView.swift */,
+				8A445BB12301AC370020C29B /* AnimatingButtonView.swift */,
 				314635B822EB78B400F522B4 /* UpcomingDaysView.swift */,
 				314635BA22EB8A5000F522B4 /* NextPeriodView.swift */,
 				8A6780782298C81B00748848 /* EventView.swift */,
@@ -635,6 +638,7 @@
 				CEC26E04227B3E9E00FFFC67 /* FlipDay+CoreDataProperties.swift in Sources */,
 				CEDC433222760BBE00A78890 /* AppDelegate.swift in Sources */,
 				CEC26E01227B3E9E00FFFC67 /* Schedule+CoreDataProperties.swift in Sources */,
+				8A445BB22301AC370020C29B /* AnimatingButtonView.swift in Sources */,
 				8AD8621A22984A5E00412EFF /* HorizontalLeftShiftTransitionUnwind.swift in Sources */,
 				CE146D972280BD9900B3922D /* Settings+CoreDataClass.swift in Sources */,
 				CEC26E00227B3E9E00FFFC67 /* CoreDataStack.swift in Sources */,

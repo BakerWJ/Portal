@@ -149,6 +149,7 @@ class AppEntryViewController: UIViewController {
     
     private func setup ()
     {
+        self.setNeedsStatusBarAppearanceUpdate()
         view.backgroundColor = .white;
         view.addSubview (bottomBlue);
         bottomBlue.translatesAutoresizingMaskIntoConstraints = false;
@@ -265,6 +266,10 @@ class AppEntryViewController: UIViewController {
         rectangle.topAnchor.constraint (equalTo: view.topAnchor).isActive = true;
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent;
+    }
+    
     private func startAnimations ()
     {
         //being the bottomBlueview to the top get the proper sequence
@@ -301,7 +306,7 @@ class AppEntryViewController: UIViewController {
         let animation = CABasicAnimation(keyPath: "path");
         animation.fromValue = path1;
         animation.toValue = path;
-        animation.duration = 1.0;
+        animation.duration = 0.8;
         animation.fillMode = .forwards
         animation.isRemovedOnCompletion = false;
         animation.beginTime = CACurrentMediaTime() + 1.9;
@@ -357,7 +362,7 @@ class AppEntryViewController: UIViewController {
         let animation = CABasicAnimation(keyPath: "path");
         animation.fromValue = path1;
         animation.toValue = path;
-        animation.duration = 1.0;
+        animation.duration = 0.8;
         animation.fillMode = .forwards
         animation.isRemovedOnCompletion = false;
         animation.beginTime = CACurrentMediaTime() + 1.9;

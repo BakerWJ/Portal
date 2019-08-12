@@ -113,6 +113,7 @@ class SetUpViewController: UIViewController, UITextFieldDelegate {
     
     private func setup ()
     {
+        self.setNeedsStatusBarAppearanceUpdate()
         view.addSubview (outerView);
         outerView.translatesAutoresizingMaskIntoConstraints = false;
         topConstraint = outerView.topAnchor.constraint (equalTo: view.topAnchor);
@@ -179,6 +180,10 @@ class SetUpViewController: UIViewController, UITextFieldDelegate {
         blockView.trailingAnchor.constraint (equalTo: view.trailingAnchor).isActive = true;
         blockView.heightAnchor.constraint (equalToConstant: 30/812.0*screenHeight).isActive = true;
         blockView.backgroundColor = view.backgroundColor;
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent;
     }
     
     private func updateToTuesday ()

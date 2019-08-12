@@ -59,6 +59,7 @@ class UserDataSettings
                     mainSettings.generalNotifications = false;
                     mainSettings.notificationTime = 3;
                     mainSettings.houseNotifications = false;
+                    mainSettings.athleticNotifications = false;
                     CoreDataStack.saveContext()
                 }
             }

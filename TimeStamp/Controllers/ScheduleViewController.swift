@@ -108,8 +108,14 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate, UIScro
         }
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     private func setup ()
     {
+        self.setNeedsStatusBarAppearanceUpdate()
+        
         view.backgroundColor = UIColor.getColor(coloursDisplayedRGB [0].0, coloursDisplayedRGB [0].1, coloursDisplayedRGB [0].2)
         
         view.addSubview(containerView);

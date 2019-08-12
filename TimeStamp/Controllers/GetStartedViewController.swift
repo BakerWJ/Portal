@@ -11,98 +11,168 @@ import CoreData
 
 class GetStartedViewController: UIViewController {
     
-    @IBOutlet weak var generalNotif: UIButton!
-    @IBOutlet weak var houseNotif: UIButton!
-    @IBOutlet weak var eventNotif: UIButton!
-    @IBOutlet weak var done: UIButton!
-    @IBOutlet weak var LetsGetStartedLabel: UILabel!
-    @IBOutlet weak var ExplainNotificationLabel: UILabel!
-    @IBOutlet weak var GeneralNotificationLabel: UILabel!
-    @IBOutlet weak var HouseNotificationLabel: UILabel!
-    @IBOutlet weak var SpecialEventsNotificationLabel: UILabel!
-    @IBOutlet weak var GeneralNotifExplain: UILabel!
-    @IBOutlet weak var HouseNotifExplain: UILabel!
-    @IBOutlet weak var SpecialEventNotifExplain: UILabel!
+    let screenHeight = UIScreen.main.bounds.height;
+    let screenWidth = UIScreen.main.bounds.width;
     
-    override func viewDidLoad()
+    lazy var stackView : UIStackView = {
+        let view = UIStackView();
+        view.axis = .vertical;
+        view.alignment = .fill;
+        view.distribution = .fillEqually
+        view.spacing = 30/812.0*screenHeight;
+        return view;
+    }()
+    
+    let mask = UIImageView(image: UIImage(named: "curvyMask"));
+
+    lazy var maskView : UIView = {
+        let view = UIView ();
+        view.mask = mask;
+        view.clipsToBounds = true;
+        view.layer.masksToBounds = true;
+        return view;
+    }()
+    
+    let imageView = UIImageView (image: UIImage (named: "onLakeImage"));
+    
+    lazy var doneButton: UIButton = {
+        let button = UIButton ();
+        button.backgroundColor = UIColor.getColor(40, 73, 164);
+        button.addTarget(self, action: #selector (done), for: .touchUpInside);
+        button.setTitle("Done!", for: .normal);
+        button.setTitle("Done!", for: .highlighted);
+        button.setTitleColor(.white, for: .normal);
+        button.setTitleColor(.white, for: .highlighted);
+        button.titleLabel?.font = UIFont (name: "SitkaBanner-Bold", size: 20/375.0*screenWidth);
+        return button;
+    }()
+    
+    lazy var movingRect: UIView = {
+        let view = UIView ()
+        view.backgroundColor = UIColor.getColor(223, 168, 144)
+        return view;
+    }()
+    
+    lazy var yourInterestLabel: UILabel = {
+        let label = UILabel ();
+        let text = NSMutableAttributedString(string: "Tell Us what ", attributes: [.font: UIFont(name: "SitkaBanner", size: 20/375.0*screenWidth) ?? UIFont.systemFont(ofSize: 20/375.0*screenWidth)]);
+        text.append(NSMutableAttributedString (string: "Interests you!", attributes: [.font: UIFont(name: "SitkaBanner-Bold", size: 20/375.0*screenWidth) ?? UIFont.systemFont(ofSize: 20/375.0*screenWidth, weight: .bold)]));
+        label.attributedText = text;
+        label.textColor = UIColor.getColor(40, 73, 164);
+        label.backgroundColor = .clear;
+        return label;
+    }()
+    
+    let containerView = UIView ()
+    
+    var buttons = [AnimatingButtonView]();
+    
+    override func viewDidLoad() {
+        super.viewDidLoad();
+        setup();
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews();
+        mask.frame = maskView.bounds;
+    }
+    
+    private func setup()
     {
-        super.viewDidLoad()
-        view.backgroundColor = UIColor(red: 243.0/255, green: 243.0/255, blue: 243.0/255, alpha: 1.0);
-        setConstraints ();
+        view.backgroundColor = .white;
+        buttons = [AnimatingButtonView]()
+        for _ in 0..<4
+        {
+            let button = AnimatingButtonView()
+            buttons.append (button);
+            stackView.addArrangedSubview(button);
+            button.translatesAutoresizingMaskIntoConstraints = false;
+        }
+        buttons [0].text = "General";
+        let gr1 = UITapGestureRecognizer (target: self, action: #selector(generalClick));
+        buttons[0].addGestureRecognizer(gr1);
+        
+        buttons [1].text = "House";
+        let gr2 = UITapGestureRecognizer(target: self, action: #selector (houseClick));
+        buttons [1].addGestureRecognizer(gr2);
+        
+        buttons [2].text = "Athletics";
+        let gr3 = UITapGestureRecognizer(target: self, action: #selector (athleticClick));
+        buttons [2].addGestureRecognizer(gr3);
+        
+        buttons [3].text = "Special Events";
+        let gr4 = UITapGestureRecognizer(target: self, action: #selector(eventClick));
+        buttons [3].addGestureRecognizer(gr4);
+        
+        //add containerview that contains the stackview
+        view.addSubview(containerView);
+        containerView.translatesAutoresizingMaskIntoConstraints = false;
+        containerView.centerXAnchor.constraint (equalTo: view.centerXAnchor).isActive = true;
+        containerView.topAnchor.constraint (equalTo: view.topAnchor, constant: 212/812.0*screenHeight).isActive = true;
+        containerView.widthAnchor.constraint(equalToConstant: 295.0/375.0*screenWidth).isActive = true;
+        containerView.heightAnchor.constraint (equalToConstant: 402/812.0*screenHeight).isActive = true;
+        containerView.backgroundColor = .white;
+        containerView.layer.cornerRadius = 10/375.0*screenWidth;
+        containerView.layoutIfNeeded()
+        containerView.dropShadow();
+        
+        //add stackview contraints
+        containerView.addSubview(stackView);
+        stackView.translatesAutoresizingMaskIntoConstraints = false;
+        stackView.centerXAnchor.constraint (equalTo: containerView.centerXAnchor).isActive = true;
+        stackView.centerYAnchor.constraint (equalTo: containerView.centerYAnchor).isActive = true;
+        stackView.widthAnchor.constraint (equalToConstant: 231/375.0*screenWidth).isActive = true;
+        stackView.heightAnchor.constraint(equalToConstant: 304/812.0*screenHeight).isActive = true;
+        
+        //add doneButton
+        view.addSubview (doneButton);
+        doneButton.translatesAutoresizingMaskIntoConstraints = false;
+        doneButton.centerXAnchor.constraint (equalTo: view.centerXAnchor).isActive = true;
+        doneButton.topAnchor.constraint (equalTo: view.topAnchor, constant: 696/812.0*screenHeight).isActive = true;
+        doneButton.heightAnchor.constraint (equalToConstant: 45/812.0*screenHeight).isActive = true;
+        doneButton.widthAnchor.constraint (equalToConstant: 307/375.0*screenWidth).isActive = true;
+        doneButton.layoutIfNeeded();
+        doneButton.layer.cornerRadius = doneButton.frame.height/3;
+        doneButton.dropShadow()
+        
+        //add interest label
+        view.addSubview(yourInterestLabel);
+        yourInterestLabel.translatesAutoresizingMaskIntoConstraints = false;
+        yourInterestLabel.centerXAnchor.constraint (equalTo: view.centerXAnchor).isActive = true;
+        yourInterestLabel.topAnchor.constraint (equalTo: view.topAnchor, constant: 654/812.0*screenHeight).isActive = true;
+        yourInterestLabel.widthAnchor.constraint (equalToConstant: 219/375.0*screenWidth).isActive = true;
+        yourInterestLabel.heightAnchor.constraint (equalToConstant: 20/812.0*screenHeight).isActive = true;
+        
+        //add the moving rectangle (line)
+        view.addSubview(movingRect);
+        movingRect.translatesAutoresizingMaskIntoConstraints = false;
+        movingRect.trailingAnchor.constraint (equalTo: yourInterestLabel.trailingAnchor).isActive = true;
+        movingRect.heightAnchor.constraint (equalToConstant: 2/812.0*screenHeight).isActive = true;
+        movingRect.widthAnchor.constraint (equalToConstant: 503/375.0*screenWidth).isActive = true;
+        movingRect.topAnchor.constraint (equalTo: yourInterestLabel.bottomAnchor).isActive = true;
+        
+        //add the maskView
+        view.addSubview(maskView);
+        maskView.translatesAutoresizingMaskIntoConstraints = false;
+        maskView.topAnchor.constraint (equalTo: view.topAnchor, constant: -21/812.0*screenHeight).isActive = true;
+        maskView.leadingAnchor.constraint (equalTo: view.leadingAnchor, constant: -64/375.0*screenWidth).isActive = true;
+        maskView.widthAnchor.constraint (equalToConstant: 592/375.0*screenWidth).isActive = true;
+        maskView.heightAnchor.constraint (equalToConstant: 232.86/812.0*screenHeight).isActive = true;
+        
+        maskView.addSubview(imageView);
+        imageView.translatesAutoresizingMaskIntoConstraints = false;
+        imageView.topAnchor.constraint (equalTo: maskView.topAnchor, constant: -63/812.0*screenHeight).isActive = true;
+        imageView.leadingAnchor.constraint (equalTo:maskView.leadingAnchor, constant: 60/375.0*screenWidth).isActive = true;
+        imageView.heightAnchor.constraint (equalToConstant: 296/812.0*screenHeight).isActive = true;
+        imageView.widthAnchor.constraint (equalToConstant: 395/375.0*screenWidth).isActive = true;
+    }
+    
+    @objc func generalClick() {
+        buttons[0].isSelected = !buttons[0].isSelected
         let fetchRequest = NSFetchRequest <NSFetchRequestResult> (entityName: "Settings");
         do {
             if let results = try CoreDataStack.managedObjectContext.fetch(fetchRequest) as? [Settings] {
-                self.generalNotif.isSelected = results[0].generalNotifications
-                self.houseNotif.isSelected = results[0].houseNotifications
-                self.eventNotif.isSelected = results[0].eventNotifications
-            }
-        }
-        catch {
-            fatalError("There was an error fetching the list of timetables");
-        }
-    }
-    
-    //aspect ratio constraints and horizontal center constraints are done in storyboard, here it's mainly the height constraints
-    func setConstraints ()
-    {
-        LetsGetStartedLabel.translatesAutoresizingMaskIntoConstraints = false;
-        ExplainNotificationLabel.translatesAutoresizingMaskIntoConstraints = false;
-        GeneralNotificationLabel.translatesAutoresizingMaskIntoConstraints = false;
-        GeneralNotifExplain.translatesAutoresizingMaskIntoConstraints = false;
-        generalNotif.translatesAutoresizingMaskIntoConstraints = false;
-        HouseNotificationLabel.translatesAutoresizingMaskIntoConstraints = false;
-        HouseNotifExplain.translatesAutoresizingMaskIntoConstraints = false;
-        houseNotif.translatesAutoresizingMaskIntoConstraints = false;
-        SpecialEventsNotificationLabel.translatesAutoresizingMaskIntoConstraints = false;
-        SpecialEventNotifExplain.translatesAutoresizingMaskIntoConstraints = false;
-        eventNotif.translatesAutoresizingMaskIntoConstraints = false;
-        done.translatesAutoresizingMaskIntoConstraints = false;
- 
-        
-        LetsGetStartedLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 115.0/812*view.frame.height).isActive = true;
-        LetsGetStartedLabel.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 34/812.0).isActive = true;
-        ExplainNotificationLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 151.0/812*view.frame.height).isActive = true;
-        ExplainNotificationLabel.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 38/812.0).isActive = true;
-        GeneralNotificationLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 245.0/812*view.frame.height).isActive = true;
-        GeneralNotificationLabel.leadingAnchor.constraint (equalTo: ExplainNotificationLabel.leadingAnchor).isActive = true;
-        GeneralNotificationLabel.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 17/812.0).isActive = true;
-        GeneralNotifExplain.topAnchor.constraint (equalTo: GeneralNotificationLabel.bottomAnchor, constant: 3.0/812*view.frame.height).isActive = true;
-        GeneralNotifExplain.leadingAnchor.constraint (equalTo: GeneralNotificationLabel.leadingAnchor).isActive = true;
-        GeneralNotifExplain.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 65/812.0).isActive = true;
-        generalNotif.topAnchor.constraint(equalTo: GeneralNotificationLabel.bottomAnchor, constant: 3/812.0*view.frame.height).isActive = true;
-        generalNotif.trailingAnchor.constraint(equalTo: ExplainNotificationLabel.trailingAnchor).isActive = true;
-        generalNotif.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 40/812.0).isActive = true;
-        
-        HouseNotificationLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 382.0/812*view.frame.height).isActive = true;
-        HouseNotificationLabel.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 17/812.0).isActive = true;
-        HouseNotificationLabel.leadingAnchor.constraint (equalTo: ExplainNotificationLabel.leadingAnchor).isActive = true;
-        HouseNotifExplain.topAnchor.constraint (equalTo: HouseNotificationLabel.bottomAnchor, constant: 3.0/812*view.frame.height).isActive = true;
-        HouseNotifExplain.leadingAnchor.constraint (equalTo: ExplainNotificationLabel.leadingAnchor).isActive = true;
-        HouseNotifExplain.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 47/812.0).isActive = true;
-        houseNotif.topAnchor.constraint(equalTo: HouseNotificationLabel.bottomAnchor, constant: 3/812.0*view.frame.height).isActive = true;
-        houseNotif.trailingAnchor.constraint(equalTo: ExplainNotificationLabel.trailingAnchor).isActive = true;
-        houseNotif.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 40/812.0).isActive = true;
-        
-        SpecialEventsNotificationLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 519.0/812*view.frame.height).isActive = true;
-        SpecialEventsNotificationLabel.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 17/812.0).isActive = true;
-        SpecialEventsNotificationLabel.leadingAnchor.constraint(equalTo: ExplainNotificationLabel.leadingAnchor).isActive = true;
-        SpecialEventNotifExplain.topAnchor.constraint (equalTo: SpecialEventsNotificationLabel.bottomAnchor, constant: 3/812*view.frame.height).isActive = true;
-        SpecialEventNotifExplain.leadingAnchor.constraint (equalTo: SpecialEventsNotificationLabel.leadingAnchor).isActive = true;
-        SpecialEventNotifExplain.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 48/812.0).isActive = true;
-        eventNotif.topAnchor.constraint(equalTo: SpecialEventsNotificationLabel.bottomAnchor, constant: 3/812*view.frame.height).isActive = true;
-        eventNotif.trailingAnchor.constraint(equalTo: ExplainNotificationLabel.trailingAnchor).isActive = true;
-        eventNotif.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 40/812.0).isActive = true;
-        
-        done.topAnchor.constraint(equalTo: view.topAnchor, constant: 648/812.0*view.frame.height).isActive = true;
-        done.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 43/812.0).isActive = true;
-    }
-    
-    @IBAction func generalClick(_ sender: Any) {
-        generalNotif.isSelected = !generalNotif.isSelected
-        let fetchRequest = NSFetchRequest <NSFetchRequestResult> (entityName: "Settings");
-        do {
-            if let results = try CoreDataStack.managedObjectContext.fetch(fetchRequest) as? [Settings] {
-                results[0].generalNotifications = generalNotif.isSelected
+                results[0].generalNotifications = buttons[0].isSelected
             }
         }
         catch {
@@ -111,12 +181,12 @@ class GetStartedViewController: UIViewController {
         CoreDataStack.saveContext()
     }
     
-    @IBAction func houseClick(_ sender: Any) {
-        houseNotif.isSelected = !houseNotif.isSelected
+    @objc func houseClick() {
+        buttons[1].isSelected = !buttons[1].isSelected
         let fetchRequest = NSFetchRequest <NSFetchRequestResult> (entityName: "Settings");
         do {
             if let results = try CoreDataStack.managedObjectContext.fetch(fetchRequest) as? [Settings] {
-                results[0].houseNotifications = houseNotif.isSelected
+                results[0].houseNotifications = buttons[1].isSelected
             }
         }
         catch {
@@ -125,12 +195,12 @@ class GetStartedViewController: UIViewController {
         CoreDataStack.saveContext()
     }
     
-    @IBAction func eventClick(_ sender: Any) {
-        eventNotif.isSelected = !eventNotif.isSelected
+    @objc func athleticClick () {
+        buttons[2].isSelected = !buttons[2].isSelected
         let fetchRequest = NSFetchRequest <NSFetchRequestResult> (entityName: "Settings");
         do {
             if let results = try CoreDataStack.managedObjectContext.fetch(fetchRequest) as? [Settings] {
-                results[0].eventNotifications = eventNotif.isSelected
+                results[0].athleticNotifications = buttons[2].isSelected
             }
         }
         catch {
@@ -139,9 +209,24 @@ class GetStartedViewController: UIViewController {
         CoreDataStack.saveContext()
     }
     
-    @IBAction func Done(_ sender: Any) {
+    @objc func eventClick() {
+        buttons[3].isSelected = !buttons[3].isSelected
+        let fetchRequest = NSFetchRequest <NSFetchRequestResult> (entityName: "Settings");
+        do {
+            if let results = try CoreDataStack.managedObjectContext.fetch(fetchRequest) as? [Settings] {
+                results[0].eventNotifications = buttons[3].isSelected
+            }
+        }
+        catch {
+            fatalError("There was an error fetching the list of timetables");
+        }
+        CoreDataStack.saveContext()
+    }
+    
+    @objc func done(_ sender: Any) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.setNotifications()
+        performSegue(withIdentifier: "toSetUp", sender: self);
     }
 }
 

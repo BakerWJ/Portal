@@ -41,146 +41,11 @@
                     <view key="view" contentMode="scaleToFill" id="yJG-ss-CWJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Lets get started." textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p33-Wd-drr">
-                                <rect key="frame" x="116" y="115" width="142" height="34"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="p33-Wd-drr" secondAttribute="height" multiplier="142:34" id="qTF-uY-J5C"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="SegoeUI" family="Segoe UI" pointSize="25"/>
-                                <color key="textColor" red="0.066666666666666666" green="0.12156862745098039" blue="0.12156862745098039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Let's set your notification settings. Don't worry, these can all be changed later in settings." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="7" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hjn-pl-XLo">
-                                <rect key="frame" x="43" y="151" width="289" height="38"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="hjn-pl-XLo" secondAttribute="height" multiplier="289:38" id="vkB-t4-C9X"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="SegoeUI" family="Segoe UI" pointSize="20"/>
-                                <color key="textColor" red="0.51764705882352935" green="0.51764705882352935" blue="0.51764705882352935" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="GENERAL NOTIFICATIONS" textAlignment="natural" lineBreakMode="tailTruncation" minimumFontSize="7" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v56-jF-TK1">
-                                <rect key="frame" x="43" y="245" width="172" height="17"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="v56-jF-TK1" secondAttribute="height" multiplier="172:17" id="ArJ-C7-Uhe"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="SegoeUI" family="Segoe UI" pointSize="22"/>
-                                <color key="textColor" red="0.066666666666666666" green="0.12156862745098039" blue="0.12156862745098039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Notifications for things like Late Starts, Flip Days and Assembly Schedules as well as school events." lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" minimumFontSize="6" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0fS-sv-e2V">
-                                <rect key="frame" x="46" y="265" width="179" height="65"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="0fS-sv-e2V" secondAttribute="height" multiplier="179:65" id="i5k-i0-93u"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="SegoeUI" family="Segoe UI" pointSize="20"/>
-                                <color key="textColor" red="0.51764705879999995" green="0.51764705879999995" blue="0.51764705879999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="HOUSE NOTIFICATIONS" lineBreakMode="tailTruncation" minimumFontSize="7" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vcR-VR-8Yh">
-                                <rect key="frame" x="46" y="382" width="158" height="17"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="vcR-VR-8Yh" secondAttribute="height" multiplier="158:17" id="sqa-Mb-nrY"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="SegoeUI" family="Segoe UI" pointSize="25"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Notifications for things like House Points, House Rankings and Intramural Schedules." lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="6" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zjw-HS-leL">
-                                <rect key="frame" x="46" y="401" width="179" height="47"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="zjw-HS-leL" secondAttribute="height" multiplier="179:47" id="fL4-QW-fWf"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="SegoeUI" family="Segoe UI" pointSize="20"/>
-                                <color key="textColor" red="0.51764705879999995" green="0.51764705879999995" blue="0.51764705879999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Notifications for things like volunteer opportunities or out of school events." lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="6" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NX2-Qb-9st">
-                                <rect key="frame" x="46" y="537" width="179" height="48"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="NX2-Qb-9st" secondAttribute="height" multiplier="179:48" id="IcU-aN-wP0"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="SegoeUI" family="Segoe UI" pointSize="20"/>
-                                <color key="textColor" red="0.51764705879999995" green="0.51764705879999995" blue="0.51764705879999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qr9-qz-ela">
-                                <rect key="frame" x="260" y="258" width="68" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="qr9-qz-ela" secondAttribute="height" multiplier="17:10" id="AQw-8x-Q5t"/>
-                                </constraints>
-                                <state key="normal" image="Symbol 4 – 1"/>
-                                <state key="selected" image="Toggle - On"/>
-                                <connections>
-                                    <action selector="generalClick:" destination="vXe-ls-4tL" eventType="touchUpInside" id="Y8n-t0-ySO"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nc7-YD-t03">
-                                <rect key="frame" x="259" y="400" width="68" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="Nc7-YD-t03" secondAttribute="height" multiplier="17:10" id="lPx-Vr-dVp"/>
-                                </constraints>
-                                <state key="normal" image="Symbol 4 – 1"/>
-                                <state key="selected" image="Toggle - On"/>
-                                <connections>
-                                    <action selector="houseClick:" destination="vXe-ls-4tL" eventType="touchUpInside" id="jjm-rL-K7L"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rdm-Cr-gST">
-                                <rect key="frame" x="259" y="530" width="68" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="rdm-Cr-gST" secondAttribute="height" multiplier="17:10" id="jeT-Ep-SUp"/>
-                                </constraints>
-                                <state key="normal" image="Symbol 4 – 1"/>
-                                <state key="selected" image="Toggle - On"/>
-                                <connections>
-                                    <action selector="eventClick:" destination="vXe-ls-4tL" eventType="touchUpInside" id="ysd-nV-3l6"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jV3-sa-6sP">
-                                <rect key="frame" x="46" y="648" width="283" height="43"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="jV3-sa-6sP" secondAttribute="height" multiplier="283:43" id="rHt-UH-jO9"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="SegoeUI" family="Segoe UI" pointSize="15"/>
-                                <state key="normal" image="I'm Done"/>
-                                <connections>
-                                    <action selector="Done:" destination="vXe-ls-4tL" eventType="touchUpInside" id="4R2-Os-fFW"/>
-                                    <segue destination="rcl-pN-vkI" kind="custom" customClass="HorizontalRightShiftTransition" customModule="TimeStamp" customModuleProvider="target" id="buP-9b-y3s"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="EVENT NOTIFICATIONS" lineBreakMode="tailTruncation" minimumFontSize="7" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QdF-GY-PW1">
-                                <rect key="frame" x="46" y="519" width="153" height="17"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="QdF-GY-PW1" secondAttribute="height" multiplier="153:17" id="LCb-7v-bmN"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="SegoeUI" family="Segoe UI" pointSize="25"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="hjn-pl-XLo" firstAttribute="centerX" secondItem="XDt-31-JOf" secondAttribute="centerX" id="99a-xA-RiL"/>
-                            <constraint firstItem="jV3-sa-6sP" firstAttribute="centerX" secondItem="XDt-31-JOf" secondAttribute="centerX" id="N8b-Qo-vYV"/>
-                            <constraint firstItem="p33-Wd-drr" firstAttribute="centerX" secondItem="XDt-31-JOf" secondAttribute="centerX" id="Wnw-IA-uA0"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="XDt-31-JOf"/>
                     </view>
                     <connections>
-                        <outlet property="ExplainNotificationLabel" destination="hjn-pl-XLo" id="qzU-cr-KZA"/>
-                        <outlet property="GeneralNotifExplain" destination="0fS-sv-e2V" id="80G-6j-hRL"/>
-                        <outlet property="GeneralNotificationLabel" destination="v56-jF-TK1" id="0P3-XP-TOX"/>
-                        <outlet property="HouseNotifExplain" destination="zjw-HS-leL" id="zIj-AW-9qs"/>
-                        <outlet property="HouseNotificationLabel" destination="vcR-VR-8Yh" id="dav-Tu-S6E"/>
-                        <outlet property="LetsGetStartedLabel" destination="p33-Wd-drr" id="QqW-z0-rsn"/>
-                        <outlet property="SpecialEventNotifExplain" destination="NX2-Qb-9st" id="cJn-aD-ACd"/>
-                        <outlet property="SpecialEventsNotificationLabel" destination="QdF-GY-PW1" id="Cnl-d7-kT9"/>
-                        <outlet property="done" destination="jV3-sa-6sP" id="Elv-E9-68N"/>
-                        <outlet property="eventNotif" destination="rdm-Cr-gST" id="Tfy-5Z-hrz"/>
-                        <outlet property="generalNotif" destination="qr9-qz-ela" id="n5N-8p-1RO"/>
-                        <outlet property="houseNotif" destination="Nc7-YD-t03" id="LNq-u6-0fz"/>
+                        <segue destination="rcl-pN-vkI" kind="custom" identifier="toSetUp" customClass="HorizontalRightShiftTransition" customModule="TimeStamp" customModuleProvider="target" id="ei4-f4-y9T"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sw6-73-FDc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -740,7 +605,6 @@
     <resources>
         <image name="Ellipse 37" width="34" height="34"/>
         <image name="Ellipse 37-1" width="34" height="34"/>
-        <image name="I'm Done" width="283" height="43"/>
         <image name="Rectangle 1031" width="375" height="342"/>
         <image name="Rectangle 1033" width="375" height="317"/>
         <image name="Rectangle 1034" width="280" height="32"/>
