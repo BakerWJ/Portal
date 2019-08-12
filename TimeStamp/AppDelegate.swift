@@ -73,11 +73,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
                         
                         if (UserDefaults.standard.bool(forKey: "notFirstTimeLaunch"))
                         {
-                            vc.transition (segueName: "toTabBar");
+                            vc.performSegue (withIdentifier: "toTabBar", sender: vc);
                         }
                         else
                         {
-                            vc.transition (segueName: "toGetStarted");
+                            vc.performSegue(withIdentifier: "toGetStarted", sender: vc);
                         }
                     }
                     else

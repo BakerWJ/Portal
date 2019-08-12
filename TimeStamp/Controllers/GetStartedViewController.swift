@@ -77,6 +77,9 @@ class GetStartedViewController: UIViewController {
         mask.frame = maskView.bounds;
     }
     
+    var imageTop = NSLayoutConstraint();
+    var imageLeading = NSLayoutConstraint();
+    
     private func setup()
     {
         view.backgroundColor = .white;
@@ -161,8 +164,10 @@ class GetStartedViewController: UIViewController {
         
         maskView.addSubview(imageView);
         imageView.translatesAutoresizingMaskIntoConstraints = false;
-        imageView.topAnchor.constraint (equalTo: maskView.topAnchor, constant: -63/812.0*screenHeight).isActive = true;
-        imageView.leadingAnchor.constraint (equalTo:maskView.leadingAnchor, constant: 60/375.0*screenWidth).isActive = true;
+        imageTop = imageView.topAnchor.constraint (equalTo: maskView.topAnchor, constant: -63/812.0*screenHeight);
+        imageTop.isActive = true;
+        imageLeading = imageView.leadingAnchor.constraint (equalTo: maskView.leadingAnchor, constant: 60/375.0*screenWidth);
+        imageLeading.isActive = true;
         imageView.heightAnchor.constraint (equalToConstant: 296/812.0*screenHeight).isActive = true;
         imageView.widthAnchor.constraint (equalToConstant: 395/375.0*screenWidth).isActive = true;
     }

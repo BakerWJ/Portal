@@ -26,7 +26,7 @@
                         <viewLayoutGuide key="safeArea" id="7wX-A4-QWQ"/>
                     </view>
                     <connections>
-                        <segue destination="vXe-ls-4tL" kind="presentation" identifier="toGetStarted" animates="NO" id="eQA-HG-FeU"/>
+                        <segue destination="vXe-ls-4tL" kind="custom" identifier="toGetStarted" customClass="LogInToGetStarted" customModule="TimeStamp" customModuleProvider="target" id="eQA-HG-FeU"/>
                         <segue destination="m1C-yP-uYK" kind="presentation" identifier="toTabBar" animates="NO" id="O4V-Zp-R5V"/>
                     </connections>
                 </viewController>

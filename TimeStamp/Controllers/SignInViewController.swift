@@ -103,19 +103,19 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate
         circleHeight.constant = 563/812.0*screenHeight;
     }
     
-    func transition (segueName: String)
+    func transition ()
     {
-        self.getStartedLeading.constant -= self.screenWidth;
-        self.imageWidth.constant = 0;
-        self.circleHeight.constant = 0;
-        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn, animations: {
-            self.view.layoutIfNeeded()
-            self.signInButton.layer.opacity = 0;
-            self.purpleCircle.layer.opacity = 0;
-            self.imageView.layer.opacity = 0;
-        }) { (Finished) in
-            self.performSegue(withIdentifier: segueName, sender: self);
-        };
+        DispatchQueue.main.async {
+            self.getStartedLeading.constant -= self.screenWidth;
+            self.imageWidth.constant = 0;
+            self.circleHeight.constant = 0;
+            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {
+                self.view.layoutIfNeeded()
+                self.signInButton.layer.opacity = 0;
+                self.purpleCircle.layer.opacity = 0;
+                self.imageView.layer.opacity = 0;
+            }, completion: nil);
+        }
     }
     
     private func setup ()
