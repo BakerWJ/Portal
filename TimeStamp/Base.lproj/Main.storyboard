@@ -347,6 +347,9 @@
                         <viewLayoutGuide key="safeArea" id="jCE-B3-4Zo"/>
                     </view>
                     <navigationItem key="navigationItem" id="uIg-jC-dVq"/>
+                    <connections>
+                        <segue destination="BwQ-Ox-5Gd" kind="custom" identifier="article" customClass="HorizontalRightShiftTransition" customModule="TimeStamp" customModuleProvider="target" id="gOe-i5-O3d"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Jm-Ot-hfJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -362,8 +365,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="ze0-yD-AcS"/>
                     </view>
+                    <connections>
+                        <segue destination="qoc-x0-Q6V" kind="unwind" identifier="articleu" customClass="HorizontalRightShiftTransitionUnwind" customModule="TimeStamp" customModuleProvider="target" unwindAction="returnFromArticleWithSender:" id="a86-8a-4jX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u24-NX-vUh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="qoc-x0-Q6V" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3314" y="1329"/>
         </scene>

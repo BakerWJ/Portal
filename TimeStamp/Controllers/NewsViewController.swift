@@ -93,11 +93,7 @@ class NewsViewController: UIViewController {
     }
     
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
-        let mainStory = UIStoryboard(name: "Main", bundle: Bundle.main)
-        
-        let destinationViewController = mainStory.instantiateViewController(withIdentifier: "article")
-        navigationController?.setToolbarHidden(true, animated: true)
-        navigationController?.show(destinationViewController, sender: self)
+        performSegue(withIdentifier: "article", sender: self)
     }
     
     func featuredTab() {
@@ -235,4 +231,6 @@ class NewsViewController: UIViewController {
             self.scrollview.addSubview(bgimage)
         }
     }
+    
+    @IBAction func returnFromArticle (sender: UIStoryboardSegue) {}
 }
