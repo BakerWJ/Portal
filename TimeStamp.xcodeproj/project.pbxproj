@@ -400,12 +400,12 @@
 				8A1B7A0722BECAC7006FE52A /* HouseInfoViewController.swift */,
 				CEDC435A22773F8400A78890 /* MainPageViewController.swift */,
 				CEDC435E22775DFA00A78890 /* SettingsViewController.swift */,
+				CED50BFF22EF2D1A00FC4851 /* ArticleViewController.swift */,
 				CE3A513B22E8F3E90056E536 /* NewsViewController.swift */,
 				8A1B79F922BEC0C6006FE52A /* SignInViewController.swift */,
 				8A1B79FB22BEC2AF006FE52A /* MainTabBarViewController.swift */,
 				31BB397E22E6B48F004D2DE5 /* AppEntryViewController.swift */,
 				31BB398022E6C485004D2DE5 /* Old */,
-				CED50BFF22EF2D1A00FC4851 /* ArticleViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";

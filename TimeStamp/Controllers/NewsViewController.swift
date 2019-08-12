@@ -92,11 +92,18 @@ class NewsViewController: UIViewController {
         self.scrollview.addSubview(subtextLayer)
     }
     
+    @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
+        performSegue(withIdentifier: "article", sender: self)
+    }
+    
     func featuredTab() {
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         let layer = UIView(frame: CGRect(x: -1.5, y: 546.31, width: 378, height: 266.38))
         layer.layer.cornerRadius = 25
         layer.backgroundColor = UIColor.white
         self.scrollview.addSubview(layer)
+        
         
         let layer2 = UIView(frame: CGRect(x: -1.5, y: 546.31, width: 378, height: 230))
         layer2.layer.cornerRadius = 0
@@ -119,6 +126,7 @@ class NewsViewController: UIViewController {
         latesttextString.addAttribute(NSAttributedString.Key.kern, value: 0.45, range: latesttextRange)
         latest.attributedText = latesttextString
         latest.sizeToFit()
+        latest.addGestureRecognizer(tap)
         self.scrollview.addSubview(latest)
         
         let textLayer = UILabel(frame: CGRect(x: 38, y: 591, width: 208, height: 20))
@@ -145,6 +153,8 @@ class NewsViewController: UIViewController {
         bgimage.layer.cornerRadius = 15
         bgimage.clipsToBounds = true
         bgimage.contentMode = .scaleAspectFill
+        bgimage.isUserInteractionEnabled = true
+        bgimage.addGestureRecognizer(tap)
         self.scrollview.addSubview(bgimage)
         
         let titleLayer = UILabel(frame: CGRect(x: 55, y: 642, width: 185.69, height: 29.63))
@@ -164,13 +174,16 @@ class NewsViewController: UIViewController {
         titleLayer.attributedText = titleString
         titleLayer.sizeToFit()
         self.scrollview.addSubview(titleLayer)
+        
     }
     
     func siftArticles() {
         for i in 0...3 {
+            let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
             let layer = UIView(frame: CGRect(x: 10, y: 868 + 98 * i, width: 357, height: 93))
             layer.layer.cornerRadius = 30
             layer.backgroundColor = UIColor.white
+            layer.addGestureRecognizer(tap)
             self.scrollview.addSubview(layer)
             
             let textLayer = UILabel(frame: CGRect(x: 140, y: 884 + 98 * i, width: 144, height: 40))
@@ -218,4 +231,6 @@ class NewsViewController: UIViewController {
             self.scrollview.addSubview(bgimage)
         }
     }
+    
+    @IBAction func returnFromArticle (sender: UIStoryboardSegue) {}
 }
