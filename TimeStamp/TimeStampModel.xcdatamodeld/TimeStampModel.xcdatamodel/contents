@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14492.1" systemVersion="18G84" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Event" representedClassName="Event" syncable="YES">
-        <attribute name="detail" attributeType="String" syncable="YES"/>
-        <attribute name="endTime" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="kind" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="startTime" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="title" attributeType="String" syncable="YES"/>
+        <attribute name="time" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="titleDetail" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="FlipDay" representedClassName="FlipDay" syncable="YES">
         <attribute name="expirationDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
@@ -56,7 +55,7 @@
         <attribute name="typeOfDay" attributeType="Transformable" customClassName="[Int]" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Event" positionX="-27" positionY="54" width="128" height="120"/>
+        <element name="Event" positionX="-27" positionY="54" width="128" height="105"/>
         <element name="FlipDay" positionX="-54" positionY="-9" width="128" height="75"/>
         <element name="Period" positionX="-63" positionY="-18" width="128" height="135"/>
         <element name="Schedule" positionX="-36" positionY="9" width="128" height="105"/>

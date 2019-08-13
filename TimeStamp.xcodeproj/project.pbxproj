@@ -20,7 +20,6 @@
 		8A1AEDC722C11598005282FD /* credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8A1AEDC622C11598005282FD /* credentials.plist */; };
 		8A1AEDCE22C4148F005282FD /* Event+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1AEDCC22C4148F005282FD /* Event+CoreDataClass.swift */; };
 		8A1AEDCF22C4148F005282FD /* Event+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1AEDCD22C4148F005282FD /* Event+CoreDataProperties.swift */; };
-		8A1AEDD122C6861D005282FD /* SlideOutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1AEDD022C6861D005282FD /* SlideOutView.swift */; };
 		8A1B79FA22BEC0C6006FE52A /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B79F922BEC0C6006FE52A /* SignInViewController.swift */; };
 		8A1B79FC22BEC2AF006FE52A /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B79FB22BEC2AF006FE52A /* MainTabBarViewController.swift */; };
 		8A1B7A0422BEC924006FE52A /* ToDoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B7A0322BEC924006FE52A /* ToDoListViewController.swift */; };
@@ -111,7 +110,6 @@
 		8A1AEDC622C11598005282FD /* credentials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = credentials.plist; sourceTree = "<group>"; };
 		8A1AEDCC22C4148F005282FD /* Event+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Event+CoreDataClass.swift"; sourceTree = "<group>"; };
 		8A1AEDCD22C4148F005282FD /* Event+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Event+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		8A1AEDD022C6861D005282FD /* SlideOutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOutView.swift; sourceTree = "<group>"; };
 		8A1B79F922BEC0C6006FE52A /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		8A1B79FB22BEC2AF006FE52A /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		8A1B7A0322BEC924006FE52A /* ToDoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListViewController.swift; sourceTree = "<group>"; };
@@ -244,7 +242,6 @@
 				8A6780782298C81B00748848 /* EventView.swift */,
 				CE927FF3227A0BCD00EE0A22 /* ScheduleView.swift */,
 				31BB399722E8CEEC004D2DE5 /* DailyScheduleCell.swift */,
-				8A1AEDD022C6861D005282FD /* SlideOutView.swift */,
 				8A5F822D22D6020000443020 /* To-Do List */,
 			);
 			path = Views;
@@ -602,7 +599,6 @@
 				CEDC435D22773FAC00A78890 /* ScheduleViewController.swift in Sources */,
 				CE927FF7227A0BCD00EE0A22 /* PeriodView.swift in Sources */,
 				8A5F823122D79DFA00443020 /* TaskListTableViewCell.swift in Sources */,
-				8A1AEDD122C6861D005282FD /* SlideOutView.swift in Sources */,
 				8A5F823922D7A00B00443020 /* ToDo_TaskTag+CoreDataProperties.swift in Sources */,
 				CED50C0022EF2D1A00FC4851 /* ArticleViewController.swift in Sources */,
 				8A5F823722D7A00B00443020 /* ToDo_Task+CoreDataProperties.swift in Sources */,

@@ -11,7 +11,7 @@ import GoogleAPIClientForREST
 import FirebaseAuth
 import GoogleSignIn
 import GTMAppAuth
-
+/*
 //warning: do not try to add any height constraint to this, but any other constraints should be fine
 //time, event, details
 class EventView: UIStackView {
@@ -135,4 +135,4 @@ class EventView: UIStackView {
         }
     }
 }
-
+*/

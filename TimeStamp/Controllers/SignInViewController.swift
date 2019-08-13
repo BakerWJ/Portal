@@ -74,7 +74,15 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate
         super.viewDidAppear(animated);
         if (signedIn)
         {
-            GIDSignIn.sharedInstance()?.signInSilently();
+            if (UserDefaults.standard.bool(forKey: "notFirstTimeLaunch"))
+            {
+                self.performSegue (withIdentifier: "toTabBar", sender: self);
+            }
+            else
+            {
+                self.performSegue(withIdentifier: "toGetStarted", sender: self);
+            }
+            //GIDSignIn.sharedInstance()?.signInSilently();
         }
     }
     

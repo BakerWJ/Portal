@@ -69,6 +69,23 @@ class UserDataSettings
         }
     }
     
+    static func fetchSettings () -> Settings?
+    {
+        let fetchRequest = NSFetchRequest <NSFetchRequestResult> (entityName: "Settings");
+        do {
+            if let results = try CoreDataStack.managedObjectContext.fetch(fetchRequest) as? [Settings] {
+                if (results.count != 0)
+                {
+                    return results [0]
+                }
+            }
+        }
+        catch {
+            fatalError("There was an error fetching the list of timetables");
+        }
+        return nil;
+    }
+    
     //this adds weekly schedule if there isn't already one
     static func addWeeklySchedule ()
     {
@@ -390,32 +407,85 @@ class UserDataSettings
                         }
                         //creates the event object and insert it into the coredata managed object context
                         let event = Event (entity: entityEvent, insertInto: CoreDataStack.managedObjectContext);
-                        
-                        if let startTime = specifics [0] as? String
-                        {
-                            event.startTime = formatter.date(from: startTime)! as NSDate;
+                        guard let titleDetail = specifics [0] as? String,
+                            let time = specifics [1] as? String,
+                            let date = specifics [2] as? String,
+                            let kind = specifics [3] as? Int
+                        else {
+                            CoreDataStack.managedObjectContext.delete(event);
+                            continue;
                         }
-                        if let endTime = specifics [1] as? String
+                        let time2 = time.trimmingCharacters(in: .whitespacesAndNewlines);
+                        if (time2 == "A")
                         {
-                            event.endTime = formatter.date(from: endTime)! as NSDate ;
+                            event.time = "all day";
                         }
-                        if let title = specifics [2] as? String
+                        else if (time2 == "B")
                         {
-                            event.title = title;
+                            event.time = "before school";
                         }
-                        if let detail = specifics [3] as? String
+                        else if (time2 == "L")
                         {
-                            event.detail = detail;
+                            event.time = "at lunch";
                         }
-                        if let kind = specifics [4] as? Int
+                        else if (time2 == "E")
                         {
-                            event.kind = Int32 (kind);
+                            event.time = "after school";
                         }
+                        else
+                        {
+                            event.time = time2;
+                        }
+                        event.titleDetail = titleDetail;
+                        event.date = formatter.date(from: date)! as NSDate;
+                        event.kind = Int32 (kind);
                     }
                 }
                 CoreDataStack.saveContext()
             }
         }
+    }
+    
+    static func fetchAllEvents () -> [Event]?
+    {
+        let fetchRequest = NSFetchRequest <NSFetchRequestResult> (entityName: "Event");
+        do
+        {
+            if let results = try CoreDataStack.managedObjectContext.fetch (fetchRequest) as? [Event]
+            {
+                return results;
+            }
+        }
+        catch
+        {
+            fatalError ("There was an error fetching the list of events")
+        }
+        return nil;
+    }
+    
+    static func fetchAllEventsFor (day: Date) -> [Event]?
+    {
+        let fetchRequest = NSFetchRequest <NSFetchRequestResult> (entityName: "Event");
+        do
+        {
+            if let results = try CoreDataStack.managedObjectContext.fetch (fetchRequest) as? [Event]
+            {
+                var ret = [Event]();
+                for each in results
+                {
+                    if (each.date.isEqual(to: day))
+                    {
+                        ret.append (each);
+                    }
+                }
+                return ret
+            }
+        }
+        catch
+        {
+            fatalError ("There was an error fetching the list of events")
+        }
+        return nil;
     }
     
     static func addTaskTag (colour: UIColor, name: String)

@@ -86,12 +86,34 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate, UIScro
     
     var firstTimeLoad = true;
     
+    //MARK: Override
     override func viewDidLoad() {
         view.backgroundColor = .white;
         //as the name suggests, fetches schedules from core Data and stores them in the array "schedules"
         fetchSchedules ()
         reloadScheduleData()
         setup ()
+    }
+    
+    //this function is called when the collection view is loaded, so here we can access the first element and set its constant
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //refresh when the view appears;
+        self.refresh()
+        //add observer of the keyboard showing
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        defaultIndex.1 = false;
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -104,6 +126,22 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate, UIScro
                 {
                     collectionView.scrollToItem(at: IndexPath(row: x, section: 0), at: .left, animated: true);
                 }
+            }
+        }
+    }
+    
+    func refresh()
+    {
+        fetchSchedules();
+        reloadScheduleData();
+        collectionView.reloadData();
+        collectionView.layoutIfNeeded();
+        DispatchQueue.main.async {
+            let numCellsShifted = abs(self.collectionView.contentOffset.x/(355/375.0*self.screenWidth));
+            let roundedCell = Int (round (numCellsShifted + 0.1));
+            if let currCell = self.collectionView.cellForItem(at: IndexPath(row: roundedCell, section: 0)) as? DailyScheduleCell
+            {
+                currCell.imageTop.constant = self.movingImageConstraintMaxOffset
             }
         }
     }
@@ -150,7 +188,7 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate, UIScro
         containerView.addSubview (topLabel);
         topLabel.translatesAutoresizingMaskIntoConstraints = false;
         topLabel.topAnchor.constraint (equalTo: containerView.topAnchor, constant: 45/812.0*screenHeight).isActive = true;
-        topLabel.centerXAnchor.constraint (equalTo: containerView.centerXAnchor).isActive = true;
+        topLabel.leadingAnchor.constraint (equalTo: containerView.leadingAnchor, constant: 34/375.0*screenWidth).isActive = true;
         topLabel.heightAnchor.constraint (equalToConstant: 100/812.0*screenHeight).isActive = true;
         topLabel.widthAnchor.constraint (equalToConstant: 276/375.0*screenWidth).isActive = true;
         
@@ -208,30 +246,15 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate, UIScro
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! DailyScheduleCell
         cell.reloadData(schedule: scheduleDisplayed [indexPath.item], day: daysDisplayed [indexPath.item], ADay: ADaysDisplayed [indexPath.item], flipped: flippedDisplayed [indexPath.item], delegate: self, reload: true)
+        //hides the two section indicators
+        cell.layoutIfNeeded()
+        cell.pickerView.subviews [1].isHidden = true;
+        cell.pickerView.subviews [2].isHidden = true;
         return cell;
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize (width: 335/375.0*screenWidth, height: screenHeight);
-    }
-    
-    //this function is called when the collection view is loaded, so here we can access the first element and set its constant
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        //add observer of the keyboard showing
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        defaultIndex.1 = false;
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     //customize the paging effect
@@ -278,7 +301,9 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate, UIScro
         else {return;}
         
         nextCell.imageTop.constant = progress*(movingImageConstraintMaxOffset);
+        nextCell.displayedEventView.layer.opacity = Float(progress*1.0);
         thisCell.imageTop.constant = movingImageConstraintMaxOffset - nextCell.imageTop.constant;
+        thisCell.displayedEventView.layer.opacity = Float(1.0 - progress*1.0);
     }
     
     //When the keyboard hides, then animate back to the normal position
