@@ -309,6 +309,7 @@ class AppEntryViewController: UIViewController {
         animation.duration = 0.8;
         animation.fillMode = .forwards
         animation.isRemovedOnCompletion = false;
+        animation.timingFunction = CAMediaTimingFunction(name: .easeIn);
         animation.beginTime = CACurrentMediaTime() + 1.9;
         animation.autoreverses = false;
         //the fill rule makes the overlapping part transparent and the rest white
@@ -323,7 +324,7 @@ class AppEntryViewController: UIViewController {
         CATransaction.commit()
         
         let checkTime = Date().addingTimeInterval(0.8);
-        UIView.animate (withDuration: 1.0, delay: 2, options: .curveEaseOut, animations: {
+        UIView.animate (withDuration: 1.0, delay: 2, options: .curveEaseIn, animations: {
             self.entryMountainImage.layer.opacity = 1;
             self.entryAirplaneImage.layer.opacity = 0;
             self.view.layoutIfNeeded();
@@ -366,6 +367,7 @@ class AppEntryViewController: UIViewController {
         animation.fillMode = .forwards
         animation.isRemovedOnCompletion = false;
         animation.beginTime = CACurrentMediaTime() + 1.9;
+        animation.timingFunction = CAMediaTimingFunction(name: .easeIn);
         animation.autoreverses = false;
         //the fill rule makes the overlapping part transparent and the rest white
         maskLayer.backgroundColor = UIColor.white.cgColor
@@ -379,7 +381,7 @@ class AppEntryViewController: UIViewController {
         CATransaction.commit()
         
         let checkTime = Date().addingTimeInterval(0.8);
-        UIView.animate (withDuration: 1.0, delay: 2, options: .curveEaseOut, animations: {
+        UIView.animate (withDuration: 1.0, delay: 2, options: .curveEaseIn, animations: {
             self.entryClimbingImage.layer.opacity = 1;
             self.entryMountainImage.layer.opacity = 0;
             self.view.layoutIfNeeded();
@@ -427,6 +429,7 @@ class AppEntryViewController: UIViewController {
         group.animations = [animation, animation2];
         group.duration = 1.0;
         group.fillMode = .forwards
+        group.timingFunction = CAMediaTimingFunction(name: .easeIn)
         group.autoreverses = false;
         group.beginTime = CACurrentMediaTime() + 2;
         group.isRemovedOnCompletion = false;
@@ -442,7 +445,7 @@ class AppEntryViewController: UIViewController {
         maskLayer.add(group, forKey: "path");
         CATransaction.commit()
         
-        UIView.animate(withDuration: 1, delay: 2, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 1, delay: 2, options: .curveEaseIn, animations: {
             self.entryClimbingImage.layer.opacity = 0;
             self.entryCampImage.layer.opacity = 1;
             self.bottomBlue.layer.opacity = 1;

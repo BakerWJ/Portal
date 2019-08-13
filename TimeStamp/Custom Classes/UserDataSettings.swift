@@ -55,11 +55,11 @@ class UserDataSettings
                     }
                     let mainSettings = Settings (entity: entity, insertInto: CoreDataStack.managedObjectContext)
                     mainSettings.daysBefore = 2;
-                    mainSettings.eventNotifications = false;
+                    mainSettings.surveyNotifications = false;
                     mainSettings.generalNotifications = false;
                     mainSettings.notificationTime = 3;
                     mainSettings.houseNotifications = false;
-                    mainSettings.athleticNotifications = false;
+                    mainSettings.articleNotifications = false;
                     CoreDataStack.saveContext()
                 }
             }

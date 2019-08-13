@@ -66,19 +66,15 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate
         // Do any additional setup after loading the view.
     }
     
+    var signedIn = false;
+    
+    
     override func viewDidAppear(_ animated: Bool)
     {
         super.viewDidAppear(animated);
-        if (UserDefaults.standard.bool(forKey: "loggedin"))
+        if (signedIn)
         {
-            if (!UserDefaults.standard.bool (forKey: "notFirstTimeLaunch"))
-            {
-                performSegue(withIdentifier: "toGetStarted", sender: self)
-            }
-            else
-            {
-                performSegue(withIdentifier: "toTabBar", sender: self)
-            }
+            GIDSignIn.sharedInstance()?.signInSilently();
         }
     }
     
@@ -103,27 +99,11 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate
         circleHeight.constant = 563/812.0*screenHeight;
     }
     
-    func transition ()
-    {
-        DispatchQueue.main.async {
-            self.getStartedLeading.constant -= self.screenWidth;
-            self.imageWidth.constant = 0;
-            self.circleHeight.constant = 0;
-            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {
-                self.view.layoutIfNeeded()
-                self.signInButton.layer.opacity = 0;
-                self.purpleCircle.layer.opacity = 0;
-                self.imageView.layer.opacity = 0;
-            }, completion: nil);
-        }
-    }
-    
     private func setup ()
     {
-        
+        signedIn = UserDefaults.standard.bool(forKey: "loggedin");
         view.backgroundColor = .white;
         GIDSignIn.sharedInstance()?.uiDelegate = self;
-        GIDSignIn.sharedInstance()?.signInSilently();
         
         //add sign in button
         view.addSubview (signInButton);

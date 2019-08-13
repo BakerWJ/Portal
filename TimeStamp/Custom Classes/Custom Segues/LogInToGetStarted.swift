@@ -44,7 +44,6 @@ class LogInToGetStarted: UIStoryboardSegue
             }, completion:
             {
                 (Finished) in
-                print ("yay");
                 self.source.present(self.destination, animated: false, completion: nil)
             })
         }

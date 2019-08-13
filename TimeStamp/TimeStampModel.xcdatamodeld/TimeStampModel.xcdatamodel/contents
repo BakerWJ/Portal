@@ -26,13 +26,13 @@
         <relationship name="periods" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Period" inverseName="schedule" inverseEntity="Period" syncable="YES"/>
     </entity>
     <entity name="Settings" representedClassName="Settings" syncable="YES">
-        <attribute name="athleticNotifications" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="articleNotifications" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="daysBefore" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="eventNotifications" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="firstTimeOpen" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="generalNotifications" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="houseNotifications" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="notificationTime" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="surveyNotifications" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="Timetable" representedClassName="Timetable" syncable="YES">
         <attribute name="classes" attributeType="Transformable" customClassName="[String]" syncable="YES"/>

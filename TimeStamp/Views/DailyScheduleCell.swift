@@ -86,7 +86,6 @@ class DailyScheduleCell: UICollectionViewCell {
     
     private func setUp ()
     {
-        
         addSubview(whiteView);
         whiteView.translatesAutoresizingMaskIntoConstraints = false;
         whiteView.leadingAnchor.constraint (equalTo: leadingAnchor, constant: 32/375.0*screenWidth).isActive = true;

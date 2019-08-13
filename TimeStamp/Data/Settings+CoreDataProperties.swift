@@ -17,12 +17,12 @@ extension Settings {
         return NSFetchRequest<Settings>(entityName: "Settings")
     }
 
+    @NSManaged public var articleNotifications: Bool
     @NSManaged public var daysBefore: Int16
-    @NSManaged public var eventNotifications: Bool
+    @NSManaged public var surveyNotifications: Bool
     @NSManaged public var firstTimeOpen: Bool
     @NSManaged public var generalNotifications: Bool
     @NSManaged public var houseNotifications: Bool
     @NSManaged public var notificationTime: Int16
-    @NSManaged public var athleticNotifications: Bool
 
 }

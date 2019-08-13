@@ -30,6 +30,7 @@
 		8A1B7A1C22BF2A7C006FE52A /* swipetoleft.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8A1B7A1B22BF2A7C006FE52A /* swipetoleft.gif */; };
 		8A445BB22301AC370020C29B /* AnimatingButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A445BB12301AC370020C29B /* AnimatingButtonView.swift */; };
 		8A445BB42301ED810020C29B /* LogInToGetStarted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A445BB32301ED810020C29B /* LogInToGetStarted.swift */; };
+		8A445BB6230216C20020C29B /* GetStartedToSetUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A445BB5230216C20020C29B /* GetStartedToSetUp.swift */; };
 		8A5F822422D531D700443020 /* TaskEventMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5F822322D531D700443020 /* TaskEventMenu.swift */; };
 		8A5F822622D581F300443020 /* TaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5F822522D581F300443020 /* TaskListView.swift */; };
 		8A5F822822D581FF00443020 /* EventListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5F822722D581FF00443020 /* EventListView.swift */; };
@@ -120,6 +121,7 @@
 		8A1B7A1B22BF2A7C006FE52A /* swipetoleft.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = swipetoleft.gif; sourceTree = "<group>"; };
 		8A445BB12301AC370020C29B /* AnimatingButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatingButtonView.swift; sourceTree = "<group>"; };
 		8A445BB32301ED810020C29B /* LogInToGetStarted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInToGetStarted.swift; sourceTree = "<group>"; };
+		8A445BB5230216C20020C29B /* GetStartedToSetUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartedToSetUp.swift; sourceTree = "<group>"; };
 		8A5F822322D531D700443020 /* TaskEventMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskEventMenu.swift; sourceTree = "<group>"; };
 		8A5F822522D581F300443020 /* TaskListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListView.swift; sourceTree = "<group>"; };
 		8A5F822722D581FF00443020 /* EventListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListView.swift; sourceTree = "<group>"; };
@@ -279,6 +281,7 @@
 			children = (
 				8AA2F04322811FF90091EF0F /* HorizontalRightShiftTransition.swift */,
 				8A445BB32301ED810020C29B /* LogInToGetStarted.swift */,
+				8A445BB5230216C20020C29B /* GetStartedToSetUp.swift */,
 				8AD8621722984A3500412EFF /* HorizontalRightShiftTransitionUnwind.swift */,
 				8AA2F045228123890091EF0F /* HorizontalLeftShiftTransition.swift */,
 				8AD8621922984A5E00412EFF /* HorizontalLeftShiftTransitionUnwind.swift */,
@@ -618,6 +621,7 @@
 				CEC26E08227B3E9E00FFFC67 /* Period+CoreDataClass.swift in Sources */,
 				8ABCA53E2282176000A30D36 /* WeeklySchedule+CoreDataClass.swift in Sources */,
 				314635BD22ECBD2C00F522B4 /* SetUpViewController.swift in Sources */,
+				8A445BB6230216C20020C29B /* GetStartedToSetUp.swift in Sources */,
 				CEC26E03227B3E9E00FFFC67 /* FlipDay+CoreDataClass.swift in Sources */,
 				8A1AEDCF22C4148F005282FD /* Event+CoreDataProperties.swift in Sources */,
 				CEC26E06227B3E9E00FFFC67 /* Timetable+CoreDataClass.swift in Sources */,

@@ -198,7 +198,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
                                 if((days[0].typeOfDay[x] == 2 || days[0].typeOfDay[x] == 3) && results[0].generalNotifications){
                                     notify = true;
                                     
-                                }else if(results[0].eventNotifications && (days[0].typeOfDay[x]==5 || days[0].typeOfDay[x] == 6 || days[0].typeOfDay[x] == 7)){
+                                }else if(results[0].articleNotifications && (days[0].typeOfDay[x]==5 || days[0].typeOfDay[x] == 6 || days[0].typeOfDay[x] == 7)){
                                     notify = true;
                                     
                                 }else if(results[0].houseNotifications){

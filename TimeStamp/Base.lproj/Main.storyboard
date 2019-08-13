@@ -45,7 +45,7 @@
                         <viewLayoutGuide key="safeArea" id="XDt-31-JOf"/>
                     </view>
                     <connections>
-                        <segue destination="rcl-pN-vkI" kind="custom" identifier="toSetUp" customClass="HorizontalRightShiftTransition" customModule="TimeStamp" customModuleProvider="target" id="ei4-f4-y9T"/>
+                        <segue destination="rcl-pN-vkI" kind="custom" identifier="toSetUp" customClass="GetStartedToSetUp" customModule="TimeStamp" customModuleProvider="target" id="ei4-f4-y9T"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sw6-73-FDc" userLabel="First Responder" sceneMemberID="firstResponder"/>

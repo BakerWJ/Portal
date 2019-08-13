@@ -284,12 +284,14 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate, UIScro
     //When the keyboard hides, then animate back to the normal position
     @objc func keyboardWillHide (notification: NSNotification)
     {
-        UIView.animate (withDuration: 0.3, animations: {
-            self.topConstraint.constant = 0;
-            self.view.layoutIfNeeded()
-        }) { (Finished) in
-            self.collectionView.isScrollEnabled = true;
-            self.blockView.layer.opacity = 0;
+        DispatchQueue.main.async {
+            UIView.animate (withDuration: 0.3, animations: {
+                self.topConstraint.constant = 0;
+                self.view.layoutIfNeeded()
+            }) { (Finished) in
+                self.collectionView.isScrollEnabled = true;
+                self.blockView.layer.opacity = 0;
+            }
         }
     }
     
@@ -307,10 +309,12 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate, UIScro
             let difference = targetY - textFieldY;
             if (difference < 0)
             {
-                UIView.animate(withDuration: 0.3, animations: {
-                    self.topConstraint.constant = difference;
-                    self.view.layoutIfNeeded();
-                }, completion: nil)
+                DispatchQueue.main.async {
+                    UIView.animate(withDuration: 0.3, animations: {
+                        self.topConstraint.constant = difference;
+                        self.view.layoutIfNeeded();
+                    }, completion: nil)
+                }
             }
         }
     }

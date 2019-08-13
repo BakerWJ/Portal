@@ -84,7 +84,7 @@ class SettingsViewController: UIViewController {
             if let results = try CoreDataStack.managedObjectContext.fetch(fetchRequest) as? [Settings] {
                 generalButton.isSelected = results[0].generalNotifications
                 houseButton.isSelected = results[0].houseNotifications
-                eventButton.isSelected = results[0].eventNotifications
+                //eventButton.isSelected = results[0].eventNotifications
                 switch results[0].daysBefore{
                     case 1:
                         oneClick(1)
@@ -154,7 +154,7 @@ class SettingsViewController: UIViewController {
     
     @IBAction func eventClick(_ sender: Any) {
         eventButton.isSelected = !eventButton.isSelected
-        settings?.eventNotifications = eventButton.isSelected
+        //settings?.eventNotifications = eventButton.isSelected
         CoreDataStack.saveContext()
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.setNotifications()

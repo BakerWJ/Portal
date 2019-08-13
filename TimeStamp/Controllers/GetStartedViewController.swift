@@ -64,6 +64,7 @@ class GetStartedViewController: UIViewController {
     }()
     
     let containerView = UIView ()
+    var movingRectTrailing = NSLayoutConstraint();
     
     var buttons = [AnimatingButtonView]();
     
@@ -99,12 +100,12 @@ class GetStartedViewController: UIViewController {
         let gr2 = UITapGestureRecognizer(target: self, action: #selector (houseClick));
         buttons [1].addGestureRecognizer(gr2);
         
-        buttons [2].text = "Athletics";
-        let gr3 = UITapGestureRecognizer(target: self, action: #selector (athleticClick));
+        buttons [2].text = "Articles";
+        let gr3 = UITapGestureRecognizer(target: self, action: #selector (articleClick));
         buttons [2].addGestureRecognizer(gr3);
         
-        buttons [3].text = "Special Events";
-        let gr4 = UITapGestureRecognizer(target: self, action: #selector(eventClick));
+        buttons [3].text = "Surveys";
+        let gr4 = UITapGestureRecognizer(target: self, action: #selector(surveyClick));
         buttons [3].addGestureRecognizer(gr4);
         
         //add containerview that contains the stackview
@@ -149,7 +150,8 @@ class GetStartedViewController: UIViewController {
         //add the moving rectangle (line)
         view.addSubview(movingRect);
         movingRect.translatesAutoresizingMaskIntoConstraints = false;
-        movingRect.trailingAnchor.constraint (equalTo: yourInterestLabel.trailingAnchor).isActive = true;
+        movingRectTrailing = movingRect.trailingAnchor.constraint (equalTo: yourInterestLabel.trailingAnchor);
+        movingRectTrailing.isActive = true;
         movingRect.heightAnchor.constraint (equalToConstant: 2/812.0*screenHeight).isActive = true;
         movingRect.widthAnchor.constraint (equalToConstant: 503/375.0*screenWidth).isActive = true;
         movingRect.topAnchor.constraint (equalTo: yourInterestLabel.bottomAnchor).isActive = true;
@@ -200,12 +202,12 @@ class GetStartedViewController: UIViewController {
         CoreDataStack.saveContext()
     }
     
-    @objc func athleticClick () {
+    @objc func articleClick () {
         buttons[2].isSelected = !buttons[2].isSelected
         let fetchRequest = NSFetchRequest <NSFetchRequestResult> (entityName: "Settings");
         do {
             if let results = try CoreDataStack.managedObjectContext.fetch(fetchRequest) as? [Settings] {
-                results[0].athleticNotifications = buttons[2].isSelected
+                results[0].articleNotifications = buttons[2].isSelected
             }
         }
         catch {
@@ -214,12 +216,12 @@ class GetStartedViewController: UIViewController {
         CoreDataStack.saveContext()
     }
     
-    @objc func eventClick() {
+    @objc func surveyClick() {
         buttons[3].isSelected = !buttons[3].isSelected
         let fetchRequest = NSFetchRequest <NSFetchRequestResult> (entityName: "Settings");
         do {
             if let results = try CoreDataStack.managedObjectContext.fetch(fetchRequest) as? [Settings] {
-                results[0].eventNotifications = buttons[3].isSelected
+                results[0].surveyNotifications = buttons[3].isSelected
             }
         }
         catch {
