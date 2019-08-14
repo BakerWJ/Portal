@@ -178,8 +178,8 @@ class UpcomingDayView: UIView
     private func setup ()
     {
         addSubview(outlineView);
-        addContraintsWithFormat("H:|[v0]|", views: outlineView);
-        addContraintsWithFormat("V:|[v0]|", views: outlineView);
+        addConstraintsWithFormat("H:|[v0]|", views: outlineView);
+        addConstraintsWithFormat("V:|[v0]|", views: outlineView);
         
         outlineView.addSubview(weekDayLabel);
         weekDayLabel.translatesAutoresizingMaskIntoConstraints = false;
@@ -196,8 +196,8 @@ class UpcomingDayView: UIView
         ABDayLabel.topAnchor.constraint (equalTo: weekDayLabel.bottomAnchor).isActive = true;
         
         outlineView.addSubview(typeOfDayLabel);
-        outlineView.addContraintsWithFormat("H:|[v0]|", views: typeOfDayLabel);
-        outlineView.addContraintsWithFormat("V:|[v0]|", views: typeOfDayLabel);
+        outlineView.addConstraintsWithFormat("H:|[v0]|", views: typeOfDayLabel);
+        outlineView.addConstraintsWithFormat("V:|[v0]|", views: typeOfDayLabel);
         
         //add a gesture recognizer to this to detect a tap
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector (tapped));

@@ -118,7 +118,7 @@ class SetUpViewController: UIViewController, UITextFieldDelegate {
         outerView.translatesAutoresizingMaskIntoConstraints = false;
         topConstraint = outerView.topAnchor.constraint (equalTo: view.topAnchor);
         topConstraint.isActive = true;
-        view.addContraintsWithFormat("H:|[v0]|", views: outerView);
+        view.addConstraintsWithFormat("H:|[v0]|", views: outerView);
         outerView.heightAnchor.constraint (equalTo: view.heightAnchor).isActive = true;
         outerView.backgroundColor = .clear;
         

@@ -158,7 +158,7 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate, UIScro
         
         view.addSubview(containerView);
         containerView.translatesAutoresizingMaskIntoConstraints = false;
-        view.addContraintsWithFormat("H:|[v0]|", views: containerView);
+        view.addConstraintsWithFormat("H:|[v0]|", views: containerView);
         containerView.heightAnchor.constraint (equalTo: view.heightAnchor).isActive = true;
         topConstraint = containerView.topAnchor.constraint (equalTo: view.topAnchor);
         topConstraint.isActive = true;

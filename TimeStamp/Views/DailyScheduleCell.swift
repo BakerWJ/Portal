@@ -128,8 +128,8 @@ class DailyScheduleCell: UICollectionViewCell, UIPickerViewDelegate, UIPickerVie
         imageContainerView.layer.masksToBounds = true;
         
         imageContainerView.addSubview(imageView);
-        imageContainerView.addContraintsWithFormat("V:|[v0]|", views: imageView);
-        imageContainerView.addContraintsWithFormat("H:|[v0]|", views: imageView);
+        imageContainerView.addConstraintsWithFormat("V:|[v0]|", views: imageView);
+        imageContainerView.addConstraintsWithFormat("H:|[v0]|", views: imageView);
         
         bringSubviewToFront(whiteView);
         
@@ -379,8 +379,8 @@ class DailyScheduleCell: UICollectionViewCell, UIPickerViewDelegate, UIPickerVie
         let textView = UILabel()
         titleLabel.addSubview(textView);
         textView.translatesAutoresizingMaskIntoConstraints = false;
-        titleLabel.addContraintsWithFormat("V:|[v0]|", views: textView);
-        titleLabel.addContraintsWithFormat("H:|[v0]|", views: textView);
+        titleLabel.addConstraintsWithFormat("V:|[v0]|", views: textView);
+        titleLabel.addConstraintsWithFormat("H:|[v0]|", views: textView);
         textView.font = titleLabel.font;
         textView.text = titleLabel.text;
         textView.adjustsFontSizeToFitWidth = true;

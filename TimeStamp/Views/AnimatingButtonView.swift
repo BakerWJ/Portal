@@ -69,8 +69,8 @@ class AnimatingButtonView: UIView
         
         addSubview (label);
         label.translatesAutoresizingMaskIntoConstraints = false;
-        addContraintsWithFormat("H:|[v0]|", views: label);
-        addContraintsWithFormat("V:|[v0]|", views: label);
+        addConstraintsWithFormat("H:|[v0]|", views: label);
+        addConstraintsWithFormat("V:|[v0]|", views: label);
     }
     
     private func animate ()

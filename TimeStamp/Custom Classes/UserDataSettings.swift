@@ -22,6 +22,15 @@ class UserDataSettings
         updateSchedules()
     }
 
+    static func eraseAll ()
+    {
+        deleteSchedules()
+        deleteEvents()
+        deleteFlipDay()
+        deleteSettings()
+        deleteTimetables()
+    }
+    
     static func updateWithInternet ()
     {
         let connectedRef = Database.database().reference(withPath: ".info/connected");
@@ -57,7 +66,7 @@ class UserDataSettings
                     mainSettings.daysBefore = 2;
                     mainSettings.surveyNotifications = false;
                     mainSettings.generalNotifications = false;
-                    mainSettings.notificationTime = 3;
+                    mainSettings.notificationTime = 2; //default: evening
                     mainSettings.houseNotifications = false;
                     mainSettings.articleNotifications = false;
                     CoreDataStack.saveContext()
@@ -66,6 +75,26 @@ class UserDataSettings
         }
         catch {
             fatalError("There was an error fetching the list of timetables");
+        }
+    }
+    
+    static func deleteSettings()
+    {
+        let fetchRequest = NSFetchRequest <NSFetchRequestResult> (entityName: "Settings");
+        do
+        {
+            if let results = try CoreDataStack.managedObjectContext.fetch (fetchRequest) as? [Settings]
+            {
+                for each in results
+                {
+                    CoreDataStack.managedObjectContext.delete (each)
+                }
+                CoreDataStack.saveContext()
+            }
+        }
+        catch
+        {
+            fatalError ("There was an error fetching the list of periods")
         }
     }
     
@@ -182,6 +211,25 @@ class UserDataSettings
         }
     }
     
+    static func deleteTimetables()
+    {
+        let fetchRequest = NSFetchRequest <NSFetchRequestResult> (entityName: "Timetable");
+        do
+        {
+            if let results = try CoreDataStack.managedObjectContext.fetch (fetchRequest) as? [Timetable]
+            {
+                for each in results{
+                    CoreDataStack.managedObjectContext.delete(each);
+                }
+                CoreDataStack.saveContext()
+            }
+        }
+        catch
+        {
+            fatalError ("There was an error fetching the list of timetables")
+        }
+    }
+    
     //This function deletes all the Period Objects, instances of Period Class, a subclass of NSManagedObject.
     //All Period Objects that are expired are deleted from the Core Data Stack Context and the function
     //will only be called if the Periods' corresponding schedule is expired.
@@ -204,6 +252,7 @@ class UserDataSettings
             fatalError ("There was an error fetching the list of periods")
         }
     }
+    
     //will only be called if flipday is expired
     static func deleteFlipDay ()
     {
@@ -484,84 +533,6 @@ class UserDataSettings
         catch
         {
             fatalError ("There was an error fetching the list of events")
-        }
-        return nil;
-    }
-    
-    static func addTaskTag (colour: UIColor, name: String)
-    {
-        guard let entity = NSEntityDescription.entity (forEntityName: "ToDo_TaskTag", in: CoreDataStack.managedObjectContext) else
-        {
-            fatalError ("Could not find entity description!")
-        }
-        let newTag = ToDo_TaskTag(entity: entity, insertInto: CoreDataStack.managedObjectContext)
-        newTag.colour = colour;
-        newTag.name = name;
-        CoreDataStack.saveContext()
-    }
-    
-    static func deleteTaskTag (tag: ToDo_TaskTag)
-    {
-        CoreDataStack.managedObjectContext.delete(tag);
-        CoreDataStack.saveContext()
-    }
-    
-    static func addTask (dueDate: Date?, completed: Bool, title: String, detail: String?, tag: ToDo_TaskTag)
-    {
-        guard let entity = NSEntityDescription.entity (forEntityName: "ToDo_Task", in: CoreDataStack.managedObjectContext) else
-        {
-            fatalError ("Could not find entity description!")
-        }
-        let newTask = ToDo_Task(entity: entity, insertInto: CoreDataStack.managedObjectContext)
-        newTask.tag = tag;
-        tag.addToTasks(newTask);
-        newTask.dueDate = dueDate as NSDate?;
-        newTask.completed = completed;
-        newTask.title = title;
-        newTask.detail = detail;
-        CoreDataStack.saveContext()
-    }
-    
-    static func deleteTask (task: ToDo_Task)
-    {
-        CoreDataStack.managedObjectContext.delete (task);
-        CoreDataStack.saveContext();
-    }
-    
-    static func fetchAllTasks () -> [ToDo_Task]?
-    {
-        let fetchRequest = NSFetchRequest <NSFetchRequestResult> (entityName: "ToDo_Task");
-        do
-        {
-            if let results = try CoreDataStack.managedObjectContext.fetch (fetchRequest) as? [ToDo_Task]
-            {
-                return results;
-            }
-        }
-        catch
-        {
-            fatalError ("There was an error fetching the list of tasks")
-        }
-        return nil;
-    }
-    
-    static func fetchAllTaskTags () -> [ToDo_TaskTag]?
-    {
-        let fetchRequest = NSFetchRequest <NSFetchRequestResult> (entityName: "ToDo_TaskTag");
-        let sortDescriptor = NSSortDescriptor(key: "name", ascending: true);
-        fetchRequest.sortDescriptors = [sortDescriptor];
-        do
-        {
-            if let results = try CoreDataStack.managedObjectContext.fetch (fetchRequest) as? [ToDo_TaskTag]
-            {
-                return results.sorted(by: { (a, b) -> Bool in
-                    a.name.compare(b.name) == .orderedAscending;
-                })
-            }
-        }
-        catch
-        {
-            fatalError ("There was an error fetching the list of taskTags")
         }
         return nil;
     }

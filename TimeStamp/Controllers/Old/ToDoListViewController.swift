@@ -149,15 +149,15 @@ class ToDoListViewController: UIViewController {
         blackView.addGestureRecognizer(tapGestureRecognizer);
         view.addSubview(blackView);
         blackView.translatesAutoresizingMaskIntoConstraints = false;
-        view.addContraintsWithFormat("H:|[v0]|", views: blackView);
-        view.addContraintsWithFormat("V:|[v0]|", views: blackView);
+        view.addConstraintsWithFormat("H:|[v0]|", views: blackView);
+        view.addConstraintsWithFormat("V:|[v0]|", views: blackView);
         
         //set up the table View
         view.addSubview(tableView);
     
         tableView.topAnchor.constraint (equalTo: taskeventmenu.bottomAnchor, constant: 10/812.0*screenHeight).isActive = true;
         tableView.bottomAnchor.constraint (equalTo: view.bottomAnchor).isActive = true;
-        view.addContraintsWithFormat("H:|[v0]|", views: tableView);
+        view.addConstraintsWithFormat("H:|[v0]|", views: tableView);
         
         //set the views in appropriate order
         view.bringSubviewToFront(addButton);

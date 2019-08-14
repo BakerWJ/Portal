@@ -113,7 +113,7 @@ class TaskListTableViewCell: UITableViewCell
         wrapperView.widthAnchor.constraint(equalToConstant: screenWidth).isActive = true;
         leading = wrapperView.leadingAnchor.constraint (equalTo: leadingAnchor);
         leading.isActive = true;
-        addContraintsWithFormat("V:|[v0]|", views: wrapperView);
+        addConstraintsWithFormat("V:|[v0]|", views: wrapperView);
         
         wrapperView.addSubview (checkMark);
         wrapperView.addSubview (titleLabel);

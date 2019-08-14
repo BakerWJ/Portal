@@ -239,6 +239,13 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
             performSegue(withIdentifier: "fromTabBar", sender: self.tabBarController);
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let dest = segue.destination as? SignInViewController
+        {
+            dest.signedIn = false;
+        }
+    }
 }
 
 //the animation between transition of tab bar items
