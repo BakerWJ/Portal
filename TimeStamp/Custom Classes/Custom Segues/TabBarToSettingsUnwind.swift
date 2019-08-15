@@ -23,7 +23,7 @@ class TabBarToSettingsUnwind: UIStoryboardSegue {
             let tempView = window.viewWithTag(100)!
             tempView.addSubview(fromVC.view);
             window.insertSubview(toVC.view, belowSubview: tempView);
-            let tempViewHeight = tempView.heightAnchor.constraint (equalToConstant: 2000);
+            let tempViewHeight = tempView.heightAnchor.constraint (equalToConstant: 2000/375.0*screenWidth);
             
             tempViewHeight.isActive = true;
             window.layoutIfNeeded()

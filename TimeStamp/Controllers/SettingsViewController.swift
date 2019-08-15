@@ -276,6 +276,7 @@ class SettingsViewController: UIViewController {
     //this triggers a unwind segue back to the tab bar controller
     @objc func back ()
     {
+        UserDataSettings.setNotifications()
         performSegue (withIdentifier: "returnFromSettings", sender: self);
     }
     
@@ -311,6 +312,7 @@ class SettingsViewController: UIViewController {
             setting.notificationTime = timeSlider.day.0 ? 1 : 2; //day: 1, night: 2
             CoreDataStack.saveContext()
         }
+        UserDataSettings.setNotifications()
         DispatchQueue.main.async {
             UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
                 self.topContainerView.backgroundColor = self.timeSlider.day.0 ? UIColor.getColor(246, 230, 223) : UIColor.getColor(40, 73, 164);
@@ -339,6 +341,7 @@ class SettingsViewController: UIViewController {
             setting.surveyNotifications = onOffButton.on;
             CoreDataStack.saveContext()
         }
+        UserDataSettings.setNotifications()
     }
     
     func allOnOffAnimation ()
@@ -396,6 +399,7 @@ class SettingsViewController: UIViewController {
             setting.generalNotifications = generalNotif.isSelected;
             CoreDataStack.saveContext()
         }
+        UserDataSettings.setNotifications()
         checkForAllNotif()
     }
     
@@ -407,6 +411,7 @@ class SettingsViewController: UIViewController {
             setting.articleNotifications = articlesNotif.isSelected;
             CoreDataStack.saveContext()
         }
+        UserDataSettings.setNotifications()
         checkForAllNotif()
     }
     
@@ -418,6 +423,7 @@ class SettingsViewController: UIViewController {
             setting.houseNotifications = houseNotif.isSelected;
             CoreDataStack.saveContext()
         }
+        UserDataSettings.setNotifications()
         checkForAllNotif()
     }
     
@@ -429,6 +435,7 @@ class SettingsViewController: UIViewController {
             setting.surveyNotifications = surveysNotif.isSelected;
             CoreDataStack.saveContext()
         }
+        UserDataSettings.setNotifications()
         checkForAllNotif()
     }
     

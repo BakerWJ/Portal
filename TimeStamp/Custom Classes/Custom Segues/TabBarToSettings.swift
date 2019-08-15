@@ -43,29 +43,22 @@ class TabBarToSettings: UIStoryboardSegue {
             
             window.layoutIfNeeded()
             toVC.view.layer.opacity = 0;
-            tempViewWidth.constant = 2000;
-            DispatchQueue.main.async {
-                UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn, animations:
-                    {
-                        toVC.view.layer.opacity = 1;
-                        window.layoutIfNeeded();
-                        tempView.layer.cornerRadius = tempView.frame.height/2;
-                        fromVC.settingsButton.frame = fromVC.settingsButton.frame.offsetBy(dx: self.screenWidth, dy: 0);
-                }, completion:
-                    {
-                        (Finished) in
-                        if (Finished)
-                        {
-                            toVC.view.translatesAutoresizingMaskIntoConstraints = false;
-                            toVC.view.topAnchor.constraint (equalTo: window.topAnchor).isActive = true;
-                            toVC.view.leadingAnchor.constraint (equalTo: window.leadingAnchor).isActive = true;
-                            toVC.view.trailingAnchor.constraint (equalTo: window.trailingAnchor).isActive = true;
-                            toVC.view.bottomAnchor.constraint (equalTo: window.bottomAnchor).isActive = true;
-                            self.source.present(self.destination, animated: false, completion: nil)
-                            fromVC.settingsButton.frame = fromVC.settingsButton.frame.offsetBy(dx: -self.screenWidth, dy: 0);
-                            tempViewWidth.isActive = false;
-                        }
-                })
+            tempViewWidth.constant = 2000/375.0*screenWidth;
+            UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn, animations:
+            {
+                toVC.view.layer.opacity = 1;
+                window.layoutIfNeeded();
+                tempView.layer.cornerRadius = tempView.frame.height/2;
+                fromVC.settingsButton.frame = fromVC.settingsButton.frame.offsetBy(dx: self.screenWidth, dy: 0);
+            }) {
+                (Finished) in
+                if (Finished)
+                {
+                    window.insertSubview(toVC.view, aboveSubview: tempView);
+                    self.source.present(self.destination, animated: false, completion: nil)
+                    fromVC.settingsButton.frame = fromVC.settingsButton.frame.offsetBy(dx: -self.screenWidth, dy: 0);
+                    tempViewWidth.isActive = false;
+                }
             }
         }
     }

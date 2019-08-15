@@ -176,6 +176,7 @@ class SettingsDaysBeforeSlider: UIView {
                 }
             }
             CoreDataStack.saveContext()
+            UserDataSettings.setNotifications()
             DispatchQueue.main.async {
                 UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
                     self.layoutIfNeeded();

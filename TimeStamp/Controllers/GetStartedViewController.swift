@@ -231,8 +231,7 @@ class GetStartedViewController: UIViewController {
     }
     
     @objc func done(_ sender: Any) {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.setNotifications()
+        UserDataSettings.setNotifications()
         performSegue(withIdentifier: "toSetUp", sender: self);
     }
 }
