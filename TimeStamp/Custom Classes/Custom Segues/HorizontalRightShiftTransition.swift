@@ -22,7 +22,7 @@ class HorizontalRightShiftTransition: UIStoryboardSegue
         if let window = UIApplication.shared.keyWindow
         {
             window.insertSubview (secondControllerView!, aboveSubview: firstControllerView!)
-            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations:
+            UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseInOut, animations:
                 {
                     firstControllerView?.frame = (firstControllerView?.frame)!.offsetBy(dx: -screenWidth, dy: 0)
                     secondControllerView?.frame = (secondControllerView?.frame)!.offsetBy (dx: -screenWidth, dy: 0)

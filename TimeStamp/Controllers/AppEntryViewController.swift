@@ -144,7 +144,7 @@ class AppEntryViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        startAnimations ();
+        self.startAnimations ();
     }
     
     private func setup ()
@@ -264,6 +264,8 @@ class AppEntryViewController: UIViewController {
         rectangle.trailingAnchor.constraint (equalTo: view.trailingAnchor).isActive = true;
         rectangle.bottomAnchor.constraint (equalTo: view.bottomAnchor).isActive = true;
         rectangle.topAnchor.constraint (equalTo: view.topAnchor).isActive = true;
+        
+        self.view.layoutIfNeeded()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -323,8 +325,8 @@ class AppEntryViewController: UIViewController {
         maskLayer.add(animation, forKey: "path");
         CATransaction.commit()
         
-        let checkTime = Date().addingTimeInterval(0.8);
-        UIView.animate (withDuration: 1.0, delay: 2, options: .curveEaseIn, animations: {
+        let checkTime = Date().addingTimeInterval(0.9);
+        UIView.animate (withDuration: 1.0, delay: 2.1, options: .curveEaseIn, animations: {
             self.entryMountainImage.layer.opacity = 1;
             self.entryAirplaneImage.layer.opacity = 0;
             self.view.layoutIfNeeded();
@@ -381,7 +383,7 @@ class AppEntryViewController: UIViewController {
         CATransaction.commit()
         
         let checkTime = Date().addingTimeInterval(0.8);
-        UIView.animate (withDuration: 1.0, delay: 2, options: .curveEaseIn, animations: {
+        UIView.animate (withDuration: 0.9, delay: 2, options: .curveEaseIn, animations: {
             self.entryClimbingImage.layer.opacity = 1;
             self.entryMountainImage.layer.opacity = 0;
             self.view.layoutIfNeeded();

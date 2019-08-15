@@ -25,6 +25,11 @@
 		8A1B7A0822BECAC7006FE52A /* HouseInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B7A0722BECAC7006FE52A /* HouseInfoViewController.swift */; };
 		8A1B7A1822BF2995006FE52A /* swipetoright.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8A1B7A1722BF2995006FE52A /* swipetoright.gif */; };
 		8A1B7A1C22BF2A7C006FE52A /* swipetoleft.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8A1B7A1B22BF2A7C006FE52A /* swipetoleft.gif */; };
+		8A1CF7EE23044E49000E2F6B /* SettingsNotifOnOffButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1CF7ED23044E49000E2F6B /* SettingsNotifOnOffButtonView.swift */; };
+		8A1CF7F02304595E000E2F6B /* SettingsSpecificNotifButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1CF7EF2304595E000E2F6B /* SettingsSpecificNotifButtonView.swift */; };
+		8A1CF7F223046391000E2F6B /* SettingsDaysBeforeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1CF7F123046391000E2F6B /* SettingsDaysBeforeSlider.swift */; };
+		8A1CF7F42304914E000E2F6B /* TabBarToSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1CF7F32304914E000E2F6B /* TabBarToSettings.swift */; };
+		8A1CF7F623049165000E2F6B /* TabBarToSettingsUnwind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1CF7F523049165000E2F6B /* TabBarToSettingsUnwind.swift */; };
 		8A445BB22301AC370020C29B /* AnimatingButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A445BB12301AC370020C29B /* AnimatingButtonView.swift */; };
 		8A445BB42301ED810020C29B /* LogInToGetStarted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A445BB32301ED810020C29B /* LogInToGetStarted.swift */; };
 		8A445BB6230216C20020C29B /* GetStartedToSetUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A445BB5230216C20020C29B /* GetStartedToSetUp.swift */; };
@@ -104,6 +109,11 @@
 		8A1B7A0722BECAC7006FE52A /* HouseInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseInfoViewController.swift; sourceTree = "<group>"; };
 		8A1B7A1722BF2995006FE52A /* swipetoright.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = swipetoright.gif; sourceTree = "<group>"; };
 		8A1B7A1B22BF2A7C006FE52A /* swipetoleft.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = swipetoleft.gif; sourceTree = "<group>"; };
+		8A1CF7ED23044E49000E2F6B /* SettingsNotifOnOffButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNotifOnOffButtonView.swift; sourceTree = "<group>"; };
+		8A1CF7EF2304595E000E2F6B /* SettingsSpecificNotifButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSpecificNotifButtonView.swift; sourceTree = "<group>"; };
+		8A1CF7F123046391000E2F6B /* SettingsDaysBeforeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDaysBeforeSlider.swift; sourceTree = "<group>"; };
+		8A1CF7F32304914E000E2F6B /* TabBarToSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarToSettings.swift; sourceTree = "<group>"; };
+		8A1CF7F523049165000E2F6B /* TabBarToSettingsUnwind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarToSettingsUnwind.swift; sourceTree = "<group>"; };
 		8A445BB12301AC370020C29B /* AnimatingButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatingButtonView.swift; sourceTree = "<group>"; };
 		8A445BB32301ED810020C29B /* LogInToGetStarted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInToGetStarted.swift; sourceTree = "<group>"; };
 		8A445BB5230216C20020C29B /* GetStartedToSetUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartedToSetUp.swift; sourceTree = "<group>"; };
@@ -211,6 +221,9 @@
 				CE927FF3227A0BCD00EE0A22 /* ScheduleView.swift */,
 				31BB399722E8CEEC004D2DE5 /* DailyScheduleCell.swift */,
 				8A445BB72303B5E60020C29B /* SettingsDayNightToggleButtonView.swift */,
+				8A1CF7F123046391000E2F6B /* SettingsDaysBeforeSlider.swift */,
+				8A1CF7ED23044E49000E2F6B /* SettingsNotifOnOffButtonView.swift */,
+				8A1CF7EF2304595E000E2F6B /* SettingsSpecificNotifButtonView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -230,6 +243,8 @@
 			children = (
 				8AA2F04322811FF90091EF0F /* HorizontalRightShiftTransition.swift */,
 				8A445BB32301ED810020C29B /* LogInToGetStarted.swift */,
+				8A1CF7F32304914E000E2F6B /* TabBarToSettings.swift */,
+				8A1CF7F523049165000E2F6B /* TabBarToSettingsUnwind.swift */,
 				8A445BB5230216C20020C29B /* GetStartedToSetUp.swift */,
 				8AD8621722984A3500412EFF /* HorizontalRightShiftTransitionUnwind.swift */,
 				8AA2F045228123890091EF0F /* HorizontalLeftShiftTransition.swift */,
@@ -527,12 +542,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE927FF9227A0BCD00EE0A22 /* ScheduleView.swift in Sources */,
+				8A1CF7EE23044E49000E2F6B /* SettingsNotifOnOffButtonView.swift in Sources */,
 				8AD8621C22984A9600412EFF /* VerticalUpShiftTransitionUnwind.swift in Sources */,
 				CEDC433422760BBE00A78890 /* GetStartedViewController.swift in Sources */,
 				314635BB22EB8A5000F522B4 /* NextPeriodView.swift in Sources */,
 				CEDC435F22775DFA00A78890 /* SettingsViewController.swift in Sources */,
 				8A6780792298C81B00748848 /* EventView.swift in Sources */,
 				CE2D71492280C71E00F4D89A /* TimeStampModel.xcdatamodeld in Sources */,
+				8A1CF7F623049165000E2F6B /* TabBarToSettingsUnwind.swift in Sources */,
 				8AA2F046228123890091EF0F /* HorizontalLeftShiftTransition.swift in Sources */,
 				314635B922EB78B400F522B4 /* UpcomingDaysView.swift in Sources */,
 				31BB399822E8CEEC004D2DE5 /* DailyScheduleCell.swift in Sources */,
@@ -547,6 +564,7 @@
 				CED50C0022EF2D1A00FC4851 /* ArticleViewController.swift in Sources */,
 				8A5F823722D7A00B00443020 /* ToDo_Task+CoreDataProperties.swift in Sources */,
 				CEC26E07227B3E9E00FFFC67 /* Period+CoreDataProperties.swift in Sources */,
+				8A1CF7F02304595E000E2F6B /* SettingsSpecificNotifButtonView.swift in Sources */,
 				CE927FF8227A0BCD00EE0A22 /* RepeatingTimer.swift in Sources */,
 				CE146D982280BD9900B3922D /* Settings+CoreDataProperties.swift in Sources */,
 				CEC26E02227B3E9E00FFFC67 /* Timetable+CoreDataProperties.swift in Sources */,
@@ -561,6 +579,7 @@
 				CEC26E08227B3E9E00FFFC67 /* Period+CoreDataClass.swift in Sources */,
 				8ABCA53E2282176000A30D36 /* WeeklySchedule+CoreDataClass.swift in Sources */,
 				314635BD22ECBD2C00F522B4 /* SetUpViewController.swift in Sources */,
+				8A1CF7F223046391000E2F6B /* SettingsDaysBeforeSlider.swift in Sources */,
 				8A445BB6230216C20020C29B /* GetStartedToSetUp.swift in Sources */,
 				CEC26E03227B3E9E00FFFC67 /* FlipDay+CoreDataClass.swift in Sources */,
 				8A445BB82303B5E60020C29B /* SettingsDayNightToggleButtonView.swift in Sources */,
@@ -572,6 +591,7 @@
 				8A445BB42301ED810020C29B /* LogInToGetStarted.swift in Sources */,
 				8AD8621E22984AB800412EFF /* VerticallyDownShiftTransitionUnwind.swift in Sources */,
 				CEC26E05227B3E9E00FFFC67 /* Schedule+CoreDataClass.swift in Sources */,
+				8A1CF7F42304914E000E2F6B /* TabBarToSettings.swift in Sources */,
 				31BB397F22E6B48F004D2DE5 /* AppEntryViewController.swift in Sources */,
 				8A1B79FC22BEC2AF006FE52A /* MainTabBarViewController.swift in Sources */,
 				8AEA785122851D5C0031B030 /* UserDataSettings.swift in Sources */,

@@ -184,7 +184,7 @@
                         <viewLayoutGuide key="safeArea" id="ziA-du-aup"/>
                     </view>
                     <connections>
-                        <segue destination="nk5-4y-mks" kind="unwind" identifier="returnFromSettings" unwindAction="returnFromSettingsWithSender:" id="hIk-EI-FPt"/>
+                        <segue destination="nk5-4y-mks" kind="unwind" identifier="returnFromSettings" customClass="TabBarToSettingsUnwind" customModule="TimeStamp" customModuleProvider="target" unwindAction="returnFromSettingsWithSender:" id="hIk-EI-FPt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rw8-yR-y0e" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -208,7 +208,7 @@
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <segue destination="u3n-9T-soJ" kind="unwind" identifier="fromTabBar" unwindAction="returnFromTabBarWithSender:" id="bks-JK-Egc"/>
-                        <segue destination="oFc-jc-KNZ" kind="presentation" identifier="toSettings" modalTransitionStyle="partialCurl" id="WQ0-YI-XXV"/>
+                        <segue destination="oFc-jc-KNZ" kind="custom" identifier="toSettings" customClass="TabBarToSettings" customModule="TimeStamp" customModuleProvider="target" id="WQ0-YI-XXV"/>
                         <segue destination="EEt-2r-1ne" kind="relationship" relationship="viewControllers" id="XCj-mt-dkc"/>
                         <segue destination="xwW-LH-Wpb" kind="relationship" relationship="viewControllers" id="ZUj-UG-LFG"/>
                         <segue destination="UxZ-UN-vfD" kind="relationship" relationship="viewControllers" id="qTB-qN-2aE"/>

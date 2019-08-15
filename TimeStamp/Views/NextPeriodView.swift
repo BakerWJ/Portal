@@ -80,8 +80,6 @@ class NextPeriodView: UIView {
         }
         else if let nextSchoolDay = getNextSchoolDay() //if there isn't a next period in today, then find the next school day there is
         {
-            print (nextSchoolDay.0)
-            print (nextSchoolDay.1)
             var displayed = "";
             if nextSchoolDay.1 == Util.nextDay() as Date
             {

@@ -25,9 +25,18 @@ class SettingsDayNightToggleButtonView: UIView
         super.init (coder: coder);
     }
     
-    var day: Bool = false {
+    var day: (Bool, Bool) = (false, false) {
         didSet {
-            animate ()
+            if (day.1)
+            {
+                animate ()
+            }
+            else
+            {
+                self.movingRectLeading.constant = day.0 ? 154/375.0*self.screenWidth : 0;
+                self.dayImage.layer.opacity = day.0 ? 1 : 0;
+                self.nightImage.layer.opacity = day.0 ? 0 : 1;
+            }
         }
     }
     
@@ -46,6 +55,8 @@ class SettingsDayNightToggleButtonView: UIView
         layer.masksToBounds = true;
         clipsToBounds = true;
         
+        backgroundColor = UIColor.getColor(200, 200, 200);
+        
         addSubview(nightImage);
         nightImage.translatesAutoresizingMaskIntoConstraints = false;
         addConstraintsWithFormat("H:|[v0]|", views: nightImage);
@@ -62,18 +73,52 @@ class SettingsDayNightToggleButtonView: UIView
         movingRect.translatesAutoresizingMaskIntoConstraints = false;
         addConstraintsWithFormat("V:|[v0]|", views: movingRect);
         movingRect.widthAnchor.constraint (equalToConstant: 155/375.0*screenWidth).isActive = true;
-        movingRectLeading = movingRect.leadingAnchor.constraint (equalTo: leadingAnchor);
+        movingRectLeading = movingRect.leadingAnchor.constraint (equalTo: leadingAnchor, constant: 154/375.0*self.screenWidth);
         movingRectLeading.isActive = true;
+    }
+    
+    func mode (off: Bool, animated: Bool)
+    {
+        if (!animated)
+        {
+            self.isUserInteractionEnabled = !off;
+            self.movingRect.layer.opacity = off ? 1 : 0.7;
+            if (off)
+            {
+                self.dayImage.layer.opacity = 0;
+                self.nightImage.layer.opacity = 0;
+            }
+            else
+            {
+                self.dayImage.layer.opacity = self.day.0 ? 1 : 0;
+                self.nightImage.layer.opacity = self.day.0 ? 0 : 1;
+            }
+            return;
+        }
+        DispatchQueue.main.async {
+            self.isUserInteractionEnabled = !off
+            UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
+                self.movingRect.layer.opacity = off ? 1 : 0.7;
+                if (off)
+                {
+                    self.dayImage.layer.opacity = 0;
+                    self.nightImage.layer.opacity = 0;
+                }
+                else
+                {
+                    self.dayImage.layer.opacity = self.day.0 ? 1 : 0;
+                    self.nightImage.layer.opacity = self.day.0 ? 0 : 1;
+                }
+            }, completion: nil)
+        }
     }
     
     private func animate ()
     {
         DispatchQueue.main.async {
-            if (self.day)
+            if (self.day.0)
             {
                 self.movingRectLeading.constant = 154/375.0*self.screenWidth;
-                self.dayImage.layer.opacity = 0;
-                self.nightImage.layer.opacity = 1;
                 UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
                     self.layoutIfNeeded()
                     self.dayImage.layer.opacity = 1;
@@ -83,8 +128,6 @@ class SettingsDayNightToggleButtonView: UIView
             else
             {
                 self.movingRectLeading.constant = 0;
-                self.dayImage.layer.opacity = 1;
-                self.nightImage.layer.opacity = 0;
                 UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
                     self.layoutIfNeeded()
                     self.dayImage.layer.opacity = 0;
