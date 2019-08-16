@@ -13,8 +13,8 @@ class NewsViewController: UIViewController {
     lazy var scrollview: UIScrollView = {
         let view = UIScrollView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.contentSize.height = 1260
-        view.backgroundColor = #colorLiteral(red: 0.2038967609, green: 0.3737305999, blue: 0.7035349607, alpha: 1)
+        view.contentSize.height = 1049
+        view.contentSize.width = 375
         return view
     }()
     
@@ -22,9 +22,8 @@ class NewsViewController: UIViewController {
         super.viewDidLoad()
         view.addSubview(scrollview)
         setupScroll()
-        titleContent()
-        featuredTab()
-        siftArticles()
+        topText()
+        featured()
     }
     
     func setupScroll() {
@@ -34,202 +33,188 @@ class NewsViewController: UIViewController {
         scrollview.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         scrollview.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         scrollview.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        scrollview.backgroundColor = .white;
+        if #available(iOS 11.0, *) {
+            self.scrollview.contentInsetAdjustmentBehavior = .never
+        } else {
+            // Fallback on earlier versions
+        }
+        scrollview.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
     
-    func titleContent() {
-        let articles = UILabel(frame: CGRect(x: 33, y: 44, width: 82, height: 20))
-        articles.lineBreakMode = .byWordWrapping
-        articles.numberOfLines = 0
-        articles.textColor = UIColor.white
-        articles.alpha = 1
-        let textContent = "ARTICLES"
-        let textString = NSMutableAttributedString(string: textContent, attributes: [
-            NSAttributedString.Key.font: UIFont(name: "SitkaBanner", size: 20)!
-            ])
-        let textRange = NSRange(location: 0, length: textString.length)
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 1
-        textString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: textRange)
-        textString.addAttribute(NSAttributedString.Key.kern, value: 0.3, range: textRange)
-        articles.attributedText = textString
-        articles.sizeToFit()
-        self.scrollview.addSubview(articles)
-        
-        let discover = UILabel(frame: CGRect(x: 34, y: 64, width: 213, height: 30))
-        discover.lineBreakMode = .byWordWrapping
-        discover.numberOfLines = 0
-        discover.textColor = UIColor.white
-        discover.alpha = 1
-        let disTextContent = "Discover Stories."
-        let disTextString = NSMutableAttributedString(string: disTextContent, attributes: [
-            NSAttributedString.Key.font: UIFont(name: "SitkaBanner", size: 30)!
-            ])
-        let disTextRange = NSRange(location: 0, length: disTextString.length)
-        let disParagraphStyle = NSMutableParagraphStyle()
-        disParagraphStyle.lineSpacing = 1
-        disTextString.addAttribute(NSAttributedString.Key.paragraphStyle, value: disParagraphStyle, range: disTextRange)
-        disTextString.addAttribute(NSAttributedString.Key.kern, value: 0.45, range: disTextRange)
-        discover.attributedText = disTextString
-        discover.sizeToFit()
-        self.scrollview.addSubview(discover)
-        
-        let subtextLayer = UILabel(frame: CGRect(x: 36, y: 94, width: 177, height: 20))
-        subtextLayer.lineBreakMode = .byWordWrapping
-        subtextLayer.numberOfLines = 0
-        subtextLayer.textColor = UIColor.white
-        subtextLayer.alpha = 1
-        let subtextContent = "Stories worth sharing."
-        let subtextString = NSMutableAttributedString(string: subtextContent, attributes: [
-            NSAttributedString.Key.font: UIFont(name: "SitkaBanner", size: 20)!
-            ])
-        let subtextRange = NSRange(location: 0, length: subtextString.length)
-        let subparagraphStyle = NSMutableParagraphStyle()
-        subparagraphStyle.lineSpacing = 1
-        subtextString.addAttribute(NSAttributedString.Key.paragraphStyle, value: subparagraphStyle, range: subtextRange)
-        subtextString.addAttribute(NSAttributedString.Key.kern, value: 0.3, range: subtextRange)
-        subtextLayer.attributedText = subtextString
-        subtextLayer.sizeToFit()
-        self.scrollview.addSubview(subtextLayer)
-    }
-    
-    @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
-        performSegue(withIdentifier: "article", sender: self)
-    }
-    
-    func featuredTab() {
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
-        let layer = UIView(frame: CGRect(x: -1.5, y: 546.31, width: 378, height: 266.38))
-        layer.layer.cornerRadius = 25
-        layer.backgroundColor = UIColor.white
-        self.scrollview.addSubview(layer)
-        
-        
-        let layer2 = UIView(frame: CGRect(x: -1.5, y: 546.31, width: 378, height: 230))
-        layer2.layer.cornerRadius = 0
-        layer2.backgroundColor = UIColor.white
-        self.scrollview.addSubview(layer2)
-        
-        let latest = UILabel(frame: CGRect(x: 38, y: 561, width: 254, height: 30))
-        latest.lineBreakMode = .byWordWrapping
-        latest.numberOfLines = 0
-        latest.textColor = UIColor.black
-        latest.alpha = 1
-        let latesttextContent = "Latest and Greatest."
-        let latesttextString = NSMutableAttributedString(string: latesttextContent, attributes: [
-            NSAttributedString.Key.font: UIFont(name: "SitkaBanner-Bold", size: 30)!
-            ])
-        let latesttextRange = NSRange(location: 0, length: latesttextString.length)
-        let latestparagraphStyle = NSMutableParagraphStyle()
-        latestparagraphStyle.lineSpacing = 1
-        latesttextString.addAttribute(NSAttributedString.Key.paragraphStyle, value: latestparagraphStyle, range: latesttextRange)
-        latesttextString.addAttribute(NSAttributedString.Key.kern, value: 0.45, range: latesttextRange)
-        latest.attributedText = latesttextString
-        latest.sizeToFit()
-        latest.addGestureRecognizer(tap)
-        self.scrollview.addSubview(latest)
-        
-        let textLayer = UILabel(frame: CGRect(x: 38, y: 591, width: 208, height: 20))
+    func topText() {
+        let textLayer = UILabel(frame: CGRect(x: 20, y: 57, width: 123, height: 40))
         textLayer.lineBreakMode = .byWordWrapping
         textLayer.numberOfLines = 0
         textLayer.textColor = UIColor.black
         textLayer.alpha = 1
-        let textContent = "Stories hot off the presses."
+        let textContent = "Articles"
         let textString = NSMutableAttributedString(string: textContent, attributes: [
-            NSAttributedString.Key.font: UIFont(name: "SitkaBanner", size: 20)!
+            NSAttributedString.Key.font: UIFont(name: "SitkaBanner", size: 40)!
             ])
         let textRange = NSRange(location: 0, length: textString.length)
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 1
         textString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: textRange)
-        textString.addAttribute(NSAttributedString.Key.kern, value: 0.3, range: textRange)
+        textString.addAttribute(NSAttributedString.Key.kern, value: 1.1, range: textRange)
         textLayer.attributedText = textString
         textLayer.sizeToFit()
         self.scrollview.addSubview(textLayer)
         
-        let articleImage = UIImage(named: "000")
-        let bgimage = UIImageView(image: articleImage)
-        bgimage.frame = CGRect(x: 38, y: 625, width: 351, height: 160)
-        bgimage.layer.cornerRadius = 15
-        bgimage.clipsToBounds = true
-        bgimage.contentMode = .scaleAspectFill
-        bgimage.isUserInteractionEnabled = true
-        bgimage.addGestureRecognizer(tap)
-        self.scrollview.addSubview(bgimage)
-        
-        let titleLayer = UILabel(frame: CGRect(x: 55, y: 642, width: 185.69, height: 29.63))
-        titleLayer.lineBreakMode = .byWordWrapping
-        titleLayer.numberOfLines = 0
-        titleLayer.textColor = UIColor.white
-        titleLayer.alpha = 1
-        let titleContent = "Longing:\nHath do us Part."
-        let titleString = NSMutableAttributedString(string: titleContent, attributes: [
+        let tLayer = UILabel(frame: CGRect(x: 18, y: 97, width: 161, height: 20))
+        tLayer.lineBreakMode = .byWordWrapping
+        tLayer.numberOfLines = 0
+        tLayer.textColor = UIColor.black
+        tLayer.alpha = 1
+        let tContent = "Ideas worth Sharing"
+        let tString = NSMutableAttributedString(string: tContent, attributes: [
             NSAttributedString.Key.font: UIFont(name: "SitkaBanner", size: 20)!
             ])
-        let titleRange = NSRange(location: 0, length: titleString.length)
-        let titleparagraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 1
-        textString.addAttribute(NSAttributedString.Key.paragraphStyle, value: titleparagraphStyle, range: titleRange)
-        titleString.addAttribute(NSAttributedString.Key.kern, value: 0.3, range: titleRange)
-        titleLayer.attributedText = titleString
-        titleLayer.sizeToFit()
-        self.scrollview.addSubview(titleLayer)
+        let tRange = NSRange(location: 0, length: tString.length)
+        let tparagraphStyle = NSMutableParagraphStyle()
+        tparagraphStyle.lineSpacing = 1
+        tString.addAttribute(NSAttributedString.Key.paragraphStyle, value: tparagraphStyle, range: tRange)
+        tString.addAttribute(NSAttributedString.Key.kern, value: 0.3, range: tRange)
+        tLayer.attributedText = tString
+        tLayer.sizeToFit()
+        self.scrollview.addSubview(tLayer)
         
+        let pubLayer = UILabel(frame: CGRect(x: 22, y: 329, width: 104, height: 20))
+        pubLayer.lineBreakMode = .byWordWrapping
+        pubLayer.numberOfLines = 0
+        pubLayer.textColor = UIColor.black
+        pubLayer.alpha = 1
+        let pubContent = "Publications"
+        let pubString = NSMutableAttributedString(string: pubContent, attributes: [
+            NSAttributedString.Key.font: UIFont(name: "SitkaBanner-Bold", size: 20)!
+            ])
+        let pubRange = NSRange(location: 0, length: pubString.length)
+        let pubParagraphStyle = NSMutableParagraphStyle()
+        pubParagraphStyle.lineSpacing = 1
+        pubString.addAttribute(NSAttributedString.Key.paragraphStyle, value: pubParagraphStyle, range: pubRange)
+        pubString.addAttribute(NSAttributedString.Key.kern, value: 0.3, range: textRange)
+        pubLayer.attributedText = pubString
+        pubLayer.sizeToFit()
+        self.scrollview.addSubview(pubLayer)
+        
+        let lLayer = UILabel(frame: CGRect(x: 18, y: 508, width: 182, height: 20))
+        lLayer.lineBreakMode = .byWordWrapping
+        lLayer.numberOfLines = 0
+        lLayer.textColor = UIColor.black
+        lLayer.alpha = 1
+        let lContent = "Latest Stories for You"
+        let lString = NSMutableAttributedString(string: lContent, attributes: [
+            NSAttributedString.Key.font: UIFont(name: "SitkaBanner-Bold", size: 20)!
+            ])
+        let lRange = NSRange(location: 0, length: lString.length)
+        let lparagraphStyle = NSMutableParagraphStyle()
+        lparagraphStyle.lineSpacing = 1
+        lString.addAttribute(NSAttributedString.Key.paragraphStyle, value: lparagraphStyle, range: lRange)
+        lString.addAttribute(NSAttributedString.Key.kern, value: 0.3, range: lRange)
+        lLayer.attributedText = lString
+        lLayer.sizeToFit()
+        self.scrollview.addSubview(lLayer)
     }
     
-    func siftArticles() {
-        for i in 0...3 {
-            let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
-            let layer = UIView(frame: CGRect(x: 10, y: 868 + 98 * i, width: 357, height: 93))
-            layer.layer.cornerRadius = 30
-            layer.backgroundColor = UIColor.white
-            layer.addGestureRecognizer(tap)
-            self.scrollview.addSubview(layer)
+    func featured() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+        let tap1 = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+        let tap2 = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+        
+        let layer1 = UIView(frame: CGRect(x: 18, y: 158, width: 190, height: 144))
+        layer1.layer.cornerRadius = 15
+        layer1.backgroundColor = UIColor(red: 0.46, green: 0.75, blue: 0.85, alpha: 1)
+        layer1.addGestureRecognizer(tap1)
+        self.scrollview.addSubview(layer1)
+        
+        let layer = UIView(frame: CGRect(x: 150, y: 220, width: 73.27, height: 90.47))
+        var transform = CGAffineTransform.identity
+        transform = transform.rotated(by: -2.007128639793479)
+        layer.transform = transform
+        layer.layer.cornerRadius = 0
+        layer.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.18)
+        layer.addGestureRecognizer(tap2)
+        self.scrollview.addSubview(layer)
+        
+        let layer2 = UIView(frame: CGRect(x: 34, y: 256, width: 121, height: 27))
+        layer2.layer.cornerRadius = 15
+        layer2.layer.borderWidth = 2
+        layer2.layer.borderColor = UIColor.white.cgColor
+        layer2.addGestureRecognizer(tap)
+        self.scrollview.addSubview(layer2)
+        
+        let textLayer = UILabel(frame: CGRect(x: 38, y: 206, width: 122, height: 36))
+        textLayer.lineBreakMode = .byWordWrapping
+        textLayer.numberOfLines = 0
+        textLayer.textColor = UIColor.white
+        textLayer.alpha = 1
+        let textContent = "How to design a better app."
+        let textString = NSMutableAttributedString(string: textContent, attributes: [
+            NSAttributedString.Key.font: UIFont(name: "SitkaBanner-Bold", size: 18)!
+            ])
+        let textRange = NSRange(location: 0, length: textString.length)
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 1
+        textString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: textRange)
+        textString.addAttribute(NSAttributedString.Key.kern, value: 0.27, range: textRange)
+        textLayer.attributedText = textString
+        textLayer.sizeToFit()
+        self.scrollview.addSubview(textLayer)
+        
+        let textLayer1 = UILabel(frame: CGRect(x: 57, y: 263, width: 75, height: 14))
+        textLayer1.lineBreakMode = .byWordWrapping
+        textLayer1.numberOfLines = 0
+        textLayer1.textColor = UIColor.white
+        textLayer1.alpha = 1
+        let textContent1 = "READ MORE"
+        let textString1 = NSMutableAttributedString(string: textContent1, attributes: [
+            NSAttributedString.Key.font: UIFont(name: "SitkaBanner-Bold", size: 14)!
+            ])
+        let textRange1 = NSRange(location: 0, length: textString1.length)
+        let paragraphStyle1 = NSMutableParagraphStyle()
+        paragraphStyle1.lineSpacing = 1
+        textString1.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle1, range: textRange1)
+        textString1.addAttribute(NSAttributedString.Key.kern, value: 0.21, range: textRange1)
+        textLayer1.attributedText = textString1
+        textLayer1.sizeToFit()
+        self.scrollview.addSubview(textLayer1)
+        
+        let ctextLayer = UILabel(frame: CGRect(x: 40, y: 185, width: 85, height: 14))
+        ctextLayer.lineBreakMode = .byWordWrapping
+        ctextLayer.numberOfLines = 0
+        ctextLayer.textColor = UIColor.white
+        ctextLayer.alpha = 1
+        let ctextContent = "ART & DESIGN"
+        let ctextString = NSMutableAttributedString(string: ctextContent, attributes: [
+            NSAttributedString.Key.font: UIFont(name: "SitkaBanner", size: 14)!
+            ])
+        let ctextRange = NSRange(location: 0, length: ctextString.length)
+        let cparagraphStyle = NSMutableParagraphStyle()
+        cparagraphStyle.lineSpacing = 1
+        ctextString.addAttribute(NSAttributedString.Key.paragraphStyle, value: cparagraphStyle, range: ctextRange)
+        ctextString.addAttribute(NSAttributedString.Key.kern, value: 0.21, range: ctextRange)
+        ctextLayer.attributedText = ctextString
+        ctextLayer.sizeToFit()
+        self.scrollview.addSubview(ctextLayer)
+        
+        let f_image = UIImage(named: "f_image")
+        let i_view = UIImageView(image: f_image)
+        i_view.frame = CGRect(x: 218, y: 158, width: 134, height: 144)
+        i_view.layer.cornerRadius = 15
+        i_view.clipsToBounds = true
+        i_view.contentMode = .scaleAspectFill
+        self.scrollview.addSubview(i_view)
+    }
+    
+    func topArticles() {
+        for i in 0 ... 4 {
             
-            let textLayer = UILabel(frame: CGRect(x: 140, y: 884 + 98 * i, width: 144, height: 40))
-            textLayer.lineBreakMode = .byWordWrapping
-            textLayer.numberOfLines = 0
-            textLayer.textColor = UIColor.black
-            textLayer.alpha = 1
-            let textContent = "When I Speak, the\nWorld Listens"
-            let textString = NSMutableAttributedString(string: textContent, attributes: [
-                NSAttributedString.Key.font: UIFont(name: "SitkaBanner", size: 20)!
-                ])
-            let textRange = NSRange(location: 0, length: textString.length)
-            let paragraphStyle = NSMutableParagraphStyle()
-            paragraphStyle.lineSpacing = 1
-            textString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: textRange)
-            textString.addAttribute(NSAttributedString.Key.kern, value: 0.3, range: textRange)
-            textLayer.attributedText = textString
-            textLayer.sizeToFit()
-            self.scrollview.addSubview(textLayer)
-            
-            let date = UILabel(frame: CGRect(x: 140, y: 928 + 98 * i, width: 67, height: 14))
-            date.lineBreakMode = .byWordWrapping
-            date.numberOfLines = 0
-            date.textColor = UIColor.black
-            date.alpha = 1
-            let dateContent = "24 Feb 2019"
-            let dateString = NSMutableAttributedString(string: dateContent, attributes: [
-                NSAttributedString.Key.font: UIFont(name: "SitkaBanner", size: 14)!
-                ])
-            let dateRange = NSRange(location: 0, length: dateString.length)
-            let dateStyle = NSMutableParagraphStyle()
-            dateStyle.lineSpacing = 1
-            dateString.addAttribute(NSAttributedString.Key.paragraphStyle, value: dateStyle, range: dateRange)
-            textString.addAttribute(NSAttributedString.Key.kern, value: 0.21, range: dateRange)
-            date.attributedText = dateString
-            date.sizeToFit()
-            self.scrollview.addSubview(date)
-            
-            let articleImage = UIImage(named: "lighthouse_2x (2)")
-            let bgimage = UIImageView(image: articleImage)
-            bgimage.frame = CGRect(x: 37, y: 873 + 98 * i, width: 85, height: 85)
-            bgimage.layer.cornerRadius = 30
-            bgimage.clipsToBounds = true
-            bgimage.contentMode = .scaleAspectFill
-            self.scrollview.addSubview(bgimage)
         }
+    }
+    
+    
+    @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
+        performSegue(withIdentifier: "article", sender: self)
     }
     
     @IBAction func returnFromArticle (sender: UIStoryboardSegue) {}
