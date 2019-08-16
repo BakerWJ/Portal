@@ -9,7 +9,7 @@
 import UIKit
 import GoogleSignIn
 
-class SignInViewController: UIViewController, GIDSignInUIDelegate
+class SignInViewController: UIViewController
 {
     
     //creates an instance of a sign in button
@@ -111,7 +111,7 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate
     {
         signedIn = UserDefaults.standard.bool(forKey: "loggedin");
         view.backgroundColor = .white;
-        GIDSignIn.sharedInstance()?.uiDelegate = self;
+        GIDSignIn.sharedInstance()?.presentingViewController = self;
         
         //add sign in button
         view.addSubview (signInButton);

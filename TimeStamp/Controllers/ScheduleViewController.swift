@@ -59,6 +59,10 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate, UIScro
         cv.showsVerticalScrollIndicator = false;
         cv.showsHorizontalScrollIndicator = false;
         cv.bounces = false;
+        if #available(iOS 11, *)
+        {
+            cv.contentInsetAdjustmentBehavior = .never;
+        }
         cv.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 32/375.0*screenWidth)
         cv.delegate = self;
         cv.dataSource = self;
@@ -142,6 +146,7 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate, UIScro
             if let currCell = self.collectionView.cellForItem(at: IndexPath(row: roundedCell, section: 0)) as? DailyScheduleCell
             {
                 currCell.imageTop.constant = self.movingImageConstraintMaxOffset
+                currCell.displayedEventView.layer.opacity = 1;
             }
         }
     }

@@ -652,7 +652,7 @@ class UserDataSettings
                         requests.append(UNNotificationRequest(identifier: UUID().uuidString, content: general, trigger: trigger2))
                     }
                     
-                    print(general.title);
+                    //print(general.title);
                     //Determining time
                     
                     
