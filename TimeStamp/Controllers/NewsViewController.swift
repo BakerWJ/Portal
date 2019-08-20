@@ -24,6 +24,7 @@ class NewsViewController: UIViewController {
         setupScroll()
         topText()
         featured()
+        publications()
     }
     
     func setupScroll() {
@@ -40,6 +41,87 @@ class NewsViewController: UIViewController {
             // Fallback on earlier versions
         }
         scrollview.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+    
+    @objc func pubView() {
+        performSegue(withIdentifier: "pubf", sender: self)
+    }
+    
+    func publications() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(pubView))
+        
+        
+        let layer = UIView(frame: CGRect(x: 19, y: 336, width: 107, height: 122))
+        layer.layer.cornerRadius = 15
+        layer.backgroundColor = UIColor(red: 0.98, green: 0.6, blue: 0.09, alpha: 1)
+        layer.addGestureRecognizer(tap)
+        self.scrollview.addSubview(layer)
+        
+        
+        let layer1 = UIView(frame: CGRect(x: 135, y: 336, width: 107, height: 122))
+        layer1.layer.cornerRadius = 15
+        layer1.backgroundColor = UIColor(red: 0.16, green: 0.29, blue: 0.64, alpha: 1)
+        self.scrollview.addSubview(layer1)
+        
+        let layer3 = UIView(frame: CGRect(x: 251, y: 336, width: 107, height: 122))
+        layer3.layer.cornerRadius = 15
+        layer3.backgroundColor = UIColor(red: 0.16, green: 0.54, blue: 0.53, alpha: 1)
+        self.scrollview.addSubview(layer3)
+        
+        var textLayer = UILabel(frame: CGRect(x: 31, y: 355, width: 69, height: 18))
+        textLayer.lineBreakMode = .byWordWrapping
+        textLayer.numberOfLines = 0
+        textLayer.textColor = UIColor.white
+        textLayer.alpha = 1
+        var textContent = "Cuspidor"
+        var textString = NSMutableAttributedString(string: textContent, attributes: [
+            NSAttributedString.Key.font: UIFont(name: "SitkaBanner", size: 18)!
+            ])
+        var textRange = NSRange(location: 0, length: textString.length)
+        var paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 1
+        textString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: textRange)
+        textString.addAttribute(NSAttributedString.Key.kern, value: 0.27, range: textRange)
+        textLayer.attributedText = textString
+        textLayer.sizeToFit()
+        self.scrollview.addSubview(textLayer)
+        
+        textLayer = UILabel(frame: CGRect(x: 147, y: 355, width: 42, height: 36))
+        textLayer.lineBreakMode = .byWordWrapping
+        textLayer.numberOfLines = 0
+        textLayer.textColor = UIColor.white
+        textLayer.alpha = 1
+        textContent = "Blues News"
+        textString = NSMutableAttributedString(string: textContent, attributes: [
+            NSAttributedString.Key.font: UIFont(name: "SitkaBanner", size: 18)!
+            ])
+        textRange = NSRange(location: 0, length: textString.length)
+        paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 1
+        textString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: textRange)
+        textString.addAttribute(NSAttributedString.Key.kern, value: 0.27, range: textRange)
+        textLayer.attributedText = textString
+        textLayer.sizeToFit()
+        self.scrollview.addSubview(textLayer)
+        
+        textLayer = UILabel(frame: CGRect(x: 263, y: 355, width: 69, height: 18))
+        textLayer.lineBreakMode = .byWordWrapping
+        textLayer.numberOfLines = 0
+        textLayer.textColor = UIColor.white
+        textLayer.alpha = 1
+        textContent = "Other"
+        textString = NSMutableAttributedString(string: textContent, attributes: [
+            NSAttributedString.Key.font: UIFont(name: "SitkaBanner", size: 18)!
+            ])
+        textRange = NSRange(location: 0, length: textString.length)
+        paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 1
+        textString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: textRange)
+        textString.addAttribute(NSAttributedString.Key.kern, value: 0.27, range: textRange)
+        textLayer.attributedText = textString
+        textLayer.sizeToFit()
+        self.scrollview.addSubview(textLayer)
+        
     }
     
     func topText() {
@@ -79,7 +161,7 @@ class NewsViewController: UIViewController {
         tLayer.sizeToFit()
         self.scrollview.addSubview(tLayer)
         
-        let pubLayer = UILabel(frame: CGRect(x: 22, y: 329, width: 104, height: 20))
+        let pubLayer = UILabel(frame: CGRect(x: 22, y: 303, width: 104, height: 20))
         pubLayer.lineBreakMode = .byWordWrapping
         pubLayer.numberOfLines = 0
         pubLayer.textColor = UIColor.black
@@ -97,7 +179,7 @@ class NewsViewController: UIViewController {
         pubLayer.sizeToFit()
         self.scrollview.addSubview(pubLayer)
         
-        let lLayer = UILabel(frame: CGRect(x: 18, y: 508, width: 182, height: 20))
+        let lLayer = UILabel(frame: CGRect(x: 18, y: 482, width: 182, height: 20))
         lLayer.lineBreakMode = .byWordWrapping
         lLayer.numberOfLines = 0
         lLayer.textColor = UIColor.black
@@ -121,13 +203,13 @@ class NewsViewController: UIViewController {
         let tap1 = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         let tap2 = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         
-        let layer1 = UIView(frame: CGRect(x: 18, y: 158, width: 190, height: 144))
+        let layer1 = UIView(frame: CGRect(x: 18, y: 132, width: 190, height: 144))
         layer1.layer.cornerRadius = 15
         layer1.backgroundColor = UIColor(red: 0.46, green: 0.75, blue: 0.85, alpha: 1)
         layer1.addGestureRecognizer(tap1)
         self.scrollview.addSubview(layer1)
         
-        let layer = UIView(frame: CGRect(x: 150, y: 220, width: 73.27, height: 90.47))
+        let layer = UIView(frame: CGRect(x: 150, y: 200, width: 73.27, height: 90.47))
         var transform = CGAffineTransform.identity
         transform = transform.rotated(by: -2.007128639793479)
         layer.transform = transform
@@ -136,14 +218,14 @@ class NewsViewController: UIViewController {
         layer.addGestureRecognizer(tap2)
         self.scrollview.addSubview(layer)
         
-        let layer2 = UIView(frame: CGRect(x: 34, y: 256, width: 121, height: 27))
+        let layer2 = UIView(frame: CGRect(x: 34, y: 230, width: 121, height: 27))
         layer2.layer.cornerRadius = 15
         layer2.layer.borderWidth = 2
         layer2.layer.borderColor = UIColor.white.cgColor
         layer2.addGestureRecognizer(tap)
         self.scrollview.addSubview(layer2)
         
-        let textLayer = UILabel(frame: CGRect(x: 38, y: 206, width: 122, height: 36))
+        let textLayer = UILabel(frame: CGRect(x: 38, y: 180, width: 122, height: 36))
         textLayer.lineBreakMode = .byWordWrapping
         textLayer.numberOfLines = 0
         textLayer.textColor = UIColor.white
@@ -161,7 +243,7 @@ class NewsViewController: UIViewController {
         textLayer.sizeToFit()
         self.scrollview.addSubview(textLayer)
         
-        let textLayer1 = UILabel(frame: CGRect(x: 57, y: 263, width: 75, height: 14))
+        let textLayer1 = UILabel(frame: CGRect(x: 57, y: 237, width: 75, height: 14))
         textLayer1.lineBreakMode = .byWordWrapping
         textLayer1.numberOfLines = 0
         textLayer1.textColor = UIColor.white
@@ -179,7 +261,7 @@ class NewsViewController: UIViewController {
         textLayer1.sizeToFit()
         self.scrollview.addSubview(textLayer1)
         
-        let ctextLayer = UILabel(frame: CGRect(x: 40, y: 185, width: 85, height: 14))
+        let ctextLayer = UILabel(frame: CGRect(x: 40, y: 159, width: 85, height: 14))
         ctextLayer.lineBreakMode = .byWordWrapping
         ctextLayer.numberOfLines = 0
         ctextLayer.textColor = UIColor.white
@@ -199,7 +281,7 @@ class NewsViewController: UIViewController {
         
         let f_image = UIImage(named: "f_image")
         let i_view = UIImageView(image: f_image)
-        i_view.frame = CGRect(x: 218, y: 158, width: 134, height: 144)
+        i_view.frame = CGRect(x: 218, y: 132, width: 134, height: 144)
         i_view.layer.cornerRadius = 15
         i_view.clipsToBounds = true
         i_view.contentMode = .scaleAspectFill

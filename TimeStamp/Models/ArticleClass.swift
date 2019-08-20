@@ -13,9 +13,6 @@ import UIKit
 class Article {
     var text: String
     var author: String
-    
-    //Image is Optional
-    
     var img: UIImage
     var title: String
     
