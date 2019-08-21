@@ -57,6 +57,8 @@
 		CE146D982280BD9900B3922D /* Settings+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE146D962280BD9900B3922D /* Settings+CoreDataProperties.swift */; };
 		CE2D71492280C71E00F4D89A /* TimeStampModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE2D71472280C71E00F4D89A /* TimeStampModel.xcdatamodeld */; };
 		CE3A513C22E8F3E90056E536 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A513B22E8F3E90056E536 /* NewsViewController.swift */; };
+		CE69342D230C805400006C3F /* PublicationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE69342C230C805400006C3F /* PublicationViewController.swift */; };
+		CE69342F230C8E2D00006C3F /* PublicationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE69342E230C8E2D00006C3F /* PublicationTableViewCell.swift */; };
 		CE927FF4227A0BCD00EE0A22 /* UserTimetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE927FEE227A0BCD00EE0A22 /* UserTimetable.swift */; };
 		CE927FF6227A0BCD00EE0A22 /* ArticleClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE927FF0227A0BCD00EE0A22 /* ArticleClass.swift */; };
 		CE927FF7227A0BCD00EE0A22 /* PeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE927FF1227A0BCD00EE0A22 /* PeriodView.swift */; };
@@ -140,6 +142,8 @@
 		CE146D962280BD9900B3922D /* Settings+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		CE2D71482280C71E00F4D89A /* TimeStampModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TimeStampModel.xcdatamodel; sourceTree = "<group>"; };
 		CE3A513B22E8F3E90056E536 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
+		CE69342C230C805400006C3F /* PublicationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationViewController.swift; sourceTree = "<group>"; };
+		CE69342E230C8E2D00006C3F /* PublicationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationTableViewCell.swift; sourceTree = "<group>"; };
 		CE927FEE227A0BCD00EE0A22 /* UserTimetable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTimetable.swift; sourceTree = "<group>"; };
 		CE927FF0227A0BCD00EE0A22 /* ArticleClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleClass.swift; sourceTree = "<group>"; };
 		CE927FF1227A0BCD00EE0A22 /* PeriodView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeriodView.swift; sourceTree = "<group>"; };
@@ -206,6 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				CE927FF0227A0BCD00EE0A22 /* ArticleClass.swift */,
+				CE69342E230C8E2D00006C3F /* PublicationTableViewCell.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -349,6 +354,7 @@
 				8A1B79F922BEC0C6006FE52A /* SignInViewController.swift */,
 				8A1B79FB22BEC2AF006FE52A /* MainTabBarViewController.swift */,
 				31BB397E22E6B48F004D2DE5 /* AppEntryViewController.swift */,
+				CE69342C230C805400006C3F /* PublicationViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -555,6 +561,7 @@
 				31BB399822E8CEEC004D2DE5 /* DailyScheduleCell.swift in Sources */,
 				8A5F823622D7A00B00443020 /* ToDo_Task+CoreDataClass.swift in Sources */,
 				8AD8621622983D1B00412EFF /* VerticalDownShiftTransition.swift in Sources */,
+				CE69342F230C8E2D00006C3F /* PublicationTableViewCell.swift in Sources */,
 				8AD8620D2297824000412EFF /* Util.swift in Sources */,
 				8ABCA53F2282176000A30D36 /* WeeklySchedule+CoreDataProperties.swift in Sources */,
 				8A5F823822D7A00B00443020 /* ToDo_TaskTag+CoreDataClass.swift in Sources */,
@@ -576,6 +583,7 @@
 				8AD8621A22984A5E00412EFF /* HorizontalLeftShiftTransitionUnwind.swift in Sources */,
 				CE146D972280BD9900B3922D /* Settings+CoreDataClass.swift in Sources */,
 				CEC26E00227B3E9E00FFFC67 /* CoreDataStack.swift in Sources */,
+				CE69342D230C805400006C3F /* PublicationViewController.swift in Sources */,
 				CEC26E08227B3E9E00FFFC67 /* Period+CoreDataClass.swift in Sources */,
 				8ABCA53E2282176000A30D36 /* WeeklySchedule+CoreDataClass.swift in Sources */,
 				314635BD22ECBD2C00F522B4 /* SetUpViewController.swift in Sources */,
@@ -753,7 +761,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VZH52F2524;
 				INFOPLIST_FILE = TimeStamp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -777,7 +785,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VZH52F2524;
 				INFOPLIST_FILE = TimeStamp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
