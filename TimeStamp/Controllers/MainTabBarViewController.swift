@@ -302,14 +302,14 @@ class TabBarTransition: NSObject, UIViewControllerAnimatedTransitioning {
             {
                 if let source = source.topViewController as? MainPageViewController
                 {
-                    if let dest = dest.topViewController as? ScheduleViewController
+                    if (dest.topViewController as? ScheduleViewController) != nil
                     {
                         source.profileLeading.constant = 0;
                         source.profileTop.constant = 0;
                         source.view.layoutIfNeeded();
                         source.profileTop.constant = -self.screenHeight/2;
                     }
-                    else if let dest = dest.topViewController as? NewsViewController
+                    else if (dest.topViewController as? NewsViewController) != nil
                     {
                         source.profileTop.constant = 0;
                         source.profileLeading.constant = 0;
@@ -321,14 +321,14 @@ class TabBarTransition: NSObject, UIViewControllerAnimatedTransitioning {
                 }
                 if let dest = dest.topViewController as? MainPageViewController
                 {
-                    if let source = source.topViewController as? ScheduleViewController
+                    if (source.topViewController as? ScheduleViewController) != nil
                     {
                         dest.profileLeading.constant = 0;
                         dest.profileTop.constant = -self.screenHeight/2
                         dest.view.layoutIfNeeded()
                         dest.profileTop.constant = 0;
                     }
-                    else if let source = source.topViewController as? NewsViewController
+                    else if (source.topViewController as? NewsViewController) != nil
                     {
                         dest.profileLeading.constant = -self.screenWidth;
                         dest.profileTop.constant = 0;

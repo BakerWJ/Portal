@@ -58,6 +58,7 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate, UIScro
         cv.backgroundColor = .clear;
         cv.showsVerticalScrollIndicator = false;
         cv.showsHorizontalScrollIndicator = false;
+        cv.isUserInteractionEnabled = true;
         cv.bounces = false;
         if #available(iOS 11, *)
         {
@@ -140,6 +141,7 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate, UIScro
         reloadScheduleData();
         collectionView.reloadData();
         collectionView.layoutIfNeeded();
+        collectionView.isUserInteractionEnabled = true;
         DispatchQueue.main.async {
             let numCellsShifted = abs(self.collectionView.contentOffset.x/(355/375.0*self.screenWidth));
             let roundedCell = Int (round (numCellsShifted + 0.1));
@@ -286,10 +288,6 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate, UIScro
         let numCellsShifted = abs(scrollView.contentOffset.x/(355/375.0*screenWidth));
         let roundedCell = Int (round (numCellsShifted + 0.1));
         lastIndex = roundedCell
-    }
-    
-    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
-        self.scrollViewWillBeginDragging(scrollView)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

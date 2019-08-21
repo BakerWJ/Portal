@@ -614,7 +614,8 @@ class UserDataSettings
                         }
                     }
                     //creates a notification the day of
-                    general.title = "There is " + eventName.lowercased() + " today.";
+                    general.title = eventName;
+                    general.body = "There is " + eventName.lowercased() + " today.";
                     var time = Calendar.current.dateComponents([.year, .month, .day], from: Util.next(days: diff) as Date);
                     //notifies in the morning
                     time.hour = 8;
@@ -624,13 +625,14 @@ class UserDataSettings
                     requests.append(UNNotificationRequest(identifier: UUID().uuidString, content: general, trigger: trigger1))
                     
                     let general2 = UNMutableNotificationContent()
+                    general2.title = eventName;
                     if (results.daysBefore == 1)
                     {
-                        general2.title = "There is \(eventName.lowercased()) tomorrow.";
+                        general2.body = "There is \(eventName.lowercased()) tomorrow.";
                     }
                     else
                     {
-                        general2.title = "There is \(eventName.lowercased()) in \(results.daysBefore) days on \(daysWeek[x])";
+                        general2.body = "There is \(eventName.lowercased()) in \(results.daysBefore) days on \(daysWeek[x])";
                     }
                     diff -= Int(results.daysBefore)
                     if (diff >= 0)
@@ -682,37 +684,38 @@ class UserDataSettings
             //set the day of notification
             let title = UNMutableNotificationContent()
             title.title = each.titleDetail.trimmingCharacters(in: .whitespacesAndNewlines);
-            title.title += " today \(each.time.trimmingCharacters(in: .whitespacesAndNewlines))";
+            title.body = each.titleDetail.trimmingCharacters(in: .whitespacesAndNewlines);
+            title.body += " today \(each.time.trimmingCharacters(in: .whitespacesAndNewlines))";
             var time = Calendar.current.dateComponents([.year, .month, .day], from: each.date as Date);
+            //gets notifiied in the morning for "day of" events
+            time.hour = 7;
+            time.minute = Int.random (in: 20...30);
             
             
             //set the daysBefore notification
             let title2 = UNMutableNotificationContent()
             title2.title = each.titleDetail.trimmingCharacters(in: .whitespacesAndNewlines);
+            title2.body = each.titleDetail.trimmingCharacters(in: .whitespacesAndNewlines);
             guard let notifyDay = Calendar.current.date(byAdding: .day, value: -Int(results.daysBefore), to: each.date as Date)
                 else {continue};
             var time2 = Calendar.current.dateComponents([.year, .month, .day], from: notifyDay);
             if (results.daysBefore == 1)
             {
-                title2.title += " tomorrow \(each.time.trimmingCharacters(in: .whitespacesAndNewlines))";
+                title2.body += " tomorrow \(each.time.trimmingCharacters(in: .whitespacesAndNewlines))";
             }
             else
             {
-                title2.title += " \(daysWeek [Calendar.current.component(.weekday, from: each.date as Date) - 1]) \(each.time.trimmingCharacters(in: .whitespacesAndNewlines))"
+                title2.body += " \(daysWeek [Calendar.current.component(.weekday, from: each.date as Date) - 1]) \(each.time.trimmingCharacters(in: .whitespacesAndNewlines))"
             }
             
             if (results.notificationTime == 1) //afternoon
             {
-                time.hour = 12;
                 time2.hour = 12;
-                time.minute = Int.random(in: 0...30)
                 time2.minute = Int.random(in: 30...59);
             }
             else if (results.notificationTime == 2) //evening
             {
-                time.hour = 16;
                 time2.hour = 16;
-                time.minute = Int.random(in: 30...59);
                 time2.minute = Int.random(in: 30...59);
             }
             
