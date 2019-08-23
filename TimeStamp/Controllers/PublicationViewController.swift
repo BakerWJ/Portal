@@ -36,6 +36,7 @@ class PublicationViewController: UIViewController, UITableViewDataSource, UITabl
         
         if let destinationVC = segue.destination as? ArticleViewController {
             destinationVC.article = article
+            destinationVC.source = 0
         }
     }
     
@@ -103,6 +104,8 @@ class PublicationViewController: UIViewController, UITableViewDataSource, UITabl
         i_view.addGestureRecognizer(tap)
         self.view.addSubview(i_view)
     }
+    
+    @IBAction func returnToPub (sender: UIStoryboardSegue) {}
 
     
 

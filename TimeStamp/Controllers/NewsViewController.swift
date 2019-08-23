@@ -305,6 +305,7 @@ class NewsViewController: UIViewController {
         
         if let destinationVC = segue.destination as? ArticleViewController {
             destinationVC.article = article
+            destinationVC.source = 1
         }
     }
     
