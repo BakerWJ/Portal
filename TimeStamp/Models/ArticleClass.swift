@@ -17,15 +17,17 @@ class Article {
     var title: String
     var genre: String
     var likes: Int
+    var hash: String
     
     
     //Initializer for article class
-    init(text: String, author: String, img: UIImage, title: String, genre:String, likes:Int) {
+    init(text: String, author: String, img: UIImage, title: String, genre:String, likes:Int, hash:String) {
         self.text = text
         self.author = author
         self.img = img
         self.title = title
         self.genre = genre
         self.likes = likes
+        self.hash = hash
     }
 }
