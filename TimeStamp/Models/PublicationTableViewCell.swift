@@ -34,26 +34,26 @@ class PublicationTableViewCell: UITableViewCell {
         img.widthAnchor.constraint(equalToConstant: 315).isActive = true
         img.heightAnchor.constraint(equalToConstant: 167).isActive = true
         img.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 30).isActive = true
-        img.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 50).isActive = true
+        img.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 40).isActive = true
         
         titleLabel.widthAnchor.constraint(equalToConstant: 310).isActive = true
         titleLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        titleLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 230).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 220).isActive = true
         titleLabel.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 35).isActive = true
         
         authorLabel.widthAnchor.constraint(equalToConstant: 304.36).isActive = true
         authorLabel.heightAnchor.constraint(equalToConstant: 18).isActive = true
-        authorLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 284).isActive = true
+        authorLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 274).isActive = true
         authorLabel.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 35).isActive = true
         
         genreLabel.widthAnchor.constraint(equalToConstant: 59).isActive = true
         genreLabel.heightAnchor.constraint(equalToConstant: 18).isActive = true
-        genreLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 24).isActive = true
+        genreLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 14).isActive = true
         genreLabel.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 35).isActive = true
         
         contentLabel.widthAnchor.constraint(equalToConstant: 304.36).isActive = true
         contentLabel.heightAnchor.constraint(equalToConstant: 54).isActive = true
-        contentLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 311).isActive = true
+        contentLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 301).isActive = true
         contentLabel.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 35).isActive = true
     }
     
