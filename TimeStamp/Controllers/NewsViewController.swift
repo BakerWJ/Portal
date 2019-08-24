@@ -8,7 +8,23 @@
 
 import UIKit
 
-class NewsViewController: UIViewController {
+class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 4
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "articleCell", for: indexPath)
+        cell.textLabel?.text = "help"
+        return cell
+    }
+    
+    let w = UIScreen.main.bounds.width
+    
+    
+    var clicked: Int = 0
+    
+    let articlesView = UITableView() // Bottom articles
     
     lazy var scrollview: UIScrollView = {
         let view = UIScrollView()
@@ -18,6 +34,34 @@ class NewsViewController: UIViewController {
         return view
     }()
     
+    let newLabel:UILabel = {
+        let textLayer = UILabel()
+        textLayer.font = UIFont(name: "SitkaBanner-Bold", size: 20)
+        textLayer.textColor = UIColor(red: 0, green: 0.19, blue: 0.34, alpha: 1)
+        textLayer.text = "New"
+        textLayer.translatesAutoresizingMaskIntoConstraints = false
+        return textLayer
+    }()
+    
+    let popularLabel:UILabel = {
+        let textLayer = UILabel()
+        textLayer.font = UIFont(name: "SitkaBanner-Bold", size: 20)
+        textLayer.textColor = UIColor(red: 0, green: 0.19, blue: 0.34, alpha: 0.5)
+        textLayer.text = "Popular"
+        textLayer.translatesAutoresizingMaskIntoConstraints = false
+        return textLayer
+    }()
+    
+    let siftLabel:UILabel = {
+        let textLayer = UILabel()
+        textLayer.font = UIFont(name: "SitkaBanner-Bold", size: 20)
+        textLayer.textColor = UIColor(red: 0, green: 0.19, blue: 0.34, alpha: 0.5)
+        textLayer.text = "Sift"
+        textLayer.translatesAutoresizingMaskIntoConstraints = false
+        return textLayer
+    }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(scrollview)
@@ -25,6 +69,45 @@ class NewsViewController: UIViewController {
         topText()
         featured()
         publications()
+        
+        // featured articles code
+        
+        self.scrollview.addSubview(newLabel)
+        self.scrollview.addSubview(popularLabel)
+        self.scrollview.addSubview(siftLabel)
+        
+        newLabel.widthAnchor.constraint(equalToConstant: 37).isActive = true
+        newLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        newLabel.topAnchor.constraint(equalTo: scrollview.topAnchor, constant: 514).isActive = true
+        newLabel.leftAnchor.constraint(equalTo: scrollview.leftAnchor, constant: 47).isActive = true
+        
+        popularLabel.widthAnchor.constraint(equalToConstant: 66).isActive = true
+        popularLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        popularLabel.topAnchor.constraint(equalTo: scrollview.topAnchor, constant: 514).isActive = true
+        popularLabel.leftAnchor.constraint(equalTo: scrollview.leftAnchor, constant: 154.5).isActive = true
+        
+        siftLabel.widthAnchor.constraint(equalToConstant: 31).isActive = true
+        siftLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        siftLabel.topAnchor.constraint(equalTo: scrollview.topAnchor, constant: 514).isActive = true
+        siftLabel.leftAnchor.constraint(equalTo: scrollview.leftAnchor, constant: 291).isActive = true
+        
+        
+        // configuring 4 articles at bottom
+        
+        self.scrollview.addSubview(articlesView)
+        articlesView.translatesAutoresizingMaskIntoConstraints = false
+        articlesView.topAnchor.constraint(equalTo: self.scrollview.topAnchor, constant: 541).isActive = true
+        articlesView.leftAnchor.constraint(equalTo: self.scrollview.leftAnchor).isActive = true
+        articlesView.widthAnchor.constraint(equalToConstant: w).isActive = true
+        articlesView.heightAnchor.constraint(equalToConstant: 508).isActive = true
+        
+        articlesView.dataSource = self
+        articlesView.register(UITableViewCell.self, forCellReuseIdentifier: "articleCell")
+        articlesView.delegate = self
+        articlesView.backgroundColor = UIColor.black
+        articlesView.isScrollEnabled = false
+        
+        print("Hello")
     }
     
     func setupScroll() {
@@ -288,12 +371,6 @@ class NewsViewController: UIViewController {
         self.scrollview.addSubview(i_view)
     }
     
-    func topArticles() {
-        for i in 0 ... 4 {
-            
-        }
-    }
-    
     
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
         performSegue(withIdentifier: "article", sender: self)
@@ -301,7 +378,7 @@ class NewsViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let article = Article(text: "The Liberal majority on the House of Commons ethic committee has voted down an opposition motion to call Conflict of Interest andEthics Commissioner Mario Dion to testify about his report concluding thatPrime Minister Justin Trudeau violated the Conflict of Interest Act over the SNC-Lavalinaffair. Liberal MP Steven MacKinnon said he and the other Liberal Msitting on the committee today voted down the motion because, following Dion'sreport and hours of testimony on the scandal over a five-week period, therewas nothing new to add to their understanding of the SNC-Lavalin affair.Theopposition's claim to simply wanting the facts is contradicted by the fact thatwhat they seek is found in the commissioner's report, MacKinnon said. The only conclusion that I, and members of this committee, can come to is that thopposition seeks to prolong this process for reasons of politics, reasons ofpartisan games, and it is for that reason … that we will be opposing this motion. Liberal MP Nathaniel Erskine-Smith broke ranks with his party and votedwith opposition MPs to call Dion before the committee — not, he said, becausehe thought Dion had more to tell, but because he wanted to challenge thecommissioner's findings, which he called flawed. I would like the commissionerto sit right there to answer how he got this so completely, completelywrong, Erskine-Smith said."
-            , author: "Baker Jackson", img: #imageLiteral(resourceName: "000"), title: "Jacky's Solution is bad and won't work hello hello hello")
+            , author: "Baker Jackson", img: #imageLiteral(resourceName: "000"), title: "Jacky's Solution is bad and won't work hello hello hello", genre: "SPORTS", likes: 5)
         
         if let destinationVC = segue.destination as? ArticleViewController {
             destinationVC.article = article
