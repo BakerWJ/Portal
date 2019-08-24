@@ -166,6 +166,7 @@
                     </view>
                     <connections>
                         <segue destination="qoc-x0-Q6V" kind="unwind" identifier="articleu" customClass="HorizontalRightShiftTransitionUnwind" customModule="TimeStamp" customModuleProvider="target" unwindAction="returnFromArticleWithSender:" id="a86-8a-4jX"/>
+                        <segue destination="qoc-x0-Q6V" kind="unwind" identifier="toPub" unwindAction="returnToPubWithSender:" id="eE6-Br-XvQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u24-NX-vUh" userLabel="First Responder" sceneMemberID="firstResponder"/>

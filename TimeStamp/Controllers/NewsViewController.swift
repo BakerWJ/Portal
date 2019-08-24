@@ -8,15 +8,71 @@
 
 import UIKit
 
-class NewsViewController: UIViewController {
+class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    let a = Article(text: "First, there was the adjusted fighting weight of the rookie, as the team changed the reported number from 200 pounds....", author: "Baker Jackson", img: #imageLiteral(resourceName: "f_image"), title: "The Blue Jays are an Amazing Team.", genre: "Bad", likes: 6, hash: "bleh")
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 4
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        performSegue(withIdentifier: "article", sender: self)
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "articleCell", for: indexPath) as! NewsPageTableViewCell
+        cell.article = a
+        return cell
+    }
+    
+    let w = UIScreen.main.bounds.width
+    
+    
+    var clicked: Int = 0
+    var publication: Int = 0
+    
+    let articlesView = UITableView() // Bottom articles
     
     lazy var scrollview: UIScrollView = {
         let view = UIScrollView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.contentSize.height = 1049
+        view.contentSize.height = 1120
         view.contentSize.width = 375
         return view
     }()
+    
+    let newLabel:UILabel = {
+        let textLayer = UILabel()
+        textLayer.font = UIFont(name: "SitkaBanner-Bold", size: 20)
+        textLayer.textColor = UIColor(red: 0, green: 0.19, blue: 0.34, alpha: 1)
+        textLayer.text = "New"
+        textLayer.translatesAutoresizingMaskIntoConstraints = false
+        textLayer.textAlignment = .center
+        return textLayer
+    }()
+    
+    let popularLabel:UILabel = {
+        let textLayer = UILabel()
+        textLayer.font = UIFont(name: "SitkaBanner-Bold", size: 20)
+        textLayer.textColor = UIColor(red: 0, green: 0.19, blue: 0.34, alpha: 1)
+        textLayer.text = "Popular"
+        textLayer.translatesAutoresizingMaskIntoConstraints = false
+        textLayer.textAlignment = .center
+        return textLayer
+    }()
+    
+    let siftLabel:UILabel = {
+        let textLayer = UILabel()
+        textLayer.font = UIFont(name: "SitkaBanner-Bold", size: 20)
+        textLayer.textColor = UIColor(red: 0, green: 0.19, blue: 0.34, alpha: 1)
+        textLayer.text = "Sift"
+        textLayer.translatesAutoresizingMaskIntoConstraints = false
+        textLayer.textAlignment = .center
+        return textLayer
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +81,59 @@ class NewsViewController: UIViewController {
         topText()
         featured()
         publications()
+        
+        // featured articles code
+        
+        let newTap = UITapGestureRecognizer(target: self, action: #selector(filterNewTap))
+        let popTap = UITapGestureRecognizer(target: self, action: #selector(filterPopTap))
+        let siftTap = UITapGestureRecognizer(target: self, action: #selector(filterSiftTap))
+        
+        newLabel.addGestureRecognizer(newTap)
+        popularLabel.addGestureRecognizer(popTap)
+        siftLabel.addGestureRecognizer(siftTap)
+        
+        newLabel.isUserInteractionEnabled = true
+        popularLabel.isUserInteractionEnabled = true
+        siftLabel.isUserInteractionEnabled = true
+        
+        popularLabel.alpha = 0.5
+        siftLabel.alpha = 0.5
+        
+        self.scrollview.addSubview(newLabel)
+        self.scrollview.addSubview(popularLabel)
+        self.scrollview.addSubview(siftLabel)
+        
+        newLabel.widthAnchor.constraint(equalToConstant: w / 3).isActive = true
+        newLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        newLabel.topAnchor.constraint(equalTo: scrollview.topAnchor, constant: 514).isActive = true
+        newLabel.leftAnchor.constraint(equalTo: scrollview.leftAnchor).isActive = true
+        
+        popularLabel.widthAnchor.constraint(equalToConstant: w/3).isActive = true
+        popularLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        popularLabel.topAnchor.constraint(equalTo: scrollview.topAnchor, constant: 514).isActive = true
+        popularLabel.leftAnchor.constraint(equalTo: newLabel.rightAnchor).isActive = true
+        
+        siftLabel.widthAnchor.constraint(equalToConstant: w/3).isActive = true
+        siftLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        siftLabel.topAnchor.constraint(equalTo: scrollview.topAnchor, constant: 514).isActive = true
+        siftLabel.leftAnchor.constraint(equalTo: popularLabel.rightAnchor).isActive = true
+        
+        
+        // configuring 4 articles at bottom
+        
+        self.scrollview.addSubview(articlesView)
+        articlesView.translatesAutoresizingMaskIntoConstraints = false
+        articlesView.topAnchor.constraint(equalTo: self.scrollview.topAnchor, constant: 541).isActive = true
+        articlesView.leftAnchor.constraint(equalTo: self.scrollview.leftAnchor).isActive = true
+        articlesView.widthAnchor.constraint(equalToConstant: w).isActive = true
+        articlesView.heightAnchor.constraint(equalToConstant: 508).isActive = true
+        
+        articlesView.dataSource = self
+        articlesView.register(NewsPageTableViewCell.self, forCellReuseIdentifier: "articleCell")
+        articlesView.delegate = self
+        articlesView.isScrollEnabled = false
+        articlesView.rowHeight = 127
+        articlesView.separatorStyle = .none
     }
     
     func setupScroll() {
@@ -43,29 +152,28 @@ class NewsViewController: UIViewController {
         scrollview.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
     
-    @objc func pubView() {
-        performSegue(withIdentifier: "pubf", sender: self)
-    }
-    
     func publications() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(pubView))
-        
+        let ctap = UITapGestureRecognizer(target: self, action: #selector(pubCuspidorView))
+        let btap = UITapGestureRecognizer(target: self, action: #selector(pubBluesNewsView))
+        let otap = UITapGestureRecognizer(target: self, action: #selector(pubOtherView))
         
         let layer = UIView(frame: CGRect(x: 19, y: 336, width: 107, height: 122))
         layer.layer.cornerRadius = 15
         layer.backgroundColor = UIColor(red: 0.98, green: 0.6, blue: 0.09, alpha: 1)
-        layer.addGestureRecognizer(tap)
+        layer.addGestureRecognizer(ctap)
         self.scrollview.addSubview(layer)
         
         
         let layer1 = UIView(frame: CGRect(x: 135, y: 336, width: 107, height: 122))
         layer1.layer.cornerRadius = 15
         layer1.backgroundColor = UIColor(red: 0.16, green: 0.29, blue: 0.64, alpha: 1)
+        layer1.addGestureRecognizer(btap)
         self.scrollview.addSubview(layer1)
         
         let layer3 = UIView(frame: CGRect(x: 251, y: 336, width: 107, height: 122))
         layer3.layer.cornerRadius = 15
         layer3.backgroundColor = UIColor(red: 0.16, green: 0.54, blue: 0.53, alpha: 1)
+        layer3.addGestureRecognizer(otap)
         self.scrollview.addSubview(layer3)
         
         var textLayer = UILabel(frame: CGRect(x: 31, y: 355, width: 69, height: 18))
@@ -225,6 +333,7 @@ class NewsViewController: UIViewController {
         layer2.addGestureRecognizer(tap)
         self.scrollview.addSubview(layer2)
         
+        
         let textLayer = UILabel(frame: CGRect(x: 38, y: 180, width: 122, height: 36))
         textLayer.lineBreakMode = .byWordWrapping
         textLayer.numberOfLines = 0
@@ -288,10 +397,40 @@ class NewsViewController: UIViewController {
         self.scrollview.addSubview(i_view)
     }
     
-    func topArticles() {
-        for i in 0 ... 4 {
-            
-        }
+    @objc func pubCuspidorView() {
+        publication = 0
+        performSegue(withIdentifier: "pubf", sender: self)
+    }
+    
+    @objc func pubBluesNewsView() {
+        publication = 1
+        performSegue(withIdentifier: "pubf", sender: self)
+    }
+    
+    @objc func pubOtherView() {
+        publication = 2
+        performSegue(withIdentifier: "pubf", sender: self)
+    }
+    
+    @objc func filterNewTap() {
+        articlesView.reloadData()
+        newLabel.alpha = 1
+        popularLabel.alpha = 0.5
+        siftLabel.alpha = 0.5
+    }
+    
+    @objc func filterSiftTap() {
+        articlesView.reloadData()
+        newLabel.alpha = 0.5
+        popularLabel.alpha = 0.5
+        siftLabel.alpha = 1
+    }
+    
+    @objc func filterPopTap() {
+        articlesView.reloadData()
+        newLabel.alpha = 0.5
+        popularLabel.alpha = 1
+        siftLabel.alpha = 0.5
     }
     
     
@@ -301,10 +440,14 @@ class NewsViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let article = Article(text: "The Liberal majority on the House of Commons ethic committee has voted down an opposition motion to call Conflict of Interest andEthics Commissioner Mario Dion to testify about his report concluding thatPrime Minister Justin Trudeau violated the Conflict of Interest Act over the SNC-Lavalinaffair. Liberal MP Steven MacKinnon said he and the other Liberal Msitting on the committee today voted down the motion because, following Dion'sreport and hours of testimony on the scandal over a five-week period, therewas nothing new to add to their understanding of the SNC-Lavalin affair.Theopposition's claim to simply wanting the facts is contradicted by the fact thatwhat they seek is found in the commissioner's report, MacKinnon said. The only conclusion that I, and members of this committee, can come to is that thopposition seeks to prolong this process for reasons of politics, reasons ofpartisan games, and it is for that reason … that we will be opposing this motion. Liberal MP Nathaniel Erskine-Smith broke ranks with his party and votedwith opposition MPs to call Dion before the committee — not, he said, becausehe thought Dion had more to tell, but because he wanted to challenge thecommissioner's findings, which he called flawed. I would like the commissionerto sit right there to answer how he got this so completely, completelywrong, Erskine-Smith said."
-            , author: "Baker Jackson", img: #imageLiteral(resourceName: "000"), title: "Jacky's Solution is bad and won't work hello hello hello")
+            , author: "Baker Jackson", img: #imageLiteral(resourceName: "000"), title: "Jacky's Solution is bad and won't work hello hello hello", genre: "SPORTS", likes: 5, hash: "meh")
         
         if let destinationVC = segue.destination as? ArticleViewController {
             destinationVC.article = article
+            destinationVC.source = 1
+        }
+        if let destinationVC = segue.destination as? PublicationViewController {
+            destinationVC.pub = publication
         }
     }
     

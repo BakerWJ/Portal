@@ -16,7 +16,7 @@ class PublicationTableViewCell: UITableViewCell {
             img.image = articleItem.img
             titleLabel.text = articleItem.title
             authorLabel.text = "by " + articleItem.author
-            genreLabel.text = "SPORTS"
+            genreLabel.text = articleItem.genre.uppercased()
             contentLabel.text = articleItem.text
         }
     }
@@ -56,6 +56,7 @@ class PublicationTableViewCell: UITableViewCell {
         contentLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 311).isActive = true
         contentLabel.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 35).isActive = true
     }
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }

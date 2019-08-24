@@ -28,6 +28,8 @@ class ArticleViewController: UIViewController {
         }
     }
     
+    var source: Int?
+    
     
 
     lazy var scrollview: UIScrollView = {
@@ -133,7 +135,12 @@ class ArticleViewController: UIViewController {
     }
     
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
-        self.performSegue(withIdentifier: "articleu", sender: self)
+        if source == 0 {
+            self.performSegue(withIdentifier: "toPub", sender: self)
+        }
+        else {
+            self.performSegue(withIdentifier: "articleu", sender: self)
+        }
     }
     
     func backButton() {

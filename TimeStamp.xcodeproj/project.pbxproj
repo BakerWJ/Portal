@@ -65,6 +65,7 @@
 		CE927FF8227A0BCD00EE0A22 /* RepeatingTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE927FF2227A0BCD00EE0A22 /* RepeatingTimer.swift */; };
 		CE927FF9227A0BCD00EE0A22 /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE927FF3227A0BCD00EE0A22 /* ScheduleView.swift */; };
 		CE927FFB227A0EFB00EE0A22 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE927FFA227A0EFB00EE0A22 /* GoogleService-Info.plist */; };
+		CEAD94522310818F001C2FDA /* NewsPageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAD94512310818F001C2FDA /* NewsPageTableViewCell.swift */; };
 		CEC26E00227B3E9E00FFFC67 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC26DF7227B3E9E00FFFC67 /* CoreDataStack.swift */; };
 		CEC26E01227B3E9E00FFFC67 /* Schedule+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC26DF8227B3E9E00FFFC67 /* Schedule+CoreDataProperties.swift */; };
 		CEC26E02227B3E9E00FFFC67 /* Timetable+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC26DF9227B3E9E00FFFC67 /* Timetable+CoreDataProperties.swift */; };
@@ -150,6 +151,7 @@
 		CE927FF2227A0BCD00EE0A22 /* RepeatingTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepeatingTimer.swift; sourceTree = "<group>"; };
 		CE927FF3227A0BCD00EE0A22 /* ScheduleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleView.swift; sourceTree = "<group>"; };
 		CE927FFA227A0EFB00EE0A22 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CEAD94512310818F001C2FDA /* NewsPageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsPageTableViewCell.swift; sourceTree = "<group>"; };
 		CEC26DF7227B3E9E00FFFC67 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		CEC26DF8227B3E9E00FFFC67 /* Schedule+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Schedule+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		CEC26DF9227B3E9E00FFFC67 /* Timetable+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Timetable+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 			children = (
 				CE927FF0227A0BCD00EE0A22 /* ArticleClass.swift */,
 				CE69342E230C8E2D00006C3F /* PublicationTableViewCell.swift */,
+				CEAD94512310818F001C2FDA /* NewsPageTableViewCell.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -602,6 +605,7 @@
 				8A1CF7F42304914E000E2F6B /* TabBarToSettings.swift in Sources */,
 				31BB397F22E6B48F004D2DE5 /* AppEntryViewController.swift in Sources */,
 				8A1B79FC22BEC2AF006FE52A /* MainTabBarViewController.swift in Sources */,
+				CEAD94522310818F001C2FDA /* NewsPageTableViewCell.swift in Sources */,
 				8AEA785122851D5C0031B030 /* UserDataSettings.swift in Sources */,
 				CE927FF4227A0BCD00EE0A22 /* UserTimetable.swift in Sources */,
 				CE927FF6227A0BCD00EE0A22 /* ArticleClass.swift in Sources */,
