@@ -24,6 +24,7 @@ class PeriodView: UIStackView, UITextFieldDelegate
     
     //labels, views and textfields
     let classLabelView = UIView ()
+    let containerView = UIView()
     let timeLabel = UILabel ()
     let classLabel = UILabel ()
     let classTextField = UITextField ();
@@ -153,8 +154,10 @@ class PeriodView: UIStackView, UITextFieldDelegate
             }
         })
     }
+    
     private func setup ()
     {
+        translatesAutoresizingMaskIntoConstraints = false;
         if (classnumber != 0) //if this is an editable period
         {
             
@@ -227,17 +230,32 @@ class PeriodView: UIStackView, UITextFieldDelegate
             classTextField.leadingAnchor.constraint (equalTo: classLabelView.leadingAnchor).isActive = true;
             classTextField.trailingAnchor.constraint (equalTo: classLabelView.trailingAnchor).isActive = true;
         }
-        else
+        else //if this is not an editable period, such as lunch
         {
             //the stackview is horizontal
-            axis = .vertical
-            alignment = .center
-
-            let containerView = UIView ()
+            axis = .horizontal;
+            alignment = .center;
+            spacing = 0;
+            
+            //setting the attributes of the time Label
+            timeLabel.text = formatter.string(from: startTime);
+            timeLabel.textAlignment = .center
+            timeLabel.baselineAdjustment = .alignCenters;
+            timeLabel.numberOfLines = 1
+            timeLabel.font = UIFont (name: "SimSun", size: 20/812.0*screenHeight);
+            
+            //set background color to white
+            timeLabel.backgroundColor = .clear
+            
+            //add to stackview
+            addArrangedSubview (timeLabel);
             addArrangedSubview(containerView);
+            
+            timeLabel.translatesAutoresizingMaskIntoConstraints = false;
+            timeLabel.widthAnchor.constraint (equalToConstant: 130/375.0*screenWidth).isActive = true;
+            
             containerView.translatesAutoresizingMaskIntoConstraints = false;
-            containerView.widthAnchor.constraint (equalToConstant: 236/375.0*screenWidth).isActive = true;
-            containerView.heightAnchor.constraint(equalToConstant: 15/812.0*screenHeight).isActive = true;
+            containerView.widthAnchor.constraint (equalToConstant: 173/375.0*screenWidth).isActive = true;
             
             //set attributes
             classLabel.text = periodName.uppercased()
@@ -245,14 +263,7 @@ class PeriodView: UIStackView, UITextFieldDelegate
             classLabel.numberOfLines = 1
             classLabel.baselineAdjustment = .alignCenters;
             classLabel.font = UIFont (name: "SitkaBanner", size: 14/812.0*screenHeight);
-            classLabel.sizeToFit()
             classLabel.minimumScaleFactor = 6.0/classLabel.font.pointSize;
-            
-            containerView.addSubview(classLabel)
-            classLabel.translatesAutoresizingMaskIntoConstraints = false;
-            classLabel.centerXAnchor.constraint (equalTo: containerView.centerXAnchor).isActive = true;
-            classLabel.topAnchor.constraint (equalTo: containerView.topAnchor).isActive = true;
-            classLabel.bottomAnchor.constraint (equalTo: containerView.bottomAnchor).isActive = true;
             
             containerView.addSubview(rectangle1);
             containerView.addSubview(rectangle2);
@@ -260,34 +271,26 @@ class PeriodView: UIStackView, UITextFieldDelegate
             rectangle1.centerYAnchor.constraint (equalTo: containerView.centerYAnchor).isActive = true;
             rectangle1.heightAnchor.constraint (equalToConstant: 2/812.0*screenHeight).isActive = true;
             rectangle1.leadingAnchor.constraint (equalTo: containerView.leadingAnchor).isActive = true;
-            rectangle1.trailingAnchor.constraint (equalTo: classLabel.leadingAnchor, constant: -8/375.0*screenWidth).isActive = true;
+            rectangle1.widthAnchor.constraint (equalToConstant: 14/375.0*screenWidth).isActive = true;
+            
+            containerView.addSubview(classLabel)
+            classLabel.translatesAutoresizingMaskIntoConstraints = false;
+            classLabel.leadingAnchor.constraint (equalTo: rectangle1.trailingAnchor, constant: 8/375.0*screenWidth).isActive = true;
+            classLabel.topAnchor.constraint (equalTo: containerView.topAnchor).isActive = true;
+            classLabel.bottomAnchor.constraint (equalTo: containerView.bottomAnchor).isActive = true;
+            classLabel.layoutIfNeeded();
+            classLabel.widthAnchor.constraint (equalToConstant: min(classLabel.frame.width, 129.0)).isActive = true;
+            classLabel.adjustsFontSizeToFitWidth = true;
             
             rectangle2.translatesAutoresizingMaskIntoConstraints = false;
             rectangle2.centerYAnchor.constraint (equalTo: containerView.centerYAnchor).isActive = true;
             rectangle2.heightAnchor.constraint (equalToConstant: 2/812.0*screenHeight).isActive = true;
             rectangle2.leadingAnchor.constraint (equalTo: classLabel.trailingAnchor, constant: 8/375.0*screenWidth).isActive = true;
-            rectangle2.trailingAnchor.constraint (equalTo: containerView.trailingAnchor).isActive = true;
+            rectangle2.widthAnchor.constraint (equalToConstant: 14/375.0*screenWidth).isActive = true;
             
             //light sky blue: 135-206-250
             //settting the colors and border colors of classLabel
             classLabel.backgroundColor = .clear
-            
-            /*
-            //setting the attributes of the time Label
-            timeLabel.text = formatter.string(from: startTime) + " - " + formatter.string (from: endTime);
-            timeLabel.textAlignment = .left
-            timeLabel.numberOfLines = 1
-            timeLabel.font = UIFont (name: "SegoeUI", size: 14/812.0*screenHeight);
-            
-            //set background color to white
-            timeLabel.backgroundColor = .clear
-            
-            //add to stackview
-            addArrangedSubview (timeLabel);
-            
-            timeLabel.translatesAutoresizingMaskIntoConstraints = false;
-            timeLabel.heightAnchor.constraint(equalToConstant: 30/812.0*screenHeight).isActive = true;
-             */
         }
     }
     

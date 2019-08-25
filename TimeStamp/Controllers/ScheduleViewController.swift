@@ -216,11 +216,13 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate, UIScro
         scheduleDisplayed = [Schedule?]()
         ADaysDisplayed = [Bool]()
         flippedDisplayed = [Bool]();
-        coloursDisplayedRGB = [(CGFloat, CGFloat, CGFloat)]()
+        coloursDisplayedRGB = [(CGFloat, CGFloat, CGFloat)]();
         for x in 0..<5
         {
             daysDisplayed.append (Util.next(days: x) as Date);
         }
+        var lateStartIndex = -1;
+        var x = 0;
         for day in daysDisplayed
         {
             let weekday = calendar.component(.weekday, from: day);
@@ -234,15 +236,26 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate, UIScro
                     break;
                 }
             }
+            if((weeklySchedule?.typeOfDay [weekday - 1])! == 3) //if this is a latestart day
+            {
+                lateStartIndex = x;
+            }
             scheduleDisplayed.append (selected);
             ADaysDisplayed.append ((weeklySchedule?.abDay [weekday - 1])!);
             flippedDisplayed.append (((weeklySchedule?.flipOrNot [weekday - 1])!));
+            x += 1;
         }
         coloursDisplayedRGB.append ((183, 139, 122));
         coloursDisplayedRGB.append ((40, 73, 164));
         coloursDisplayedRGB.append((91, 21, 42));
         coloursDisplayedRGB.append ((42, 138, 135));
-        coloursDisplayedRGB.append ((42, 90, 138));
+        coloursDisplayedRGB.append ((42, 90, 138)); //late start colour
+        if (lateStartIndex != -1)
+        {
+            let temp = coloursDisplayedRGB [lateStartIndex];
+            coloursDisplayedRGB [lateStartIndex] = coloursDisplayedRGB [4];
+            coloursDisplayedRGB [4] = temp;
+        }
     }
     //COLLECTION VIEW DELEGATE METHODS
     
