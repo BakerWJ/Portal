@@ -44,7 +44,7 @@ class TabBarToSettings: UIStoryboardSegue {
             window.layoutIfNeeded()
             toVC.view.layer.opacity = 0;
             tempViewWidth.constant = 2000/375.0*screenWidth;
-            UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn, animations:
+            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations:
             {
                 toVC.view.layer.opacity = 1;
                 window.layoutIfNeeded();

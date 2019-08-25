@@ -33,7 +33,7 @@ class GetStartedViewController: UIViewController {
         return view;
     }()
     
-    let imageView = UIImageView (image: UIImage (named: "onLakeImage"));
+    let imageView = UIImageView (image: UIImage (named: "studentTalkingImage"));
     
     lazy var doneButton: UIButton = {
         let button = UIButton ();
@@ -166,12 +166,12 @@ class GetStartedViewController: UIViewController {
         
         maskView.addSubview(imageView);
         imageView.translatesAutoresizingMaskIntoConstraints = false;
-        imageTop = imageView.topAnchor.constraint (equalTo: maskView.topAnchor, constant: -63/812.0*screenHeight);
+        imageTop = imageView.topAnchor.constraint (equalTo: maskView.topAnchor, constant: -15/812.0*screenHeight);
         imageTop.isActive = true;
-        imageLeading = imageView.leadingAnchor.constraint (equalTo: maskView.leadingAnchor, constant: 60/375.0*screenWidth);
+        imageLeading = imageView.leadingAnchor.constraint (equalTo: maskView.leadingAnchor, constant: 64/375.0*screenWidth);
         imageLeading.isActive = true;
         imageView.heightAnchor.constraint (equalToConstant: 296/812.0*screenHeight).isActive = true;
-        imageView.widthAnchor.constraint (equalToConstant: 395/375.0*screenWidth).isActive = true;
+        imageView.widthAnchor.constraint (equalToConstant: screenWidth).isActive = true;
     }
     
     @objc func generalClick() {

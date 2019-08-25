@@ -27,7 +27,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         //add the settingsImage
         let image = UIImageView(image: UIImage(named: "settingsTabBarIcon"));
         view.addSubview(image);
-        image.frame.size = CGSize(width: 45/375.0*screenWidth, height: 45/375.0*screenWidth);
+        image.frame.size = CGSize(width: 20/375.0*screenWidth, height: 20/375.0*screenWidth);
         image.center = CGPoint (x: view.frame.width/2, y: view.frame.height/2);
         view.clipsToBounds = true;
         view.backgroundColor = .white;
@@ -85,7 +85,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
                 if (selected != x)
                 {
                     DispatchQueue.main.async {
-                        UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseOut, animations: {
+                        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
                             self.iconImages [x].frame = self.iconImages [x].frame.offsetBy(dx: 0, dy: -5/375.0*self.screenWidth);
                             self.underline.center.x = self.iconImages [x].center.x;
                         }, completion: nil)
@@ -97,7 +97,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
                 if (selected == x) //if it was previously selected, then execute the animation
                 {
                     DispatchQueue.main.async {
-                        UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseOut, animations: {
+                        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
                             self.iconImages [x].frame = self.iconImages [x].frame.offsetBy(dx: 0, dy: 5/375.0*self.screenWidth);
                         }, completion: nil)
                     }
@@ -119,7 +119,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
                 if (selected != x)
                 {
                     DispatchQueue.main.async {
-                        UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseOut, animations: {
+                        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
                             self.iconImages [x].frame = self.iconImages [x].frame.offsetBy(dx: 0, dy: -5/375.0*self.screenWidth);
                             self.underline.center.x = self.iconImages [x].center.x;
                         }, completion: nil)
@@ -131,7 +131,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
                 if (selected == x) //if it was previously selected, then execute the animation
                 {
                     DispatchQueue.main.async {
-                        UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseOut, animations: {
+                        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
                             self.iconImages [x].frame = self.iconImages [x].frame.offsetBy(dx: 0, dy: 5/375.0*self.screenWidth);
                         }, completion: nil)
                     }
@@ -191,11 +191,14 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         for each in iconImages
         {
             view.addSubview(each);
-            each.frame.size = CGSize (width: 45/375.0*screenWidth, height: 45/375.0*screenWidth);
         }
-        homeIcon.frame.origin = CGPoint (x: 63.5/375.0*screenWidth, y: 736/812.0*screenHeight);
-        scheduleIcon.frame.origin = CGPoint (x: 122.5/375.0*screenWidth, y: homeIcon.frame.origin.y);
-        newsIcon.frame.origin = CGPoint (x: 180.5/375.0*screenWidth, y: homeIcon.frame.origin.y);
+        homeIcon.frame.size = CGSize (width: 20/375.0*screenWidth, height: 20/375.0*screenWidth);
+        scheduleIcon.frame.size = CGSize (width: 45/375.0*screenWidth, height: 45/375.0*screenWidth);
+        newsIcon.frame.size = CGSize (width: 45/375.0*screenWidth, height: 45/375.0*screenWidth);
+        
+        homeIcon.frame.origin = CGPoint (x: 76/375.0*screenWidth, y: 748.5/812.0*screenHeight);
+        scheduleIcon.frame.origin = CGPoint (x: 122.5/375.0*screenWidth, y: 736/812.0*screenHeight);
+        newsIcon.frame.origin = CGPoint (x: 180.5/375.0*screenWidth, y: 736/812.0*screenHeight);
     }
     
     private func setUpUnderline ()
@@ -252,7 +255,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
 class TabBarTransition: NSObject, UIViewControllerAnimatedTransitioning {
     
     let viewControllers: [UIViewController]?
-    let transitionDuration: Double = 0.5
+    let transitionDuration: Double = 0.3
     let screenWidth = UIScreen.main.bounds.width;
     let screenHeight = UIScreen.main.bounds.height;
     

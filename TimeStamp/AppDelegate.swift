@@ -129,6 +129,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
     {
         //Connection to firebase
         FirebaseApp.configure();
+        //setup crashlytics
+        Fabric.with([Crashlytics.self]);
+        Fabric.sharedSDK().debug = true;
         
         //Initialize sign-in
         //need to later prompt the additionalScope for consent

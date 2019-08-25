@@ -602,6 +602,8 @@ class UserDataSettings
                 //target weekday
                 let target = x + 1;
                 var diff = target >= weekday ? target - weekday : target + 7 - weekday;
+                print (x)
+                print (diff)
                 //determines if that day requires a notification
                 //if not a regular school day and a school day
                 if(days.typeOfDay[x] != 1 && days.typeOfDay[x] != 4 && results.generalNotifications){
@@ -618,7 +620,7 @@ class UserDataSettings
                     general.body = "There is " + eventName.lowercased() + " today.";
                     var time = Calendar.current.dateComponents([.year, .month, .day], from: Util.next(days: diff) as Date);
                     //notifies in the morning
-                    time.hour = 8;
+                    time.hour = 7;
                     time.minute = 10;
                     
                     let trigger1 = UNCalendarNotificationTrigger(dateMatching: time, repeats: false)
