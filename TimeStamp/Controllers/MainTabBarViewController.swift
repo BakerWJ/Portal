@@ -42,7 +42,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
     lazy var underline: UIView = {
         let view = UIView ();
         view.frame.size = CGSize (width: 22/375.0*screenWidth, height: 2/375.0*screenWidth);
-        view.backgroundColor = UIColor (red: 0/255.0, green: 160/255.0, blue: 225/255.0, alpha: 1);
+        view.backgroundColor = UIColor (red: 0/255.0, green: 48/255.0, blue: 87/255.0, alpha: 1);
         return view;
     }()
     

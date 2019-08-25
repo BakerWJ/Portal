@@ -41,9 +41,7 @@ class SignInViewController: UIViewController
         return label;
     }()
     
-    let imageView = UIImageView (image: UIImage(named: "surfingImage"));
-    
-    let purpleCircle = UIImageView(image: UIImage(named: "purpleCircle"));
+    let imageView = UIImageView (image: UIImage(named: "signInImage"));
     
     lazy var movingRect: UIView = {
         let view = UIView ()
@@ -53,7 +51,6 @@ class SignInViewController: UIViewController
     
     var getStartedLeading = NSLayoutConstraint()
     var imageWidth = NSLayoutConstraint();
-    var circleHeight = NSLayoutConstraint();
     
     @objc func signIn ()
     {
@@ -100,11 +97,9 @@ class SignInViewController: UIViewController
     {
         //reset all the constraints to normal
         signInButton.layer.opacity = 1;
-        purpleCircle.layer.opacity = 1;
         imageView.layer.opacity = 1;
         getStartedLeading.constant = 88/375.0*screenWidth;
-        imageWidth.constant = 559/812.0*screenHeight;
-        circleHeight.constant = 563/812.0*screenHeight;
+        imageWidth.constant = 563/812.0*screenHeight;
     }
     
     private func setup ()
@@ -145,21 +140,11 @@ class SignInViewController: UIViewController
         view.addSubview(imageView);
         imageView.translatesAutoresizingMaskIntoConstraints = false;
         imageView.centerXAnchor.constraint (equalTo: view.leadingAnchor, constant: 151.5/375.0*screenWidth).isActive = true;
-        imageView.centerYAnchor.constraint (equalTo: view.topAnchor, constant: 321.5/812.0*screenHeight).isActive = true;
-        imageWidth = imageView.widthAnchor.constraint (equalToConstant: 559/812.0*screenHeight);
+        imageView.centerYAnchor.constraint (equalTo: view.topAnchor, constant: 332.14/812.0*screenHeight).isActive = true;
+        imageWidth = imageView.widthAnchor.constraint (equalToConstant: 563/812.0*screenHeight);
         imageWidth.isActive = true;
-        imageView.heightAnchor.constraint (equalTo: imageView.widthAnchor).isActive = true;
+        imageView.heightAnchor.constraint (equalTo: imageView.widthAnchor, multiplier: 580/563).isActive = true;
         imageView.layoutIfNeeded()
-        
-        //add the purple circle
-        view.addSubview (purpleCircle);
-        purpleCircle.translatesAutoresizingMaskIntoConstraints = false;
-        purpleCircle.centerXAnchor.constraint (equalTo: imageView.centerXAnchor).isActive = true;
-        purpleCircle.centerYAnchor.constraint (equalTo: imageView.centerYAnchor, constant: 19/812.0*screenHeight).isActive = true;
-        circleHeight = purpleCircle.heightAnchor.constraint (equalToConstant: 563/812.0*screenHeight);
-        circleHeight.isActive = true;
-        purpleCircle.widthAnchor.constraint (equalTo: purpleCircle.heightAnchor).isActive = true;
-        view.bringSubviewToFront(imageView)
         
         view.addSubview (warningLabel);
         warningLabel.translatesAutoresizingMaskIntoConstraints = false;
