@@ -9,6 +9,7 @@
 import UIKit
 
 class NewsPageTableViewCell: UITableViewCell {
+    let w = UIScreen.main.bounds.width
     
     var article:Article? {
         didSet {
@@ -31,7 +32,7 @@ class NewsPageTableViewCell: UITableViewCell {
     
     let titleLabel:UILabel = {
         let textLayer = UILabel()
-        textLayer.font = UIFont(name: "SitkaBanner-Bold", size: 18)
+        textLayer.font = UIFont(name: "SitkaBanner-Bold", size: 18/375 * UIScreen.main.bounds.width)
         textLayer.textColor = UIColor.black
         textLayer.translatesAutoresizingMaskIntoConstraints = false
         textLayer.numberOfLines = 2
@@ -42,7 +43,7 @@ class NewsPageTableViewCell: UITableViewCell {
     
     let tLabel:UILabel = {
         let textLayer = UILabel()
-        textLayer.font = UIFont(name: "SitkaBanner", size: 14)
+        textLayer.font = UIFont(name: "SitkaBanner", size: 14/375 * UIScreen.main.bounds.width)
         textLayer.textColor = UIColor.black
         textLayer.translatesAutoresizingMaskIntoConstraints = false
         textLayer.numberOfLines = 1
@@ -52,7 +53,7 @@ class NewsPageTableViewCell: UITableViewCell {
     
     let authorLabel:UILabel = {
         let textLayer = UILabel()
-        textLayer.font = UIFont(name: "SitkaBanner", size: 12)
+        textLayer.font = UIFont(name: "SitkaBanner", size: 12/375 * UIScreen.main.bounds.width)
         textLayer.textColor = UIColor.black
         textLayer.translatesAutoresizingMaskIntoConstraints = false
         textLayer.numberOfLines = 1
@@ -63,7 +64,7 @@ class NewsPageTableViewCell: UITableViewCell {
     
     let genreLabel:UILabel = {
         let textLayer = UILabel()
-        textLayer.font = UIFont(name: "SitkaBanner", size: 14)
+        textLayer.font = UIFont(name: "SitkaBanner", size: 14/375 * UIScreen.main.bounds.width)
         textLayer.textColor = UIColor.black
         textLayer.translatesAutoresizingMaskIntoConstraints = false
         textLayer.numberOfLines = 1
@@ -96,29 +97,29 @@ class NewsPageTableViewCell: UITableViewCell {
         self.contentView.addSubview(tLabel)
         self.contentView.addSubview(genreLabel)
         
-        img.widthAnchor.constraint(equalToConstant: 83).isActive = true
-        img.heightAnchor.constraint(equalToConstant: 76).isActive = true
-        img.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 19).isActive = true
-        img.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 26).isActive = true
+        img.widthAnchor.constraint(equalToConstant: 83/375 * w).isActive = true
+        img.heightAnchor.constraint(equalToConstant: 76/375 * w).isActive = true
+        img.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 19/375 * w).isActive = true
+        img.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 26/375 * w).isActive = true
         
-        titleLabel.widthAnchor.constraint(equalToConstant: 234).isActive = true
-        titleLabel.heightAnchor.constraint(equalToConstant: 36).isActive = true
-        titleLabel.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 120).isActive = true
-        titleLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 28).isActive = true
+        titleLabel.widthAnchor.constraint(equalToConstant: 234/375 * w).isActive = true
+        titleLabel.heightAnchor.constraint(equalToConstant: 36/375 * w).isActive = true
+        titleLabel.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 120/375 * w).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 28/375 * w).isActive = true
         
-        tLabel.widthAnchor.constraint(equalToConstant: 238).isActive = true
-        tLabel.heightAnchor.constraint(equalToConstant: 14).isActive = true
-        tLabel.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 120).isActive = true
-        tLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 66).isActive = true
+        tLabel.widthAnchor.constraint(equalToConstant: 238/375 * w).isActive = true
+        tLabel.heightAnchor.constraint(equalToConstant: 14/375 * w).isActive = true
+        tLabel.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 120/375 * w).isActive = true
+        tLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 66/375 * w).isActive = true
         
-        authorLabel.widthAnchor.constraint(equalToConstant: 234).isActive = true
-        authorLabel.heightAnchor.constraint(equalToConstant: 12).isActive = true
-        authorLabel.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 120).isActive = true
-        authorLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 88).isActive = true
+        authorLabel.widthAnchor.constraint(equalToConstant: 234/375 * w).isActive = true
+        authorLabel.heightAnchor.constraint(equalToConstant: 12/375 * w).isActive = true
+        authorLabel.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 120/375 * w).isActive = true
+        authorLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 88/375 * w).isActive = true
         
-        genreLabel.widthAnchor.constraint(equalToConstant: 52).isActive = true
-        genreLabel.heightAnchor.constraint(equalToConstant: 14).isActive = true
-        genreLabel.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 302).isActive = true
-        genreLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10).isActive = true
+        genreLabel.widthAnchor.constraint(equalToConstant: 52/375 * w).isActive = true
+        genreLabel.heightAnchor.constraint(equalToConstant: 14/375 * w).isActive = true
+        genreLabel.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 302/375 * w).isActive = true
+        genreLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10/375 * w).isActive = true
     }
 }

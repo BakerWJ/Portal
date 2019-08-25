@@ -9,6 +9,7 @@
 import UIKit
 
 class PublicationTableViewCell: UITableViewCell {
+    let w = UIScreen.main.bounds.width
     
     var article:Article? {
         didSet {
@@ -31,30 +32,30 @@ class PublicationTableViewCell: UITableViewCell {
         self.contentView.addSubview(contentLabel)
         self.contentView.addSubview(genreLabel)
         
-        img.widthAnchor.constraint(equalToConstant: 315).isActive = true
-        img.heightAnchor.constraint(equalToConstant: 167).isActive = true
-        img.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 30).isActive = true
-        img.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 50).isActive = true
+        img.widthAnchor.constraint(equalToConstant: 315/375 * w).isActive = true
+        img.heightAnchor.constraint(equalToConstant: 167/375 * w).isActive = true
+        img.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 30/375*w).isActive = true
+        img.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 40/375 * w).isActive = true
         
-        titleLabel.widthAnchor.constraint(equalToConstant: 310).isActive = true
-        titleLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        titleLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 230).isActive = true
-        titleLabel.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 35).isActive = true
+        titleLabel.widthAnchor.constraint(equalToConstant: 310/375 * w).isActive = true
+        titleLabel.heightAnchor.constraint(equalToConstant: 50/375 * w).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 220/375 * w).isActive = true
+        titleLabel.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 35/375*w).isActive = true
         
-        authorLabel.widthAnchor.constraint(equalToConstant: 304.36).isActive = true
-        authorLabel.heightAnchor.constraint(equalToConstant: 18).isActive = true
-        authorLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 284).isActive = true
-        authorLabel.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 35).isActive = true
+        authorLabel.widthAnchor.constraint(equalToConstant: 304.36/375*w).isActive = true
+        authorLabel.heightAnchor.constraint(equalToConstant: 18/375 * w).isActive = true
+        authorLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 274/375 * w).isActive = true
+        authorLabel.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 35/375 * w).isActive = true
         
-        genreLabel.widthAnchor.constraint(equalToConstant: 59).isActive = true
-        genreLabel.heightAnchor.constraint(equalToConstant: 18).isActive = true
-        genreLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 24).isActive = true
-        genreLabel.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 35).isActive = true
+        genreLabel.widthAnchor.constraint(equalToConstant: 59/375*w).isActive = true
+        genreLabel.heightAnchor.constraint(equalToConstant: 18/375 * w).isActive = true
+        genreLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 14/375 * w).isActive = true
+        genreLabel.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 35/375 * w).isActive = true
         
-        contentLabel.widthAnchor.constraint(equalToConstant: 304.36).isActive = true
-        contentLabel.heightAnchor.constraint(equalToConstant: 54).isActive = true
-        contentLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 311).isActive = true
-        contentLabel.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 35).isActive = true
+        contentLabel.widthAnchor.constraint(equalToConstant: 304.36/375*w).isActive = true
+        contentLabel.heightAnchor.constraint(equalToConstant: 54/375 * w).isActive = true
+        contentLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 301/375 * w).isActive = true
+        contentLabel.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 35/375*w).isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -65,25 +66,25 @@ class PublicationTableViewCell: UITableViewCell {
         let img = UIImageView()
         img.contentMode = .scaleAspectFill
         img.translatesAutoresizingMaskIntoConstraints = false
-        img.layer.cornerRadius = 15
+        img.layer.cornerRadius = 15/375 * UIScreen.main.bounds.width
         img.clipsToBounds = true
         return img
     }()
     
     let titleLabel:UILabel = {
         let textLayer = UILabel()
-        textLayer.font = UIFont(name: "SitkaBanner-Bold", size: 25)
+        textLayer.font = UIFont(name: "SitkaBanner-Bold", size: 25/375 * UIScreen.main.bounds.width)
         textLayer.textColor = UIColor.black
         textLayer.translatesAutoresizingMaskIntoConstraints = false
         textLayer.numberOfLines = 2
         textLayer.adjustsFontSizeToFitWidth = true
-        textLayer.minimumScaleFactor = 0.8
+        textLayer.minimumScaleFactor = 0.5
         return textLayer
     }()
     
     let authorLabel:UILabel = {
         let textLayer = UILabel()
-        textLayer.font = UIFont(name: "Arial", size: 14)
+        textLayer.font = UIFont(name: "Arial", size: 14/375 * UIScreen.main.bounds.width)
         textLayer.textColor = UIColor.black
         textLayer.translatesAutoresizingMaskIntoConstraints = false
         return textLayer
@@ -91,7 +92,7 @@ class PublicationTableViewCell: UITableViewCell {
     
     let contentLabel:UILabel = {
         let textLayer = UILabel()
-        textLayer.font = UIFont(name: "Arial", size: 14)
+        textLayer.font = UIFont(name: "Arial", size: 14/375 * UIScreen.main.bounds.width)
         textLayer.textColor = UIColor.black
         textLayer.translatesAutoresizingMaskIntoConstraints = false
         textLayer.numberOfLines = 3
@@ -102,7 +103,7 @@ class PublicationTableViewCell: UITableViewCell {
     
     let genreLabel:UILabel = {
         let textLayer = UILabel()
-        textLayer.font = UIFont(name: "SitkaBanner", size: 18)
+        textLayer.font = UIFont(name: "SitkaBanner", size: 18/375 * UIScreen.main.bounds.width)
         textLayer.textColor = UIColor.black
         textLayer.translatesAutoresizingMaskIntoConstraints = false
         return textLayer

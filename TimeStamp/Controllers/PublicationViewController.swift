@@ -9,6 +9,8 @@
 import UIKit
 
 class PublicationViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    let w = UIScreen.main.bounds.width
+    
     var pub: Int? {
         didSet {
             if (pub == 0) {
@@ -36,7 +38,7 @@ class PublicationViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 363
+        return 363/375*w
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -63,7 +65,7 @@ class PublicationViewController: UIViewController, UITableViewDataSource, UITabl
         view.addSubview(articleTableView)
         articleTableView.delegate = self
         articleTableView.translatesAutoresizingMaskIntoConstraints = false
-        articleTableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 90).isActive = true
+        articleTableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 90/375*w).isActive = true
         articleTableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         articleTableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         articleTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
@@ -78,7 +80,7 @@ class PublicationViewController: UIViewController, UITableViewDataSource, UITabl
     
     let titleLabel: UILabel = {
         let textLayer = UILabel()
-        textLayer.font = UIFont(name: "Arial", size: 20)
+        textLayer.font = UIFont(name: "Arial", size: 20/375*UIScreen.main.bounds.width)
         textLayer.textColor = UIColor.black
         textLayer.translatesAutoresizingMaskIntoConstraints = false
         textLayer.textAlignment = .center
@@ -86,28 +88,28 @@ class PublicationViewController: UIViewController, UITableViewDataSource, UITabl
     }()
     
     func navBar() {
-        let layer = UIView(frame: CGRect(x: 0, y: 0, width: 375, height: 90))
+        let layer = UIView(frame: CGRect(x: 0, y: 0, width: 375/375*w, height: 90/375*w))
         var transform = CGAffineTransform.identity
-        transform = transform.scaledBy(x: -1, y: 0)
+        transform = transform.scaledBy(x: -1/375*w, y: 0)
         layer.transform = transform
         layer.backgroundColor = UIColor.white
         layer.layer.shadowOffset = CGSize(width: 0, height: 0)
         layer.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5).cgColor
         layer.layer.shadowOpacity = 1
-        layer.layer.shadowRadius = 4
+        layer.layer.shadowRadius = 4/375*w
         self.view.addSubview(layer)
         
         self.view.addSubview(titleLabel)
-        titleLabel.widthAnchor.constraint(equalToConstant: 300).isActive = true
-        titleLabel.heightAnchor.constraint(equalToConstant: 22).isActive = true
-        titleLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 50).isActive = true
-        titleLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 37.5).isActive = true
+        titleLabel.widthAnchor.constraint(equalToConstant: 300/375*w).isActive = true
+        titleLabel.heightAnchor.constraint(equalToConstant: 22/375*w).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 50/375*w).isActive = true
+        titleLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 37.5/375*w).isActive = true
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(exit))
         
         let f_image = UIImage(named: "Exit")
         let i_view = UIImageView(image: f_image)
-        i_view.frame = CGRect(x: 36, y: 50, width: 20, height: 20)
+        i_view.frame = CGRect(x: 36/375*w, y: 50/375*w, width: 20/375*w, height: 20/375*w)
         i_view.clipsToBounds = true
         i_view.isUserInteractionEnabled = true
         i_view.contentMode = .scaleAspectFill
