@@ -74,6 +74,7 @@ class CreditsViewController: UIViewController {
         contentLabel.widthAnchor.constraint (equalTo: view.widthAnchor).isActive = true;
         
         view.bringSubviewToFront(cancelButton);
+        cancelButton.isUserInteractionEnabled = true;
     }
     
     @objc func cancel ()
