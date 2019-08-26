@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import LBTAComponents
 
 class NewsPageTableViewCell: UITableViewCell {
     let w = UIScreen.main.bounds.width
@@ -14,7 +15,7 @@ class NewsPageTableViewCell: UITableViewCell {
     var article:Article? {
         didSet {
             guard let articleItem = article else {return}
-            img.image = articleItem.img
+            img.loadImage(urlString: articleItem.img)
             titleLabel.text = articleItem.title
             authorLabel.text = "by " + articleItem.author
             genreLabel.text = articleItem.genre.uppercased()
@@ -22,11 +23,12 @@ class NewsPageTableViewCell: UITableViewCell {
         }
     }
     
-    let img: UIImageView = {
-        let img = UIImageView()
+    let img: CachedImageView = {
+        let img = CachedImageView()
         img.contentMode = .scaleAspectFill
         img.translatesAutoresizingMaskIntoConstraints = false
         img.clipsToBounds = true
+        img.image = #imageLiteral(resourceName: "entryScreenMountainImage")
         return img
     }()
     

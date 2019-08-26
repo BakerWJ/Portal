@@ -59,8 +59,9 @@
 		CE3A513C22E8F3E90056E536 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3A513B22E8F3E90056E536 /* NewsViewController.swift */; };
 		CE69342D230C805400006C3F /* PublicationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE69342C230C805400006C3F /* PublicationViewController.swift */; };
 		CE69342F230C8E2D00006C3F /* PublicationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE69342E230C8E2D00006C3F /* PublicationTableViewCell.swift */; };
+		CE8F9B8C2312E51100EE4B54 /* Article+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8F9B8A2312E51100EE4B54 /* Article+CoreDataClass.swift */; };
+		CE8F9B8D2312E51100EE4B54 /* Article+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8F9B8B2312E51100EE4B54 /* Article+CoreDataProperties.swift */; };
 		CE927FF4227A0BCD00EE0A22 /* UserTimetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE927FEE227A0BCD00EE0A22 /* UserTimetable.swift */; };
-		CE927FF6227A0BCD00EE0A22 /* ArticleClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE927FF0227A0BCD00EE0A22 /* ArticleClass.swift */; };
 		CE927FF7227A0BCD00EE0A22 /* PeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE927FF1227A0BCD00EE0A22 /* PeriodView.swift */; };
 		CE927FF8227A0BCD00EE0A22 /* RepeatingTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE927FF2227A0BCD00EE0A22 /* RepeatingTimer.swift */; };
 		CE927FF9227A0BCD00EE0A22 /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE927FF3227A0BCD00EE0A22 /* ScheduleView.swift */; };
@@ -145,8 +146,9 @@
 		CE3A513B22E8F3E90056E536 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		CE69342C230C805400006C3F /* PublicationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationViewController.swift; sourceTree = "<group>"; };
 		CE69342E230C8E2D00006C3F /* PublicationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationTableViewCell.swift; sourceTree = "<group>"; };
+		CE8F9B8A2312E51100EE4B54 /* Article+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Article+CoreDataClass.swift"; sourceTree = "<group>"; };
+		CE8F9B8B2312E51100EE4B54 /* Article+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Article+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		CE927FEE227A0BCD00EE0A22 /* UserTimetable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTimetable.swift; sourceTree = "<group>"; };
-		CE927FF0227A0BCD00EE0A22 /* ArticleClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleClass.swift; sourceTree = "<group>"; };
 		CE927FF1227A0BCD00EE0A22 /* PeriodView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeriodView.swift; sourceTree = "<group>"; };
 		CE927FF2227A0BCD00EE0A22 /* RepeatingTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepeatingTimer.swift; sourceTree = "<group>"; };
 		CE927FF3227A0BCD00EE0A22 /* ScheduleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleView.swift; sourceTree = "<group>"; };
@@ -211,7 +213,6 @@
 		8A5F821F22D4505B00443020 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				CE927FF0227A0BCD00EE0A22 /* ArticleClass.swift */,
 				CE69342E230C8E2D00006C3F /* PublicationTableViewCell.swift */,
 				CEAD94512310818F001C2FDA /* NewsPageTableViewCell.swift */,
 			);
@@ -280,6 +281,8 @@
 		CEC26DF6227B3E9E00FFFC67 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				CE8F9B8A2312E51100EE4B54 /* Article+CoreDataClass.swift */,
+				CE8F9B8B2312E51100EE4B54 /* Article+CoreDataProperties.swift */,
 				8A5F823222D7A00B00443020 /* ToDo_Task+CoreDataClass.swift */,
 				8A5F823322D7A00B00443020 /* ToDo_Task+CoreDataProperties.swift */,
 				8A5F823422D7A00B00443020 /* ToDo_TaskTag+CoreDataClass.swift */,
@@ -580,6 +583,7 @@
 				CEC26E02227B3E9E00FFFC67 /* Timetable+CoreDataProperties.swift in Sources */,
 				8A1B7A0822BECAC7006FE52A /* HouseInfoViewController.swift in Sources */,
 				CEC26E04227B3E9E00FFFC67 /* FlipDay+CoreDataProperties.swift in Sources */,
+				CE8F9B8C2312E51100EE4B54 /* Article+CoreDataClass.swift in Sources */,
 				CEDC433222760BBE00A78890 /* AppDelegate.swift in Sources */,
 				CEC26E01227B3E9E00FFFC67 /* Schedule+CoreDataProperties.swift in Sources */,
 				8A445BB22301AC370020C29B /* AnimatingButtonView.swift in Sources */,
@@ -605,10 +609,10 @@
 				8A1CF7F42304914E000E2F6B /* TabBarToSettings.swift in Sources */,
 				31BB397F22E6B48F004D2DE5 /* AppEntryViewController.swift in Sources */,
 				8A1B79FC22BEC2AF006FE52A /* MainTabBarViewController.swift in Sources */,
+				CE8F9B8D2312E51100EE4B54 /* Article+CoreDataProperties.swift in Sources */,
 				CEAD94522310818F001C2FDA /* NewsPageTableViewCell.swift in Sources */,
 				8AEA785122851D5C0031B030 /* UserDataSettings.swift in Sources */,
 				CE927FF4227A0BCD00EE0A22 /* UserTimetable.swift in Sources */,
-				CE927FF6227A0BCD00EE0A22 /* ArticleClass.swift in Sources */,
 				8AA2F04422811FF90091EF0F /* HorizontalRightShiftTransition.swift in Sources */,
 				CE3A513C22E8F3E90056E536 /* NewsViewController.swift in Sources */,
 				8A1AEDCE22C4148F005282FD /* Event+CoreDataClass.swift in Sources */,

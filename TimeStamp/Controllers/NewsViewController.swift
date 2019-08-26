@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import LBTAComponents
 
 class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     let w = UIScreen.main.bounds.width
     
-    let a = Article(text: "First, there was the adjusted fighting weight of the rookie, as the team changed the reported number from 200 pounds....", author: "Baker Jackson", img: #imageLiteral(resourceName: "f_image"), title: "The Blue Jays are an Amazing Team.", genre: "Bad", likes: 6, hash: "bleh")
+    let articles = UserDataSettings.fetchAllArticles()
+    
+    var row: Int = 1
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
@@ -19,15 +22,82 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        row = indexPath.row
         performSegue(withIdentifier: "article", sender: self)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "articleCell", for: indexPath) as! NewsPageTableViewCell
-        cell.article = a
+        if (clicked == 0) {
+            cell.article = articles![newArticles[indexPath.row]]
+        }
+        else if (clicked == 1) {
+            cell.article = articles![siftArticles[indexPath.row]]
+        }
+        else {
+            cell.article = articles![popArticles[indexPath.row]]
+        }
         return cell
     }
     
+    let featureIndex: Int = {
+        let articles = UserDataSettings.fetchAllArticles()
+        var index = 0
+        guard let article = articles else {return index}
+        for i in 0 ..< article.count {
+            if (article[i].likes > article[index].likes) {
+                index = i
+            }
+        }
+        return index
+    }()
+    
+    lazy var popArticles: [Int] = {
+        var array: [Int] = [Int]()
+        guard let article = articles else {return [0, 0, 0, 0]}
+        for i in 0...4 {
+            var max = 0
+            if (featureIndex == 0) {
+                var max = 0
+            }
+            for i in 0 ..< article.count {
+                if (i != featureIndex) {
+                    if(article[i].likes > article[max].likes && !array.contains(i)) {
+                        max = i
+                    }
+                    else if (array.contains(max) && !array.contains(i)) {
+                        max = i
+                    }
+                }
+            }
+            array.append(max)
+        }
+        return array
+    }()
+    
+    lazy var siftArticles: [Int] = {
+        var array: [Int] = []
+        guard let article = articles else {return [0, 0, 0, 0]}
+        while(array.count < 4) {
+            let rand = Int.random(in: 0 ..< article.count)
+            if (!array.contains(rand)) {
+                array.append(rand)
+            }
+        }
+        return array
+    }()
+
+    lazy var newArticles: [Int] = {
+        var array: [Int] = [Int]()
+        guard let article = articles else {return [0, 0, 0, 0]}
+        let sortedarticles = article.sorted { (article1, article2) -> Bool in
+            return article1.timestamp as Date >= article2.timestamp as Date
+        }
+        for i in 0 ... 4 {
+            array.append(article.firstIndex(of: sortedarticles[i])!)
+        }
+        return array
+    }()
     
     var clicked: Int = 0
     var publication: Int = 0
@@ -338,7 +408,7 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         textLayer.numberOfLines = 0
         textLayer.textColor = UIColor.white
         textLayer.alpha = 1
-        let textContent = "How to design a better app."
+        let textContent = articles![featureIndex].title
         let textString = NSMutableAttributedString(string: textContent, attributes: [
             NSAttributedString.Key.font: UIFont(name: "SitkaBanner-Bold", size: 18/375 * w)!
             ])
@@ -374,7 +444,7 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         ctextLayer.numberOfLines = 0
         ctextLayer.textColor = UIColor.white
         ctextLayer.alpha = 1
-        let ctextContent = "ART & DESIGN"
+        let ctextContent = articles![featureIndex].genre
         let ctextString = NSMutableAttributedString(string: ctextContent, attributes: [
             NSAttributedString.Key.font: UIFont(name: "SitkaBanner", size: 14/375 * w)!
             ])
@@ -387,8 +457,9 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         ctextLayer.sizeToFit()
         self.scrollview.addSubview(ctextLayer)
         
-        let f_image = UIImage(named: "f_image")
-        let i_view = UIImageView(image: f_image)
+        let i_view = CachedImageView()
+        i_view.image = #imageLiteral(resourceName: "f_image")
+        i_view.loadImage(urlString: articles![featureIndex].img)
         i_view.frame = CGRect(x: 218/375 * w, y: 132/375 * w, width: 134/375 * w, height: 144/375 * w)
         i_view.layer.cornerRadius = 15/375 * w
         i_view.clipsToBounds = true
@@ -412,6 +483,7 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     @objc func filterNewTap() {
+        clicked = 0
         articlesView.reloadData()
         newLabel.alpha = 1
         popularLabel.alpha = 0.5
@@ -419,6 +491,7 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     @objc func filterSiftTap() {
+        clicked = 1
         articlesView.reloadData()
         newLabel.alpha = 0.5
         popularLabel.alpha = 0.5
@@ -426,6 +499,7 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     @objc func filterPopTap() {
+        clicked = 2
         articlesView.reloadData()
         newLabel.alpha = 0.5
         popularLabel.alpha = 1
@@ -434,15 +508,26 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
+        clicked = 4
         performSegue(withIdentifier: "article", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let article = Article(text: "The Liberal majority on the House of Commons ethic committee has voted down an opposition motion to call Conflict of Interest andEthics Commissioner Mario Dion to testify about his report concluding thatPrime Minister Justin Trudeau violated the Conflict of Interest Act over the SNC-Lavalinaffair. Liberal MP Steven MacKinnon said he and the other Liberal Msitting on the committee today voted down the motion because, following Dion'sreport and hours of testimony on the scandal over a five-week period, therewas nothing new to add to their understanding of the SNC-Lavalin affair.Theopposition's claim to simply wanting the facts is contradicted by the fact thatwhat they seek is found in the commissioner's report, MacKinnon said. The only conclusion that I, and members of this committee, can come to is that thopposition seeks to prolong this process for reasons of politics, reasons ofpartisan games, and it is for that reason … that we will be opposing this motion. Liberal MP Nathaniel Erskine-Smith broke ranks with his party and votedwith opposition MPs to call Dion before the committee — not, he said, becausehe thought Dion had more to tell, but because he wanted to challenge thecommissioner's findings, which he called flawed. I would like the commissionerto sit right there to answer how he got this so completely, completelywrong, Erskine-Smith said."
-            , author: "Baker Jackson", img: #imageLiteral(resourceName: "000"), title: "Jacky's Solution is bad and won't work hello hello hello", genre: "SPORTS", likes: 5, hash: "meh")
+        
         
         if let destinationVC = segue.destination as? ArticleViewController {
-            destinationVC.article = article
+            if (clicked == 0) {
+                destinationVC.article = articles?[newArticles[row]]
+            }
+            else if (clicked == 1) {
+                destinationVC.article = articles?[siftArticles[row]]
+            }
+            else if (clicked == 2) {
+                destinationVC.article = articles?[popArticles[row]]
+            }
+            else {
+                destinationVC.article = articles?[featureIndex]
+            }
             destinationVC.source = 1
         }
         if let destinationVC = segue.destination as? PublicationViewController {

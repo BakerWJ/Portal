@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import LBTAComponents
 
 class PublicationTableViewCell: UITableViewCell {
     let w = UIScreen.main.bounds.width
@@ -14,7 +15,7 @@ class PublicationTableViewCell: UITableViewCell {
     var article:Article? {
         didSet {
             guard let articleItem = article else {return}
-            img.image = articleItem.img
+            img.loadImage(urlString: articleItem.img)
             titleLabel.text = articleItem.title
             authorLabel.text = "by " + articleItem.author
             genreLabel.text = articleItem.genre.uppercased()
@@ -47,7 +48,7 @@ class PublicationTableViewCell: UITableViewCell {
         authorLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 274/375 * w).isActive = true
         authorLabel.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 35/375 * w).isActive = true
         
-        genreLabel.widthAnchor.constraint(equalToConstant: 59/375*w).isActive = true
+        genreLabel.widthAnchor.constraint(equalToConstant: 200/375*w).isActive = true
         genreLabel.heightAnchor.constraint(equalToConstant: 18/375 * w).isActive = true
         genreLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 14/375 * w).isActive = true
         genreLabel.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 35/375 * w).isActive = true
@@ -62,12 +63,13 @@ class PublicationTableViewCell: UITableViewCell {
         super.init(coder: aDecoder)
     }
     
-    let img: UIImageView = {
-        let img = UIImageView()
+    let img: CachedImageView = {
+        let img = CachedImageView()
         img.contentMode = .scaleAspectFill
         img.translatesAutoresizingMaskIntoConstraints = false
         img.layer.cornerRadius = 15/375 * UIScreen.main.bounds.width
         img.clipsToBounds = true
+        img.image = #imageLiteral(resourceName: "f_image")
         return img
     }()
     

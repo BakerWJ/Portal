@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import LBTAComponents
 
 class ArticleViewController: UIViewController {
     let w = UIScreen.main.bounds.width
@@ -15,7 +15,7 @@ class ArticleViewController: UIViewController {
     var article:Article? {
         didSet {
             guard let articleItem = article else {return}
-            img.image = articleItem.img
+            img.loadImage(urlString: articleItem.img)
             authorLabel.text = articleItem.author
             titleLabel.text = articleItem.title
             textLabel.text = articleItem.text
@@ -32,8 +32,9 @@ class ArticleViewController: UIViewController {
         return view
     }()
     
-    let img: UIImageView = {
-        let img = UIImageView()
+    let img: CachedImageView = {
+        let img = CachedImageView()
+        img.image = #imageLiteral(resourceName: "entryScreenCampImage")
         img.contentMode = .scaleAspectFill
         img.translatesAutoresizingMaskIntoConstraints = false
         img.layer.cornerRadius = 15/375*UIScreen.main.bounds.width

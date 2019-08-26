@@ -51,6 +51,7 @@ class MainPageViewController: UIViewController {
         return label;
     }()
     
+    
     //gets the user's google image
     lazy var userImage: UIImageView = {
         var image = UIImageView()
