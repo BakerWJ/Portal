@@ -69,17 +69,6 @@ class UserDataSettings
                     let imageLink = data["imageLink"] as? String ?? ""
                     let noImageKeyword = data["noImageKeyword"] as? String ?? ""
                     if (!noImageKeyword.isEmpty || !imageLink.isEmpty) {
-                        // var img = UIImage()
-                        if (noImageKeyword.isEmpty) {
-                            /*
-                            let url = URL(string: imageLink)
-                            let i = try? Data(contentsOf: url!)
-                            img = UIImage(data: i!)!
-                         */
-                        }
-                        else {
-                        }
-                        
                         if oldSet.contains(hash) //if this article was already in the phone, then just update it
                         {
                             if let article = oldMap [hash]
@@ -104,7 +93,19 @@ class UserDataSettings
                             article.hashVal = hash
                             article.title = title
                             article.text = content
-                            article.img = imageLink
+                            if (imageLink != "") {
+                                article.img = imageLink
+                            }
+                            else {
+                                article.img = "https://source.unsplash.com/daily?" + noImageKeyword
+                                print(article.img)
+                            }
+                            article.author = author
+                            article.genre = genre
+                            article.likes = likes
+                            article.hashVal = hash
+                            article.title = title
+                            article.text = content
                             article.timestamp = NSDate(timeIntervalSince1970: TimeInterval(timestamp.seconds))
                             article.uploaded = false //default is false because assume that the user did not like the article before
                             article.liked = false; //assume the user did not like the article before
