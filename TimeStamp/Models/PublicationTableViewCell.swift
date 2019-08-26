@@ -20,7 +20,12 @@ class PublicationTableViewCell: UITableViewCell {
             authorLabel.text = "by " + articleItem.author
             genreLabel.text = articleItem.genre.uppercased()
             contentLabel.text = articleItem.text
-            numLikesLabel.text = "\(articleItem.likes)"
+            var likes = articleItem.likes;
+            if (articleItem.liked != articleItem.uploaded)
+            {
+                likes += (articleItem.liked ? 1 : -1);
+            }
+            numLikesLabel.text = "\(likes)"
         }
     }
     

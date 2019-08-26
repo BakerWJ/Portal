@@ -94,7 +94,8 @@ class SettingsViewController: UIViewController {
     {
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default);
         self.navigationController?.navigationBar.shadowImage = UIImage();
-        self.navigationController?.navigationBar.isTranslucent = true;
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.view.addSubview(view);
         
         view.backgroundColor = UIColor.getColor(242, 242, 242);
         //self.setNeedsStatusBarAppearanceUpdate()

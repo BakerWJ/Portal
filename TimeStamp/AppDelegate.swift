@@ -134,14 +134,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
         
         //Initialize sign-in
         //need to later prompt the additionalScope for consent
-        let calendarScope = "https://www.googleapis.com/auth/calendar.events";
-        let calendarScope2 = "https://www.googleapis.com/auth/calendar";
-        let classroomScope = "https://www.googleapis.com/auth/classroom.coursework.me";
         GIDSignIn.sharedInstance()?.clientID = FirebaseApp.app()?.options.clientID;
         GIDSignIn.sharedInstance()?.delegate = self;
-        GIDSignIn.sharedInstance()?.scopes.append(calendarScope);
-        GIDSignIn.sharedInstance().scopes.append (calendarScope2);
-        GIDSignIn.sharedInstance().scopes.append (classroomScope);
         
         //After the app launches, it will check if the current schedule stored locally is up to date
         UserDataSettings.delegate = self;

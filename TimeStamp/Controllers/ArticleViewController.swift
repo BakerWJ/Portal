@@ -173,6 +173,7 @@ class ArticleViewController: UIViewController, FaveButtonDelegate {
         scrollview.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         scrollview.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         scrollview.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        scrollview.contentInsetAdjustmentBehavior = .never;
         scrollview.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
     
@@ -190,15 +191,7 @@ class ArticleViewController: UIViewController, FaveButtonDelegate {
 
     
     func faveButton(_ faveButton: FaveButton, didSelected selected: Bool) {
-        if article == nil
-        {
-            return;
-        }
-        article!.liked = selected;
-        if (article!.liked != article!.uploaded)
-        {
-            article!.likes += (article!.liked ? 1 : -1);
-        }
+        article?.liked = selected;
         CoreDataStack.saveContext()
     }
 }
