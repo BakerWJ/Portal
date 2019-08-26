@@ -132,8 +132,11 @@ class ArticleViewController: UIViewController {
         if source == 0 {
             self.performSegue(withIdentifier: "toPub", sender: self)
         }
-        else {
+        else if source == 1{
             self.performSegue(withIdentifier: "articleu", sender: self)
+        }
+        else if source == 2{
+            self.performSegue(withIdentifier: "returnToMain", sender: self)
         }
     }
     

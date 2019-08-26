@@ -31,7 +31,10 @@ class PublicationViewController: UIViewController, UITableViewDataSource, UITabl
     lazy var pubArticles: [Article] = {
         guard let article = articles else {return []}
         var array: [Article] = []
-        for i in article {
+        let sortedarticles = article.sorted { (article1, article2) -> Bool in
+            return article1.timestamp as Date >= article2.timestamp as Date
+        }
+        for i in sortedarticles {
             if i.publication == pub! {
                 array.append(i)
             }

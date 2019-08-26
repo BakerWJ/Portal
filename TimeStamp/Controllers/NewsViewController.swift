@@ -107,6 +107,7 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return view;
     }()
     
+    var featured: Int = 0
     var clicked: Int = 0
     var publication: Int = 0
     
@@ -156,7 +157,7 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         view.addSubview(scrollview)
         setupScroll()
         topText()
-        featured()
+        featuredView()
         publications()
         
         // featured articles code
@@ -389,7 +390,7 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.scrollview.addSubview(lLayer)
     }
     
-    func featured() {
+    func featuredView() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         let tap1 = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         let tap2 = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
@@ -522,7 +523,7 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
-        clicked = 4
+        featured = 1
         performSegue(withIdentifier: "article", sender: self)
     }
     
@@ -530,8 +531,10 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         
         if let destinationVC = segue.destination as? ArticleViewController {
-            if (clicked == 0) {
-                destinationVC.article = articles?[newArticles[row]]
+            print(featured)
+            if (featured == 1) {
+                featured = 0
+                destinationVC.article = articles?[featureIndex]
             }
             else if (clicked == 1) {
                 destinationVC.article = articles?[siftArticles[row]]
@@ -540,7 +543,7 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 destinationVC.article = articles?[popArticles[row]]
             }
             else {
-                destinationVC.article = articles?[featureIndex]
+                destinationVC.article = articles?[newArticles[row]]
             }
             destinationVC.source = 1
         }
