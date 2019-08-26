@@ -19,7 +19,7 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var row: Int = 1
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return articles?.count == nil ? 0 : articles!.count
+        return min (4, articles!.count);
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

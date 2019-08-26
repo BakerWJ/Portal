@@ -99,14 +99,11 @@ class AppEntryViewController: UIViewController {
         return view;
     }()
     
-    let blueImage : UIImage = {
-        var image = UIImage(named: "whiteWavyImage");
-        image = image?.imageWithColor(newColor: UIColor(red: 40/255.0, green: 73/255.0, blue: 164/255.0, alpha: 0.95));
-        if (image == nil)
-        {
-            image = UIImage(named: "whiteWavyImage")
-        }
-        return image!
+    let blueWavyImage: UIImageView = {
+        let image = UIImage (named: "whiteWavyImage")?.imageWithColor(newColor: UIColor(red: 40/255.0, green: 73/255.0, blue: 164/255.0, alpha: 0.95));
+        let view = UIImageView(image: image);
+        view.isUserInteractionEnabled = true;
+        return view
     }()
     
     lazy var welcomeLabel : UILabel = {
@@ -128,6 +125,8 @@ class AppEntryViewController: UIViewController {
     var holdOnTop = NSLayoutConstraint()
     var awaitsTop = NSLayoutConstraint()
     var readyTop = NSLayoutConstraint()
+    var blueTop = NSLayoutConstraint()
+    var blueHeight = NSLayoutConstraint()
     
     var animateExecuted = false;
     
@@ -169,6 +168,16 @@ class AppEntryViewController: UIViewController {
         whiteHeight.isActive = true;
         whiteWavyImage.widthAnchor.constraint(equalToConstant: 535.31/375.0*screenWidth).isActive = true;
         
+        view.addSubview (blueWavyImage);
+        blueWavyImage.translatesAutoresizingMaskIntoConstraints = false;
+        blueWavyImage.leadingAnchor.constraint (equalTo: view.leadingAnchor, constant: -112/375.0*screenWidth).isActive = true;
+        blueTop = blueWavyImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 511.99/812.0*screenHeight);
+        blueTop.isActive = true;
+        blueHeight = blueWavyImage.heightAnchor.constraint(equalToConstant: 900.01/812.0*screenHeight);
+        blueHeight.isActive = true;
+        blueWavyImage.widthAnchor.constraint(equalToConstant: 535.31/375.0*screenWidth).isActive = true;
+        blueWavyImage.layer.opacity = 0;
+        
         view.addSubview(rectangle);
         rectangle.translatesAutoresizingMaskIntoConstraints = false;
         rectangle.topAnchor.constraint (equalTo: view.topAnchor, constant: 612/812.0*screenHeight).isActive = true;
@@ -205,8 +214,8 @@ class AppEntryViewController: UIViewController {
         worldAwait.heightAnchor.constraint (equalTo: rectangle.heightAnchor).isActive = true;
         worldAwait.widthAnchor.constraint (equalTo: rectangle.widthAnchor).isActive = true;
         
-        whiteWavyImage.addSubview(welcomeLabel);
-        whiteWavyImage.clipsToBounds = true;
+        blueWavyImage.addSubview(welcomeLabel);
+        blueWavyImage.clipsToBounds = true;
         welcomeLabel.translatesAutoresizingMaskIntoConstraints = false;
         welcomeLabel.centerXAnchor.constraint (equalTo: view.centerXAnchor).isActive = true;
         welcomeLabel.topAnchor.constraint (equalTo: view.topAnchor, constant: 323.5/812.0*screenHeight).isActive = true;
@@ -214,7 +223,7 @@ class AppEntryViewController: UIViewController {
         welcomeLabel.heightAnchor.constraint(equalToConstant: 110/812.0*screenHeight).isActive = true;
         welcomeLabel.layer.opacity = 0;
         
-        whiteWavyImage.addSubview(letsgoButton);
+        blueWavyImage.addSubview(letsgoButton);
         letsgoButton.translatesAutoresizingMaskIntoConstraints = false;
         letsgoButton.centerXAnchor.constraint (equalTo: welcomeLabel.centerXAnchor).isActive = true;
         letsgoButton.topAnchor.constraint (equalTo: view.topAnchor, constant: 453/812.0*screenHeight).isActive = true;
@@ -259,24 +268,19 @@ class AppEntryViewController: UIViewController {
     
     private func toEnd()
     {
-        self.gettingReady.layer.opacity = 1;
-        UIView.animate(withDuration: 1.5, delay: 0, options: .curveLinear, animations: {
-            self.gettingReady.layer.opacity = 0;
-        }) { (Finished) in
-            UIView.transition(with: self.whiteWavyImage, duration: 1, options: [.transitionCrossDissolve, .curveEaseIn], animations:
-                {
-                    self.whiteWavyImage.image = self.blueImage;
-            }, completion: nil)
-            UIView.animate(withDuration: 1, delay: 0, options: .curveEaseIn, animations: {
-                self.trainLeading.constant = -889/375.0*self.screenWidth;
-                self.awaitsTop.constant = -112/812.0*self.screenHeight;
-                self.whiteHeight.constant += 300/812.0*self.screenHeight;
-                self.whiteTop.constant = -350/812.0*self.screenHeight;
-                self.view.layoutIfNeeded()
-                self.letsgoButton.layer.opacity = 1;
-                self.welcomeLabel.layer.opacity = 1;
-            }, completion: nil)
-        }
+        UIView.animate(withDuration: 1, delay: 1.5, options: .curveEaseIn, animations: {
+            self.trainLeading.constant = -889/375.0*self.screenWidth;
+            self.awaitsTop.constant = -112/812.0*self.screenHeight;
+            self.whiteHeight.constant += 2000/812.0*self.screenHeight;
+            self.whiteTop.constant = -350/812.0*self.screenHeight;
+            self.blueHeight.constant += 2000/812.0*self.screenHeight;
+            self.blueTop.constant = -350/812.0*self.screenHeight;
+            self.view.layoutIfNeeded()
+            self.letsgoButton.layer.opacity = 1;
+            self.welcomeLabel.layer.opacity = 1;
+            self.blueWavyImage.layer.opacity = 1;
+            self.whiteWavyImage.layer.opacity = 0;
+        }, completion: nil)
     }
     
     @objc func enterApp ()
