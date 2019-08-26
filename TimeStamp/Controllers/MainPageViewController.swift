@@ -11,6 +11,7 @@ import Firebase
 import CoreData
 import GoogleAPIClientForREST
 import GoogleSignIn
+import LBTAComponents
 
 class MainPageViewController: UIViewController {
    
@@ -21,6 +22,23 @@ class MainPageViewController: UIViewController {
     let changeTimetable = UserTimetable()
     //timer that keeps on refreshing the view each minute
     var timer: Timer?;
+    
+    
+    let featureArticle: Article = {
+        let articles = UserDataSettings.fetchAllArticles()
+        var index = Article()
+        var first = true
+        for i in articles! {
+            if (first) {
+                first = false
+                index = i
+            }
+            else if (i.likes > index.likes) {
+                index = i
+            }
+        }
+        return index
+    }()
     
     //gets the user's name, if it's not available, then it just says hello
     lazy var helloLabel: UILabel = {
@@ -51,6 +69,77 @@ class MainPageViewController: UIViewController {
         return label;
     }()
     
+    lazy var blueBubble: UIView = {
+        let layer = UIView()
+        layer.layer.cornerRadius = 15
+        layer.backgroundColor = UIColor(red: 0.46, green: 0.75, blue: 0.85, alpha: 1)
+        return layer
+    }()
+    
+    lazy var distortion: UIView = {
+        let layer = UIView()
+        var transform = CGAffineTransform.identity
+        transform = transform.rotated(by: -2.007128639793479)
+        layer.transform = transform
+        layer.layer.cornerRadius = 0
+        layer.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.18)
+        return layer
+    }()
+    
+    lazy var genreLabel: UILabel = {
+        let textLayer = UILabel()
+        textLayer.font = UIFont(name: "SitkaBanner", size: 25/375 * screenWidth)
+        textLayer.textColor = UIColor.white
+        textLayer.translatesAutoresizingMaskIntoConstraints = false
+        textLayer.numberOfLines = 1
+        textLayer.adjustsFontSizeToFitWidth = true
+        textLayer.minimumScaleFactor = 0.7
+        textLayer.text = featureArticle.genre
+        return textLayer
+    }()
+    
+    lazy var titleLabel: UILabel = {
+        let textLayer = UILabel()
+        textLayer.font = UIFont(name: "SitkaBanner-Bold", size: 25/375 * screenWidth)
+        textLayer.textColor = UIColor.white
+        textLayer.translatesAutoresizingMaskIntoConstraints = false
+        textLayer.numberOfLines = 2
+        textLayer.adjustsFontSizeToFitWidth = true
+        textLayer.minimumScaleFactor = 0.5
+        textLayer.text = featureArticle.title
+        return textLayer
+    }()
+    
+    lazy var readMoreBubble: UIView = {
+        let layer = UIView()
+        layer.layer.cornerRadius = 15
+        layer.layer.borderWidth = 2
+        layer.layer.borderColor = UIColor.white.cgColor
+        return layer
+    }()
+    
+    lazy var readMoreLabel: UILabel = {
+        let textLayer = UILabel()
+        textLayer.font = UIFont(name: "SitkaBanner-Bold", size: 25/375 * screenWidth)
+        textLayer.textColor = UIColor.white
+        textLayer.translatesAutoresizingMaskIntoConstraints = false
+        textLayer.numberOfLines = 1
+        textLayer.adjustsFontSizeToFitWidth = true
+        textLayer.minimumScaleFactor = 0.5
+        textLayer.text = "READ MORE"
+        return textLayer
+    }()
+    
+    lazy var featuredImage: CachedImageView = {
+        let img = CachedImageView()
+        img.contentMode = .scaleAspectFill
+        img.translatesAutoresizingMaskIntoConstraints = false
+        img.layer.cornerRadius = 15/375 * UIScreen.main.bounds.width
+        img.clipsToBounds = true
+        img.image = #imageLiteral(resourceName: "f_image")
+        img.loadImage(urlString: featureArticle.img)
+        return img
+    }()
     
     //gets the user's google image
     lazy var userImage: UIImageView = {
@@ -167,10 +256,10 @@ class MainPageViewController: UIViewController {
         //the top article label
         view.addSubview(topArticleLabel);
         topArticleLabel.translatesAutoresizingMaskIntoConstraints = false;
-        topArticleLabel.topAnchor.constraint (equalTo: view.topAnchor, constant: 232/812.0*screenHeight).isActive = true;
-        topArticleLabel.leadingAnchor.constraint (equalTo: view.leadingAnchor, constant: 34/375.0*screenWidth).isActive = true;
-        topArticleLabel.heightAnchor.constraint (equalToConstant: 30/812.0*screenHeight).isActive = true;
-        topArticleLabel.widthAnchor.constraint (equalToConstant: 200/375.0*screenHeight).isActive = true;
+        topArticleLabel.topAnchor.constraint (equalTo: view.topAnchor, constant: 270/812.0*screenHeight).isActive = true;
+        topArticleLabel.leadingAnchor.constraint (equalTo: view.leadingAnchor, constant: 27/375.0*screenWidth).isActive = true;
+        topArticleLabel.heightAnchor.constraint (equalToConstant: 40/812.0*screenHeight).isActive = true;
+        topArticleLabel.widthAnchor.constraint (equalToConstant: 93/375.0*screenHeight).isActive = true;
         
         view.addSubview(nextFewDaysView);
         nextFewDaysView.translatesAutoresizingMaskIntoConstraints = false;
@@ -179,6 +268,50 @@ class MainPageViewController: UIViewController {
         nextFewDaysView.topAnchor.constraint (equalTo: view.topAnchor, constant: 499/812.0*screenHeight).isActive = true;
         nextFewDaysView.heightAnchor.constraint (equalToConstant: 207/812.0*screenHeight).isActive = true;
         nextFewDaysView.widthAnchor.constraint (equalToConstant: 335/375.0*screenWidth).isActive = true;
+        
+        
+        view.addSubview(blueBubble)
+        blueBubble.widthAnchor.constraint(equalToConstant: 190*375/screenWidth).isActive = true
+        blueBubble.heightAnchor.constraint(equalToConstant: 144*812/screenHeight).isActive = true
+        blueBubble.topAnchor.constraint(equalTo: view.topAnchor, constant: 302*812/screenHeight).isActive = true
+        blueBubble.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 24*375/screenWidth).isActive = true
+        
+        view.addSubview(distortion)
+        distortion.widthAnchor.constraint(equalToConstant: 73.27*375/screenWidth).isActive = true
+        distortion.heightAnchor.constraint(equalToConstant: 90.47*812/screenHeight).isActive = true
+        distortion.topAnchor.constraint(equalTo: view.topAnchor, constant: 355.53*812/screenHeight).isActive = true
+        distortion.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 140.73*375/screenWidth).isActive = true
+        
+        view.addSubview(genreLabel)
+        genreLabel.widthAnchor.constraint(equalToConstant: 150*375/screenWidth).isActive = true
+        genreLabel.heightAnchor.constraint(equalToConstant: 14*812/screenHeight).isActive = true
+        genreLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 329*812/screenHeight).isActive = true
+        genreLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 46*375/screenWidth).isActive = true
+        
+        view.addSubview(titleLabel)
+        titleLabel.widthAnchor.constraint(equalToConstant: 122*375/screenWidth).isActive = true
+        titleLabel.heightAnchor.constraint(equalToConstant: 36*812/screenHeight).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 350*812/screenHeight).isActive = true
+        titleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 44*375/screenWidth).isActive = true
+        
+        view.addSubview(readMoreLabel)
+        readMoreLabel.widthAnchor.constraint(equalToConstant: 75*375/screenWidth).isActive = true
+        readMoreLabel.heightAnchor.constraint(equalToConstant: 14*812/screenHeight).isActive = true
+        readMoreLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 407*812/screenHeight).isActive = true
+        readMoreLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 63*375/screenWidth).isActive = true
+        
+        view.addSubview(readMoreBubble)
+        readMoreBubble.widthAnchor.constraint(equalToConstant: 121*375/screenWidth).isActive = true
+        readMoreBubble.heightAnchor.constraint(equalToConstant: 27*812/screenHeight).isActive = true
+        readMoreBubble.topAnchor.constraint(equalTo: view.topAnchor, constant: 400*812/screenHeight).isActive = true
+        readMoreBubble.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 40*375/screenWidth).isActive = true
+        
+        view.addSubview(featuredImage)
+        featuredImage.widthAnchor.constraint(equalToConstant: 134*375/screenWidth).isActive = true
+        featuredImage.heightAnchor.constraint(equalToConstant: 144*812/screenHeight).isActive = true
+        featuredImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 302*812/screenHeight).isActive = true
+        featuredImage.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 224*375/screenWidth).isActive = true
+        
     }
     
     //delegate method for upcoming days view (called when one of the days is pressed to go to the corresponding day in the schedule tab
