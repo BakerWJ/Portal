@@ -19,7 +19,7 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var row: Int = 1
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return min(4, articles!.count)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -231,7 +231,7 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         DispatchQueue.main.async {
             self.articlesView.reloadData()
             self.articlesView.layoutIfNeeded()
-            self.articlesView.heightAnchor.constraint (equalToConstant: self.articlesView.rowHeight*CGFloat(4)).isActive = true;
+            self.articlesView.heightAnchor.constraint (equalToConstant: self.articlesView.rowHeight*CGFloat(min(4, articles!.count))).isActive = true;
         }
         
         view.addSubview(blockView);
