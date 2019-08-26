@@ -247,7 +247,7 @@ class MainPageViewController: UIViewController {
         nextClassView.translatesAutoresizingMaskIntoConstraints = false;
         nextClassCenter = nextClassView.centerXAnchor.constraint (equalTo: view.centerXAnchor)
         nextClassCenter.isActive = true;
-        nextClassView.topAnchor.constraint (equalTo: view.topAnchor, constant: 160/812.0*screenHeight).isActive = true;
+        nextClassView.topAnchor.constraint (equalTo: view.topAnchor, constant: 171/812.0*screenHeight).isActive = true;
         nextClassView.heightAnchor.constraint(equalToConstant: 54/812.0*screenHeight).isActive = true;
         nextClassView.widthAnchor.constraint (equalToConstant: 334/375.0*screenWidth).isActive = true;
         nextClassView.layoutIfNeeded();
@@ -256,7 +256,7 @@ class MainPageViewController: UIViewController {
         //the top article label
         view.addSubview(topArticleLabel);
         topArticleLabel.translatesAutoresizingMaskIntoConstraints = false;
-        topArticleLabel.topAnchor.constraint (equalTo: view.topAnchor, constant: 270/812.0*screenHeight).isActive = true;
+        topArticleLabel.topAnchor.constraint (equalTo: view.topAnchor, constant: 260/812.0*screenHeight).isActive = true;
         topArticleLabel.leadingAnchor.constraint (equalTo: view.leadingAnchor, constant: 27/375.0*screenWidth).isActive = true;
         topArticleLabel.heightAnchor.constraint (equalToConstant: 40/812.0*screenHeight).isActive = true;
         topArticleLabel.widthAnchor.constraint (equalToConstant: 93/375.0*screenHeight).isActive = true;
@@ -271,46 +271,53 @@ class MainPageViewController: UIViewController {
         
         
         view.addSubview(blueBubble)
-        blueBubble.widthAnchor.constraint(equalToConstant: 190*375/screenWidth).isActive = true
-        blueBubble.heightAnchor.constraint(equalToConstant: 144*812/screenHeight).isActive = true
-        blueBubble.topAnchor.constraint(equalTo: view.topAnchor, constant: 302*812/screenHeight).isActive = true
-        blueBubble.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 24*375/screenWidth).isActive = true
+        blueBubble.translatesAutoresizingMaskIntoConstraints = false;
+        blueBubble.widthAnchor.constraint(equalToConstant: 194/375.0*screenWidth).isActive = true
+        blueBubble.heightAnchor.constraint(equalToConstant: 144/812.0*screenHeight).isActive = true
+        blueBubble.topAnchor.constraint(equalTo: view.topAnchor, constant: 302/812.0*screenHeight).isActive = true
+        blueBubble.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20/375.0*screenWidth).isActive = true
         
         view.addSubview(distortion)
-        distortion.widthAnchor.constraint(equalToConstant: 73.27*375/screenWidth).isActive = true
-        distortion.heightAnchor.constraint(equalToConstant: 90.47*812/screenHeight).isActive = true
-        distortion.topAnchor.constraint(equalTo: view.topAnchor, constant: 355.53*812/screenHeight).isActive = true
-        distortion.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 140.73*375/screenWidth).isActive = true
+        distortion.translatesAutoresizingMaskIntoConstraints = false;
+        distortion.widthAnchor.constraint(equalToConstant: 73.27/375*screenWidth).isActive = true
+        distortion.heightAnchor.constraint(equalToConstant: 90.47/812*screenHeight).isActive = true
+        distortion.topAnchor.constraint(equalTo: view.topAnchor, constant: 355.53/812*screenHeight).isActive = true
+        distortion.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 140.73/375*screenWidth).isActive = true
         
         view.addSubview(genreLabel)
-        genreLabel.widthAnchor.constraint(equalToConstant: 150*375/screenWidth).isActive = true
-        genreLabel.heightAnchor.constraint(equalToConstant: 14*812/screenHeight).isActive = true
-        genreLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 329*812/screenHeight).isActive = true
-        genreLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 46*375/screenWidth).isActive = true
+        genreLabel.translatesAutoresizingMaskIntoConstraints = false;
+        genreLabel.widthAnchor.constraint(equalToConstant: 150/375*screenWidth).isActive = true
+        genreLabel.heightAnchor.constraint(equalToConstant: 14/812*screenHeight).isActive = true
+        genreLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 329/812*screenHeight).isActive = true
+        genreLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 46/375.0*screenWidth).isActive = true
         
         view.addSubview(titleLabel)
-        titleLabel.widthAnchor.constraint(equalToConstant: 122*375/screenWidth).isActive = true
-        titleLabel.heightAnchor.constraint(equalToConstant: 36*812/screenHeight).isActive = true
-        titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 350*812/screenHeight).isActive = true
-        titleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 44*375/screenWidth).isActive = true
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false;
+        titleLabel.widthAnchor.constraint(equalToConstant: 122/375.0*screenWidth).isActive = true
+        titleLabel.heightAnchor.constraint(equalToConstant: 36/812.0*screenHeight).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 350/812.0*screenHeight).isActive = true
+        titleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 44/375.0*screenWidth).isActive = true
         
         view.addSubview(readMoreLabel)
-        readMoreLabel.widthAnchor.constraint(equalToConstant: 75*375/screenWidth).isActive = true
-        readMoreLabel.heightAnchor.constraint(equalToConstant: 14*812/screenHeight).isActive = true
-        readMoreLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 407*812/screenHeight).isActive = true
-        readMoreLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 63*375/screenWidth).isActive = true
+        readMoreLabel.translatesAutoresizingMaskIntoConstraints = false;
+        readMoreLabel.widthAnchor.constraint(equalToConstant: 75/375.0*screenWidth).isActive = true
+        readMoreLabel.heightAnchor.constraint(equalToConstant: 14/812.0*screenHeight).isActive = true
+        readMoreLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 407/812.0*screenHeight).isActive = true
+        readMoreLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 63/375.0*screenWidth).isActive = true
         
         view.addSubview(readMoreBubble)
-        readMoreBubble.widthAnchor.constraint(equalToConstant: 121*375/screenWidth).isActive = true
-        readMoreBubble.heightAnchor.constraint(equalToConstant: 27*812/screenHeight).isActive = true
-        readMoreBubble.topAnchor.constraint(equalTo: view.topAnchor, constant: 400*812/screenHeight).isActive = true
-        readMoreBubble.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 40*375/screenWidth).isActive = true
+        readMoreBubble.translatesAutoresizingMaskIntoConstraints = false;
+        readMoreBubble.widthAnchor.constraint(equalToConstant: 121/375.0*screenWidth).isActive = true
+        readMoreBubble.heightAnchor.constraint(equalToConstant: 27/812.0*screenHeight).isActive = true
+        readMoreBubble.topAnchor.constraint(equalTo: view.topAnchor, constant: 400/812.0*screenHeight).isActive = true
+        readMoreBubble.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 40/375.0*screenWidth).isActive = true
         
         view.addSubview(featuredImage)
-        featuredImage.widthAnchor.constraint(equalToConstant: 134*375/screenWidth).isActive = true
-        featuredImage.heightAnchor.constraint(equalToConstant: 144*812/screenHeight).isActive = true
-        featuredImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 302*812/screenHeight).isActive = true
-        featuredImage.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 224*375/screenWidth).isActive = true
+        featuredImage.translatesAutoresizingMaskIntoConstraints = false;
+        featuredImage.widthAnchor.constraint(equalToConstant: 134/375.0*screenWidth).isActive = true
+        featuredImage.heightAnchor.constraint(equalToConstant: 144/812.0*screenHeight).isActive = true
+        featuredImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 302/812.0*screenHeight).isActive = true
+        featuredImage.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 224/375.0*screenWidth).isActive = true
         
     }
     
