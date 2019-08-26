@@ -142,6 +142,7 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewWillAppear(animated);
         self.refresh()
         timer = Timer.scheduledTimer(timeInterval: 600, target: self, selector: #selector (fireTimer), userInfo: nil, repeats: true);
+        UserDataSettings.updateAll()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
