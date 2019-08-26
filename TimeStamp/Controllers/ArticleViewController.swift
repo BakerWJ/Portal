@@ -64,7 +64,6 @@ class ArticleViewController: UIViewController, FaveButtonDelegate {
         img.image = #imageLiteral(resourceName: "entryScreenCampImage")
         img.contentMode = .scaleAspectFill
         img.translatesAutoresizingMaskIntoConstraints = false
-        img.layer.cornerRadius = 15/375*UIScreen.main.bounds.width
         img.clipsToBounds = true
         return img
     }()
@@ -114,7 +113,7 @@ class ArticleViewController: UIViewController, FaveButtonDelegate {
         view.addSubview(scrollview)
         setupScroll()
         self.scrollview.addSubview(img)
-        let layer = UIView(frame: CGRect(x: -0.21/375*w, y: 364/375*w, width: 375/375*w, height: 866/375*w))
+        let layer = UIView(frame: CGRect(x: 0/375*w, y: 364/375*w, width: 375/375*w, height: 866/375*w))
         layer.layer.cornerRadius = 15/375*w
         layer.backgroundColor = UIColor.white
         self.scrollview.addSubview(layer)
@@ -142,7 +141,7 @@ class ArticleViewController: UIViewController, FaveButtonDelegate {
         textLabel.layoutIfNeeded()
         textLabel.heightAnchor.constraint(equalToConstant: textLabel.frame.height).isActive = true
         
-        img.topAnchor.constraint(equalTo: self.scrollview.topAnchor, constant: -7/375*w).isActive = true
+        img.topAnchor.constraint(equalTo: self.scrollview.topAnchor, constant: 0/375*w).isActive = true
         img.leftAnchor.constraint(equalTo: self.scrollview.leftAnchor, constant: 0).isActive = true
         img.widthAnchor.constraint(equalToConstant: 419/375*w).isActive = true
         img.heightAnchor.constraint(equalToConstant: 395/375*w).isActive = true
