@@ -113,6 +113,9 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="2cW-n4-hb0"/>
                     <navigationItem key="navigationItem" id="Hyc-BD-YaF"/>
+                    <connections>
+                        <segue destination="BwQ-Ox-5Gd" kind="presentation" identifier="mainToArticle" id="J0n-pr-kuO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hHd-6b-UJa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -167,6 +170,7 @@
                     <connections>
                         <segue destination="qoc-x0-Q6V" kind="unwind" identifier="articleu" customClass="HorizontalRightShiftTransitionUnwind" customModule="TimeStamp" customModuleProvider="target" unwindAction="returnFromArticleWithSender:" id="a86-8a-4jX"/>
                         <segue destination="qoc-x0-Q6V" kind="unwind" identifier="toPub" unwindAction="returnToPubWithSender:" id="eE6-Br-XvQ"/>
+                        <segue destination="qoc-x0-Q6V" kind="unwind" identifier="returnToMain" unwindAction="returnToMainWithSender:" id="M2V-7N-JNr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u24-NX-vUh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -195,7 +199,6 @@
         <!--Item-->
         <scene sceneID="JVS-0F-5WD">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JJu-Kq-AfW" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="Iif-jy-KB6" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="5Fs-k0-qUx"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="kVJ-gs-JsL">
@@ -206,6 +209,7 @@
                         <segue destination="oFc-jc-KNZ" kind="relationship" relationship="rootViewController" id="JQy-Sy-uvX"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JJu-Kq-AfW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1681" y="2369"/>
         </scene>
@@ -316,6 +320,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="bQ3-U0-0AC"/>
-        <segue reference="qLb-2Y-kps"/>
+        <segue reference="J0n-pr-kuO"/>
     </inferredMetricsTieBreakers>
 </document>
