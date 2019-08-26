@@ -231,7 +231,7 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         DispatchQueue.main.async {
             self.articlesView.reloadData()
             self.articlesView.layoutIfNeeded()
-            self.articlesView.heightAnchor.constraint (equalToConstant: self.articlesView.rowHeight*CGFloat(min(4, articles!.count))).isActive = true;
+            self.articlesView.heightAnchor.constraint (equalToConstant: self.articlesView.rowHeight*CGFloat(min(4, self.articles!.count))).isActive = true;
         }
         
         view.addSubview(blockView);
