@@ -236,6 +236,7 @@ class DailyScheduleCell: UICollectionViewCell, UIPickerViewDelegate, UIPickerVie
         var acceptableValues = [Int]();
         if (settings.generalNotifications) {acceptableValues.append(1);}
         if (settings.houseNotifications) {acceptableValues.append (2);}
+        
         wantedEvents.removeAll()
         for event in events
         {

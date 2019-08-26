@@ -30,6 +30,7 @@
 		8A1CF7F223046391000E2F6B /* SettingsDaysBeforeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1CF7F123046391000E2F6B /* SettingsDaysBeforeSlider.swift */; };
 		8A1CF7F42304914E000E2F6B /* TabBarToSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1CF7F32304914E000E2F6B /* TabBarToSettings.swift */; };
 		8A1CF7F623049165000E2F6B /* TabBarToSettingsUnwind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1CF7F523049165000E2F6B /* TabBarToSettingsUnwind.swift */; };
+		8A1CF80B23135968000E2F6B /* CreditsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1CF80A23135968000E2F6B /* CreditsViewController.swift */; };
 		8A445BB22301AC370020C29B /* AnimatingButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A445BB12301AC370020C29B /* AnimatingButtonView.swift */; };
 		8A445BB42301ED810020C29B /* LogInToGetStarted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A445BB32301ED810020C29B /* LogInToGetStarted.swift */; };
 		8A445BB6230216C20020C29B /* GetStartedToSetUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A445BB5230216C20020C29B /* GetStartedToSetUp.swift */; };
@@ -117,6 +118,7 @@
 		8A1CF7F123046391000E2F6B /* SettingsDaysBeforeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDaysBeforeSlider.swift; sourceTree = "<group>"; };
 		8A1CF7F32304914E000E2F6B /* TabBarToSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarToSettings.swift; sourceTree = "<group>"; };
 		8A1CF7F523049165000E2F6B /* TabBarToSettingsUnwind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarToSettingsUnwind.swift; sourceTree = "<group>"; };
+		8A1CF80A23135968000E2F6B /* CreditsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsViewController.swift; sourceTree = "<group>"; };
 		8A445BB12301AC370020C29B /* AnimatingButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatingButtonView.swift; sourceTree = "<group>"; };
 		8A445BB32301ED810020C29B /* LogInToGetStarted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInToGetStarted.swift; sourceTree = "<group>"; };
 		8A445BB5230216C20020C29B /* GetStartedToSetUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartedToSetUp.swift; sourceTree = "<group>"; };
@@ -356,6 +358,7 @@
 				CE3A513B22E8F3E90056E536 /* NewsViewController.swift */,
 				8A1B79F922BEC0C6006FE52A /* SignInViewController.swift */,
 				8A1B79FB22BEC2AF006FE52A /* MainTabBarViewController.swift */,
+				8A1CF80A23135968000E2F6B /* CreditsViewController.swift */,
 				31BB397E22E6B48F004D2DE5 /* AppEntryViewController.swift */,
 				CE69342C230C805400006C3F /* PublicationViewController.swift */,
 			);
@@ -553,6 +556,7 @@
 				CE927FF9227A0BCD00EE0A22 /* ScheduleView.swift in Sources */,
 				8A1CF7EE23044E49000E2F6B /* SettingsNotifOnOffButtonView.swift in Sources */,
 				8AD8621C22984A9600412EFF /* VerticalUpShiftTransitionUnwind.swift in Sources */,
+				8A1CF80B23135968000E2F6B /* CreditsViewController.swift in Sources */,
 				CEDC433422760BBE00A78890 /* GetStartedViewController.swift in Sources */,
 				314635BB22EB8A5000F522B4 /* NextPeriodView.swift in Sources */,
 				CEDC435F22775DFA00A78890 /* SettingsViewController.swift in Sources */,

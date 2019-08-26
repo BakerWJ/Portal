@@ -381,6 +381,8 @@ class UserDataSettings
                         let notes = data ["additionalNotes"] as? [String] ?? [];
                         let corres = data ["correspond"] as? [Int] ?? [];
                         
+                        
+                        
                         //uses the Schedule Entity to create a Schedule Object and inserts it into the Core Data Stack managed
                         //Object Context
                         let schedule = Schedule(entity: entitySchedule, insertInto: CoreDataStack.managedObjectContext)

@@ -49,14 +49,14 @@ class TabBarToSettings: UIStoryboardSegue {
                 toVC.view.layer.opacity = 1;
                 window.layoutIfNeeded();
                 tempView.layer.cornerRadius = tempView.frame.height/2;
-                fromVC.settingsButton.frame = fromVC.settingsButton.frame.offsetBy(dx: self.screenWidth, dy: 0);
+                //fromVC.settingsButton.frame = fromVC.settingsButton.frame.offsetBy(dx: self.screenWidth, dy: 0);
             }) {
                 (Finished) in
                 if (Finished)
                 {
                     window.insertSubview(toVC.view, aboveSubview: tempView);
                     self.source.present(self.destination, animated: false, completion: nil)
-                    fromVC.settingsButton.frame = fromVC.settingsButton.frame.offsetBy(dx: -self.screenWidth, dy: 0);
+                    //fromVC.settingsButton.frame = fromVC.settingsButton.frame.offsetBy(dx: -self.screenWidth, dy: 0);
                     tempViewWidth.isActive = false;
                 }
             }

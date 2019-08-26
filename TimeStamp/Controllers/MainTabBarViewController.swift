@@ -20,7 +20,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
     var unwind = false;
     
     //this is the button to be clicked when go to settings
-    lazy var settingsButton: UIView = {
+    /*lazy var settingsButton: UIView = {
         let view = UIView ();
         //adds the image
         view.frame = CGRect (x: 284/375.0*screenWidth, y: 734/812.0*screenHeight, width: 51/375.0*screenWidth, height: 51/375.0*screenWidth);
@@ -37,7 +37,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         let gestureRecognizer = UITapGestureRecognizer (target: self, action: #selector (toSettings));
         view.addGestureRecognizer(gestureRecognizer);
         return view;
-    }()
+    }()*/
     
     lazy var underline: UIView = {
         let view = UIView ();
@@ -49,6 +49,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
     let homeIcon = UIImageView (image: UIImage (named: "homeTabBarIcon"));
     let scheduleIcon = UIImageView (image: UIImage (named: "scheduleTabBarIcon"));
     let newsIcon = UIImageView (image: UIImage (named: "newsTabBarIcon"));
+    let settingsIcon = UIImageView(image: UIImage(named: "settingsTabBarIcon"));
     var iconImages = [UIImageView] ();
     
     override var selectedIndex: Int {
@@ -77,7 +78,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
     //programmatically changing tabs
     private func tabChangedTo (index: Int)
     {
-        for x in 0..<3
+        for x in 0..<4
         {
             if x == index
             {
@@ -111,7 +112,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
     //does some thing when a certain tabbaritem is selected (passed in as a parameter)
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         let index = tabBar.items?.firstIndex(of: item);
-        for x in 0..<3
+        for x in 0..<4
         {
             if x == index
             {
@@ -148,7 +149,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
     
     private func initialsetup ()
     {
-        view.addSubview(settingsButton);
+        //view.addSubview(settingsButton);
         setTabBarItems()
         setUpTabBarIcons();
         setUpUnderline()
@@ -160,7 +161,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
     private func update ()
     {
         //tabBar positioning
-        tabBar.frame = CGRect(x: 34/375.0*screenWidth, y: 737/812.0*screenHeight, width: 217/375.0*screenWidth, height: 46/375.0*screenWidth);
+        tabBar.frame = CGRect(x: 35.375/375.0*screenWidth, y: 727/812.0*screenHeight, width: 304.25/375.0*screenWidth, height: 52/375.0*screenWidth);
         //makes the tab bar transparent
         tabBar.backgroundImage = UIImage();
         tabBar.shadowImage = UIImage ();
@@ -188,17 +189,20 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         iconImages.append (homeIcon);
         iconImages.append (scheduleIcon);
         iconImages.append (newsIcon);
+        iconImages.append (settingsIcon);
         for each in iconImages
         {
             view.addSubview(each);
         }
-        homeIcon.frame.size = CGSize (width: 20/375.0*screenWidth, height: 20/375.0*screenWidth);
-        scheduleIcon.frame.size = CGSize (width: 45/375.0*screenWidth, height: 45/375.0*screenWidth);
-        newsIcon.frame.size = CGSize (width: 45/375.0*screenWidth, height: 45/375.0*screenWidth);
+        homeIcon.frame.size = CGSize (width: 22/375.0*screenWidth, height: 22/375.0*screenWidth);
+        scheduleIcon.frame.size = CGSize (width: 47/375.0*screenWidth, height: 47/375.0*screenWidth);
+        newsIcon.frame.size = CGSize (width: 47/375.0*screenWidth, height: 47/375.0*screenWidth);
+        settingsIcon.frame.size = CGSize(width: 22/375.0*screenWidth, height: 22/375.0*screenWidth);
         
-        homeIcon.frame.origin = CGPoint (x: 76/375.0*screenWidth, y: 748.5/812.0*screenHeight);
-        scheduleIcon.frame.origin = CGPoint (x: 122.5/375.0*screenWidth, y: 736/812.0*screenHeight);
-        newsIcon.frame.origin = CGPoint (x: 180.5/375.0*screenWidth, y: 736/812.0*screenHeight);
+        homeIcon.frame.origin = CGPoint (x: 71.125/375.0*screenWidth, y: 745.5/812.0*screenHeight);
+        scheduleIcon.frame.origin = CGPoint (x: 128.875/375.0*screenWidth, y: 730/812.0*screenHeight);
+        newsIcon.frame.origin = CGPoint (x: 199.125/375.0*screenWidth, y: 730/812.0*screenHeight);
+        settingsIcon.frame.origin = CGPoint (x: 281.875/375.0*screenWidth, y: 745.5/812.0*screenHeight);
     }
     
     private func setUpUnderline ()
@@ -228,20 +232,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         // Pass the selected object to the new view controller.
     }
     */
-    @objc func toSettings ()
-    {
-        performSegue (withIdentifier: "toSettings", sender: self);
-    }
-    
     @IBAction func returnFromToDoList (sender: UIStoryboardSegue) {}
-    @IBAction func returnFromSettings (sender: UIStoryboardSegue)
-    {
-        if (unwind)
-        {
-            unwind = false;
-            performSegue(withIdentifier: "fromTabBar", sender: self.tabBarController);
-        }
-    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let dest = segue.destination as? SignInViewController
@@ -312,7 +303,7 @@ class TabBarTransition: NSObject, UIViewControllerAnimatedTransitioning {
                         source.view.layoutIfNeeded();
                         source.profileTop.constant = -self.screenHeight/2;
                     }
-                    else if (dest.topViewController as? NewsViewController) != nil
+                    else if (dest.topViewController as? NewsViewController) != nil || dest.topViewController as? SettingsViewController != nil
                     {
                         source.profileTop.constant = 0;
                         source.profileLeading.constant = 0;
@@ -331,7 +322,7 @@ class TabBarTransition: NSObject, UIViewControllerAnimatedTransitioning {
                         dest.view.layoutIfNeeded()
                         dest.profileTop.constant = 0;
                     }
-                    else if (source.topViewController as? NewsViewController) != nil
+                    else if (source.topViewController as? NewsViewController) != nil || source.topViewController as? SettingsViewController != nil
                     {
                         dest.profileLeading.constant = -self.screenWidth;
                         dest.profileTop.constant = 0;

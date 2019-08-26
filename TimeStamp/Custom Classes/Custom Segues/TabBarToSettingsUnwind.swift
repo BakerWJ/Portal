@@ -30,12 +30,12 @@ class TabBarToSettingsUnwind: UIStoryboardSegue {
             tempView.layer.cornerRadius = tempView.frame.height/2;
             tempViewHeight.constant = 51/375.0*screenWidth;
             
-            toVC.settingsButton.frame = toVC.settingsButton.frame.offsetBy(dx: screenWidth, dy: 0);
+            //toVC.settingsButton.frame = toVC.settingsButton.frame.offsetBy(dx: screenWidth, dy: 0);
             fromVC.view.layer.opacity = 1;
             
             UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations:
             {
-                toVC.settingsButton.frame = toVC.settingsButton.frame.offsetBy(dx: -self.screenWidth, dy: 0);
+                //toVC.settingsButton.frame = toVC.settingsButton.frame.offsetBy(dx: -self.screenWidth, dy: 0);
                 fromVC.view.layer.opacity = 0;
                 window.layoutIfNeeded()
                 tempView.layer.cornerRadius = tempView.frame.height/2;

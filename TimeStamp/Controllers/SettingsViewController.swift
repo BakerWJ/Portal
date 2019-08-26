@@ -29,15 +29,15 @@ class SettingsViewController: UIViewController {
     }()
     
     //this could be the sign out button if you decide to use it
-    lazy var signOutButton: UIButton = {
+    lazy var creditsButton: UIButton = {
         let button = UIButton ();
         button.backgroundColor = UIColor(red: 40/255.0, green: 73/255.0, blue: 164/255.0, alpha: 1);
         button.setTitleColor(.white, for: .normal);
         button.setTitleColor(.white, for: .highlighted);
-        button.setTitle("Sign Out", for: .normal);
+        button.setTitle("Credits", for: .normal);
         button.titleLabel?.font = UIFont(name: "SitkaBanner", size: 20/375.0*screenWidth);
-        button.setTitle("Sign Out", for: .highlighted);
-        button.addTarget(self, action: #selector (signOut), for: .touchUpInside);
+        button.setTitle("Credits", for: .highlighted);
+        button.addTarget(self, action: #selector (toCredit), for: .touchUpInside);
         return button;
     }()
     
@@ -117,19 +117,19 @@ class SettingsViewController: UIViewController {
         backButton.heightAnchor.constraint (equalTo: backButton.widthAnchor).isActive = true;
         backButton.leadingAnchor.constraint (equalTo: view.leadingAnchor, constant: 30/375.0*screenWidth).isActive = true;
         
-        view.addSubview(signOutButton);
-        signOutButton.translatesAutoresizingMaskIntoConstraints = false;
-        signOutButton.centerXAnchor.constraint (equalTo: view.centerXAnchor).isActive = true;
-        signOutButton.topAnchor.constraint (equalTo: view.topAnchor, constant: 619/812.0*screenHeight).isActive = true;
-        signOutButton.heightAnchor.constraint (equalToConstant: 41/375.0*screenWidth).isActive = true;
-        signOutButton.widthAnchor.constraint (equalToConstant: 267/375.0*screenWidth).isActive = true;
-        signOutButton.layoutIfNeeded();
-        signOutButton.layer.cornerRadius = signOutButton.frame.height/3;
+        view.addSubview(creditsButton);
+        creditsButton.translatesAutoresizingMaskIntoConstraints = false;
+        creditsButton.centerXAnchor.constraint (equalTo: view.centerXAnchor).isActive = true;
+        creditsButton.topAnchor.constraint (equalTo: view.topAnchor, constant: 600/812.0*screenHeight).isActive = true;
+        creditsButton.heightAnchor.constraint (equalToConstant: 41/375.0*screenWidth).isActive = true;
+        creditsButton.widthAnchor.constraint (equalToConstant: 267/375.0*screenWidth).isActive = true;
+        creditsButton.layoutIfNeeded();
+        creditsButton.layer.cornerRadius = creditsButton.frame.height/3;
         
         view.addSubview (restartButton);
         restartButton.translatesAutoresizingMaskIntoConstraints = false;
         restartButton.centerXAnchor.constraint (equalTo: view.centerXAnchor).isActive = true;
-        restartButton.topAnchor.constraint (equalTo: view.topAnchor, constant: 681/812.0*screenHeight).isActive = true;
+        restartButton.topAnchor.constraint (equalTo: view.topAnchor, constant: 662/812.0*screenHeight).isActive = true;
         restartButton.heightAnchor.constraint (equalToConstant: 41/375.0*screenWidth).isActive = true;
         restartButton.widthAnchor.constraint (equalToConstant: 267/375.0*screenWidth).isActive = true;
         restartButton.layoutIfNeeded();
@@ -277,12 +277,17 @@ class SettingsViewController: UIViewController {
     @objc func back ()
     {
         UserDataSettings.setNotifications()
-        performSegue (withIdentifier: "returnFromSettings", sender: self);
+        self.tabBarController?.performSegue(withIdentifier: "fromTabBar", sender: self.tabBarController);
+    }
+    
+    @objc func toCredit ()
+    {
+        performSegue(withIdentifier: "toCredit", sender: self);
     }
     
     //when making a sign out button, just connect the selector to this function
     //signs the user out of this place and segues to the login view
-    @objc func signOut () {
+    private func signOut () {
         do {
             try Auth.auth().signOut()
             GIDSignIn.sharedInstance().signOut();
@@ -439,11 +444,5 @@ class SettingsViewController: UIViewController {
         checkForAllNotif()
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let dest = segue.destination as? MainTabBarViewController
-        {
-            dest.unwind = unwind;
-            unwind = false;
-        }
-    }
+    @IBAction func returnFromCredits (sender: UIStoryboardSegue) {}
 }
