@@ -147,7 +147,13 @@ class ArticleViewController: UIViewController {
         bgimage.isUserInteractionEnabled = true
         bgimage.addGestureRecognizer(tap)
         bgimage.layer.cornerRadius = bgimage.frame.height/2;
-        bgimage.dropShadow()
+        //sets drop shadow
+        bgimage.layer.shadowColor = UIColor.black.cgColor;
+        bgimage.layer.shadowOpacity = 0.2
+        bgimage.layer.masksToBounds = false;
+        bgimage.layer.shadowRadius = 1;
+        bgimage.layer.shadowPath = UIBezierPath(roundedRect: bgimage.bounds, cornerRadius: bgimage.layer.cornerRadius).cgPath;
+        bgimage.layer.shadowOffset = CGSize(width: 0.0, height: 0.3);
         self.view.addSubview(bgimage)
     }
     

@@ -10,7 +10,8 @@ import UIKit
 import LBTAComponents
 
 class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    let w = UIScreen.main.bounds.width
+    let w = UIScreen.main.bounds.width;
+    let h = UIScreen.main.bounds.height;
     
     let articles = UserDataSettings.fetchAllArticles()
     
@@ -97,6 +98,13 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
             array.append(article.firstIndex(of: sortedarticles[i])!)
         }
         return array
+    }()
+    
+    //this view is so that the content of the view does not block the status bar
+    lazy var blockView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white;
+        return view;
     }()
     
     var clicked: Int = 0
@@ -203,6 +211,12 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         articlesView.isScrollEnabled = false
         articlesView.rowHeight = 127/375 * w
         articlesView.separatorStyle = .none
+        
+        view.addSubview(blockView);
+        blockView.translatesAutoresizingMaskIntoConstraints = false;
+        blockView.topAnchor.constraint (equalTo: view.topAnchor).isActive = true;
+        view.addConstraintsWithFormat("H:|[v0]|", views: blockView);
+        blockView.heightAnchor.constraint (equalToConstant: 30/812.0*h).isActive = true;
     }
     
     func setupScroll() {

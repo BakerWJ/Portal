@@ -88,19 +88,19 @@ class MainPageViewController: UIViewController {
     
     lazy var genreLabel: UILabel = {
         let textLayer = UILabel()
-        textLayer.font = UIFont(name: "SitkaBanner", size: 25/375 * screenWidth)
+        textLayer.font = UIFont(name: "SitkaBanner", size: 20/375 * screenWidth)
         textLayer.textColor = UIColor.white
         textLayer.translatesAutoresizingMaskIntoConstraints = false
         textLayer.numberOfLines = 1
         textLayer.adjustsFontSizeToFitWidth = true
-        textLayer.minimumScaleFactor = 0.7
+        textLayer.minimumScaleFactor = 0.5
         textLayer.text = featureArticle.genre
         return textLayer
     }()
     
     lazy var titleLabel: UILabel = {
         let textLayer = UILabel()
-        textLayer.font = UIFont(name: "SitkaBanner-Bold", size: 25/375 * screenWidth)
+        textLayer.font = UIFont(name: "SitkaBanner-Bold", size: 20/375 * screenWidth)
         textLayer.textColor = UIColor.white
         textLayer.translatesAutoresizingMaskIntoConstraints = false
         textLayer.numberOfLines = 2
@@ -110,21 +110,17 @@ class MainPageViewController: UIViewController {
         return textLayer
     }()
     
-    lazy var readMoreBubble: UIView = {
-        let layer = UIView()
-        layer.layer.cornerRadius = 15
-        layer.layer.borderWidth = 2
-        layer.layer.borderColor = UIColor.white.cgColor
-        return layer
-    }()
-    
     lazy var readMoreLabel: UILabel = {
         let textLayer = UILabel()
-        textLayer.font = UIFont(name: "SitkaBanner-Bold", size: 25/375 * screenWidth)
+        textLayer.font = UIFont(name: "SitkaBanner-Bold", size: 14/375 * screenWidth)
         textLayer.textColor = UIColor.white
         textLayer.translatesAutoresizingMaskIntoConstraints = false
         textLayer.numberOfLines = 1
         textLayer.adjustsFontSizeToFitWidth = true
+        textLayer.layer.borderColor = UIColor.white.cgColor;
+        textLayer.layer.borderWidth = 2/375.0*screenWidth;
+        textLayer.textAlignment = .center;
+        textLayer.baselineAdjustment = .alignCenters;
         textLayer.minimumScaleFactor = 0.5
         textLayer.text = "READ MORE"
         return textLayer
@@ -287,8 +283,8 @@ class MainPageViewController: UIViewController {
         view.addSubview(genreLabel)
         genreLabel.translatesAutoresizingMaskIntoConstraints = false;
         genreLabel.widthAnchor.constraint(equalToConstant: 150/375*screenWidth).isActive = true
-        genreLabel.heightAnchor.constraint(equalToConstant: 14/812*screenHeight).isActive = true
-        genreLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 329/812*screenHeight).isActive = true
+        genreLabel.heightAnchor.constraint(equalToConstant: 22/812*screenHeight).isActive = true
+        genreLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 325/812*screenHeight).isActive = true
         genreLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 46/375.0*screenWidth).isActive = true
         
         view.addSubview(titleLabel)
@@ -300,17 +296,14 @@ class MainPageViewController: UIViewController {
         
         view.addSubview(readMoreLabel)
         readMoreLabel.translatesAutoresizingMaskIntoConstraints = false;
-        readMoreLabel.widthAnchor.constraint(equalToConstant: 75/375.0*screenWidth).isActive = true
-        readMoreLabel.heightAnchor.constraint(equalToConstant: 14/812.0*screenHeight).isActive = true
-        readMoreLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 407/812.0*screenHeight).isActive = true
-        readMoreLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 63/375.0*screenWidth).isActive = true
+        readMoreLabel.widthAnchor.constraint(equalToConstant: 121/375.0*screenWidth).isActive = true
+        readMoreLabel.heightAnchor.constraint(equalToConstant: 27/375.0*screenWidth).isActive = true
+        readMoreLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 400/812.0*screenHeight).isActive = true
+        readMoreLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 40/375.0*screenWidth).isActive = true
         
-        view.addSubview(readMoreBubble)
-        readMoreBubble.translatesAutoresizingMaskIntoConstraints = false;
-        readMoreBubble.widthAnchor.constraint(equalToConstant: 121/375.0*screenWidth).isActive = true
-        readMoreBubble.heightAnchor.constraint(equalToConstant: 27/812.0*screenHeight).isActive = true
-        readMoreBubble.topAnchor.constraint(equalTo: view.topAnchor, constant: 400/812.0*screenHeight).isActive = true
-        readMoreBubble.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 40/375.0*screenWidth).isActive = true
+        //set the corner radius
+        readMoreLabel.layoutIfNeeded();
+        readMoreLabel.layer.cornerRadius = readMoreLabel.frame.height/2;
         
         view.addSubview(featuredImage)
         featuredImage.translatesAutoresizingMaskIntoConstraints = false;
