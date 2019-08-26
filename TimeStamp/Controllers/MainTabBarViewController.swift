@@ -199,10 +199,10 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         newsIcon.frame.size = CGSize (width: 47/375.0*screenWidth, height: 47/375.0*screenWidth);
         settingsIcon.frame.size = CGSize(width: 22/375.0*screenWidth, height: 22/375.0*screenWidth);
         
-        homeIcon.frame.origin = CGPoint (x: 71.125/375.0*screenWidth, y: 745.5/812.0*screenHeight);
+        homeIcon.frame.origin = CGPoint (x: 71.125/375.0*screenWidth, y: 745.5/812.0*screenHeight - (XOrLater() ? 4/812.0*screenHeight : 0));
         scheduleIcon.frame.origin = CGPoint (x: 128.875/375.0*screenWidth, y: 730/812.0*screenHeight);
         newsIcon.frame.origin = CGPoint (x: 199.125/375.0*screenWidth, y: 730/812.0*screenHeight);
-        settingsIcon.frame.origin = CGPoint (x: 281.875/375.0*screenWidth, y: 745.5/812.0*screenHeight);
+        settingsIcon.frame.origin = CGPoint (x: 281.875/375.0*screenWidth, y: 745.5/812.0*screenHeight - (XOrLater() ? 4/812.0*screenHeight : 0));
     }
     
     private func setUpUnderline ()
@@ -211,16 +211,20 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         homeIcon.frame = homeIcon.frame.offsetBy(dx: 0, dy: -5/375.0*screenWidth);
         //the underline should be placed right beneath the image
         //depend on the aspect ratio of the phone:
-        if (812.0/375.0 + 0.1 > screenHeight/screenWidth && screenHeight/screenWidth > 812.0/375.0 - 0.1) //accounts for some double precision error
+        if (XOrLater()) //accounts for some double precision error
         {
-            underline.frame.origin.y = 773/812.0*screenHeight;
+            underline.frame.origin.y = 769/812.0*screenHeight;
         }
         else
         {
-            underline.frame.origin.y = 780/812.0*screenHeight;
+            underline.frame.origin.y = 776/812.0*screenHeight;
         }
         underline.center.x = homeIcon.center.x;
         view.addSubview(underline);
+    }
+    
+    private func XOrLater () -> Bool {
+        return 812.0/375.0 + 0.1 > screenHeight/screenWidth && screenHeight/screenWidth > 812.0/375.0 - 0.1
     }
     
     /*

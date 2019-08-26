@@ -701,8 +701,6 @@ class UserDataSettings
                 //target weekday
                 let target = x + 1;
                 var diff = target >= weekday ? target - weekday : target + 7 - weekday;
-                print (x)
-                print (diff)
                 //determines if that day requires a notification
                 //if not a regular school day and a school day
                 if(days.typeOfDay[x] != 1 && days.typeOfDay[x] != 4 && results.generalNotifications){
