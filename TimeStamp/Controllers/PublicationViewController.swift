@@ -10,6 +10,9 @@ import UIKit
 
 class PublicationViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     let w = UIScreen.main.bounds.width
+    let articles = UserDataSettings.fetchAllArticles()
+    
+    var selected = 0
     
     var pub: Int? {
         didSet {
@@ -25,15 +28,45 @@ class PublicationViewController: UIViewController, UITableViewDataSource, UITabl
         }
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
-    }
+    lazy var pubArticles: [Article] = {
+        guard let article = articles else {return []}
+        var array: [Article] = []
+        for i in article {
+            if i.publication == pub! {
+                array.append(i)
+            }
+        }
+        return array
+    }()
     
-    let a = Article(text: "First, there was the adjusted fighting weight of the rookie, as the team changed the reported number from 200 pounds....", author: "Baker Jackson", img: #imageLiteral(resourceName: "f_image"), title: "The Blue Jays are an Amazing Team.", genre: "Bad", likes: 6, hash: "dum")
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let article = articles else {return 0}
+        var cuspidor: Int = 0
+        var bNews: Int = 0
+        var other: Int = 0
+        for i in article {
+            if i.publication == 0 {
+                cuspidor += 1
+            }
+            else if i.publication == 1 {
+                bNews += 1
+            }
+            else {
+                other += 1
+            }
+        }
+        if (pub == 0) {
+            return cuspidor
+        }
+        else if (pub == 1) {
+            return bNews
+        }
+        return other
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! PublicationTableViewCell
-        cell.article = a
+        cell.article = pubArticles[indexPath.row]
         return cell
     }
     
@@ -43,15 +76,14 @@ class PublicationViewController: UIViewController, UITableViewDataSource, UITabl
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        selected = indexPath.row
         performSegue(withIdentifier: "articlePub", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let article = Article(text: "The Liberal majority on the House of Commons ethic committee has voted down an opposition motion to call Conflict of Interest andEthics Commissioner Mario Dion to testify about his report concluding thatPrime Minister Justin Trudeau violated the Conflict of Interest Act over the SNC-Lavalinaffair. Liberal MP Steven MacKinnon said he and the other Liberal Msitting on the committee today voted down the motion because, following Dion'sreport and hours of testimony on the scandal over a five-week period, therewas nothing new to add to their understanding of the SNC-Lavalin affair.Theopposition's claim to simply wanting the facts is contradicted by the fact thatwhat they seek is found in the commissioner's report, MacKinnon said. The only conclusion that I, and members of this committee, can come to is that thopposition seeks to prolong this process for reasons of politics, reasons ofpartisan games, and it is for that reason … that we will be opposing this motion. Liberal MP Nathaniel Erskine-Smith broke ranks with his party and votedwith opposition MPs to call Dion before the committee — not, he said, becausehe thought Dion had more to tell, but because he wanted to challenge thecommissioner's findings, which he called flawed. I would like the commissionerto sit right there to answer how he got this so completely, completelywrong, Erskine-Smith said."
-            , author: "Baker Jackson", img: #imageLiteral(resourceName: "000"), title: "Jacky's Solution is bad and won't work hello hello hello", genre: "Bad", likes: 99, hash: "dum")
         
         if let destinationVC = segue.destination as? ArticleViewController {
-            destinationVC.article = article
+            destinationVC.article = pubArticles[selected]
             destinationVC.source = 0
         }
     }

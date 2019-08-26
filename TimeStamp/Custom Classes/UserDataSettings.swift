@@ -33,6 +33,102 @@ class UserDataSettings
         deleteTimetables()
     }
     
+    static func getArticles() {
+        let ref = Firestore.firestore()
+        ref.collection("Articles").getDocuments() {
+            (querySnapshot, err) in
+            if let err = err {
+                print ("Error getting documents: \(err)")
+            }
+            else {
+                self.deleteArticles()
+                guard let entityArticle = NSEntityDescription.entity(forEntityName: "Article", in: CoreDataStack.managedObjectContext) else {
+                    fatalError("oof")
+                }
+                for document in querySnapshot!.documents {
+                    let data = document.data()
+                    let pub = data["publication"] as? String ?? ""
+                    let hash = document.documentID
+                    let timestamp = data ["timestamp"] as? Timestamp ?? Timestamp()
+                    let author = data["author"] as? String ?? "John Doe"
+                    let likes = data["likes"] as? Int32 ?? 0
+                    let genre = data["tag"] as? String ?? "Boring"
+                    let content = data["text"] as? String ?? "I forgot to add content"
+                    let title = data["title"] as? String ?? "Bad article"
+                    let imageLink = data["imageLink"] as? String ?? ""
+                    let noImageKeyword = data["noImageKeyword"] as? String ?? ""
+                    if (!noImageKeyword.isEmpty || !imageLink.isEmpty) {
+                        // var img = UIImage()
+                        if (noImageKeyword.isEmpty) {
+                            /*
+                            let url = URL(string: imageLink)
+                            let i = try? Data(contentsOf: url!)
+                            img = UIImage(data: i!)!
+                         */
+                        }
+                        else {
+                        }
+                        let article = Article(entity: entityArticle, insertInto: CoreDataStack.managedObjectContext)
+                        article.author = author
+                        article.genre = genre
+                        article.likes = likes
+                        article.hashVal = hash
+                        article.title = title
+                        article.text = content
+                        article.img = imageLink
+                        article.timestamp = NSDate(timeIntervalSince1970: TimeInterval(timestamp.seconds))
+                        article.uploaded = true
+                        if (pub == "Cuspidor") {
+                            article.publication = 0
+                        }
+                        else if (pub == "Blues News") {
+                            article.publication = 1
+                        }
+                        else {
+                            article.publication = 2
+                        }
+                    }
+                }
+                CoreDataStack.saveContext()
+            }
+        }
+    }
+    
+    static func fetchAllArticles() -> [Article]? {
+        let fetchRequest = NSFetchRequest <NSFetchRequestResult> (entityName: "Article");
+        do
+        {
+            if let results = try CoreDataStack.managedObjectContext.fetch (fetchRequest) as? [Article]
+            {
+                return results
+            }
+        }
+        catch
+        {
+            fatalError ("There was an error fetching the list of articles")
+        }
+        return nil;
+    }
+    
+    static func deleteArticles() {
+        let fetchRequest = NSFetchRequest <NSFetchRequestResult> (entityName: "Article");
+        do
+        {
+            if let results = try CoreDataStack.managedObjectContext.fetch (fetchRequest) as? [Article]
+            {
+                for each in results
+                {
+                    CoreDataStack.managedObjectContext.delete (each)
+                }
+                CoreDataStack.saveContext()
+            }
+        }
+        catch
+        {
+            fatalError ("There was an error fetching the list of articles")
+        }
+    }
+    
     static func updateWithInternet ()
     {
         let connectedRef = Database.database().reference(withPath: ".info/connected");
@@ -49,6 +145,7 @@ class UserDataSettings
                         self.updateData()
                         self.updateWeeklySchedule()
                         self.updateEvents ();
+                        self.getArticles()
                     }
                 }
             }
