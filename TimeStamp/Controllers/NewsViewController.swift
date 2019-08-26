@@ -30,15 +30,17 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "articleCell", for: indexPath) as! NewsPageTableViewCell
+        var array = [Int]()
         if (clicked == 0) {
-            cell.article = articles![newArticles[indexPath.row]]
+            array = new
         }
         else if (clicked == 1) {
-            cell.article = articles![siftArticles[indexPath.row]]
+            array = sift
         }
         else {
-            cell.article = articles![popArticles[indexPath.row]]
+            array = popular
         }
+        cell.article = articles![array[indexPath.row]]
         return cell
     }
     
@@ -54,10 +56,11 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return index
     }()
     
-    lazy var popArticles: [Int] = {
+    
+    func popArticles() -> [Int] {
         var array: [Int] = [Int]()
         guard let article = articles else {return [0, 0, 0, 0]}
-        for i in 0...4 {
+        for _ in 0...4 {
             var max = 0
             if (featureIndex == 0) {
                 var max = 0
@@ -75,9 +78,9 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
             array.append(max)
         }
         return array
-    }()
+    }
     
-    lazy var siftArticles: [Int] = {
+    func siftArticles() -> [Int]  {
         var array: [Int] = []
         guard let article = articles else {return [0, 0, 0, 0]}
         while(array.count < 4) {
@@ -87,9 +90,9 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
         }
         return array
-    }()
+    }
 
-    lazy var newArticles: [Int] = {
+    func newArticles() -> [Int]  {
         var array: [Int] = [Int]()
         guard let article = articles else {return [0, 0, 0, 0]}
         let sortedarticles = article.sorted { (article1, article2) -> Bool in
@@ -99,7 +102,11 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
             array.append(article.firstIndex(of: sortedarticles[i])!)
         }
         return array
-    }()
+    }
+    
+    var popular = [Int]()
+    var sift = [Int]()
+    var new = [Int]()
     
     //this view is so that the content of the view does not block the status bar
     lazy var blockView: UIView = {
@@ -156,6 +163,7 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewWillAppear(animated);
         self.refresh()
         timer = Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector (fireTimer), userInfo: nil, repeats: true);
+        timer = Timer.scheduledTimer(timeInterval: 600, target: self, selector: #selector (updateSift), userInfo: nil, repeats: true);
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -169,12 +177,22 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.refresh()
     }
     
+    @objc func updateSift() {
+        sift = self.siftArticles()
+        self.refresh()
+    }
+    
     private func refresh ()
     {
+        new = self.newArticles()
+        popular = self.popArticles()
         articlesView.reloadData()
     }
     
     override func viewDidLoad() {
+        new = self.newArticles()
+        popular = self.popArticles()
+        sift = self.siftArticles()
         super.viewDidLoad()
         view.addSubview(scrollview)
         setupScroll()
@@ -558,13 +576,13 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 destinationVC.article = articles?[featureIndex]
             }
             else if (clicked == 1) {
-                destinationVC.article = articles?[siftArticles[row]]
+                destinationVC.article = articles?[sift[row]]
             }
             else if (clicked == 2) {
-                destinationVC.article = articles?[popArticles[row]]
+                destinationVC.article = articles?[popular[row]]
             }
             else {
-                destinationVC.article = articles?[newArticles[row]]
+                destinationVC.article = articles?[new[row]]
             }
             destinationVC.source = 1
         }
