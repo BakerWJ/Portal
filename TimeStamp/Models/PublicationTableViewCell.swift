@@ -104,7 +104,7 @@ class PublicationTableViewCell: UITableViewCell {
         img.translatesAutoresizingMaskIntoConstraints = false
         img.layer.cornerRadius = 15/375 * UIScreen.main.bounds.width
         img.clipsToBounds = true
-        img.image = #imageLiteral(resourceName: "f_image")
+        img.backgroundColor = #colorLiteral(red: 0.2038967609, green: 0.3737305999, blue: 0.7035349607, alpha: 1)
         return img
     }()
     
