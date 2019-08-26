@@ -14,6 +14,284 @@ class AppEntryViewController: UIViewController {
     let screenWidth = UIScreen.main.bounds.width;
     let screenHeight = UIScreen.main.bounds.height;
     
+    
+    lazy var letsgoButton: UIButton = {
+        let button = UIButton();
+        button.setTitle("Let's Go!", for: .normal);
+        button.setTitle("Let's Go!", for: .highlighted);
+        button.setTitleColor(UIColor(red: 40/255.0, green: 73/255.0, blue: 164/255.0, alpha: 1), for: .normal);
+        button.setTitleColor(UIColor(red: 40/255.0, green: 73/255.0, blue: 164/255.0, alpha: 1), for: .highlighted);
+        button.titleLabel?.font = UIFont(name: "SitkaBanner-Bold", size: 20/375.0*screenWidth);
+        button.backgroundColor = .white;
+        button.layer.cornerRadius = 15/375.0*screenWidth;
+        button.addTarget(self, action: #selector (enterApp), for: .touchUpInside);
+        return button;
+    }()
+    
+    lazy var bottomBlue: UIView = {
+        let view = UIView ();
+        view.backgroundColor = UIColor(red: 40/255.0, green: 73/255.0, blue: 164/255.0, alpha: 1);
+        return view;
+    }()
+    
+    lazy var welcomeToPortalLabel: UILabel = {
+        let label = UILabel ();
+        //the extra space is just so that it shows welcome to on the same line and portal on a separate line
+        label.text = "Welcome to Portal.     ";
+        label.textColor = .white;
+        label.backgroundColor = .clear;
+        label.font = UIFont (name: "SitkaBanner", size: 42/812.0*screenHeight);
+        label.textAlignment = .left;
+        label.baselineAdjustment = .alignCenters;
+        label.numberOfLines = 2;
+        return label;
+    }()
+    
+    lazy var holdOnLabel: UILabel = {
+        let label = UILabel ();
+        label.text = "Hold On..."
+        label.textColor = UIColor(red: 40/255.0, green: 73/255.0, blue: 164/255.0, alpha: 1);//blue
+        label.backgroundColor = .clear;
+        label.textAlignment = .left;
+        label.baselineAdjustment = .alignCenters;
+        label.font = UIFont (name: "SitkaBanner", size: 42/812.0*screenHeight);
+        return label;
+    }()
+    
+    lazy var gettingReady: UILabel = {
+        let label = UILabel ();
+        label.text = "We're Getting Things Ready..."
+        label.textColor = UIColor(red: 40/255.0, green: 73/255.0, blue: 164/255.0, alpha: 1);//blue
+        label.backgroundColor = .clear;
+        label.textAlignment = .left;
+        label.baselineAdjustment = .alignCenters;
+        label.numberOfLines = 0;
+        label.font = UIFont (name: "SitkaBanner", size: 42/812.0*screenHeight);
+        return label;
+    }()
+    
+    lazy var worldAwait: UILabel = {
+        let label = UILabel ();
+        label.text = "A World Awaits..."
+        label.textColor = UIColor(red: 40/255.0, green: 73/255.0, blue: 164/255.0, alpha: 1);//blue
+        label.backgroundColor = .clear;
+        label.textAlignment = .left;
+        label.baselineAdjustment = .alignCenters;
+        label.font = UIFont (name: "SitkaBanner", size: 42/812.0*screenHeight);
+        return label;
+    }()
+    
+    //this is the window through which the label will animate
+    let rectangle: UIView = {
+        let view = UIView ();
+        view.backgroundColor = .clear;
+        view.clipsToBounds = true;
+        view.layer.masksToBounds = true;
+        return view;
+    }()
+    
+    let trainImage = UIImageView(image: UIImage(named: "trainImage"));
+    
+    let whiteWavyImage : UIImageView = {
+        let image = UIImage(named: "whiteWavyImage");
+        let view = UIImageView(image: image);
+        view.isUserInteractionEnabled = true
+        return view;
+    }()
+    
+    let blueImage : UIImage = {
+        var image = UIImage(named: "whiteWavyImage");
+        image = image?.imageWithColor(newColor: UIColor(red: 40/255.0, green: 73/255.0, blue: 164/255.0, alpha: 0.95));
+        if (image == nil)
+        {
+            image = UIImage(named: "whiteWavyImage")
+        }
+        return image!
+    }()
+    
+    lazy var welcomeLabel : UILabel = {
+        let label = UILabel()
+        label.text = "Welcome to\nPortal.";
+        label.numberOfLines = 2;
+        label.font = UIFont(name: "SitkaBanner", size: 40/375.0*screenWidth);
+        label.textColor = .white;
+        label.backgroundColor = .clear;
+        label.textAlignment = .left;
+        return label;
+    }()
+    
+    let whiteImage = UIImage(named: "whiteWavyImage");
+    
+    var trainLeading = NSLayoutConstraint ()
+    var whiteTop = NSLayoutConstraint()
+    var whiteHeight = NSLayoutConstraint()
+    var holdOnTop = NSLayoutConstraint()
+    var awaitsTop = NSLayoutConstraint()
+    var readyTop = NSLayoutConstraint()
+    
+    var animateExecuted = false;
+    
+    override func viewDidLoad()
+    {
+        super.viewDidLoad();
+        setup()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated);
+        if (!animateExecuted)
+        {
+            animateExecuted = true;
+            startSequence()
+        }
+    }
+    private func setup ()
+    {
+        self.setNeedsStatusBarAppearanceUpdate()
+        
+        view.clipsToBounds = true;
+        view.layer.masksToBounds = true;
+        
+        view.addSubview(trainImage);
+        trainImage.translatesAutoresizingMaskIntoConstraints = false;
+        trainLeading = trainImage.leadingAnchor.constraint (equalTo: view.leadingAnchor, constant: -33/375.0*screenWidth);
+        trainLeading.isActive = true;
+        trainImage.topAnchor.constraint (equalTo: view.topAnchor, constant: -74/812.0*screenHeight).isActive = true;
+        trainImage.widthAnchor.constraint(equalToConstant: 1264/375.0*screenWidth).isActive = true;
+        trainImage.heightAnchor.constraint(equalToConstant: 843/812.0*screenHeight).isActive = true;
+        
+        view.addSubview (whiteWavyImage);
+        whiteWavyImage.translatesAutoresizingMaskIntoConstraints = false;
+        whiteWavyImage.leadingAnchor.constraint (equalTo: view.leadingAnchor, constant: -112/375.0*screenWidth).isActive = true;
+        whiteTop = whiteWavyImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 511.99/812.0*screenHeight);
+        whiteTop.isActive = true;
+        whiteHeight = whiteWavyImage.heightAnchor.constraint(equalToConstant: 900.01/812.0*screenHeight);
+        whiteHeight.isActive = true;
+        whiteWavyImage.widthAnchor.constraint(equalToConstant: 535.31/375.0*screenWidth).isActive = true;
+        
+        view.addSubview(rectangle);
+        rectangle.translatesAutoresizingMaskIntoConstraints = false;
+        rectangle.topAnchor.constraint (equalTo: view.topAnchor, constant: 612/812.0*screenHeight).isActive = true;
+        rectangle.leadingAnchor.constraint (equalTo: view.leadingAnchor, constant: 42/375.0*screenWidth).isActive = true;
+        rectangle.widthAnchor.constraint(equalToConstant: 295/375.0*screenWidth).isActive = true;
+        rectangle.heightAnchor.constraint(equalToConstant: 112/812.0*screenHeight).isActive = true;
+        
+        //add the hold on label
+        rectangle.addSubview(holdOnLabel);
+        holdOnLabel.translatesAutoresizingMaskIntoConstraints = false;
+        holdOnTop = holdOnLabel.topAnchor.constraint (equalTo: rectangle.topAnchor);
+        holdOnTop.isActive = true;
+        holdOnLabel.leadingAnchor.constraint (equalTo: rectangle.leadingAnchor).isActive = true;
+        holdOnLabel.heightAnchor.constraint (equalTo: rectangle.heightAnchor).isActive = true;
+        holdOnLabel.widthAnchor.constraint (equalTo: rectangle.widthAnchor).isActive = true;
+        
+        //add the gettinReady label (initially hidden)
+        rectangle.addSubview(gettingReady);
+        gettingReady.translatesAutoresizingMaskIntoConstraints = false;
+        //initially the topAnchor is below the window
+        readyTop = gettingReady.topAnchor.constraint (equalTo: rectangle.topAnchor, constant: 112/812.0*screenHeight);
+        readyTop.isActive = true;
+        gettingReady.leadingAnchor.constraint (equalTo: rectangle.leadingAnchor).isActive = true;
+        gettingReady.heightAnchor.constraint (equalTo: rectangle.heightAnchor).isActive = true;
+        gettingReady.widthAnchor.constraint (equalTo: rectangle.widthAnchor).isActive = true;
+        
+        //add the a world awaits label (initially hidden)
+        rectangle.addSubview(worldAwait);
+        worldAwait.translatesAutoresizingMaskIntoConstraints = false;
+        //initially the topAnchor is below the window
+        awaitsTop = worldAwait.topAnchor.constraint (equalTo: rectangle.topAnchor, constant: 112/812.0*screenHeight);
+        awaitsTop.isActive = true;
+        worldAwait.leadingAnchor.constraint (equalTo: rectangle.leadingAnchor).isActive = true;
+        worldAwait.heightAnchor.constraint (equalTo: rectangle.heightAnchor).isActive = true;
+        worldAwait.widthAnchor.constraint (equalTo: rectangle.widthAnchor).isActive = true;
+        
+        whiteWavyImage.addSubview(welcomeLabel);
+        whiteWavyImage.clipsToBounds = true;
+        welcomeLabel.translatesAutoresizingMaskIntoConstraints = false;
+        welcomeLabel.centerXAnchor.constraint (equalTo: view.centerXAnchor).isActive = true;
+        welcomeLabel.topAnchor.constraint (equalTo: view.topAnchor, constant: 323.5/812.0*screenHeight).isActive = true;
+        welcomeLabel.widthAnchor.constraint(equalToConstant: 281/375.0*screenWidth).isActive = true;
+        welcomeLabel.heightAnchor.constraint(equalToConstant: 110/812.0*screenHeight).isActive = true;
+        welcomeLabel.layer.opacity = 0;
+        
+        whiteWavyImage.addSubview(letsgoButton);
+        letsgoButton.translatesAutoresizingMaskIntoConstraints = false;
+        letsgoButton.centerXAnchor.constraint (equalTo: welcomeLabel.centerXAnchor).isActive = true;
+        letsgoButton.topAnchor.constraint (equalTo: view.topAnchor, constant: 453/812.0*screenHeight).isActive = true;
+        letsgoButton.widthAnchor.constraint(equalToConstant: 307/375.0*screenWidth).isActive = true;
+        letsgoButton.heightAnchor.constraint(equalToConstant: 45/812.0*screenHeight).isActive = true;
+        letsgoButton.layer.opacity = 0;
+        letsgoButton.layoutIfNeeded()
+        letsgoButton.dropShadow()
+    }
+    
+    private func startSequence ()
+    {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            self.toReady()
+        }
+    }
+    
+    
+    private func toReady()
+    {
+        UIView.animate(withDuration: 1, delay: 0, options: .curveEaseIn, animations: {
+            self.trainLeading.constant = -315/375.0*self.screenWidth;
+            self.holdOnTop.constant = -112/812.0*self.screenHeight;
+            self.readyTop.constant = 0
+            self.view.layoutIfNeeded();
+        }, completion: { (Finished) in
+            self.toAwait()
+        })
+    }
+    
+    private func toAwait()
+    {
+        UIView.animate(withDuration: 1, delay: 1.5, options: .curveEaseIn, animations: {
+            self.trainLeading.constant = -519/375.0*self.screenWidth;
+            self.readyTop.constant = -112/812.0*self.screenHeight;
+            self.awaitsTop.constant = 0
+            self.view.layoutIfNeeded()
+        }, completion: { (Finished) in
+            self.toEnd()
+        })
+    }
+    
+    private func toEnd()
+    {
+        self.gettingReady.layer.opacity = 1;
+        UIView.animate(withDuration: 1.5, delay: 0, options: .curveLinear, animations: {
+            self.gettingReady.layer.opacity = 0;
+        }) { (Finished) in
+            UIView.transition(with: self.whiteWavyImage, duration: 1, options: [.transitionCrossDissolve, .curveEaseIn], animations:
+                {
+                    self.whiteWavyImage.image = self.blueImage;
+            }, completion: nil)
+            UIView.animate(withDuration: 1, delay: 0, options: .curveEaseIn, animations: {
+                self.trainLeading.constant = -889/375.0*self.screenWidth;
+                self.awaitsTop.constant = -112/812.0*self.screenHeight;
+                self.whiteHeight.constant += 300/812.0*self.screenHeight;
+                self.whiteTop.constant = -350/812.0*self.screenHeight;
+                self.view.layoutIfNeeded()
+                self.letsgoButton.layer.opacity = 1;
+                self.welcomeLabel.layer.opacity = 1;
+            }, completion: nil)
+        }
+    }
+    
+    @objc func enterApp ()
+    {
+        performSegue(withIdentifier: "enterApp", sender: self);
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent;
+    }
+    
+    /*
+    let screenWidth = UIScreen.main.bounds.width;
+    let screenHeight = UIScreen.main.bounds.height;
+    
     lazy var letsgoButton: UIButton = {
         let button = UIButton();
         button.setTitle("Let's Go!", for: .normal);
@@ -147,6 +425,10 @@ class AppEntryViewController: UIViewController {
         self.startAnimations ();
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent;
+    }
+    
     private func setup ()
     {
         self.setNeedsStatusBarAppearanceUpdate()
@@ -266,10 +548,6 @@ class AppEntryViewController: UIViewController {
         rectangle.topAnchor.constraint (equalTo: view.topAnchor).isActive = true;
         
         self.view.layoutIfNeeded()
-    }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent;
     }
     
     private func startAnimations ()
@@ -459,7 +737,7 @@ class AppEntryViewController: UIViewController {
     {
         performSegue(withIdentifier: "enterApp", sender: self);
     }
-
+*/
     /*
     // MARK: - Navigation
 

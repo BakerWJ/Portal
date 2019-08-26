@@ -33,7 +33,7 @@ class TabBarToSettingsUnwind: UIStoryboardSegue {
             toVC.settingsButton.frame = toVC.settingsButton.frame.offsetBy(dx: screenWidth, dy: 0);
             fromVC.view.layer.opacity = 1;
             
-            UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn, animations:
+            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations:
             {
                 toVC.settingsButton.frame = toVC.settingsButton.frame.offsetBy(dx: -self.screenWidth, dy: 0);
                 fromVC.view.layer.opacity = 0;

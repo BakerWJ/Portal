@@ -171,7 +171,8 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate, UIScro
         topConstraint.isActive = true;
         containerView.backgroundColor = .clear;
         
-        self.automaticallyAdjustsScrollViewInsets = false;
+        collectionView.contentInsetAdjustmentBehavior = .never;
+        
         //set up the collectionView
         //register the todaytomorrowview as the cell type
         collectionView.register(DailyScheduleCell.self, forCellWithReuseIdentifier: cellId);

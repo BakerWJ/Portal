@@ -767,6 +767,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = VZH52F2524;
 				INFOPLIST_FILE = TimeStamp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -774,7 +775,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.UTS-development.hi";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.heja.dmoj.UTS-APP";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -791,6 +792,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = VZH52F2524;
 				INFOPLIST_FILE = TimeStamp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -798,7 +800,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.UTS-development.hi";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.heja.dmoj.UTS-APP";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;

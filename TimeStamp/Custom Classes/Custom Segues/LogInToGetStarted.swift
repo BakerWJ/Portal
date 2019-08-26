@@ -26,7 +26,6 @@ class LogInToGetStarted: UIStoryboardSegue
             
             fromVC.getStartedLeading.constant -= self.screenWidth;
             fromVC.imageWidth.constant = 0;
-            fromVC.circleHeight.constant = 0;
             
             toVC.view.layer.opacity = 0;
             toVC.imageTop.constant -= self.screenHeight/2;
@@ -37,7 +36,6 @@ class LogInToGetStarted: UIStoryboardSegue
             UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations:
             {
                 fromVC.view.layoutIfNeeded()
-                fromVC.purpleCircle.layer.opacity = 0;
                 fromVC.imageView.layer.opacity = 0;
                 toVC.view.layoutIfNeeded();
                 toVC.view.layer.opacity = 1;
