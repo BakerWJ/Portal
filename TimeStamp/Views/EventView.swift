@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import GoogleAPIClientForREST
 import FirebaseAuth
 import GoogleSignIn
 import GTMAppAuth

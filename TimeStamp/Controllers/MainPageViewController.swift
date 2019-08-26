@@ -9,11 +9,11 @@
 import UIKit
 import Firebase
 import CoreData
-import GoogleAPIClientForREST
 import GoogleSignIn
 import LBTAComponents
 
 class MainPageViewController: UIViewController {
+    
    
     let screenWidth = UIScreen.main.bounds.width;
     let screenHeight = UIScreen.main.bounds.height;
@@ -141,6 +141,7 @@ class MainPageViewController: UIViewController {
         img.layer.cornerRadius = 15/375 * UIScreen.main.bounds.width
         img.clipsToBounds = true
         img.image = #imageLiteral(resourceName: "f_image")
+        var u: String = String()
         img.loadImage(urlString: featureArticle.img)
         return img
     }()

@@ -13,7 +13,6 @@ import FirebaseFirestore
 import CoreData
 import UserNotifications
 import GoogleSignIn
-import GoogleAPIClientForREST
 import GTMAppAuth
 
 @UIApplicationMain

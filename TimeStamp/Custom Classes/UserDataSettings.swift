@@ -58,16 +58,6 @@ class UserDataSettings
                     let imageLink = data["imageLink"] as? String ?? ""
                     let noImageKeyword = data["noImageKeyword"] as? String ?? ""
                     if (!noImageKeyword.isEmpty || !imageLink.isEmpty) {
-                        // var img = UIImage()
-                        if (noImageKeyword.isEmpty) {
-                            /*
-                            let url = URL(string: imageLink)
-                            let i = try? Data(contentsOf: url!)
-                            img = UIImage(data: i!)!
-                         */
-                        }
-                        else {
-                        }
                         let article = Article(entity: entityArticle, insertInto: CoreDataStack.managedObjectContext)
                         article.author = author
                         article.genre = genre
@@ -75,7 +65,13 @@ class UserDataSettings
                         article.hashVal = hash
                         article.title = title
                         article.text = content
-                        article.img = imageLink
+                        if (imageLink != "") {
+                            article.img = imageLink
+                        }
+                        else {
+                            article.img = "https://source.unsplash.com/daily?" + noImageKeyword
+                            print(article.img)
+                        }
                         article.timestamp = NSDate(timeIntervalSince1970: TimeInterval(timestamp.seconds))
                         article.uploaded = true
                         if (pub == "Cuspidor") {
