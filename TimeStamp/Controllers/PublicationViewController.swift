@@ -29,8 +29,8 @@ class PublicationViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     lazy var pubArticles: [Article] = {
-        guard let article = articles else {return []}
-        var array: [Article] = []
+        guard let article = articles else {return [Article]()}
+        var array: [Article] = [Article]()
         let sortedarticles = article.sorted { (article1, article2) -> Bool in
             return article1.timestamp as Date >= article2.timestamp as Date
         }
@@ -107,6 +107,15 @@ class PublicationViewController: UIViewController, UITableViewDataSource, UITabl
         articleTableView.dataSource = self
         articleTableView.register(PublicationTableViewCell.self, forCellReuseIdentifier: "cell")
         articleTableView.separatorStyle = .none
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated);
+        articleTableView.layoutIfNeeded()
+        let oldContentOffset = articleTableView.contentOffset
+        articleTableView.reloadData()
+        articleTableView.layoutIfNeeded()
+        self.articleTableView.setContentOffset(oldContentOffset, animated: false)
     }
     
     @objc func exit() {

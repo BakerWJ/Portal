@@ -95,7 +95,7 @@ class SettingsViewController: UIViewController {
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default);
         self.navigationController?.navigationBar.shadowImage = UIImage();
         self.navigationController?.navigationBar.isTranslucent = true
-        self.navigationController?.view.addSubview(view);
+        let navView = self.navigationController?.view;
         
         view.backgroundColor = UIColor.getColor(242, 242, 242);
         //self.setNeedsStatusBarAppearanceUpdate()
@@ -168,12 +168,12 @@ class SettingsViewController: UIViewController {
         let tg = UITapGestureRecognizer(target: self, action: #selector (timeChange))
         timeSlider.addGestureRecognizer(tg);
         
-        view.addSubview(onOffButton);
+        navView!.addSubview(onOffButton);
         onOffButton.translatesAutoresizingMaskIntoConstraints = false;
-        onOffButton.centerXAnchor.constraint (equalTo: view.centerXAnchor).isActive = true;
+        onOffButton.centerXAnchor.constraint (equalTo: navView!.centerXAnchor).isActive = true;
         onOffButton.widthAnchor.constraint(equalToConstant: 66/375.0*screenWidth).isActive = true;
         onOffButton.heightAnchor.constraint(equalToConstant: 22/812.0*screenHeight).isActive = true;
-        onOffButton.centerYAnchor.constraint(equalTo: notificationLabel.centerYAnchor).isActive = true;
+        onOffButton.centerYAnchor.constraint(equalTo: navView!.topAnchor, constant: 69.5/812.0*screenHeight).isActive = true;
         let tg2 = UITapGestureRecognizer(target: self, action: #selector (allNotif));
         onOffButton.addGestureRecognizer(tg2);
         onOffButton.layoutIfNeeded();

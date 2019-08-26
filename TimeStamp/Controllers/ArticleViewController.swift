@@ -117,6 +117,7 @@ class ArticleViewController: UIViewController, FaveButtonDelegate {
         layer.layer.cornerRadius = 15/375*w
         layer.backgroundColor = UIColor.white
         self.scrollview.addSubview(layer)
+        layer.dropShadow()
         self.scrollview.addSubview(authorLabel)
         self.scrollview.addSubview(titleLabel)
         self.scrollview.addSubview(textLabel)

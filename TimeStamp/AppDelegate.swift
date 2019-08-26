@@ -136,6 +136,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
         //need to later prompt the additionalScope for consent
         GIDSignIn.sharedInstance()?.clientID = FirebaseApp.app()?.options.clientID;
         GIDSignIn.sharedInstance()?.delegate = self;
+
         
         //After the app launches, it will check if the current schedule stored locally is up to date
         UserDataSettings.delegate = self;

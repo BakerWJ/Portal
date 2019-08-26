@@ -13,13 +13,13 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     let w = UIScreen.main.bounds.width;
     let h = UIScreen.main.bounds.height;
     
-    let articles = UserDataSettings.fetchAllArticles()
+    var articles = UserDataSettings.fetchAllArticles()
     var timer: Timer?;
     
     var row: Int = 1
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return articles?.count == nil ? 0 : articles!.count
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -30,7 +30,7 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "articleCell", for: indexPath) as! NewsPageTableViewCell
-        var array = [Int]()
+        var array = [Article]()
         if (clicked == 0) {
             array = new
         }
@@ -40,73 +40,52 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         else {
             array = popular
         }
-        cell.article = articles![array[indexPath.row]]
+        cell.article = array [indexPath.row]
         return cell
     }
     
-    let featureIndex: Int = {
+    let featuredArticle : Article? = {
         let articles = UserDataSettings.fetchAllArticles()
-        var index = 0
-        guard let article = articles else {return index}
-        for i in 0 ..< article.count {
-            if (article[i].likes > article[index].likes) {
-                index = i
+        var selected : Article?
+        guard let article = articles else {return nil}
+        for each in article {
+            if (selected == nil)
+            {
+                selected = each;
+            }
+            else if (each.likes > selected!.likes)
+            {
+                selected = each;
             }
         }
-        return index
+        return selected
     }()
     
     
-    func popArticles() -> [Int] {
-        var array: [Int] = [Int]()
-        guard let article = articles else {return [0, 0, 0, 0]}
-        for _ in 0...4 {
-            var max = 0
-            if (featureIndex == 0) {
-                var max = 0
-            }
-            for i in 0 ..< article.count {
-                if (i != featureIndex) {
-                    if(article[i].likes > article[max].likes && !array.contains(i)) {
-                        max = i
-                    }
-                    else if (array.contains(max) && !array.contains(i)) {
-                        max = i
-                    }
-                }
-            }
-            array.append(max)
+    func popArticles() -> [Article] {
+        guard let article = articles else {return [Article]()}
+        let sortedarticles = article.sorted { (article1, article2) -> Bool in
+            return article1.likes > article2.likes
         }
-        return array
+        return sortedarticles
     }
     
-    func siftArticles() -> [Int]  {
-        var array: [Int] = []
-        guard let article = articles else {return [0, 0, 0, 0]}
-        while(array.count < 4) {
-            let rand = Int.random(in: 0 ..< article.count)
-            if (!array.contains(rand)) {
-                array.append(rand)
-            }
-        }
-        return array
+    func siftArticles() -> [Article]  {
+        guard let article = articles else {return [Article]()}
+        return article;
     }
 
-    func newArticles() -> [Int]  {
-        var array: [Int] = [Int]()
-        guard let article = articles else {return [0, 0, 0, 0]}
+    func newArticles() -> [Article] {
+        guard let article = articles else {return [Article]()}
         let sortedarticles = article.sorted { (article1, article2) -> Bool in
             return article1.timestamp as Date >= article2.timestamp as Date
         }
-        for i in 0 ... 4 {
-            array.append(article.firstIndex(of: sortedarticles[i])!)
-        }
-        return array
+        return sortedarticles
     }
     
-    var popular = [Int]()
-    var sift = [Int]()
-    var new = [Int]()
+    var popular = [Article]()
+    var sift = [Article]()
+    var new = [Article]()
     
     //this view is so that the content of the view does not block the status bar
     lazy var blockView: UIView = {
@@ -124,8 +103,8 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     lazy var scrollview: UIScrollView = {
         let view = UIScrollView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.contentSize.height = 1120/375 * UIScreen.main.bounds.width
-        view.contentSize.width = UIScreen.main.bounds.width
+        view.contentInsetAdjustmentBehavior = .never;
+        view.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         return view
     }()
     
@@ -162,8 +141,7 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated);
         self.refresh()
-        timer = Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector (fireTimer), userInfo: nil, repeats: true);
-        timer = Timer.scheduledTimer(timeInterval: 600, target: self, selector: #selector (updateSift), userInfo: nil, repeats: true);
+        timer = Timer.scheduledTimer(timeInterval: 600, target: self, selector: #selector (fireTimer), userInfo: nil, repeats: true);
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -177,23 +155,20 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.refresh()
     }
     
-    @objc func updateSift() {
-        sift = self.siftArticles()
-        self.refresh()
-    }
-    
     private func refresh ()
     {
+        articles = UserDataSettings.fetchAllArticles()
+        sift = self.siftArticles()
         new = self.newArticles()
         popular = self.popArticles()
         articlesView.reloadData()
     }
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         new = self.newArticles()
         popular = self.popArticles()
         sift = self.siftArticles()
-        super.viewDidLoad()
         view.addSubview(scrollview)
         setupScroll()
         topText()
@@ -244,14 +219,20 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         articlesView.topAnchor.constraint(equalTo: self.scrollview.topAnchor, constant: 541/375 * w).isActive = true
         articlesView.leftAnchor.constraint(equalTo: self.scrollview.leftAnchor).isActive = true
         articlesView.widthAnchor.constraint(equalToConstant: w).isActive = true
-        articlesView.heightAnchor.constraint(equalToConstant: 508/375 * w).isActive = true
+        articlesView.bottomAnchor.constraint (equalTo: scrollview.bottomAnchor, constant: -100/375.0*w).isActive = true;
         
         articlesView.dataSource = self
         articlesView.register(NewsPageTableViewCell.self, forCellReuseIdentifier: "articleCell")
         articlesView.delegate = self
         articlesView.isScrollEnabled = false
-        articlesView.rowHeight = 127/375 * w
+        articlesView.rowHeight = 127/375.0 * w
         articlesView.separatorStyle = .none
+        
+        DispatchQueue.main.async {
+            self.articlesView.reloadData()
+            self.articlesView.layoutIfNeeded()
+            self.articlesView.heightAnchor.constraint (equalToConstant: self.articlesView.rowHeight*CGFloat(self.articles!.count)).isActive = true;
+        }
         
         view.addSubview(blockView);
         blockView.translatesAutoresizingMaskIntoConstraints = false;
@@ -431,6 +412,7 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func featuredView() {
+        guard let featuredArticle = featuredArticle else {return}
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         let tap1 = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         let tap2 = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
@@ -463,7 +445,7 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         textLayer.numberOfLines = 0
         textLayer.textColor = UIColor.white
         textLayer.alpha = 1
-        let textContent = articles![featureIndex].title
+        let textContent = featuredArticle.title
         let textString = NSMutableAttributedString(string: textContent, attributes: [
             NSAttributedString.Key.font: UIFont(name: "SitkaBanner-Bold", size: 18/375 * w)!
             ])
@@ -499,7 +481,7 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         ctextLayer.numberOfLines = 0
         ctextLayer.textColor = UIColor.white
         ctextLayer.alpha = 1
-        let ctextContent = articles![featureIndex].genre
+        let ctextContent = featuredArticle.genre
         let ctextString = NSMutableAttributedString(string: ctextContent, attributes: [
             NSAttributedString.Key.font: UIFont(name: "SitkaBanner", size: 14/375 * w)!
             ])
@@ -514,7 +496,7 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         let i_view = CachedImageView()
         i_view.image = #imageLiteral(resourceName: "f_image")
-        i_view.loadImage(urlString: articles![featureIndex].img)
+        i_view.loadImage(urlString: featuredArticle.img)
         i_view.frame = CGRect(x: 218/375 * w, y: 132/375 * w, width: 134/375 * w, height: 144/375 * w)
         i_view.layer.cornerRadius = 15/375 * w
         i_view.clipsToBounds = true
@@ -573,16 +555,16 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if let destinationVC = segue.destination as? ArticleViewController {
             if (featured == 1) {
                 featured = 0
-                destinationVC.article = articles?[featureIndex]
+                destinationVC.article = featuredArticle
             }
             else if (clicked == 1) {
-                destinationVC.article = articles?[sift[row]]
+                destinationVC.article = sift[row]
             }
             else if (clicked == 2) {
-                destinationVC.article = articles?[popular[row]]
+                destinationVC.article = popular[row]
             }
             else {
-                destinationVC.article = articles?[new[row]]
+                destinationVC.article = new[row]
             }
             destinationVC.source = 1
         }
