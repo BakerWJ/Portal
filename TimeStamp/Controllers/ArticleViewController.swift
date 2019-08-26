@@ -141,11 +141,13 @@ class ArticleViewController: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         let articleImage = UIImage(named: "Taskbar")
         let bgimage = UIImageView(image: articleImage)
-        bgimage.frame = CGRect(x: 17/375*w, y: 26/375*w, width: 40/375*w, height: 40/375*w)
+        bgimage.frame = CGRect(x: 17/375*w, y: 40/375*w, width: 40/375*w, height: 40/375*w)
         bgimage.clipsToBounds = true
         bgimage.contentMode = .scaleAspectFill
         bgimage.isUserInteractionEnabled = true
         bgimage.addGestureRecognizer(tap)
+        bgimage.layer.cornerRadius = bgimage.frame.height/2;
+        bgimage.dropShadow()
         self.view.addSubview(bgimage)
     }
     

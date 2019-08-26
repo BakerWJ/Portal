@@ -277,7 +277,7 @@ extension UIView
         layer.shadowColor = UIColor.black.cgColor;
         layer.shadowOpacity = 0.5
         layer.masksToBounds = false;
-        layer.shadowRadius = 3;
+        layer.shadowRadius = 2;
         layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: layer.cornerRadius).cgPath;
         layer.shadowOffset = CGSize(width: 0.0, height: 1.0);
     }
