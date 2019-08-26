@@ -14,6 +14,7 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     let h = UIScreen.main.bounds.height;
     
     let articles = UserDataSettings.fetchAllArticles()
+    var timer: Timer?;
     
     var row: Int = 1
     
@@ -151,6 +152,27 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return textLayer
     }()
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated);
+        self.refresh()
+        timer = Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector (fireTimer), userInfo: nil, repeats: true);
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated);
+        //stops the timer when the view disappears
+        timer?.invalidate()
+    }
+    
+    @objc func fireTimer ()
+    {
+        self.refresh()
+    }
+    
+    private func refresh ()
+    {
+        articlesView.reloadData()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -531,7 +553,6 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         
         if let destinationVC = segue.destination as? ArticleViewController {
-            print(featured)
             if (featured == 1) {
                 featured = 0
                 destinationVC.article = articles?[featureIndex]

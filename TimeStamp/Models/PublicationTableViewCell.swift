@@ -20,10 +20,28 @@ class PublicationTableViewCell: UITableViewCell {
             authorLabel.text = "by " + articleItem.author
             genreLabel.text = articleItem.genre.uppercased()
             contentLabel.text = articleItem.text
+            numLikesLabel.text = "\(articleItem.likes)"
         }
     }
     
+    let heartImage : UIImageView = {
+        let view = UIImageView();
+        let image = UIImage(named: "filledHeartImage")?.imageWithColor(newColor: UIColor.getColor(117, 190, 217));
+        view.translatesAutoresizingMaskIntoConstraints = false;
+        view.image = image;
+        return view;
+    }()
     
+    lazy var numLikesLabel: UILabel = {
+        let label = UILabel();
+        label.textColor = UIColor.getColor(117, 190, 217);
+        label.backgroundColor = .clear;
+        label.textAlignment = .right;
+        label.translatesAutoresizingMaskIntoConstraints = false;
+        label.baselineAdjustment = .alignCenters;
+        label.font = UIFont(name: "Arial-BoldMT", size: 16/375.0*w);
+        return label;
+    }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -32,6 +50,8 @@ class PublicationTableViewCell: UITableViewCell {
         self.contentView.addSubview(authorLabel)
         self.contentView.addSubview(contentLabel)
         self.contentView.addSubview(genreLabel)
+        addSubview(heartImage);
+        addSubview(numLikesLabel);
         
         img.widthAnchor.constraint(equalToConstant: 315/375 * w).isActive = true
         img.heightAnchor.constraint(equalToConstant: 167/375 * w).isActive = true
@@ -57,6 +77,16 @@ class PublicationTableViewCell: UITableViewCell {
         contentLabel.heightAnchor.constraint(equalToConstant: 54/375 * w).isActive = true
         contentLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 301/375 * w).isActive = true
         contentLabel.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 35/375*w).isActive = true
+        
+        //add the heart image and the numlikes label
+        heartImage.centerYAnchor.constraint (equalTo: genreLabel.centerYAnchor).isActive = true;
+        heartImage.heightAnchor.constraint(equalToConstant: 16/375.0*w).isActive = true;
+        heartImage.widthAnchor.constraint(equalToConstant: 16.2/375.0*w).isActive = true;
+        heartImage.trailingAnchor.constraint (equalTo: trailingAnchor, constant: -46/375.0*w).isActive = true;
+
+        numLikesLabel.centerYAnchor.constraint (equalTo: heartImage.centerYAnchor).isActive = true;
+        numLikesLabel.heightAnchor.constraint (equalTo: heartImage.heightAnchor).isActive = true;
+        numLikesLabel.trailingAnchor.constraint(equalTo: heartImage.leadingAnchor, constant: -5/375.0*w).isActive = true;
     }
     
     required init?(coder aDecoder: NSCoder) {

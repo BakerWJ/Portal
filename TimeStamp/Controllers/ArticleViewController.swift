@@ -8,8 +8,10 @@
 
 import UIKit
 import LBTAComponents
-
-class ArticleViewController: UIViewController {
+import FaveButton
+class ArticleViewController: UIViewController, FaveButtonDelegate {
+    
+    
     let w = UIScreen.main.bounds.width
     
     var article:Article? {
@@ -19,11 +21,36 @@ class ArticleViewController: UIViewController {
             authorLabel.text = articleItem.author
             titleLabel.text = articleItem.title
             textLabel.text = articleItem.text
+            heartButton.setSelected(selected: articleItem.liked, animated: false)
         }
     }
     
     var source: Int?
     
+    
+    lazy var heartButton: FaveButton = {
+        let button = FaveButton(frame: CGRect(x: 320/375.0*w, y: 40/375.0*w, width: 40/375.0*w, height: 40/375.0*w), faveIconNormal: UIImage(named: "filledHeartImage"));
+        button.selectedColor = UIColor.getColor(255, 105, 180)
+        button.delegate = self;
+        self.heartButton = button;
+        return button;
+    }()
+
+    
+    /*
+    lazy var heartButton : UIButton = {
+        let button = UIButton()
+        button.addTarget(self, action: #selector(likeTapped), for: .touchUpInside);
+        let notHighlightedImage = UIImage(named: "emptyHeartImage")?.imageWithColor(newColor: );
+        let highligtedImage = UIImage(named: "filledHeartImage")?.imageWithColor(newColor: UIColor.getColor(255, 105, 180));
+        button.setImage(notHighlightedImage, for: .normal);
+        button.setImage(notHighlightedImage, for: [.normal, .highlighted]);
+        button.setImage(notHighlightedImage, for: .highlighted);
+        button.setImage(highligtedImage, for: .selected);
+        button.translatesAutoresizingMaskIntoConstraints = false;
+        button.backgroundColor = .clear
+        return button;
+    }()*/
     
 
     lazy var scrollview: UIScrollView = {
@@ -74,6 +101,14 @@ class ArticleViewController: UIViewController {
         return textLayer
     }()
     
+    lazy var backButton: UIImageView = {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+        let articleImage = UIImage(named: "Taskbar")
+        let bgimage = UIImageView(image: articleImage)
+        bgimage.addGestureRecognizer(tap)
+        return bgimage;
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(scrollview)
@@ -86,6 +121,8 @@ class ArticleViewController: UIViewController {
         self.scrollview.addSubview(authorLabel)
         self.scrollview.addSubview(titleLabel)
         self.scrollview.addSubview(textLabel)
+        
+        self.scrollview.addSubview(heartButton);
         
         titleLabel.topAnchor.constraint(equalTo: self.scrollview.topAnchor, constant: 408/375*w).isActive = true
         titleLabel.leftAnchor.constraint(equalTo: self.scrollview.leftAnchor, constant: 36/375*w).isActive = true
@@ -110,7 +147,23 @@ class ArticleViewController: UIViewController {
         img.widthAnchor.constraint(equalToConstant: 419/375*w).isActive = true
         img.heightAnchor.constraint(equalToConstant: 395/375*w).isActive = true
         
-        backButton()
+        view.addSubview (backButton);
+        backButton.translatesAutoresizingMaskIntoConstraints = false;
+        backButton.leadingAnchor.constraint (equalTo: view.leadingAnchor, constant: 17/375.0*w).isActive = true;
+        backButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 40/375.0*w).isActive = true;
+        backButton.widthAnchor.constraint(equalToConstant: 40/375.0*w).isActive = true;
+        backButton.heightAnchor.constraint (equalTo: backButton.widthAnchor).isActive = true;
+        backButton.clipsToBounds = true
+        backButton.isUserInteractionEnabled = true
+        backButton.layoutIfNeeded()
+        backButton.layer.cornerRadius = backButton.frame.height/2;
+        //sets drop shadow
+        backButton.layer.shadowColor = UIColor.black.cgColor;
+        backButton.layer.shadowOpacity = 0.2
+        backButton.layer.masksToBounds = false;
+        backButton.layer.shadowRadius = 1;
+        backButton.layer.shadowPath = UIBezierPath(roundedRect: backButton.bounds, cornerRadius: backButton.layer.cornerRadius).cgPath;
+        backButton.layer.shadowOffset = CGSize(width: 0.0, height: 0.3);
     }
     
     func setupScroll() {
@@ -120,15 +173,10 @@ class ArticleViewController: UIViewController {
         scrollview.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         scrollview.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         scrollview.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        if #available(iOS 11.0, *) {
-            self.scrollview.contentInsetAdjustmentBehavior = .never
-        } else {
-            // Fallback on earlier versions
-        }
         scrollview.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
     
-    @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
+    @objc func handleTap(_ sender: UITapGestureRecognizer) {
         if source == 0 {
             self.performSegue(withIdentifier: "toPub", sender: self)
         }
@@ -139,26 +187,18 @@ class ArticleViewController: UIViewController {
             self.performSegue(withIdentifier: "returnToMain", sender: self)
         }
     }
+
     
-    func backButton() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
-        let articleImage = UIImage(named: "Taskbar")
-        let bgimage = UIImageView(image: articleImage)
-        bgimage.frame = CGRect(x: 17/375*w, y: 40/375*w, width: 40/375*w, height: 40/375*w)
-        bgimage.clipsToBounds = true
-        bgimage.contentMode = .scaleAspectFill
-        bgimage.isUserInteractionEnabled = true
-        bgimage.addGestureRecognizer(tap)
-        bgimage.layer.cornerRadius = bgimage.frame.height/2;
-        //sets drop shadow
-        bgimage.layer.shadowColor = UIColor.black.cgColor;
-        bgimage.layer.shadowOpacity = 0.2
-        bgimage.layer.masksToBounds = false;
-        bgimage.layer.shadowRadius = 1;
-        bgimage.layer.shadowPath = UIBezierPath(roundedRect: bgimage.bounds, cornerRadius: bgimage.layer.cornerRadius).cgPath;
-        bgimage.layer.shadowOffset = CGSize(width: 0.0, height: 0.3);
-        self.view.addSubview(bgimage)
+    func faveButton(_ faveButton: FaveButton, didSelected selected: Bool) {
+        if article == nil
+        {
+            return;
+        }
+        article!.liked = selected;
+        if (article!.liked != article!.uploaded)
+        {
+            article!.likes += (article!.liked ? 1 : -1);
+        }
+        CoreDataStack.saveContext()
     }
-    
-    
 }

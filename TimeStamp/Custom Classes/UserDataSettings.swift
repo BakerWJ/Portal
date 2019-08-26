@@ -33,7 +33,7 @@ class UserDataSettings
         deleteTimetables()
     }
     
-    static func getArticles() {
+    static func updateArticles() {
         let ref = Firestore.firestore()
         ref.collection("Articles").getDocuments() {
             (querySnapshot, err) in
@@ -41,7 +41,18 @@ class UserDataSettings
                 print ("Error getting documents: \(err)")
             }
             else {
-                self.deleteArticles()
+                guard let oldArticles = fetchAllArticles() else {return}
+                //the set of old articles
+                var oldSet = Set <String> ()
+                var oldMap = [String : Article]()
+                for each in oldArticles
+                {
+                    oldSet.insert(each.hashVal);
+                    oldMap [each.hashVal] = each;
+                }
+                // the set of new articles
+                var newSet = Set <String> ()
+                
                 guard let entityArticle = NSEntityDescription.entity(forEntityName: "Article", in: CoreDataStack.managedObjectContext) else {
                     fatalError("oof")
                 }
@@ -68,25 +79,55 @@ class UserDataSettings
                         }
                         else {
                         }
-                        let article = Article(entity: entityArticle, insertInto: CoreDataStack.managedObjectContext)
-                        article.author = author
-                        article.genre = genre
-                        article.likes = likes
-                        article.hashVal = hash
-                        article.title = title
-                        article.text = content
-                        article.img = imageLink
-                        article.timestamp = NSDate(timeIntervalSince1970: TimeInterval(timestamp.seconds))
-                        article.uploaded = true
-                        if (pub == "Cuspidor") {
-                            article.publication = 0
+                        
+                        if oldSet.contains(hash) //if this article was already in the phone, then just update it
+                        {
+                            if let article = oldMap [hash]
+                            {
+                                if (article.uploaded != article.liked) //if the status the user last uploaded is different from the current status
+                                {
+                                    //then update the new one
+                                    //if the article is now liked add one, otherwise if the article is now unliked subtract one
+                                    article.likes = likes + (article.liked ? 1 : -1)
+                                    ref.collection("Articles").document(hash).setData(["likes" : article.likes], merge: true)
+                                }
+                                //update the uploaded status
+                                article.uploaded = article.liked;
+                            }
                         }
-                        else if (pub == "Blues News") {
-                            article.publication = 1
+                        else //otherwise add it to the phone
+                        {
+                            let article = Article(entity: entityArticle, insertInto: CoreDataStack.managedObjectContext)
+                            article.author = author
+                            article.genre = genre
+                            article.likes = likes
+                            article.hashVal = hash
+                            article.title = title
+                            article.text = content
+                            article.img = imageLink
+                            article.timestamp = NSDate(timeIntervalSince1970: TimeInterval(timestamp.seconds))
+                            article.uploaded = false //default is false because assume that the user did not like the article before
+                            article.liked = false; //assume the user did not like the article before
+                            if (pub == "Cuspidor") {
+                                article.publication = 0
+                            }
+                            else if (pub == "Blues News") {
+                                article.publication = 1
+                            }
+                            else {
+                                article.publication = 2
+                            }
                         }
-                        else {
-                            article.publication = 2
-                        }
+                        newSet.insert (hash);
+                    }
+                }
+                //deletes the old articles that are no longer in the firestores
+                let needDeleteSet = oldSet.subtracting(newSet);
+                for each in needDeleteSet
+                {
+                    if let article = oldMap [each]
+                    {
+                        CoreDataStack.managedObjectContext.delete (article);
                     }
                 }
                 CoreDataStack.saveContext()
@@ -145,7 +186,7 @@ class UserDataSettings
                         self.updateData()
                         self.updateWeeklySchedule()
                         self.updateEvents ();
-                        self.getArticles()
+                        self.updateArticles()
                     }
                 }
             }

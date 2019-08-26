@@ -19,26 +19,6 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
     
     var unwind = false;
     
-    //this is the button to be clicked when go to settings
-    /*lazy var settingsButton: UIView = {
-        let view = UIView ();
-        //adds the image
-        view.frame = CGRect (x: 284/375.0*screenWidth, y: 734/812.0*screenHeight, width: 51/375.0*screenWidth, height: 51/375.0*screenWidth);
-        //add the settingsImage
-        let image = UIImageView(image: UIImage(named: "settingsTabBarIcon"));
-        view.addSubview(image);
-        image.frame.size = CGSize(width: 20/375.0*screenWidth, height: 20/375.0*screenWidth);
-        image.center = CGPoint (x: view.frame.width/2, y: view.frame.height/2);
-        view.clipsToBounds = true;
-        view.backgroundColor = .white;
-        view.layer.cornerRadius = view.frame.height/2;
-        view.dropShadow()
-        //adds a gesture recongizer for detecting if clicked
-        let gestureRecognizer = UITapGestureRecognizer (target: self, action: #selector (toSettings));
-        view.addGestureRecognizer(gestureRecognizer);
-        return view;
-    }()*/
-    
     lazy var underline: UIView = {
         let view = UIView ();
         view.frame.size = CGSize (width: 22/375.0*screenWidth, height: 2/375.0*screenWidth);
@@ -149,7 +129,6 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
     
     private func initialsetup ()
     {
-        //view.addSubview(settingsButton);
         setTabBarItems()
         setUpTabBarIcons();
         setUpUnderline()

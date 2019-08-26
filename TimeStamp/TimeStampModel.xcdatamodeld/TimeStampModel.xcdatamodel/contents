@@ -5,6 +5,7 @@
         <attribute name="genre" attributeType="String" syncable="YES"/>
         <attribute name="hashVal" attributeType="String" syncable="YES"/>
         <attribute name="img" attributeType="String" customClassName="URL" syncable="YES"/>
+        <attribute name="liked" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="likes" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="publication" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="text" attributeType="String" syncable="YES"/>
@@ -67,7 +68,7 @@
         <attribute name="typeOfDay" attributeType="Transformable" customClassName="[Int]" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Article" positionX="-9" positionY="81" width="128" height="195"/>
+        <element name="Article" positionX="-9" positionY="81" width="128" height="210"/>
         <element name="Event" positionX="-27" positionY="54" width="128" height="105"/>
         <element name="FlipDay" positionX="-54" positionY="-9" width="128" height="75"/>
         <element name="Period" positionX="-63" positionY="-18" width="128" height="135"/>
