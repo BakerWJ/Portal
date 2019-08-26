@@ -233,14 +233,6 @@ class MainPageViewController: UIViewController {
         userImage.widthAnchor.constraint (equalTo: userImage.heightAnchor).isActive = true;
         userImage.topAnchor.constraint (equalTo: helloLabel.topAnchor).isActive = true;
         userImage.trailingAnchor.constraint (equalTo: profileView.trailingAnchor, constant: -20/375.0*screenWidth).isActive = true;
-        
-        //add the todo icon
-        /*view.addSubview(toDoIcon);
-        toDoIcon.translatesAutoresizingMaskIntoConstraints = false;
-        toDoIcon.heightAnchor.constraint (equalTo: userImage.heightAnchor).isActive = true;
-        toDoIcon.widthAnchor.constraint (equalTo: userImage.widthAnchor).isActive = true;
-        toDoIcon.topAnchor.constraint (equalTo: userImage.bottomAnchor, constant: 5/812.0*screenHeight).isActive = true;
-        toDoIcon.leadingAnchor.constraint (equalTo: userImage.leadingAnchor).isActive = true;*/
 
         //set the image rounded corner
         userImage.layoutIfNeeded();
@@ -273,45 +265,37 @@ class MainPageViewController: UIViewController {
         nextFewDaysView.heightAnchor.constraint (equalToConstant: 207/812.0*screenHeight).isActive = true;
         nextFewDaysView.widthAnchor.constraint (equalToConstant: 335/375.0*screenWidth).isActive = true;
         
-        let tap1 = UITapGestureRecognizer(target: self, action: #selector(featured))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(featured))
         view.addSubview(blueBubble)
-        blueBubble.addGestureRecognizer(tap1)
+        blueBubble.addGestureRecognizer(tap)
         blueBubble.translatesAutoresizingMaskIntoConstraints = false;
         blueBubble.widthAnchor.constraint(equalToConstant: 194/375.0*screenWidth).isActive = true
         blueBubble.heightAnchor.constraint(equalToConstant: 144/812.0*screenHeight).isActive = true
         blueBubble.topAnchor.constraint(equalTo: view.topAnchor, constant: 302/812.0*screenHeight).isActive = true
         blueBubble.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20/375.0*screenWidth).isActive = true
         
-        let tap2 = UITapGestureRecognizer(target: self, action: #selector(featured))
-        view.addSubview(distortion)
-        distortion.addGestureRecognizer(tap2)
+        blueBubble.addSubview(distortion)
         distortion.translatesAutoresizingMaskIntoConstraints = false;
         distortion.widthAnchor.constraint(equalToConstant: 73.27/375*screenWidth).isActive = true
         distortion.heightAnchor.constraint(equalToConstant: 90.47/812*screenHeight).isActive = true
         distortion.topAnchor.constraint(equalTo: view.topAnchor, constant: 355.53/812*screenHeight).isActive = true
         distortion.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 140.73/375*screenWidth).isActive = true
         
-        let tap3 = UITapGestureRecognizer(target: self, action: #selector(featured))
-        view.addSubview(genreLabel)
-        genreLabel.addGestureRecognizer(tap3)
+        blueBubble.addSubview(genreLabel)
         genreLabel.translatesAutoresizingMaskIntoConstraints = false;
         genreLabel.widthAnchor.constraint(equalToConstant: 150/375*screenWidth).isActive = true
         genreLabel.heightAnchor.constraint(equalToConstant: 22/812*screenHeight).isActive = true
         genreLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 325/812*screenHeight).isActive = true
         genreLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 46/375.0*screenWidth).isActive = true
         
-        let tap4 = UITapGestureRecognizer(target: self, action: #selector(featured))
-        view.addSubview(titleLabel)
-        titleLabel.addGestureRecognizer(tap4)
+        blueBubble.addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false;
         titleLabel.widthAnchor.constraint(equalToConstant: 122/375.0*screenWidth).isActive = true
         titleLabel.heightAnchor.constraint(equalToConstant: 36/812.0*screenHeight).isActive = true
         titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 350/812.0*screenHeight).isActive = true
         titleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 44/375.0*screenWidth).isActive = true
         
-        let tap5 = UITapGestureRecognizer(target: self, action: #selector(featured))
-        view.addSubview(readMoreLabel)
-        readMoreLabel.addGestureRecognizer(tap5)
+        blueBubble.addSubview(readMoreLabel)
         readMoreLabel.translatesAutoresizingMaskIntoConstraints = false;
         readMoreLabel.widthAnchor.constraint(equalToConstant: 121/375.0*screenWidth).isActive = true
         readMoreLabel.heightAnchor.constraint(equalToConstant: 27/375.0*screenWidth).isActive = true
