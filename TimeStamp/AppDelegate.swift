@@ -143,7 +143,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
 
         
         //After the app launches, it will check if the current schedule stored locally is up to date
-        UserDataSettings.delegate = self;
         //if notifications are not allowed, it is asked for
         notificationCenter.getNotificationSettings { (settings) in
             if settings.authorizationStatus != .authorized {

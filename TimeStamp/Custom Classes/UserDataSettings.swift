@@ -15,7 +15,7 @@ import UserNotifications
 class UserDataSettings
 {
     static var weekly: WeeklySchedule?
-    static var delegate: AppDelegate?
+
     static func updateAll ()
     {
         addTimetables()

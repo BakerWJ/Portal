@@ -12,7 +12,11 @@ import CoreData
 class CoreDataStack {
     
     static var applicationDocumentsDirectory: URL = {
-        
+        let fileManager = FileManager.default;
+        if let url = fileManager.containerURL(forSecurityApplicationGroupIdentifier: "group.UTSPortal")
+        {
+            return url;
+        }
         let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return urls[urls.count-1]
     }()

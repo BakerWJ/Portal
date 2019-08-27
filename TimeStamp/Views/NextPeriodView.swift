@@ -30,6 +30,7 @@ class NextPeriodView: UIView {
         label.textAlignment = .left;
         label.baselineAdjustment = .alignCenters;
         label.numberOfLines = 2;
+        label.textColor = .black
         label.adjustsFontSizeToFitWidth = true;
         return label
     }()
@@ -39,6 +40,7 @@ class NextPeriodView: UIView {
         let label = UILabel();
         label.backgroundColor = .clear;
         label.textAlignment = .left;
+        label.textColor = .black
         label.baselineAdjustment = .alignBaselines;
         return label;
     }()
