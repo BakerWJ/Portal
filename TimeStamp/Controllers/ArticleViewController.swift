@@ -65,6 +65,7 @@ class ArticleViewController: UIViewController, FaveButtonDelegate {
         img.contentMode = .scaleAspectFill
         img.translatesAutoresizingMaskIntoConstraints = false
         img.clipsToBounds = true
+        img.backgroundColor = #colorLiteral(red: 0.2038967609, green: 0.3737305999, blue: 0.7035349607, alpha: 1)
         return img
     }()
     
