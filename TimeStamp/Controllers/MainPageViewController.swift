@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import CoreData
 import GoogleSignIn
-import LBTAComponents
+import Nuke
 
 class MainPageViewController: UIViewController {
     
@@ -23,6 +23,9 @@ class MainPageViewController: UIViewController {
     //timer that keeps on refreshing the view each minute
     var timer: Timer?;
     
+    let pipeline = ImagePipeline {
+        $0.isProgressiveDecodingEnabled = true
+    }
     
     let featureArticle: Article = {
         let articles = UserDataSettings.fetchAllArticles()
@@ -133,18 +136,21 @@ class MainPageViewController: UIViewController {
         textLayer.text = "READ MORE"
         return textLayer
     }()
-    
-    lazy var featuredImage: CachedImageView = {
-        let img = CachedImageView()
+
+    lazy var featuredImage: UIImageView = {
+        let img = UIImageView()
         img.contentMode = .scaleAspectFill
         img.translatesAutoresizingMaskIntoConstraints = false
         img.layer.cornerRadius = 15/375 * UIScreen.main.bounds.width
         img.clipsToBounds = true
         img.backgroundColor = #colorLiteral(red: 0.2038967609, green: 0.3737305999, blue: 0.7035349607, alpha: 1)
-        var u: String = String()
-        img.loadImage(urlString: featureArticle.img)
+        let pipeline = ImagePipeline {
+            $0.isProgressiveDecodingEnabled = true
+        }
+        Nuke.loadImage(with: URL(string: featureArticle.img)!, into: img)
         return img
     }()
+    
     
     //gets the user's google image
     lazy var userImage: UIImageView = {

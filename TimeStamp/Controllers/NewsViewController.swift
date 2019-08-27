@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import LBTAComponents
+import Nuke
 
 class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     let w = UIScreen.main.bounds.width;
@@ -72,7 +72,8 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func siftArticles() -> [Article]  {
         guard let article = articles else {return [Article]()}
-        return article;
+        let shuffled = article.shuffled()
+        return shuffled;
     }
 
     func newArticles() -> [Article] {
@@ -495,9 +496,9 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         ctextLayer.sizeToFit()
         self.scrollview.addSubview(ctextLayer)
         
-        let i_view = CachedImageView()
+        let i_view = UIImageView()
         i_view.image = #imageLiteral(resourceName: "f_image")
-        i_view.loadImage(urlString: featuredArticle.img)
+        Nuke.loadImage(with: URL(string: featuredArticle.img)!, into: i_view)
         i_view.frame = CGRect(x: 218/375 * w, y: 132/375 * w, width: 134/375 * w, height: 144/375 * w)
         i_view.layer.cornerRadius = 15/375 * w
         i_view.clipsToBounds = true

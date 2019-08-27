@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import LBTAComponents
+import Nuke
 
 class NewsPageTableViewCell: UITableViewCell {
     let w = UIScreen.main.bounds.width
@@ -15,7 +15,10 @@ class NewsPageTableViewCell: UITableViewCell {
     var article:Article? {
         didSet {
             guard let articleItem = article else {return}
-            img.loadImage(urlString: articleItem.img)
+            let pipeline = ImagePipeline {
+                $0.isProgressiveDecodingEnabled = true
+            }
+            Nuke.loadImage(with: URL(string: articleItem.img)!, into: img)
             titleLabel.text = articleItem.title
             authorLabel.text = "by " + articleItem.author
             genreLabel.text = articleItem.genre.uppercased()
@@ -49,8 +52,8 @@ class NewsPageTableViewCell: UITableViewCell {
         return label;
     }()
     
-    let img: CachedImageView = {
-        let img = CachedImageView()
+    let img: UIImageView = {
+        let img = UIImageView()
         img.contentMode = .scaleAspectFill
         img.translatesAutoresizingMaskIntoConstraints = false
         img.clipsToBounds = true
