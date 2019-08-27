@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import LBTAComponents
+import Nuke
 
 class PublicationTableViewCell: UITableViewCell {
     let w = UIScreen.main.bounds.width
@@ -15,7 +15,10 @@ class PublicationTableViewCell: UITableViewCell {
     var article:Article? {
         didSet {
             guard let articleItem = article else {return}
-            img.loadImage(urlString: articleItem.img)
+            let pipeline = ImagePipeline {
+                $0.isProgressiveDecodingEnabled = true
+            }
+            Nuke.loadImage(with: URL(string: articleItem.img)!, into: img)
             titleLabel.text = articleItem.title
             authorLabel.text = "by " + articleItem.author
             genreLabel.text = articleItem.genre.uppercased()
@@ -98,8 +101,8 @@ class PublicationTableViewCell: UITableViewCell {
         super.init(coder: aDecoder)
     }
     
-    let img: CachedImageView = {
-        let img = CachedImageView()
+    let img: UIImageView = {
+        let img = UIImageView()
         img.contentMode = .scaleAspectFill
         img.translatesAutoresizingMaskIntoConstraints = false
         img.layer.cornerRadius = 15/375 * UIScreen.main.bounds.width

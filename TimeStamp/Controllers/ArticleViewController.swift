@@ -7,17 +7,18 @@
 //
 
 import UIKit
-import LBTAComponents
 import FaveButton
+import Nuke
+
 class ArticleViewController: UIViewController, FaveButtonDelegate {
-    
     
     let w = UIScreen.main.bounds.width
     
     var article:Article? {
         didSet {
             guard let articleItem = article else {return}
-            img.loadImage(urlString: articleItem.img)
+            // img.loadImage(urlString: articleItem.img)
+            Nuke.loadImage(with: URL(string: articleItem.img)!, into: img)
             authorLabel.text = articleItem.author
             titleLabel.text = articleItem.title
             textLabel.text = articleItem.text
@@ -59,8 +60,8 @@ class ArticleViewController: UIViewController, FaveButtonDelegate {
         return view
     }()
     
-    let img: CachedImageView = {
-        let img = CachedImageView()
+    let img: UIImageView = {
+        let img = UIImageView()
         img.image = #imageLiteral(resourceName: "entryScreenCampImage")
         img.contentMode = .scaleAspectFill
         img.translatesAutoresizingMaskIntoConstraints = false
