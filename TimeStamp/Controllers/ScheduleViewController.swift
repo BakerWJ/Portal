@@ -333,6 +333,18 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate, UIScro
             }) { (Finished) in
                 self.collectionView.isScrollEnabled = true;
                 self.blockView.layer.opacity = 0;
+                self.collectionView.layoutIfNeeded()
+                let co = self.collectionView.contentOffset;
+                self.collectionView.reloadData()
+                self.collectionView.layoutIfNeeded()
+                self.collectionView.setContentOffset(co, animated: false)
+                let numCellsShifted = abs(self.collectionView.contentOffset.x/(355/375.0*self.screenWidth));
+                let roundedCell = Int (round (numCellsShifted + 0.1));
+                if let currCell = self.collectionView.cellForItem(at: IndexPath(row: roundedCell, section: 0)) as? DailyScheduleCell
+                {
+                    currCell.imageTop.constant = self.movingImageConstraintMaxOffset
+                    currCell.displayedEventView.layer.opacity = 1;
+                }
             }
         }
     }

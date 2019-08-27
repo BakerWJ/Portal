@@ -53,9 +53,8 @@ class UserDataSettings
                 // the set of new articles
                 var newSet = Set <String> ()
                 
-                guard let entityArticle = NSEntityDescription.entity(forEntityName: "Article", in: CoreDataStack.managedObjectContext) else {
-                    fatalError("oof")
-                }
+                guard let entityArticle = NSEntityDescription.entity(forEntityName: "Article", in: CoreDataStack.managedObjectContext) else {return}
+                
                 for document in querySnapshot!.documents {
                     let data = document.data()
                     let pub = data["publication"] as? String ?? ""
@@ -147,7 +146,7 @@ class UserDataSettings
         }
         catch
         {
-            fatalError ("There was an error fetching the list of articles")
+            print ("There was an error fetching the list of articles")
         }
         return nil;
     }
@@ -167,7 +166,7 @@ class UserDataSettings
         }
         catch
         {
-            fatalError ("There was an error fetching the list of articles")
+            print ("There was an error fetching the list of articles")
         }
     }
     
@@ -200,9 +199,7 @@ class UserDataSettings
         do {
             if let results = try CoreDataStack.managedObjectContext.fetch(fetchRequest) as? [Settings] {
                 if results.count == 0 {
-                    guard let entity = NSEntityDescription.entity(forEntityName: "Settings", in: CoreDataStack.managedObjectContext) else {
-                        fatalError("Could not find entity deccription!")
-                    }
+                    guard let entity = NSEntityDescription.entity(forEntityName: "Settings", in: CoreDataStack.managedObjectContext) else {return}
                     let mainSettings = Settings (entity: entity, insertInto: CoreDataStack.managedObjectContext)
                     mainSettings.daysBefore = 2;
                     mainSettings.surveyNotifications = false;
@@ -215,7 +212,7 @@ class UserDataSettings
             }
         }
         catch {
-            fatalError("There was an error fetching the list of timetables");
+            print("There was an error fetching the list of timetables");
         }
     }
     
@@ -235,7 +232,7 @@ class UserDataSettings
         }
         catch
         {
-            fatalError ("There was an error fetching the list of periods")
+            print ("There was an error fetching the list of periods")
         }
     }
     
@@ -251,7 +248,7 @@ class UserDataSettings
             }
         }
         catch {
-            fatalError("There was an error fetching the list of timetables");
+            print("There was an error fetching the list of timetables");
         }
         return nil;
     }
@@ -266,10 +263,7 @@ class UserDataSettings
             {
                 if results.count == 0
                 {
-                    guard let entity = NSEntityDescription.entity (forEntityName: "WeeklySchedule", in: CoreDataStack.managedObjectContext) else
-                    {
-                        fatalError ("Could not find entity description!")
-                    }
+                    guard let entity = NSEntityDescription.entity (forEntityName: "WeeklySchedule", in: CoreDataStack.managedObjectContext) else {return}
                     let newWeeklySchedule = WeeklySchedule(entity: entity, insertInto: CoreDataStack.managedObjectContext)
                     newWeeklySchedule.abDay = [Bool] (repeating: false, count: 7);
                     newWeeklySchedule.flipOrNot = [Bool] (repeating: false, count: 7);
@@ -284,7 +278,7 @@ class UserDataSettings
             }
         }
         catch {
-            fatalError("There was an error fetching the list of timetables");
+            print("There was an error fetching the list of timetables");
         }
     }
     
@@ -332,10 +326,7 @@ class UserDataSettings
             {
                 if results.count == 0
                 {
-                    guard let entity = NSEntityDescription.entity (forEntityName: "Timetable", in: CoreDataStack.managedObjectContext) else
-                    {
-                        fatalError ("Could not find entity description!")
-                    }
+                    guard let entity = NSEntityDescription.entity (forEntityName: "Timetable", in: CoreDataStack.managedObjectContext) else {return}
                     let newTimetableA = Timetable (entity: entity, insertInto: CoreDataStack.managedObjectContext);
                     newTimetableA.name = "ADay";
                     newTimetableA.classes = [String] (repeating: "", count: 6);
@@ -348,7 +339,7 @@ class UserDataSettings
         }
         catch
         {
-            fatalError ("There was an error fetching the list of timetables")
+            print ("There was an error fetching the list of timetables")
         }
     }
     
@@ -367,7 +358,7 @@ class UserDataSettings
         }
         catch
         {
-            fatalError ("There was an error fetching the list of timetables")
+            print ("There was an error fetching the list of timetables")
         }
     }
     
@@ -390,7 +381,7 @@ class UserDataSettings
         }
         catch
         {
-            fatalError ("There was an error fetching the list of periods")
+            print ("There was an error fetching the list of periods")
         }
     }
     
@@ -411,7 +402,7 @@ class UserDataSettings
         }
         catch
         {
-            fatalError ("There was an error fetching the list of FlipDay")
+            print ("There was an error fetching the list of FlipDay")
             
         }
     }
@@ -450,7 +441,7 @@ class UserDataSettings
         }
         catch
         {
-            fatalError ("There was an error fetching the list of schedules!")
+            print ("There was an error fetching the list of schedules!")
         }
     }
 
@@ -472,10 +463,7 @@ class UserDataSettings
                     //deletes all the existing periods and flipday schedules
                     self.deleteFlipDay()
                     //Creates a FlipDay Entity
-                    guard let entityFlip = NSEntityDescription.entity (forEntityName: "FlipDay", in: CoreDataStack.managedObjectContext) else
-                    {
-                        fatalError ("Could not find entity description!")
-                    }
+                    guard let entityFlip = NSEntityDescription.entity (forEntityName: "FlipDay", in: CoreDataStack.managedObjectContext) else {return}
                     guard let docSnapshot = docSnapshot else{return}
                     if let data = docSnapshot.data()
                     {
@@ -500,15 +488,9 @@ class UserDataSettings
                 {
                     self.deleteSchedules () //the delete rule of schedules is set to cascade, so if the schedule is deleted, all the period is deleted
                     //Creates a Period Entity
-                    guard let entityPeriod = NSEntityDescription.entity(forEntityName: "Period", in: CoreDataStack.managedObjectContext) else
-                    {
-                        fatalError ("Could not find entity description!")
-                    }
+                    guard let entityPeriod = NSEntityDescription.entity(forEntityName: "Period", in: CoreDataStack.managedObjectContext) else {return}
                     //Creates a Schedule Entity
-                    guard let entitySchedule = NSEntityDescription.entity (forEntityName: "Schedule", in: CoreDataStack.managedObjectContext) else
-                    {
-                        fatalError ("Could not find entity description!")
-                    }
+                    guard let entitySchedule = NSEntityDescription.entity (forEntityName: "Schedule", in: CoreDataStack.managedObjectContext) else {return}
                     for document in querySnapshot!.documents
                     {
                         //loops through the documents and creates and casts data as appropriate arrays
@@ -572,7 +554,7 @@ class UserDataSettings
         }
         catch
         {
-            fatalError ("There was an error fetching the list of events")
+            print ("There was an error fetching the list of events")
         }
     }
     
@@ -593,10 +575,7 @@ class UserDataSettings
                     if let specifics = each as? [Any]
                     {
                         //creates an entity description
-                        guard let entityEvent = NSEntityDescription.entity(forEntityName: "Event", in: CoreDataStack.managedObjectContext) else
-                        {
-                            fatalError("Could not find entity description");
-                        }
+                        guard let entityEvent = NSEntityDescription.entity(forEntityName: "Event", in: CoreDataStack.managedObjectContext) else {return}
                         //creates the event object and insert it into the coredata managed object context
                         let event = Event (entity: entityEvent, insertInto: CoreDataStack.managedObjectContext);
                         guard let titleDetail = specifics [0] as? String,
@@ -650,7 +629,7 @@ class UserDataSettings
         }
         catch
         {
-            fatalError ("There was an error fetching the list of events")
+            print ("There was an error fetching the list of events")
         }
         return nil;
     }
@@ -675,7 +654,7 @@ class UserDataSettings
         }
         catch
         {
-            fatalError ("There was an error fetching the list of events")
+            print ("There was an error fetching the list of events")
         }
         return nil;
     }
@@ -692,7 +671,7 @@ class UserDataSettings
         }
         catch
         {
-            fatalError("There was an error fetching the list of schedules")
+            print("There was an error fetching the list of schedules")
         }
         return nil;
     }
@@ -712,7 +691,7 @@ class UserDataSettings
         }
         catch
         {
-            fatalError("There was an error fetching the list of schedules")
+            print("There was an error fetching the list of schedules")
         }
         return nil;
     }
@@ -956,7 +935,7 @@ class UserDataSettings
             }
         }
         catch {
-            fatalError("There was an error fetching the list of timetables");
+            print("There was an error fetching the list of timetables");
         }
     }*/
 }
