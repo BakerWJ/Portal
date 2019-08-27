@@ -113,7 +113,7 @@ class ArticleViewController: UIViewController, FaveButtonDelegate {
         view.addSubview(scrollview)
         setupScroll()
         self.scrollview.addSubview(img)
-        let layer = UIView(frame: CGRect(x: 0/375*w, y: 364/375*w, width: 375/375*w, height: 866/375*w))
+        let layer = UIView(frame: CGRect(x: 0/375*w, y: 364/375*w, width: 375/375*w, height: 10000000/375*w))
         layer.layer.cornerRadius = 15/375*w
         layer.backgroundColor = UIColor.white
         self.scrollview.addSubview(layer)
@@ -144,7 +144,7 @@ class ArticleViewController: UIViewController, FaveButtonDelegate {
         
         img.topAnchor.constraint(equalTo: self.scrollview.topAnchor, constant: 0/375*w).isActive = true
         img.leftAnchor.constraint(equalTo: self.scrollview.leftAnchor, constant: 0).isActive = true
-        img.widthAnchor.constraint(equalToConstant: 419/375*w).isActive = true
+        img.widthAnchor.constraint(equalToConstant: w).isActive = true
         img.heightAnchor.constraint(equalToConstant: 395/375*w).isActive = true
         
         view.addSubview (backButton);
@@ -161,7 +161,7 @@ class ArticleViewController: UIViewController, FaveButtonDelegate {
         backButton.layer.shadowColor = UIColor.black.cgColor;
         backButton.layer.shadowOpacity = 0.2
         backButton.layer.masksToBounds = false;
-        backButton.layer.shadowRadius = 1;
+        backButton.layer.shadowRadius = 0.5;
         backButton.layer.shadowPath = UIBezierPath(roundedRect: backButton.bounds, cornerRadius: backButton.layer.cornerRadius).cgPath;
         backButton.layer.shadowOffset = CGSize(width: 0.0, height: 0.3);
     }
