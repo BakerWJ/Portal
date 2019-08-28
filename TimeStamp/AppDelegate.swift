@@ -34,6 +34,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
     //MARK: Google Sign In
     //handle the url received at the end of the authentification process
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        print ("url")
+        if (url.scheme == "com.googleusercontent.apps.367766824243-2lift2fsdd0d6nmvi4uic7grt3e60r1l")
+        {
+            if (UserDefaults.standard.bool(forKey: "loggedin") && UserDefaults.standard.bool(forKey: "notFirstTimeLaunch"))
+            {
+               /* switch url.host
+                {
+                case "main":
+                    
+                case "featured":
+                    
+                case "today":
+                    
+                default:
+                    break;
+                }*/
+            }
+        }
         return GIDSignIn.sharedInstance().handle(url)
     }
     
@@ -130,6 +148,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool
     {
+        print ("open")
         //Connection to firebase
         FirebaseApp.configure();
         //setup crashlytics

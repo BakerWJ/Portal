@@ -14,6 +14,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     let screenWidth = UIScreen.main.bounds.width;
     let screenHeight = UIScreen.main.bounds.height;
     
+    lazy var scheme = "com.googleusercontent.apps.367766824243-2lift2fsdd0d6nmvi4uic7grt3e60r1l://";
+    
     lazy var nextPeriodView : NextPeriodView = {
         let view = NextPeriodView()
         view.layer.borderColor = UIColor.clear.cgColor;
@@ -139,8 +141,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     private func setup ()
     {
         //add tap gesture recognizer
-        let tg = UITapGestureRecognizer (target: self, action: #selector(launchApp));
-        view.addGestureRecognizer(tg)
         
         view.addSubview (typeDayLabel);
         typeDayLabel.translatesAutoresizingMaskIntoConstraints = false;
@@ -158,6 +158,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         nextPeriodView.layoutIfNeeded()
         nextPeriodView.layer.cornerRadius = nextPeriodView.frame.height/2;
         nextPeriodView.refresh()
+        let tg1 = UITapGestureRecognizer(target: self, action: #selector(launchMain));
+        nextPeriodView.addGestureRecognizer(tg1);
         
         view.addSubview(topArticleLabel);
         topArticleLabel.translatesAutoresizingMaskIntoConstraints = false;
@@ -172,6 +174,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         blueBubble.heightAnchor.constraint(equalToConstant: 144/812.0*screenHeight).isActive = true
         blueBubble.topAnchor.constraint(equalTo: topArticleLabel.bottomAnchor, constant: 10/812.0*screenHeight).isActive = true;
         blueBubble.leadingAnchor.constraint (equalTo: topArticleLabel.leadingAnchor).isActive = true;
+        let tg2 = UITapGestureRecognizer(target: self, action: #selector(launchFeatured));
+        blueBubble.addGestureRecognizer(tg2);
         
         blueBubble.addSubview (distortion);
         distortion.translatesAutoresizingMaskIntoConstraints = false;
@@ -216,6 +220,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         stackView.leadingAnchor.constraint(equalTo: blueBubble.leadingAnchor).isActive = true;
         stackView.trailingAnchor.constraint (equalTo: blueBubble.trailingAnchor).isActive = true;
         stackView.topAnchor.constraint (equalTo: todayLabel.bottomAnchor, constant: 10/812.0*screenHeight).isActive = true;
+        let tg3 = UITapGestureRecognizer(target: self, action: #selector(launchToday));
+        stackView.addGestureRecognizer(tg3);
         self.refresh ()
     }
     
@@ -259,6 +265,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     private func refreshArticle ()
     {
+        featuredArticle = nil;
         if let articles = UserDataSettings.fetchAllArticles()
         {
             var res : (Int, Article?) = (0, nil);
@@ -308,11 +315,25 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         preferredContentSize = expanded ? CGSize(width: maxSize.width, height: 1000/812.0*screenHeight) : maxSize
     }
     
-    //this opens the main app when the user taps the widget
-    @objc func launchApp ()
+    //goes to the schedule for today
+    @objc func launchToday ()
     {
-        let url: URL = URL (string: "com.googleusercontent.apps.367766824243-2lift2fsdd0d6nmvi4uic7grt3e60r1l://")!
-        extensionContext?.open(url, completionHandler: nil)
+        let url: URL = URL(string: scheme + "today")!
+        extensionContext?.open(url, completionHandler: nil);
+    }
+    
+    //goes to the article view controller of the featured page
+    @objc func launchFeatured()
+    {
+        let url: URL = URL(string: scheme + "featured")!
+        extensionContext?.open(url, completionHandler: nil);
+    }
+    
+    //goes to the main page
+    @objc func launchMain()
+    {
+        let url: URL = URL(string: scheme + "main")!
+        extensionContext?.open(url, completionHandler: nil);
     }
     
 }
