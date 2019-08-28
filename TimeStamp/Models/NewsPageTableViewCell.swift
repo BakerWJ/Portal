@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Nuke
+import PINRemoteImage
 
 class NewsPageTableViewCell: UITableViewCell {
     let w = UIScreen.main.bounds.width
@@ -15,10 +15,8 @@ class NewsPageTableViewCell: UITableViewCell {
     var article:Article? {
         didSet {
             guard let articleItem = article else {return}
-            let pipeline = ImagePipeline {
-                $0.isProgressiveDecodingEnabled = true
-            }
-            Nuke.loadImage(with: URL(string: articleItem.img)!, into: img)
+            img.pin_updateWithProgress = true
+            img.pin_setImage(from: URL(string: articleItem.img))
             titleLabel.text = articleItem.title
             authorLabel.text = "by " + articleItem.author
             genreLabel.text = articleItem.genre.uppercased()
@@ -145,7 +143,7 @@ class NewsPageTableViewCell: UITableViewCell {
         tLabel.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 120/375 * w).isActive = true
         tLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 66/375 * w).isActive = true
         
-        authorLabel.widthAnchor.constraint(equalToConstant: 234/375 * w).isActive = true
+        authorLabel.widthAnchor.constraint(equalToConstant: 150/375 * w).isActive = true
         authorLabel.heightAnchor.constraint(equalToConstant: 12/375 * w).isActive = true
         authorLabel.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 120/375 * w).isActive = true
         authorLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 88/375 * w).isActive = true

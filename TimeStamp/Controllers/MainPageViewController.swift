@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import CoreData
 import GoogleSignIn
-import Nuke
+import PINRemoteImage
 
 class MainPageViewController: UIViewController {
     
@@ -23,9 +23,6 @@ class MainPageViewController: UIViewController {
     //timer that keeps on refreshing the view each minute
     var timer: Timer?;
     
-    let pipeline = ImagePipeline {
-        $0.isProgressiveDecodingEnabled = true
-    }
     
     let featureArticle: Article = {
         let articles = UserDataSettings.fetchAllArticles()
@@ -144,10 +141,8 @@ class MainPageViewController: UIViewController {
         img.layer.cornerRadius = 15/375 * UIScreen.main.bounds.width
         img.clipsToBounds = true
         img.backgroundColor = #colorLiteral(red: 0.2038967609, green: 0.3737305999, blue: 0.7035349607, alpha: 1)
-        let pipeline = ImagePipeline {
-            $0.isProgressiveDecodingEnabled = true
-        }
-        Nuke.loadImage(with: URL(string: featureArticle.img)!, into: img)
+        img.pin_updateWithProgress = true
+        img.pin_setImage(from: URL(string: featureArticle.img))
         return img
     }()
     

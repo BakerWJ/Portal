@@ -96,7 +96,7 @@ class UserDataSettings
                                 article.img = imageLink
                             }
                             else {
-                                article.img = "https://source.unsplash.com/800x600/?" + noImageKeyword
+                                article.img = "https://source.unsplash.com/1600x900/?" + noImageKeyword
                                 print(article.img)
                             }
                             article.author = author
