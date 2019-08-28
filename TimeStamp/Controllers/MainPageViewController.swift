@@ -262,7 +262,7 @@ class MainPageViewController: UIViewController {
         topArticleLabel.topAnchor.constraint (equalTo: view.topAnchor, constant: 260/812.0*screenHeight).isActive = true;
         topArticleLabel.leadingAnchor.constraint (equalTo: view.leadingAnchor, constant: 27/375.0*screenWidth).isActive = true;
         topArticleLabel.heightAnchor.constraint (equalToConstant: 40/812.0*screenHeight).isActive = true;
-        topArticleLabel.widthAnchor.constraint (equalToConstant: 93/375.0*screenHeight).isActive = true;
+        topArticleLabel.widthAnchor.constraint (equalToConstant: 93/375.0*screenWidth).isActive = true;
         
         view.addSubview(nextFewDaysView);
         nextFewDaysView.translatesAutoresizingMaskIntoConstraints = false;

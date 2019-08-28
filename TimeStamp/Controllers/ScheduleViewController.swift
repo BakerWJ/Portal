@@ -382,30 +382,10 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate, UIScro
     //This method uploads the schedules stored in core data into the "schedule" array.
     func fetchSchedules ()
     {
-        //fetch data from core data
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult> (entityName: "Schedule");
-        do
+        if let schedules = UserDataSettings.fetchAllSchedules()
         {
-            if let results = try CoreDataStack.managedObjectContext.fetch (fetchRequest) as? [Schedule]
-            {
-                schedules = results;
-            }
+            self.schedules = schedules;
         }
-        catch
-        {
-            fatalError ("There was an error fetching the list of schedules!")
-        }
-        let fetchRequest2 = NSFetchRequest<NSFetchRequestResult> (entityName: "WeeklySchedule");
-        do
-        {
-            if let results = try CoreDataStack.managedObjectContext.fetch (fetchRequest2) as? [WeeklySchedule]
-            {
-                weeklySchedule = results [0]
-            }
-        }
-        catch
-        {
-            fatalError("There was an error fetching the list of weeklySchedules!")
-        }
+        weeklySchedule = UserDataSettings.fetchWeeklySchedule()
     }
 }

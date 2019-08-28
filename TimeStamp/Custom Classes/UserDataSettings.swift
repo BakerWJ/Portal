@@ -202,11 +202,11 @@ class UserDataSettings
                     guard let entity = NSEntityDescription.entity(forEntityName: "Settings", in: CoreDataStack.managedObjectContext) else {return}
                     let mainSettings = Settings (entity: entity, insertInto: CoreDataStack.managedObjectContext)
                     mainSettings.daysBefore = 2;
-                    mainSettings.surveyNotifications = false;
-                    mainSettings.generalNotifications = false;
+                    mainSettings.surveyNotifications = true;
+                    mainSettings.generalNotifications = true;
                     mainSettings.notificationTime = 2; //default: evening
-                    mainSettings.houseNotifications = false;
-                    mainSettings.articleNotifications = false;
+                    mainSettings.houseNotifications = true;
+                    mainSettings.articleNotifications = true;
                     CoreDataStack.saveContext()
                 }
             }
@@ -251,6 +251,44 @@ class UserDataSettings
             print("There was an error fetching the list of timetables");
         }
         return nil;
+    }
+    
+    static func fetchAllSchedules () -> [Schedule]?
+    {
+        //fetch data from core data
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult> (entityName: "Schedule");
+        do
+        {
+            if let results = try CoreDataStack.managedObjectContext.fetch (fetchRequest) as? [Schedule]
+            {
+                return results;
+            }
+        }
+        catch
+        {
+            print ("There was an error fetching the list of schedules!")
+        }
+        return nil;
+    }
+    
+    static func fetchWeeklySchedule() -> WeeklySchedule?
+    {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult> (entityName: "WeeklySchedule");
+        do
+        {
+            if let results = try CoreDataStack.managedObjectContext.fetch (fetchRequest) as? [WeeklySchedule]
+            {
+                if (results.count != 0)
+                {
+                    return results [0];
+                }
+            }
+        }
+        catch
+        {
+            print("There was an error fetching the list of weeklySchedules!")
+        }
+        return nil
     }
     
     //this adds weekly schedule if there isn't already one
@@ -655,43 +693,6 @@ class UserDataSettings
         catch
         {
             print ("There was an error fetching the list of events")
-        }
-        return nil;
-    }
-    
-    static func fetchAllSchedules () -> [Schedule]?
-    {
-        let fetchRequest = NSFetchRequest <NSFetchRequestResult> (entityName: "Schedule");
-        do
-        {
-            if let results = try CoreDataStack.managedObjectContext.fetch(fetchRequest) as? [Schedule]
-            {
-                return results;
-            }
-        }
-        catch
-        {
-            print("There was an error fetching the list of schedules")
-        }
-        return nil;
-    }
-    
-    static func fetchWeeklySchedule () -> WeeklySchedule?
-    {
-        let fetchRequest = NSFetchRequest <NSFetchRequestResult> (entityName: "WeeklySchedule");
-        do
-        {
-            if let results = try CoreDataStack.managedObjectContext.fetch(fetchRequest) as? [WeeklySchedule]
-            {
-                if (results.count > 0)
-                {
-                    return results [0]
-                }
-            }
-        }
-        catch
-        {
-            print("There was an error fetching the list of schedules")
         }
         return nil;
     }
