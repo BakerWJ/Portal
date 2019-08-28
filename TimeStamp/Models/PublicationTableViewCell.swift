@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Nuke
+import PINRemoteImage
 
 class PublicationTableViewCell: UITableViewCell {
     let w = UIScreen.main.bounds.width
@@ -15,10 +15,8 @@ class PublicationTableViewCell: UITableViewCell {
     var article:Article? {
         didSet {
             guard let articleItem = article else {return}
-            let pipeline = ImagePipeline {
-                $0.isProgressiveDecodingEnabled = true
-            }
-            Nuke.loadImage(with: URL(string: articleItem.img)!, into: img)
+            img.pin_updateWithProgress = true
+            img.pin_setImage(from: URL(string: articleItem.img))
             titleLabel.text = articleItem.title
             authorLabel.text = "by " + articleItem.author
             genreLabel.text = articleItem.genre.uppercased()

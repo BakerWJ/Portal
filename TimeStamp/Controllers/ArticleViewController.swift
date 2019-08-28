@@ -8,7 +8,7 @@
 
 import UIKit
 import FaveButton
-import Nuke
+import PINRemoteImage
 
 class ArticleViewController: UIViewController, FaveButtonDelegate {
     
@@ -18,7 +18,8 @@ class ArticleViewController: UIViewController, FaveButtonDelegate {
         didSet {
             guard let articleItem = article else {return}
             // img.loadImage(urlString: articleItem.img)
-            Nuke.loadImage(with: URL(string: articleItem.img)!, into: img)
+            img.pin_updateWithProgress = true
+            img.pin_setImage(from: URL(string: articleItem.img))
             authorLabel.text = articleItem.author
             titleLabel.text = articleItem.title
             textLabel.text = articleItem.text

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Nuke
+import PINRemoteImage
 
 class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     let w = UIScreen.main.bounds.width;
@@ -444,7 +444,7 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         let textLayer = UILabel(frame: CGRect(x: 38/375 * w, y: 180/375 * w, width: 122/375 * w, height: 36/375 * w))
         textLayer.lineBreakMode = .byWordWrapping
-        textLayer.numberOfLines = 0
+        textLayer.numberOfLines = 2
         textLayer.textColor = UIColor.white
         textLayer.alpha = 1
         let textContent = featuredArticle.title
@@ -498,7 +498,8 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         let i_view = UIImageView()
         i_view.image = #imageLiteral(resourceName: "f_image")
-        Nuke.loadImage(with: URL(string: featuredArticle.img)!, into: i_view)
+        i_view.pin_updateWithProgress = true
+        i_view.pin_setImage(from: URL(string: featuredArticle.img))
         i_view.frame = CGRect(x: 218/375 * w, y: 132/375 * w, width: 134/375 * w, height: 144/375 * w)
         i_view.layer.cornerRadius = 15/375 * w
         i_view.clipsToBounds = true
