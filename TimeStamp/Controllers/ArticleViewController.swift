@@ -29,6 +29,8 @@ class ArticleViewController: UIViewController, FaveButtonDelegate {
     
     var source: Int?
     
+    //necessary for widget transition
+    weak var delegate : UIViewController?
     
     lazy var heartButton: FaveButton = {
         let button = FaveButton(frame: CGRect(x: 320/375.0*w, y: 40/375.0*w, width: 40/375.0*w, height: 40/375.0*w), faveIconNormal: UIImage(named: "filledHeartImage"));
@@ -104,7 +106,7 @@ class ArticleViewController: UIViewController, FaveButtonDelegate {
     }()
     
     lazy var backButton: UIImageView = {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         let articleImage = UIImage(named: "Taskbar")
         let bgimage = UIImageView(image: articleImage)
         bgimage.addGestureRecognizer(tap)
@@ -180,7 +182,7 @@ class ArticleViewController: UIViewController, FaveButtonDelegate {
         scrollview.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
     
-    @objc func handleTap(_ sender: UITapGestureRecognizer) {
+    @objc func handleTap() {
         if source == 0 {
             self.performSegue(withIdentifier: "toPub", sender: self)
         }

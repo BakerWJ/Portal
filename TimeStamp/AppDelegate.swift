@@ -39,20 +39,132 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
         {
             if (UserDefaults.standard.bool(forKey: "loggedin") && UserDefaults.standard.bool(forKey: "notFirstTimeLaunch"))
             {
-               /* switch url.host
+                if let window = self.window
                 {
-                case "main":
-                    
-                case "featured":
-                    
-                case "today":
-                    
-                default:
-                    break;
-                }*/
+                    window.makeKeyAndVisible()
+                    if let root = window.rootViewController
+                    {
+                        let currVC = findBestViewController(vc: root);
+                        let tabBarVC = findTabBarController (vc: root);
+                        print (tabBarVC)
+                        print (root)
+                        if let vc = currVC as? CreditsViewController
+                        {
+                            DispatchQueue.main.async {
+                                vc.cancel()
+                            }
+                        }
+                        else if let vc = currVC as? PublicationViewController
+                        {
+                            DispatchQueue.main.async {
+                                vc.exit()
+                            }
+                        }
+                        else if let vc = currVC as? ArticleViewController
+                        {
+                            DispatchQueue.main.async {
+                                vc.handleTap();
+                            }
+                            if let vc2 = vc.delegate as? PublicationViewController
+                            {
+                                DispatchQueue.main.asyncAfter(deadline: .now()+0.3, execute: {
+                                    vc2.exit()
+                                })
+                            }
+                        }
+                        
+                        switch url.host
+                        {
+                        case "main":
+                            DispatchQueue.main.asyncAfter(deadline: .now()+0.6, execute: {
+                                tabBarVC?.selectedIndex = 0;
+                            })
+                            
+                        case "featured":
+                            DispatchQueue.main.asyncAfter(deadline: .now()+0.6, execute: {
+                                tabBarVC?.selectedIndex = 0;
+                            })
+                            
+                            if let vc = tabBarVC?.viewControllers? [0] as? UINavigationController
+                            {
+                                if let vc2 = vc.topViewController as? MainPageViewController
+                                {
+                                    DispatchQueue.main.asyncAfter(deadline: .now()+0.9, execute: {
+                                        vc2.featured()
+                                    })
+                                }
+                            }
+                        case "today":
+                            if let vc = tabBarVC?.viewControllers? [1] as? UINavigationController
+                            {
+                                if let vc2 = vc.topViewController as? ScheduleViewController
+                                {
+                                    vc2.defaultIndex = (Util.next(days: 0) as Date, true);
+                                    DispatchQueue.main.asyncAfter(deadline: .now()+0.6, execute: {
+                                        tabBarVC?.selectedIndex = 1;
+                                    })
+                                }
+                            }
+                            
+                        default:
+                            break;
+                        }
+                    }
+                }
+                
             }
         }
         return GIDSignIn.sharedInstance().handle(url)
+    }
+    
+    private func findTabBarController (vc: UIViewController) -> UITabBarController?
+    {
+        if let controller = vc as? UITabBarController
+        {
+            return controller;
+        }
+        else if let controller = vc.presentedViewController
+        {
+            return findTabBarController(vc: controller)
+        }
+        else if let controller = vc as? UINavigationController
+        {
+            if (controller.viewControllers.count > 0)
+            {
+                return findTabBarController(vc: controller.topViewController!);
+            }
+            return nil;
+        }
+        return nil
+    }
+    
+    //finds the currently presented view controller
+    private func findBestViewController (vc: UIViewController) -> UIViewController
+    {
+        if let controller = vc.presentedViewController
+        {
+            return findBestViewController(vc: controller)
+        }
+        else if let controller = vc as? UINavigationController
+        {
+            if (controller.viewControllers.count > 0)
+            {
+                return findBestViewController(vc: controller.topViewController!);
+            }
+            return controller;
+        }
+        else if let controller = vc as? UITabBarController
+        {
+            if let controllers = controller.viewControllers
+            {
+                if (controllers.count > 0)
+                {
+                    return findBestViewController(vc: controller.selectedViewController!);
+                }
+            }
+            return controller
+        }
+        return vc
     }
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!,

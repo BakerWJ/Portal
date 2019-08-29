@@ -354,6 +354,7 @@ class MainPageViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destinationVC = segue.destination as? ArticleViewController {
+            destinationVC.delegate = self;
             destinationVC.article = featureArticle
             destinationVC.source = 2
         }

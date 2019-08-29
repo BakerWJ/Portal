@@ -86,6 +86,7 @@ class PublicationViewController: UIViewController, UITableViewDataSource, UITabl
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if let destinationVC = segue.destination as? ArticleViewController {
+            destinationVC.delegate = self;
             destinationVC.article = pubArticles[selected]
             destinationVC.source = 0
         }
@@ -128,7 +129,7 @@ class PublicationViewController: UIViewController, UITableViewDataSource, UITabl
         textLayer.textColor = UIColor.black
         textLayer.translatesAutoresizingMaskIntoConstraints = false
         textLayer.textAlignment = .center
-        return textLayer
+        return textLayer;
     }()
     
     func navBar() {

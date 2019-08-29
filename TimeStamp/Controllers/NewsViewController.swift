@@ -556,6 +556,7 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         
         if let destinationVC = segue.destination as? ArticleViewController {
+            destinationVC.delegate = self;
             if (featured == 1) {
                 featured = 0
                 destinationVC.article = featuredArticle

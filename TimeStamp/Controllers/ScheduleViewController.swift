@@ -60,10 +60,7 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate, UIScro
         cv.showsHorizontalScrollIndicator = false;
         cv.isUserInteractionEnabled = true;
         cv.bounces = false;
-        if #available(iOS 11, *)
-        {
-            cv.contentInsetAdjustmentBehavior = .never;
-        }
+        cv.contentInsetAdjustmentBehavior = .never;
         cv.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 32/375.0*screenWidth)
         cv.delegate = self;
         cv.dataSource = self;
@@ -88,6 +85,7 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate, UIScro
     lazy var cellWidth = 335/375.0*screenWidth
     lazy var movingImageConstraintMaxOffset = -151/812.0*screenHeight;
     var lastIndex = 0;
+    var lastContentOffset:CGFloat = 0;
     
     var firstTimeLoad = true;
     
@@ -278,14 +276,24 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate, UIScro
         return CGSize (width: 335/375.0*screenWidth, height: screenHeight);
     }
     
+    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        collectionView.isUserInteractionEnabled = true;
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        collectionView.isUserInteractionEnabled = true;
+    }
+    
     //customize the paging effect
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         //stops the scrollview from sliding (stop the physics)
         targetContentOffset.pointee = scrollView.contentOffset
+        if (scrollView.contentOffset.x == lastContentOffset) {return}
         if (abs (velocity.x) > 0.5)
         {
             var target = lastIndex + (velocity.x > 0 ? 1 : -1);
             target = min(max (0, target), 4);
+            collectionView.isUserInteractionEnabled = false;
             collectionView.scrollToItem(at: IndexPath(row: target, section: 0), at: .left, animated: true)
         }
         else
@@ -293,8 +301,8 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate, UIScro
             let numCellsShifted = abs(scrollView.contentOffset.x/(335/375.0*screenWidth));
             let roundedCell = Int(round(numCellsShifted + 0.1));
             let indexOfMajorCell = min(roundedCell, 4);
-            let indexPath = IndexPath (row: indexOfMajorCell, section: 0);
-            collectionView.scrollToItem(at: indexPath, at: .left, animated: true);
+            collectionView.isUserInteractionEnabled = false;
+            collectionView.scrollToItem(at: IndexPath(row: indexOfMajorCell, section: 0), at: .left, animated: true);
         }
     }
     
@@ -302,6 +310,7 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate, UIScro
         let numCellsShifted = abs(scrollView.contentOffset.x/(355/375.0*screenWidth));
         let roundedCell = Int (round (numCellsShifted + 0.1));
         lastIndex = roundedCell
+        lastContentOffset = scrollView.contentOffset.x;
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -329,20 +338,20 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate, UIScro
         DispatchQueue.main.async {
             UIView.animate (withDuration: 0.3, animations: {
                 self.topConstraint.constant = 0;
-                self.view.layoutIfNeeded()
+                self.view.layoutIfNeeded();
             }) { (Finished) in
                 self.collectionView.isScrollEnabled = true;
                 self.blockView.layer.opacity = 0;
-                self.collectionView.layoutIfNeeded()
+                self.collectionView.layoutIfNeeded();
                 let co = self.collectionView.contentOffset;
-                self.collectionView.reloadData()
-                self.collectionView.layoutIfNeeded()
-                self.collectionView.setContentOffset(co, animated: false)
+                self.collectionView.reloadData();
+                self.collectionView.layoutIfNeeded();
+                self.collectionView.setContentOffset(co, animated: false);
                 let numCellsShifted = abs(self.collectionView.contentOffset.x/(355/375.0*self.screenWidth));
                 let roundedCell = Int (round (numCellsShifted + 0.1));
                 if let currCell = self.collectionView.cellForItem(at: IndexPath(row: roundedCell, section: 0)) as? DailyScheduleCell
                 {
-                    currCell.imageTop.constant = self.movingImageConstraintMaxOffset
+                    currCell.imageTop.constant = self.movingImageConstraintMaxOffset;
                     currCell.displayedEventView.layer.opacity = 1;
                 }
             }

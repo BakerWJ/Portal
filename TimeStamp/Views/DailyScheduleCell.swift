@@ -433,6 +433,4 @@ class DailyScheduleCell: UICollectionViewCell, UIPickerViewDelegate, UIPickerVie
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return eventsDisplayed [row]
     }
-    
-    
 }

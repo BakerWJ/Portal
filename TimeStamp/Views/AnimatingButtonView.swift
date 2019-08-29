@@ -40,7 +40,7 @@ class AnimatingButtonView: UIView
         super.init(coder: coder);
     }
     
-    var isSelected: Bool = false {
+    var isSelected: Bool = true {
         didSet {
             animate ()
         }
@@ -64,11 +64,12 @@ class AnimatingButtonView: UIView
         blueView.leadingAnchor.constraint (equalTo: leadingAnchor).isActive = true;
         blueView.topAnchor.constraint (equalTo: topAnchor).isActive = true;
         blueView.bottomAnchor.constraint (equalTo: bottomAnchor).isActive = true;
-        blueViewWidth = blueView.widthAnchor.constraint (equalToConstant: 0.5/375.0*screenWidth);
+        blueViewWidth = blueView.widthAnchor.constraint (equalToConstant: 231/375.0*screenWidth);
         blueViewWidth.isActive = true;
         
         addSubview (label);
         label.translatesAutoresizingMaskIntoConstraints = false;
+        label.textColor = .white;
         addConstraintsWithFormat("H:|[v0]|", views: label);
         addConstraintsWithFormat("V:|[v0]|", views: label);
     }
