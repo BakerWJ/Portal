@@ -731,7 +731,6 @@ class UserDataSettings
                     for z in schedule{
                         if(z.value == days.typeOfDay[x]){
                             eventName = z.kind;
-                            
                         }
                     }
                     //creates a notification the day of

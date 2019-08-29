@@ -69,6 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
                                 })
                             }
                         }
+                        
                         if tabBarVC != nil
                         {
                             UIApplication.shared.beginIgnoringInteractionEvents()
@@ -96,7 +97,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
                                     }
                                 }
                             case "today":
-                                if let vc = tabBarVC?.viewControllers? [1] as? UINavigationController
+                                if let vc = currVC as? ScheduleViewController
+                                {
+                                    DispatchQueue.main.asyncAfter(deadline: .now()+0.2) {
+                                        vc.defaultIndex = (Util.next(days: 0) as Date, true);
+                                        vc.collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .left, animated: true);
+                                        UIApplication.shared.endIgnoringInteractionEvents()
+                                    }
+                                }
+                                else if let vc = tabBarVC?.viewControllers? [1] as? UINavigationController
                                 {
                                     if let vc2 = vc.topViewController as? ScheduleViewController
                                     {
@@ -107,7 +116,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
                                         })
                                     }
                                 }
-                                
                             default:
                                 break;
                             }
