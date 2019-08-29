@@ -34,7 +34,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
     //MARK: Google Sign In
     //handle the url received at the end of the authentification process
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        print ("url")
         if (url.scheme == "com.googleusercontent.apps.367766824243-2lift2fsdd0d6nmvi4uic7grt3e60r1l")
         {
             if (UserDefaults.standard.bool(forKey: "loggedin") && UserDefaults.standard.bool(forKey: "notFirstTimeLaunch"))
@@ -42,7 +41,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
                 if let window = self.window
                 {
                     window.makeKeyAndVisible()
-                    UIApplication.shared.beginIgnoringInteractionEvents()
                     if let root = window.rootViewController
                     {
                         let currVC = findBestViewController(vc: root);
@@ -71,45 +69,48 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
                                 })
                             }
                         }
-                        
-                        switch url.host
+                        if tabBarVC != nil
                         {
-                        case "main":
-                            DispatchQueue.main.asyncAfter(deadline: .now()+0.6, execute: {
-                                tabBarVC?.selectedIndex = 0;
-                                UIApplication.shared.endIgnoringInteractionEvents()
-                            })
-                            
-                        case "featured":
-                            DispatchQueue.main.asyncAfter(deadline: .now()+0.6, execute: {
-                                tabBarVC?.selectedIndex = 0;
-                            })
-                            
-                            if let vc = tabBarVC?.viewControllers? [0] as? UINavigationController
+                            UIApplication.shared.beginIgnoringInteractionEvents()
+                            switch url.host
                             {
-                                if let vc2 = vc.topViewController as? MainPageViewController
+                            case "main":
+                                DispatchQueue.main.asyncAfter(deadline: .now()+0.7, execute: {
+                                    tabBarVC?.selectedIndex = 0;
+                                    UIApplication.shared.endIgnoringInteractionEvents()
+                                })
+                                
+                            case "featured":
+                                DispatchQueue.main.asyncAfter(deadline: .now()+0.7, execute: {
+                                    tabBarVC?.selectedIndex = 0;
+                                })
+                                
+                                if let vc = tabBarVC?.viewControllers? [0] as? UINavigationController
                                 {
-                                    DispatchQueue.main.asyncAfter(deadline: .now()+0.9, execute: {
-                                        vc2.featured()
-                                        UIApplication.shared.endIgnoringInteractionEvents()
-                                    })
+                                    if let vc2 = vc.topViewController as? MainPageViewController
+                                    {
+                                        DispatchQueue.main.asyncAfter(deadline: .now()+1, execute: {
+                                            vc2.featured()
+                                            UIApplication.shared.endIgnoringInteractionEvents()
+                                        })
+                                    }
                                 }
-                            }
-                        case "today":
-                            if let vc = tabBarVC?.viewControllers? [1] as? UINavigationController
-                            {
-                                if let vc2 = vc.topViewController as? ScheduleViewController
+                            case "today":
+                                if let vc = tabBarVC?.viewControllers? [1] as? UINavigationController
                                 {
-                                    vc2.defaultIndex = (Util.next(days: 0) as Date, true);
-                                    DispatchQueue.main.asyncAfter(deadline: .now()+0.6, execute: {
-                                        tabBarVC?.selectedIndex = 1;
-                                        UIApplication.shared.endIgnoringInteractionEvents()
-                                    })
+                                    if let vc2 = vc.topViewController as? ScheduleViewController
+                                    {
+                                        vc2.defaultIndex = (Util.next(days: 0) as Date, true);
+                                        DispatchQueue.main.asyncAfter(deadline: .now()+0.7, execute: {
+                                            tabBarVC?.selectedIndex = 1;
+                                            UIApplication.shared.endIgnoringInteractionEvents()
+                                        })
+                                    }
                                 }
+                                
+                            default:
+                                break;
                             }
-                            
-                        default:
-                            break;
                         }
                     }
                 }
