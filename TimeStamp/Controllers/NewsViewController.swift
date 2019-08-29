@@ -44,7 +44,10 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return cell
     }
     
-    let featuredArticle : Article? = {
+    var featuredArticle: Article?
+    
+    func getFeatured() -> Article?
+    {
         let articles = UserDataSettings.fetchAllArticles()
         var selected : Article?
         guard let article = articles else {return nil}
@@ -59,8 +62,7 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
         }
         return selected
-    }()
-    
+    }
     
     func popArticles() -> [Article] {
         guard let article = articles else {return [Article]()}
@@ -157,13 +159,33 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.refresh()
     }
     
-    private func refresh ()
+    func refresh ()
     {
         articles = UserDataSettings.fetchAllArticles()
+        featuredArticle = getFeatured()
+        refreshFeatured()
         sift = self.siftArticles()
         new = self.newArticles()
         popular = self.popArticles()
         articlesView.reloadData()
+    }
+    
+    private func refreshFeatured()
+    {
+        guard let featuredArticle = featuredArticle else {return}
+        if let image = scrollview.viewWithTag(1) as? UIImageView
+        {
+            image.pin_updateWithProgress = true
+            image.pin_setImage(from: URL(string: featuredArticle.img))
+        }
+        if let genre = scrollview.viewWithTag(3) as? UILabel
+        {
+            genre.text = featuredArticle.genre
+        }
+        if let title = scrollview.viewWithTag(2) as? UILabel
+        {
+            title.text = featuredArticle.title
+        }
     }
     
     override func viewDidLoad() {
@@ -171,6 +193,7 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         new = self.newArticles()
         popular = self.popArticles()
         sift = self.siftArticles()
+        featuredArticle = getFeatured()
         view.addSubview(scrollview)
         setupScroll()
         topText()
@@ -251,12 +274,8 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         scrollview.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         scrollview.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         scrollview.backgroundColor = .white;
-        if #available(iOS 11.0, *) {
-            self.scrollview.contentInsetAdjustmentBehavior = .never
-        } else {
-            // Fallback on earlier versions
-        }
-        scrollview.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        self.scrollview.contentInsetAdjustmentBehavior = .never
+        scrollview.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0);
     }
     
     func publications() {
@@ -443,6 +462,7 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         
         let textLayer = UILabel(frame: CGRect(x: 38/375 * w, y: 180/375 * w, width: 122/375 * w, height: 36/375 * w))
+        textLayer.tag = 2;
         textLayer.lineBreakMode = .byWordWrapping
         textLayer.numberOfLines = 2
         textLayer.textColor = UIColor.white
@@ -479,6 +499,7 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.scrollview.addSubview(textLayer1)
         
         let ctextLayer = UILabel(frame: CGRect(x: 40/375 * w, y: 159/375 * w, width: 85/375 * w, height: 14/375 * w))
+        ctextLayer.tag = 3;
         ctextLayer.lineBreakMode = .byWordWrapping
         ctextLayer.numberOfLines = 0
         ctextLayer.textColor = UIColor.white
@@ -497,6 +518,7 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.scrollview.addSubview(ctextLayer)
         
         let i_view = UIImageView()
+        i_view.tag = 1;
         i_view.image = #imageLiteral(resourceName: "f_image")
         i_view.pin_updateWithProgress = true
         i_view.pin_setImage(from: URL(string: featuredArticle.img))

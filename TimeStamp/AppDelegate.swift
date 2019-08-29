@@ -306,48 +306,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
         return true
     }
 
-    private func searchForScheduleView (vc: UIViewController) -> ScheduleViewController?
-    {
-        if let controller = vc as? ScheduleViewController
-        {
-            return controller;
-        }
-        if let controller = vc.presentedViewController
-        {
-            if let sch = findBestViewController(vc: controller) as? ScheduleViewController
-            {
-                return sch;
-            }
-            return nil
-        }
-        else if let controller = vc as? UINavigationController
-        {
-            if (controller.viewControllers.count > 0)
-            {
-                if let sch = findBestViewController(vc: controller.topViewController!) as? ScheduleViewController
-                {
-                    return sch;
-                }
-            }
-            return nil
-        }
-        else if let controller = vc as? UITabBarController
-        {
-            if let controllers = controller.viewControllers
-            {
-                if (controllers.count > 0)
-                {
-                    if let sch = findBestViewController(vc: controller.selectedViewController!) as? ScheduleViewController
-                    {
-                        return sch;
-                    }
-                }
-            }
-            return nil
-        }
-        return nil
-    }
- 
+    
     func applicationWillResignActive(_ application: UIApplication)
     {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -367,7 +326,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
         {
             if let root = window.rootViewController
             {
-                if let vc = searchForScheduleView (vc: root)
+                let currVC = findBestViewController(vc: root);
+                if let vc = currVC as? ScheduleViewController
+                {
+                    vc.refresh()
+                }
+                else if let vc = currVC as? NewsViewController
                 {
                     vc.refresh()
                 }

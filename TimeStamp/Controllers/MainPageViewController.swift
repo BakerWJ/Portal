@@ -23,8 +23,10 @@ class MainPageViewController: UIViewController {
     //timer that keeps on refreshing the view each minute
     var timer: Timer?;
     
+    var featuredArticle : Article?;
     
-    let featureArticle: Article = {
+    func getFeatured() -> Article?
+    {
         let articles = UserDataSettings.fetchAllArticles()
         var index = Article()
         var first = true
@@ -38,7 +40,7 @@ class MainPageViewController: UIViewController {
             }
         }
         return index
-    }()
+    }
     
     //gets the user's name, if it's not available, then it just says hello
     lazy var helloLabel: UILabel = {
@@ -94,7 +96,6 @@ class MainPageViewController: UIViewController {
         textLayer.numberOfLines = 1
         textLayer.adjustsFontSizeToFitWidth = true
         textLayer.minimumScaleFactor = 0.7
-        textLayer.text = featureArticle.genre.uppercased()
         return textLayer
     }()
     
@@ -106,7 +107,6 @@ class MainPageViewController: UIViewController {
         textLayer.numberOfLines = 2
         textLayer.adjustsFontSizeToFitWidth = true
         textLayer.minimumScaleFactor = 0.5
-        textLayer.text = featureArticle.title
         return textLayer
     }()
     
@@ -141,8 +141,6 @@ class MainPageViewController: UIViewController {
         img.layer.cornerRadius = 15/375 * UIScreen.main.bounds.width
         img.clipsToBounds = true
         img.backgroundColor = #colorLiteral(red: 0.2038967609, green: 0.3737305999, blue: 0.7035349607, alpha: 1)
-        img.pin_updateWithProgress = true
-        img.pin_setImage(from: URL(string: featureArticle.img))
         return img
     }()
     
@@ -206,6 +204,7 @@ class MainPageViewController: UIViewController {
     
     private func setup ()
     {
+        featuredArticle = getFeatured()
         //makes navigation bar transparent
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default);
         self.navigationController?.navigationBar.shadowImage = UIImage();
@@ -289,6 +288,7 @@ class MainPageViewController: UIViewController {
         genreLabel.heightAnchor.constraint(equalToConstant: 22/812*screenHeight).isActive = true
         genreLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 325/812*screenHeight).isActive = true
         genreLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 46/375.0*screenWidth).isActive = true
+        genreLabel.text = featuredArticle?.genre.uppercased()
         
         blueBubble.addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false;
@@ -296,6 +296,7 @@ class MainPageViewController: UIViewController {
         titleLabel.heightAnchor.constraint(equalToConstant: 36/812.0*screenHeight).isActive = true
         titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 350/812.0*screenHeight).isActive = true
         titleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 44/375.0*screenWidth).isActive = true
+        titleLabel.text = featuredArticle?.title;
         
         blueBubble.addSubview(readMoreLabel)
         readMoreLabel.translatesAutoresizingMaskIntoConstraints = false;
@@ -314,7 +315,8 @@ class MainPageViewController: UIViewController {
         featuredImage.heightAnchor.constraint(equalToConstant: 144/812.0*screenHeight).isActive = true
         featuredImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 302/812.0*screenHeight).isActive = true
         featuredImage.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 224/375.0*screenWidth).isActive = true
-        
+        featuredImage.pin_updateWithProgress = true
+        featuredImage.pin_setImage(from: URL(string: featuredArticle!.img))
     }
     
     //delegate method for upcoming days view (called when one of the days is pressed to go to the corresponding day in the schedule tab
@@ -337,6 +339,17 @@ class MainPageViewController: UIViewController {
     {
         nextClassView.refresh()
         nextFewDaysView.refresh();
+        featuredRefresh()
+    }
+    
+    private func featuredRefresh ()
+    {
+        featuredArticle = getFeatured()
+        guard let ar = featuredArticle else {return}
+        titleLabel.text = ar.title;
+        genreLabel.text = ar.genre;
+        featuredImage.pin_updateWithProgress = true
+        featuredImage.pin_setImage(from: URL(string: ar.img))
     }
     
     //MARK: Navigations
@@ -355,7 +368,7 @@ class MainPageViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destinationVC = segue.destination as? ArticleViewController {
             destinationVC.delegate = self;
-            destinationVC.article = featureArticle
+            destinationVC.article = featuredArticle
             destinationVC.source = 2
         }
     }
