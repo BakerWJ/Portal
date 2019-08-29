@@ -96,6 +96,7 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate, UIScro
         fetchSchedules ()
         reloadScheduleData()
         setup ()
+        print ("load")
     }
     
     //this function is called when the collection view is loaded, so here we can access the first element and set its constant
@@ -107,6 +108,7 @@ class ScheduleViewController: UIViewController, KeyboardShiftingDelegate, UIScro
         super.viewWillAppear(animated)
         //refresh when the view appears;
         self.refresh()
+        print ("appear")
         //add observer of the keyboard showing
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)

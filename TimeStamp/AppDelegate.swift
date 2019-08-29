@@ -305,7 +305,47 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
         return true
     }
 
-    
+    private func searchForScheduleView (vc: UIViewController) -> ScheduleViewController?
+    {
+        if let controller = vc as? ScheduleViewController
+        {
+            return controller;
+        }
+        if let controller = vc.presentedViewController
+        {
+            if let sch = findBestViewController(vc: controller) as? ScheduleViewController
+            {
+                return sch;
+            }
+            return nil
+        }
+        else if let controller = vc as? UINavigationController
+        {
+            if (controller.viewControllers.count > 0)
+            {
+                if let sch = findBestViewController(vc: controller.topViewController!) as? ScheduleViewController
+                {
+                    return sch;
+                }
+            }
+            return nil
+        }
+        else if let controller = vc as? UITabBarController
+        {
+            if let controllers = controller.viewControllers
+            {
+                if (controllers.count > 0)
+                {
+                    if let sch = findBestViewController(vc: controller.selectedViewController!) as? ScheduleViewController
+                    {
+                        return sch;
+                    }
+                }
+            }
+            return nil
+        }
+        return nil
+    }
  
     func applicationWillResignActive(_ application: UIApplication)
     {
@@ -322,6 +362,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
     func applicationWillEnterForeground(_ application: UIApplication)
     {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+        if let window = self.window
+        {
+            if let root = window.rootViewController
+            {
+                if let vc = searchForScheduleView (vc: root)
+                {
+                    vc.refresh()
+                }
+            }
+        }
+        
     }
     
     func applicationDidBecomeActive(_ application: UIApplication)
