@@ -772,7 +772,7 @@ class UserDataSettings
                         }
                         
                         let trigger2 = UNCalendarNotificationTrigger(dateMatching: time, repeats: false)
-                        requests.append(UNNotificationRequest(identifier: UUID().uuidString, content: general, trigger: trigger2))
+                        requests.append(UNNotificationRequest(identifier: UUID().uuidString, content: general2, trigger: trigger2))
                     }
                     
                     //print(general.title);
