@@ -42,12 +42,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
                 if let window = self.window
                 {
                     window.makeKeyAndVisible()
+                    UIApplication.shared.beginIgnoringInteractionEvents()
                     if let root = window.rootViewController
                     {
                         let currVC = findBestViewController(vc: root);
                         let tabBarVC = findTabBarController (vc: root);
-                        print (tabBarVC)
-                        print (root)
                         if let vc = currVC as? CreditsViewController
                         {
                             DispatchQueue.main.async {
@@ -78,6 +77,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
                         case "main":
                             DispatchQueue.main.asyncAfter(deadline: .now()+0.6, execute: {
                                 tabBarVC?.selectedIndex = 0;
+                                UIApplication.shared.endIgnoringInteractionEvents()
                             })
                             
                         case "featured":
@@ -91,6 +91,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
                                 {
                                     DispatchQueue.main.asyncAfter(deadline: .now()+0.9, execute: {
                                         vc2.featured()
+                                        UIApplication.shared.endIgnoringInteractionEvents()
                                     })
                                 }
                             }
@@ -102,6 +103,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
                                     vc2.defaultIndex = (Util.next(days: 0) as Date, true);
                                     DispatchQueue.main.asyncAfter(deadline: .now()+0.6, execute: {
                                         tabBarVC?.selectedIndex = 1;
+                                        UIApplication.shared.endIgnoringInteractionEvents()
                                     })
                                 }
                             }
@@ -260,7 +262,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool
     {
-        print ("open")
         //Connection to firebase
         FirebaseApp.configure();
         //setup crashlytics
