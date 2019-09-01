@@ -65,11 +65,17 @@ class SignInViewController: UIViewController
     
     var signedIn = false;
     
+    var firsttime = true;
     
     override func viewDidAppear(_ animated: Bool)
     {
         super.viewDidAppear(animated);
-        if (signedIn)
+        if (!firsttime)
+        {
+            return;
+        }
+        firsttime = false;
+        if (self.signedIn)
         {
             if (UserDefaults.standard.bool(forKey: "notFirstTimeLaunch"))
             {
@@ -79,7 +85,6 @@ class SignInViewController: UIViewController
             {
                 self.performSegue(withIdentifier: "toGetStarted", sender: self);
             }
-            //GIDSignIn.sharedInstance()?.signInSilently();
         }
     }
     

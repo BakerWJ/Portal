@@ -822,7 +822,7 @@ class UserDataSettings
             var time = Calendar.current.dateComponents([.year, .month, .day], from: each.date as Date);
             //gets notifiied in the morning for "day of" events
             time.hour = 7;
-            time.minute = 20;
+            time.minute = Int.random(in: 20...30);
             
             
             //set the daysBefore notification
