@@ -148,6 +148,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         typeDayLabel.leadingAnchor.constraint (equalTo: view.leadingAnchor, constant: 30/375.0*screenWidth).isActive = true;
         typeDayLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30/375.0*screenWidth).isActive = true;
         typeDayLabel.heightAnchor.constraint (equalToConstant: 40/812.0*screenHeight).isActive = true;
+        let tr3 = UITapGestureRecognizer(target: self, action: #selector(launchMain));
+        typeDayLabel.addGestureRecognizer(tr3);
         
         view.addSubview(nextPeriodView);
         nextPeriodView.translatesAutoresizingMaskIntoConstraints = false;
@@ -167,6 +169,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         topArticleLabel.topAnchor.constraint (equalTo: nextPeriodView.bottomAnchor, constant: 50/812.0*screenHeight).isActive = true;
         topArticleLabel.widthAnchor.constraint(equalToConstant: 100/375.0*screenWidth).isActive = true;
         topArticleLabel.heightAnchor.constraint (equalToConstant: 40/812.0*screenHeight).isActive = true;
+        let tr = UITapGestureRecognizer(target: self, action: #selector (launchFeatured));
+        topArticleLabel.addGestureRecognizer(tr);
         
         view.addSubview(blueBubble)
         blueBubble.translatesAutoresizingMaskIntoConstraints = false;
@@ -214,6 +218,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         todayLabel.leadingAnchor.constraint (equalTo: blueBubble.leadingAnchor).isActive = true;
         todayLabel.trailingAnchor.constraint (equalTo: blueBubble.trailingAnchor).isActive = true;
         todayLabel.topAnchor.constraint (equalTo: blueBubble.bottomAnchor, constant: 50/812.0*screenHeight).isActive = true;
+        let tr2 = UITapGestureRecognizer(target: self, action: #selector (launchToday));
+        todayLabel.addGestureRecognizer(tr2);
         
         view.addSubview(stackView);
         stackView.translatesAutoresizingMaskIntoConstraints = false;

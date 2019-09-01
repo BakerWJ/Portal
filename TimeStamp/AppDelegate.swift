@@ -237,12 +237,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
                 }
             })
             
-            let userId = user.userID                  // For client-side use only!
+            //let userId = user.userID                  // For client-side use only!
             let idToken = user.authentication.idToken // Safe to send to the server
-            let fullName = user.profile.name
+            //let fullName = user.profile.name
             let givenName = user.profile.givenName
-            let familyName = user.profile.familyName
-            let email = user.profile.email
+            //let familyName = user.profile.familyName
+            //let email = user.profile.email
+            Crashlytics.sharedInstance().setUserIdentifier(idToken);
             if (user.profile.hasImage)
             {
                 let url = user.profile.imageURL(withDimension: UInt(60/812.0*UIScreen.main.bounds.height))
@@ -274,7 +275,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
         //Connection to firebase
         FirebaseApp.configure();
         //setup crashlytics
-        Fabric.with([Crashlytics.self]);
         Fabric.sharedSDK().debug = true;
         
         //Initialize sign-in

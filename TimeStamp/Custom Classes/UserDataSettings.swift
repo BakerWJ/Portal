@@ -31,6 +31,7 @@ class UserDataSettings
         deleteFlipDay()
         deleteSettings()
         deleteTimetables()
+        deleteArticles()
     }
     
     static func updateArticles() {
@@ -97,7 +98,6 @@ class UserDataSettings
                             }
                             else {
                                 article.img = "https://source.unsplash.com/1600x900/?" + noImageKeyword
-                                print(article.img)
                             }
                             article.author = author
                             article.genre = genre
@@ -146,7 +146,7 @@ class UserDataSettings
         }
         catch
         {
-            print ("There was an error fetching the list of articles")
+            fatalError ("There was an error fetching the list of articles")
         }
         return nil;
     }
@@ -166,7 +166,7 @@ class UserDataSettings
         }
         catch
         {
-            print ("There was an error fetching the list of articles")
+            fatalError ("There was an error fetching the list of articles")
         }
     }
     
@@ -212,7 +212,7 @@ class UserDataSettings
             }
         }
         catch {
-            print("There was an error fetching the list of timetables");
+            fatalError("There was an error fetching the list of timetables");
         }
     }
     
@@ -232,7 +232,7 @@ class UserDataSettings
         }
         catch
         {
-            print ("There was an error fetching the list of periods")
+            fatalError ("There was an error fetching the list of periods")
         }
     }
     
@@ -248,7 +248,7 @@ class UserDataSettings
             }
         }
         catch {
-            print("There was an error fetching the list of timetables");
+            fatalError("There was an error fetching the list of timetables");
         }
         return nil;
     }
@@ -266,7 +266,7 @@ class UserDataSettings
         }
         catch
         {
-            print ("There was an error fetching the list of schedules!")
+            fatalError ("There was an error fetching the list of schedules!")
         }
         return nil;
     }
@@ -286,7 +286,7 @@ class UserDataSettings
         }
         catch
         {
-            print("There was an error fetching the list of weeklySchedules!")
+            fatalError("There was an error fetching the list of weeklySchedules!")
         }
         return nil
     }
@@ -316,7 +316,7 @@ class UserDataSettings
             }
         }
         catch {
-            print("There was an error fetching the list of timetables");
+            fatalError("There was an error fetching the list of timetables");
         }
     }
     
@@ -377,7 +377,7 @@ class UserDataSettings
         }
         catch
         {
-            print ("There was an error fetching the list of timetables")
+            fatalError ("There was an error fetching the list of timetables")
         }
     }
     
@@ -396,7 +396,7 @@ class UserDataSettings
         }
         catch
         {
-            print ("There was an error fetching the list of timetables")
+            fatalError ("There was an error fetching the list of timetables")
         }
     }
     
@@ -419,7 +419,7 @@ class UserDataSettings
         }
         catch
         {
-            print ("There was an error fetching the list of periods")
+            fatalError ("There was an error fetching the list of periods")
         }
     }
     
@@ -440,7 +440,7 @@ class UserDataSettings
         }
         catch
         {
-            print ("There was an error fetching the list of FlipDay")
+            fatalError ("There was an error fetching the list of FlipDay")
             
         }
     }
@@ -479,7 +479,7 @@ class UserDataSettings
         }
         catch
         {
-            print ("There was an error fetching the list of schedules!")
+            fatalError ("There was an error fetching the list of schedules!")
         }
     }
 
@@ -592,7 +592,7 @@ class UserDataSettings
         }
         catch
         {
-            print ("There was an error fetching the list of events")
+            fatalError ("There was an error fetching the list of events")
         }
     }
     
@@ -667,7 +667,7 @@ class UserDataSettings
         }
         catch
         {
-            print ("There was an error fetching the list of events")
+            fatalError ("There was an error fetching the list of events")
         }
         return nil;
     }
@@ -692,7 +692,7 @@ class UserDataSettings
         }
         catch
         {
-            print ("There was an error fetching the list of events")
+            fatalError ("There was an error fetching the list of events")
         }
         return nil;
     }
