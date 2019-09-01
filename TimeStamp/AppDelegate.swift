@@ -204,7 +204,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
                     return;
                 }
                 
-                if let vc = self.window?.rootViewController as? SignInViewController
+                if let vc = self.window?.rootViewController?.presentedViewController as? SignInViewController
                 {
                     
                     if (user.profile.email.suffix(13) == "@utschools.ca")
