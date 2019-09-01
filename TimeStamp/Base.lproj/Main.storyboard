@@ -286,7 +286,7 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
-                        <segue destination="u3n-9T-soJ" kind="unwind" identifier="fromTabBar" unwindAction="returnFromTabBarWithSender:" id="bks-JK-Egc"/>
+                        <segue destination="u3n-9T-soJ" kind="unwind" identifier="fromTabBar" customClass="SettingsToLogInUnwind" customModule="TimeStamp" customModuleProvider="target" unwindAction="returnFromTabBarWithSender:" id="bks-JK-Egc"/>
                         <segue destination="EEt-2r-1ne" kind="relationship" relationship="viewControllers" id="XCj-mt-dkc"/>
                         <segue destination="xwW-LH-Wpb" kind="relationship" relationship="viewControllers" id="ZUj-UG-LFG"/>
                         <segue destination="UxZ-UN-vfD" kind="relationship" relationship="viewControllers" id="qTB-qN-2aE"/>

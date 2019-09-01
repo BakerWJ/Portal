@@ -636,7 +636,6 @@ class MainPageViewController: UIViewController {
         }
         //this might throw an error when there is no internet, so need to handle it later
         calendarService.authorizer = GIDSignIn.sharedInstance()?.currentUser.authentication.fetcherAuthorizer();
-        calendarService.apiKey = "AIzaSyCcGNgTcpC2_a5ITEhYa5fcql1qbGLKn-U"; //this can be found in google cloud platform
         
         //creates new event with the clicked event's title and detail/description
         let newEvent = GTLRCalendar_Event()

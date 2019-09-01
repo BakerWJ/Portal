@@ -72,6 +72,7 @@
 		8A1CF845231573A3000E2F6B /* Segoe UI Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEDC434A2276130900A78890 /* Segoe UI Bold.ttf */; };
 		8A1CF849231C0E45000E2F6B /* UserDataSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEA785022851D5C0031B030 /* UserDataSettings.swift */; };
 		8A1CF84B231C3F33000E2F6B /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1CF84A231C3F33000E2F6B /* LaunchViewController.swift */; };
+		8A1CF84D231C5599000E2F6B /* SettingsToLogInUnwind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1CF84C231C5599000E2F6B /* SettingsToLogInUnwind.swift */; };
 		8A445BB22301AC370020C29B /* AnimatingButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A445BB12301AC370020C29B /* AnimatingButtonView.swift */; };
 		8A445BB42301ED810020C29B /* LogInToGetStarted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A445BB32301ED810020C29B /* LogInToGetStarted.swift */; };
 		8A445BB6230216C20020C29B /* GetStartedToSetUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A445BB5230216C20020C29B /* GetStartedToSetUp.swift */; };
@@ -196,6 +197,7 @@
 		8A1CF8212314DF2B000E2F6B /* TimeStamp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TimeStamp.entitlements; sourceTree = "<group>"; };
 		8A1CF8222314DF30000E2F6B /* Portal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Portal.entitlements; sourceTree = "<group>"; };
 		8A1CF84A231C3F33000E2F6B /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
+		8A1CF84C231C5599000E2F6B /* SettingsToLogInUnwind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsToLogInUnwind.swift; sourceTree = "<group>"; };
 		8A445BB12301AC370020C29B /* AnimatingButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatingButtonView.swift; sourceTree = "<group>"; };
 		8A445BB32301ED810020C29B /* LogInToGetStarted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInToGetStarted.swift; sourceTree = "<group>"; };
 		8A445BB5230216C20020C29B /* GetStartedToSetUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartedToSetUp.swift; sourceTree = "<group>"; };
@@ -355,6 +357,7 @@
 				8AA2F04322811FF90091EF0F /* HorizontalRightShiftTransition.swift */,
 				8A445BB32301ED810020C29B /* LogInToGetStarted.swift */,
 				8A1CF7F32304914E000E2F6B /* TabBarToSettings.swift */,
+				8A1CF84C231C5599000E2F6B /* SettingsToLogInUnwind.swift */,
 				8A1CF7F523049165000E2F6B /* TabBarToSettingsUnwind.swift */,
 				8A445BB5230216C20020C29B /* GetStartedToSetUp.swift */,
 				8AD8621722984A3500412EFF /* HorizontalRightShiftTransitionUnwind.swift */,
@@ -790,6 +793,7 @@
 				8A1CF84B231C3F33000E2F6B /* LaunchViewController.swift in Sources */,
 				CEDC435D22773FAC00A78890 /* ScheduleViewController.swift in Sources */,
 				CE927FF7227A0BCD00EE0A22 /* PeriodView.swift in Sources */,
+				8A1CF84D231C5599000E2F6B /* SettingsToLogInUnwind.swift in Sources */,
 				8A5F823922D7A00B00443020 /* ToDo_TaskTag+CoreDataProperties.swift in Sources */,
 				CED50C0022EF2D1A00FC4851 /* ArticleViewController.swift in Sources */,
 				8A5F823722D7A00B00443020 /* ToDo_Task+CoreDataProperties.swift in Sources */,

@@ -709,12 +709,12 @@ class UserDataSettings
             }
         }
         
-        center.getPendingNotificationRequests { notifications in
+       /* center.getPendingNotificationRequests { notifications in
             
             for notification in notifications {
                 print(notification)
             }
-        }
+        }*/
         
         center.removeAllPendingNotificationRequests();
         center.removeAllDeliveredNotifications()
