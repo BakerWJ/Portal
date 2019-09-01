@@ -14,6 +14,7 @@ import UserNotifications
 
 class UserDataSettings
 {
+    
     static var weekly: WeeklySchedule?
 
     static func updateAll ()
@@ -697,20 +698,32 @@ class UserDataSettings
         return nil;
     }
     
-    let notificationCenter = UNUserNotificationCenter.current()
-    let options: UNAuthorizationOptions = [.alert, .sound, .badge]
-    
     static func setNotifications(){
-        
         let daysWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
         let center = UNUserNotificationCenter.current()
+        
+        center.getNotificationSettings { (settings) in
+            if settings.authorizationStatus != .authorized
+            {
+                return;
+            }
+        }
+        
+        center.getPendingNotificationRequests { notifications in
+            
+            for notification in notifications {
+                print(notification)
+            }
+        }
+        
         center.removeAllPendingNotificationRequests();
+        center.removeAllDeliveredNotifications()
         
         guard let results = self.fetchSettings(),
-        let days = self.fetchWeeklySchedule(),
-        let schedule = self.fetchAllSchedules(),
-        let events = self.fetchAllEvents()
-        else {return}
+            let days = self.fetchWeeklySchedule(),
+            let schedule = self.fetchAllSchedules(),
+            let events = self.fetchAllEvents()
+            else {return}
         
         var requests = [UNNotificationRequest]()
         
@@ -759,8 +772,8 @@ class UserDataSettings
                     {
                         time = Calendar.current.dateComponents([.year, .month, .day], from: Util.next(days: diff) as Date);
                         /*var time = DateComponents()
-                        
-                        time.weekday = (Int)(x + 7 - Int(results.daysBefore))%7+1*/
+                         
+                         time.weekday = (Int)(x + 7 - Int(results.daysBefore))%7+1*/
                         
                         if(results.notificationTime == 1){ //afternoon
                             time.hour = 12;
@@ -809,7 +822,7 @@ class UserDataSettings
             var time = Calendar.current.dateComponents([.year, .month, .day], from: each.date as Date);
             //gets notifiied in the morning for "day of" events
             time.hour = 7;
-            time.minute = Int.random (in: 20...30);
+            time.minute = 20;
             
             
             //set the daysBefore notification
@@ -856,86 +869,86 @@ class UserDataSettings
     
     //the previous method
     /*func setNotifications(){
-        
-        let daysWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
-        let center = UNUserNotificationCenter.current()
-        center.removeAllPendingNotificationRequests();
-        
-        let fetchRequest = NSFetchRequest <NSFetchRequestResult> (entityName: "Settings");
-        let fetchRequest2 = NSFetchRequest <NSFetchRequestResult> (entityName: "WeeklySchedule");
-        let fetchRequest3 = NSFetchRequest <NSFetchRequestResult> (entityName: "Schedule");
-        
-        do {
-            if let results = try CoreDataStack.managedObjectContext.fetch(fetchRequest) as? [Settings] {
-                if let days = try CoreDataStack.managedObjectContext.fetch(fetchRequest2) as? [WeeklySchedule] {
-                    if let schedule = try CoreDataStack.managedObjectContext.fetch(fetchRequest3) as? [Schedule] {
-                        if (results.count != 0 && days.count != 0 && schedule.count != 0)
-                        {
-                            for x in 0...6 { //checks every day
-                                var notify = false;
-                                //determines if that day requires a notification
-                                if((days[0].typeOfDay[x] == 2 || days[0].typeOfDay[x] == 3) && results[0].generalNotifications){
-                                    notify = true;
-                                    
-                                }else if(results[0].articleNotifications && (days[0].typeOfDay[x]==5 || days[0].typeOfDay[x] == 6 || days[0].typeOfDay[x] == 7)){
-                                    notify = true;
-                                    
-                                }else if(results[0].houseNotifications){
-                                    //No house events thus far
-                                    
-                                }
-                                if(notify == true){
-                                    let general = UNMutableNotificationContent() //Notification content
-                                    var eventName = "";
-                                    for z in schedule{
-                                        if(z.value == days[0].typeOfDay[x]){
-                                            eventName = z.kind;
-                                            
-                                        }
-                                    }
-                                    
-                                    if(results[0].daysBefore == 0){
-                                        general.title = "There is " + eventName + " today.";
-                                        
-                                    }else{
-                                        general.title = "There is " + eventName + " in " + String(results[0].daysBefore) + " days on " + daysWeek[x];
-                                        
-                                    }
-                                    
-                                    print(general.title);
-                                    //Determining time
-                                    var time = DateComponents()
-                                    
-                                    time.weekday = (Int)(x + 7 - Int(results[0].daysBefore))%7+1
-                                    
-                                    if(results[0].notificationTime == 1){ //morning
-                                        time.hour = 8;
-                                        time.minute = 10;
-                                    }else if(results[0].notificationTime == 2){
-                                        time.hour = 12;
-                                        time.minute = 40;
-                                    }else if(results[0].notificationTime == 3){//evening
-                                        time.hour = 16;
-                                    }
-                                    
-                                    let trigger = UNCalendarNotificationTrigger(dateMatching: time, repeats: false)
-                                    
-                                    let uuidString = UUID().uuidString
-                                    let request = UNNotificationRequest(identifier: uuidString, content: general, trigger: trigger)
-                                    
-                                    let notificationCenter = UNUserNotificationCenter.current()
-                                    notificationCenter.add(request)
-                                    
-                                    //latestart,
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        catch {
-            print("There was an error fetching the list of timetables");
-        }
-    }*/
+     
+     let daysWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+     let center = UNUserNotificationCenter.current()
+     center.removeAllPendingNotificationRequests();
+     
+     let fetchRequest = NSFetchRequest <NSFetchRequestResult> (entityName: "Settings");
+     let fetchRequest2 = NSFetchRequest <NSFetchRequestResult> (entityName: "WeeklySchedule");
+     let fetchRequest3 = NSFetchRequest <NSFetchRequestResult> (entityName: "Schedule");
+     
+     do {
+     if let results = try CoreDataStack.managedObjectContext.fetch(fetchRequest) as? [Settings] {
+     if let days = try CoreDataStack.managedObjectContext.fetch(fetchRequest2) as? [WeeklySchedule] {
+     if let schedule = try CoreDataStack.managedObjectContext.fetch(fetchRequest3) as? [Schedule] {
+     if (results.count != 0 && days.count != 0 && schedule.count != 0)
+     {
+     for x in 0...6 { //checks every day
+     var notify = false;
+     //determines if that day requires a notification
+     if((days[0].typeOfDay[x] == 2 || days[0].typeOfDay[x] == 3) && results[0].generalNotifications){
+     notify = true;
+     
+     }else if(results[0].articleNotifications && (days[0].typeOfDay[x]==5 || days[0].typeOfDay[x] == 6 || days[0].typeOfDay[x] == 7)){
+     notify = true;
+     
+     }else if(results[0].houseNotifications){
+     //No house events thus far
+     
+     }
+     if(notify == true){
+     let general = UNMutableNotificationContent() //Notification content
+     var eventName = "";
+     for z in schedule{
+     if(z.value == days[0].typeOfDay[x]){
+     eventName = z.kind;
+     
+     }
+     }
+     
+     if(results[0].daysBefore == 0){
+     general.title = "There is " + eventName + " today.";
+     
+     }else{
+     general.title = "There is " + eventName + " in " + String(results[0].daysBefore) + " days on " + daysWeek[x];
+     
+     }
+     
+     print(general.title);
+     //Determining time
+     var time = DateComponents()
+     
+     time.weekday = (Int)(x + 7 - Int(results[0].daysBefore))%7+1
+     
+     if(results[0].notificationTime == 1){ //morning
+     time.hour = 8;
+     time.minute = 10;
+     }else if(results[0].notificationTime == 2){
+     time.hour = 12;
+     time.minute = 40;
+     }else if(results[0].notificationTime == 3){//evening
+     time.hour = 16;
+     }
+     
+     let trigger = UNCalendarNotificationTrigger(dateMatching: time, repeats: false)
+     
+     let uuidString = UUID().uuidString
+     let request = UNNotificationRequest(identifier: uuidString, content: general, trigger: trigger)
+     
+     let notificationCenter = UNUserNotificationCenter.current()
+     notificationCenter.add(request)
+     
+     //latestart,
+     }
+     }
+     }
+     }
+     }
+     }
+     }
+     catch {
+     print("There was an error fetching the list of timetables");
+     }
+     }*/
 }

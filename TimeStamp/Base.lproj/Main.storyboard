@@ -10,6 +10,24 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Launch View Controller-->
+        <scene sceneID="j9D-WG-l4W">
+            <objects>
+                <viewController storyboardIdentifier="Launch View Controller" id="CZi-pt-tek" customClass="LaunchViewController" customModule="TimeStamp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="k0d-1w-evO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="2zH-KO-FyB"/>
+                    </view>
+                    <connections>
+                        <segue destination="ziH-lx-4S2" kind="custom" identifier="toApp" customClass="HorizontalRightShiftTransition" customModule="TimeStamp" customModuleProvider="target" id="Hpp-dL-FJH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pxq-It-fL1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4681" y="879"/>
+        </scene>
         <!--Sign In View Controller-->
         <scene sceneID="iFV-Xw-TS9">
             <objects>
@@ -319,7 +337,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="bQ3-U0-0AC"/>
+        <segue reference="O4V-Zp-R5V"/>
         <segue reference="qLb-2Y-kps"/>
     </inferredMetricsTieBreakers>
 </document>

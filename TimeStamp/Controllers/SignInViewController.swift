@@ -135,7 +135,7 @@ class SignInViewController: UIViewController
         movingRect.heightAnchor.constraint (equalToConstant: 2/812.0*screenHeight).isActive = true;
         movingRect.widthAnchor.constraint (equalToConstant: 287/375.0*screenWidth).isActive = true;
         movingRect.topAnchor.constraint (equalTo: getStartedLabel.bottomAnchor).isActive = true;
-        
+
         //add the image
         view.addSubview(imageView);
         imageView.translatesAutoresizingMaskIntoConstraints = false;

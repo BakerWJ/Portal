@@ -41,7 +41,6 @@
 		8A1CF82523156B00000E2F6B /* Schedule+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC26DF8227B3E9E00FFFC67 /* Schedule+CoreDataProperties.swift */; };
 		8A1CF82623156B05000E2F6B /* Schedule+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC26DFC227B3E9E00FFFC67 /* Schedule+CoreDataClass.swift */; };
 		8A1CF82723156B0B000E2F6B /* NextPeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314635BA22EB8A5000F522B4 /* NextPeriodView.swift */; };
-		8A1CF82823156B2D000E2F6B /* UserDataSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEA785022851D5C0031B030 /* UserDataSettings.swift */; };
 		8A1CF82923156B30000E2F6B /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD8620C2297824000412EFF /* Util.swift */; };
 		8A1CF82A23156E12000E2F6B /* Period+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC26DFE227B3E9E00FFFC67 /* Period+CoreDataProperties.swift */; };
 		8A1CF82B23156E15000E2F6B /* Period+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC26DFF227B3E9E00FFFC67 /* Period+CoreDataClass.swift */; };
@@ -71,6 +70,8 @@
 		8A1CF8432315739E000E2F6B /* Segoe UI Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEDC43492276130900A78890 /* Segoe UI Italic.ttf */; };
 		8A1CF844231573A0000E2F6B /* Segoe UI Bold Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEDC43482276130900A78890 /* Segoe UI Bold Italic.ttf */; };
 		8A1CF845231573A3000E2F6B /* Segoe UI Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEDC434A2276130900A78890 /* Segoe UI Bold.ttf */; };
+		8A1CF849231C0E45000E2F6B /* UserDataSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEA785022851D5C0031B030 /* UserDataSettings.swift */; };
+		8A1CF84B231C3F33000E2F6B /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1CF84A231C3F33000E2F6B /* LaunchViewController.swift */; };
 		8A445BB22301AC370020C29B /* AnimatingButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A445BB12301AC370020C29B /* AnimatingButtonView.swift */; };
 		8A445BB42301ED810020C29B /* LogInToGetStarted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A445BB32301ED810020C29B /* LogInToGetStarted.swift */; };
 		8A445BB6230216C20020C29B /* GetStartedToSetUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A445BB5230216C20020C29B /* GetStartedToSetUp.swift */; };
@@ -194,6 +195,7 @@
 		8A1CF8192314DF07000E2F6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8A1CF8212314DF2B000E2F6B /* TimeStamp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TimeStamp.entitlements; sourceTree = "<group>"; };
 		8A1CF8222314DF30000E2F6B /* Portal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Portal.entitlements; sourceTree = "<group>"; };
+		8A1CF84A231C3F33000E2F6B /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		8A445BB12301AC370020C29B /* AnimatingButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatingButtonView.swift; sourceTree = "<group>"; };
 		8A445BB32301ED810020C29B /* LogInToGetStarted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInToGetStarted.swift; sourceTree = "<group>"; };
 		8A445BB5230216C20020C29B /* GetStartedToSetUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartedToSetUp.swift; sourceTree = "<group>"; };
@@ -462,6 +464,7 @@
 				CE3A513B22E8F3E90056E536 /* NewsViewController.swift */,
 				8A1B79F922BEC0C6006FE52A /* SignInViewController.swift */,
 				8A1B79FB22BEC2AF006FE52A /* MainTabBarViewController.swift */,
+				8A1CF84A231C3F33000E2F6B /* LaunchViewController.swift */,
 				8A1CF80A23135968000E2F6B /* CreditsViewController.swift */,
 				31BB397E22E6B48F004D2DE5 /* AppEntryViewController.swift */,
 				CE69342C230C805400006C3F /* PublicationViewController.swift */,
@@ -735,8 +738,8 @@
 				8A1CF82723156B0B000E2F6B /* NextPeriodView.swift in Sources */,
 				8A1CF83623156E6F000E2F6B /* Settings+CoreDataClass.swift in Sources */,
 				8A1CF83923156E78000E2F6B /* FlipDay+CoreDataClass.swift in Sources */,
+				8A1CF849231C0E45000E2F6B /* UserDataSettings.swift in Sources */,
 				8A1CF83823156E76000E2F6B /* Timetable+CoreDataProperties.swift in Sources */,
-				8A1CF82823156B2D000E2F6B /* UserDataSettings.swift in Sources */,
 				8A1CF82B23156E15000E2F6B /* Period+CoreDataClass.swift in Sources */,
 				8A1CF83223156E66000E2F6B /* Event+CoreDataClass.swift in Sources */,
 				8A1CF82E23156E5D000E2F6B /* ToDo_Task+CoreDataClass.swift in Sources */,
@@ -784,6 +787,7 @@
 				8AD8620D2297824000412EFF /* Util.swift in Sources */,
 				8ABCA53F2282176000A30D36 /* WeeklySchedule+CoreDataProperties.swift in Sources */,
 				8A5F823822D7A00B00443020 /* ToDo_TaskTag+CoreDataClass.swift in Sources */,
+				8A1CF84B231C3F33000E2F6B /* LaunchViewController.swift in Sources */,
 				CEDC435D22773FAC00A78890 /* ScheduleViewController.swift in Sources */,
 				CE927FF7227A0BCD00EE0A22 /* PeriodView.swift in Sources */,
 				8A5F823922D7A00B00443020 /* ToDo_TaskTag+CoreDataProperties.swift in Sources */,
@@ -1039,7 +1043,6 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				CODE_SIGN_ENTITLEMENTS = TimeStamp/TimeStamp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -1065,7 +1068,6 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				CODE_SIGN_ENTITLEMENTS = TimeStamp/TimeStamp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;

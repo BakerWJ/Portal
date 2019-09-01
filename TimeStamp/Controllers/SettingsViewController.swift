@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import GoogleSignIn
 import FirebaseAuth
+import UserNotifications
 
 class SettingsViewController: UIViewController {
     

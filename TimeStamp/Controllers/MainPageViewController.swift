@@ -28,14 +28,14 @@ class MainPageViewController: UIViewController {
     func getFeatured() -> Article?
     {
         let articles = UserDataSettings.fetchAllArticles()
-        var index = Article()
+        var index : Article?
         var first = true
         for i in articles! {
             if (first) {
                 first = false
                 index = i
             }
-            else if (i.likes > index.likes) {
+            else if (i.likes > index!.likes) {
                 index = i
             }
         }

@@ -299,11 +299,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
         UserDataSettings.setNotifications ();
         
         self.window = UIWindow (frame: UIScreen.main.bounds)
+        
         let mainStoryboard = UIStoryboard (name: "Main", bundle: nil);
         
         var viewControllerName: String;
-
-        viewControllerName = "Sign In View Controller";
+        
+        viewControllerName = "Launch View Controller";
         
         let entranceViewController = mainStoryboard.instantiateViewController(withIdentifier: viewControllerName);
         self.window?.rootViewController = entranceViewController;

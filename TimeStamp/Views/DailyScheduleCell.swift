@@ -296,9 +296,9 @@ class DailyScheduleCell: UICollectionViewCell, UIPickerViewDelegate, UIPickerVie
             {
                 imageView.image = UIImage(named: "lateStartImage");
             }
-            else if (schedule.value == 7)
+            else if (schedule.value == 2)
             {
-                imageView.image = UIImage(named: "equitySurveyImage")
+                imageView.image = UIImage(named: "assemblyImage")
             }
             else
             {
@@ -326,6 +326,7 @@ class DailyScheduleCell: UICollectionViewCell, UIPickerViewDelegate, UIPickerVie
     private func titleLateStartConfig()
     {
         titleLabel.font = UIFont(name: "SitkaBanner-Bold", size: 20/375.0*screenWidth);
+        titleLabel.adjustsFontSizeToFitWidth = true;
         titleLabel.textColor = .white;
         titleLabel.backgroundColor = UIColor.getColor(255, 95, 88);
         titleLabel.topAnchor.constraint(equalTo: whiteView.topAnchor, constant: 26/812.0*screenHeight).isActive = true;
@@ -341,6 +342,7 @@ class DailyScheduleCell: UICollectionViewCell, UIPickerViewDelegate, UIPickerVie
     private func titleNormalConfig ()
     {
         titleLabel.font = UIFont (name: "SitkaBanner", size: 20/375.0*screenWidth);
+        titleLabel.adjustsFontSizeToFitWidth = true;
         titleLabel.textColor = .clear;
         titleLabel.backgroundColor = .clear;
         titleLabel.topAnchor.constraint (equalTo: whiteView.topAnchor, constant: -19/812.0*screenHeight).isActive = true;
