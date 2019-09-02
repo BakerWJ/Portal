@@ -546,7 +546,6 @@ class UserDataSettings
                         schedule.kind = document.documentID
                         //sets the expirationDate of this schedule to the next day)
                         schedule.expirationDate = Util.nextDay ()
-                        
                         //loops through the arrays
                         for x in 0..<min(corres.count,min(min(min(names.count, stime.count), etime.count), notes.count))
                         {
@@ -646,7 +645,7 @@ class UserDataSettings
                     }
                 }
                 CoreDataStack.saveContext()
-                DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
                     UserDataSettings.setNotifications()
                 })
             }

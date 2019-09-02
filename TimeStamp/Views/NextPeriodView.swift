@@ -126,10 +126,7 @@ class NextPeriodView: UIView {
                                 {
                                     if let period = period as? Period
                                     {
-                                        if period.correspond != 0
-                                        {
-                                            return (period.startTime as Date, day as Date);
-                                        }
+                                        return (period.startTime as Date, day as Date);
                                     }
                                 }
                             }

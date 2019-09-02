@@ -169,7 +169,8 @@ class PeriodView: UIStackView, UITextFieldDelegate
             classLabel.numberOfLines = 1
             classLabel.baselineAdjustment = .alignCenters;
             classLabel.font = UIFont (name: "SitkaBanner", size: 20/812.0*screenHeight);
-            classLabel.minimumScaleFactor = 6.0/classLabel.font.pointSize;
+            classLabel.minimumScaleFactor = 6.0/812.0*screenHeight/classLabel.font.pointSize;
+            classLabel.adjustsFontSizeToFitWidth = true;
 
             //light sky blue: 135-206-250
             //settting the colors and border colors of classLabel
@@ -217,7 +218,7 @@ class PeriodView: UIStackView, UITextFieldDelegate
             classTextField.textAlignment = .left
             classTextField.font = UIFont (name: "SitkaBanner", size: 20/812.0*screenHeight);
             classTextField.adjustsFontSizeToFitWidth = true;
-            classTextField.minimumFontSize = 6;
+            classTextField.minimumFontSize = 6/812.0*screenHeight;
             classTextField.returnKeyType = .done
             
             //set background color to white
@@ -263,7 +264,7 @@ class PeriodView: UIStackView, UITextFieldDelegate
             classLabel.numberOfLines = 1
             classLabel.baselineAdjustment = .alignCenters;
             classLabel.font = UIFont (name: "SitkaBanner", size: 14/812.0*screenHeight);
-            classLabel.minimumScaleFactor = 6.0/classLabel.font.pointSize;
+            classLabel.minimumScaleFactor = 6.0/812.0*screenHeight/classLabel.font.pointSize;
             
             containerView.addSubview(rectangle1);
             containerView.addSubview(rectangle2);
@@ -279,7 +280,7 @@ class PeriodView: UIStackView, UITextFieldDelegate
             classLabel.topAnchor.constraint (equalTo: containerView.topAnchor).isActive = true;
             classLabel.bottomAnchor.constraint (equalTo: containerView.bottomAnchor).isActive = true;
             classLabel.layoutIfNeeded();
-            classLabel.widthAnchor.constraint (equalToConstant: min(classLabel.frame.width, 129.0)).isActive = true;
+            classLabel.widthAnchor.constraint (equalToConstant: min(classLabel.frame.width, 115.0/375.0*screenWidth)).isActive = true;
             classLabel.adjustsFontSizeToFitWidth = true;
             
             rectangle2.translatesAutoresizingMaskIntoConstraints = false;

@@ -418,9 +418,9 @@ class DailyScheduleCell: UICollectionViewCell, UIPickerViewDelegate, UIPickerVie
             pickerLabel?.font = UIFont (name: "SitkaBanner", size: 20/812.0*screenHeight);
             pickerLabel?.textColor = .white;
             pickerLabel?.textAlignment = .center
-            pickerLabel?.numberOfLines = 0;
-            pickerLabel?.sizeToFit();
-            pickerLabel?.lineBreakMode = .byWordWrapping;
+            pickerLabel?.numberOfLines = 3;
+            pickerLabel?.adjustsFontSizeToFitWidth = true;
+            pickerLabel?.minimumScaleFactor = 0.5
         }
         pickerLabel?.text = eventsDisplayed [row];
         return pickerLabel!
