@@ -296,7 +296,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
             }
         }
         UserDataSettings.updateAll()
-        UserDataSettings.setNotifications ();
         
         self.window = UIWindow (frame: UIScreen.main.bounds)
         
@@ -310,14 +309,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
         self.window?.rootViewController = entranceViewController;
         self.window?.makeKeyAndVisible()
         
-        //updates the data in the background every 10 minutes
-        UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum);
+        //updates the data in the background every hour
+        UIApplication.shared.setMinimumBackgroundFetchInterval(3600);
         return true
     }
 
     
     func applicationWillResignActive(_ application: UIApplication)
     {
+        UIApplication.shared.applicationIconBadgeNumber = 0
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
     }
@@ -363,11 +363,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
         CoreDataStack.saveContext()
     }
     
-    //this is the code that gets executed every 10 minutes for background updates
+    //this is the code that gets executed every hour for background updates
     func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void)
     {
-        completionHandler(.newData);
         UserDataSettings.updateAll();
-        UserDataSettings.setNotifications();
+        completionHandler(.newData);
     }
 }

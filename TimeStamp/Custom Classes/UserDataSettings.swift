@@ -174,22 +174,16 @@ class UserDataSettings
     static func updateWithInternet ()
     {
         let connectedRef = Database.database().reference(withPath: ".info/connected");
-        var x : Bool = false;
-        for _ in 1 ... 5 {
-            if (!x)
+        connectedRef.observe (.value)
+        {
+            (snapshot) in
+            if let connected = snapshot.value as? Bool, connected
             {
-                connectedRef.observe(.value)
-                {
-                    (snapshot) in
-                    if let connected = snapshot.value as? Bool, connected
-                    {
-                        x = true;
-                        self.updateData()
-                        self.updateWeeklySchedule()
-                        self.updateEvents ();
-                        self.updateArticles()
-                    }
-                }
+                print ("connected")
+                self.updateData()
+                self.updateWeeklySchedule()
+                self.updateEvents()
+                self.updateArticles()
             }
         }
     }
@@ -652,6 +646,9 @@ class UserDataSettings
                     }
                 }
                 CoreDataStack.saveContext()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
+                    UserDataSettings.setNotifications()
+                })
             }
         }
     }
@@ -702,20 +699,6 @@ class UserDataSettings
         let daysWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
         let center = UNUserNotificationCenter.current()
         
-        center.getNotificationSettings { (settings) in
-            if settings.authorizationStatus != .authorized
-            {
-                return;
-            }
-        }
-        
-       /* center.getPendingNotificationRequests { notifications in
-            
-            for notification in notifications {
-                print(notification)
-            }
-        }*/
-        
         center.removeAllPendingNotificationRequests();
         center.removeAllDeliveredNotifications()
         
@@ -740,6 +723,8 @@ class UserDataSettings
                 //if not a regular school day and a school day
                 if(days.typeOfDay[x] != 1 && days.typeOfDay[x] != 4 && results.generalNotifications){
                     let general = UNMutableNotificationContent() //Notification content
+                    general.sound = .default
+                    general.badge = 1;
                     var eventName = "";
                     for z in schedule{
                         if(z.value == days.typeOfDay[x]){
@@ -758,7 +743,9 @@ class UserDataSettings
                     requests.append(UNNotificationRequest(identifier: UUID().uuidString, content: general, trigger: trigger1))
                     
                     let general2 = UNMutableNotificationContent()
+                    general2.sound = .default
                     general2.title = eventName;
+                    general2.badge = 1;
                     if (results.daysBefore == 1)
                     {
                         general2.body = "There is \(eventName.lowercased()) tomorrow.";
@@ -790,7 +777,6 @@ class UserDataSettings
                     //print(general.title);
                     //Determining time
                     
-                    
                 }
                 if(results.articleNotifications){
                     //no article notification so far
@@ -816,6 +802,8 @@ class UserDataSettings
         {
             //set the day of notification
             let title = UNMutableNotificationContent()
+            title.sound = .default
+            title.badge = 1;
             title.title = each.titleDetail.trimmingCharacters(in: .whitespacesAndNewlines);
             title.body = each.titleDetail.trimmingCharacters(in: .whitespacesAndNewlines);
             title.body += " today \(each.time.trimmingCharacters(in: .whitespacesAndNewlines))";
@@ -827,6 +815,8 @@ class UserDataSettings
             
             //set the daysBefore notification
             let title2 = UNMutableNotificationContent()
+            title2.sound = .default
+            title2.badge = 1;
             title2.title = each.titleDetail.trimmingCharacters(in: .whitespacesAndNewlines);
             title2.body = each.titleDetail.trimmingCharacters(in: .whitespacesAndNewlines);
             guard let notifyDay = Calendar.current.date(byAdding: .day, value: -Int(results.daysBefore), to: each.date as Date)

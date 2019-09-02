@@ -225,6 +225,8 @@ class DailyScheduleCell: UICollectionViewCell, UIPickerViewDelegate, UIPickerVie
         //hides the two section indicators
         addEvents()
         addImageAndTitle();
+        
+        bringSubviewToFront(displayedEventView);
     }
     
     private func addEvents ()
