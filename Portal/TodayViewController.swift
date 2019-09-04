@@ -318,7 +318,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
         let expanded = activeDisplayMode == .expanded
-        preferredContentSize = expanded ? CGSize(width: maxSize.width, height: 1000/812.0*screenHeight) : maxSize
+        preferredContentSize = expanded ? CGSize(width: maxSize.width, height: screenHeight - 126/812.0*screenHeight) : maxSize
     }
     
     //goes to the schedule for today
@@ -327,7 +327,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         let url: URL = URL(string: scheme + "today")!
         extensionContext?.open(url, completionHandler: nil);
     }
-    
+
     //goes to the article view controller of the featured page
     @objc func launchFeatured()
     {

@@ -142,7 +142,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
         {
             if (controller.viewControllers.count > 0)
             {
-                return findTabBarController(vc: controller.topViewController!);
+                if let temp = controller.topViewController
+                {
+                    return findTabBarController(vc: temp);
+                }
             }
             return nil;
         }
@@ -160,7 +163,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
         {
             if (controller.viewControllers.count > 0)
             {
-                return findBestViewController(vc: controller.topViewController!);
+                if let temp = controller.topViewController
+                {
+                    return findBestViewController(vc: temp);
+                }
             }
             return controller;
         }
@@ -170,7 +176,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
             {
                 if (controllers.count > 0)
                 {
-                    return findBestViewController(vc: controller.selectedViewController!);
+                    if let temp = controller.selectedViewController
+                    {
+                        return findBestViewController(vc: temp);
+                    }
                 }
             }
             return controller
@@ -244,17 +253,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
             //let familyName = user.profile.familyName
             //let email = user.profile.email
             Crashlytics.sharedInstance().setUserIdentifier(idToken);
+            UserDefaults.standard.set(givenName, forKey: "username");
             if (user.profile.hasImage)
             {
                 let url = user.profile.imageURL(withDimension: UInt(60/812.0*UIScreen.main.bounds.height))
-                DispatchQueue.main.async {
-                    let data = try? Data (contentsOf: url!);
-                    UserDefaults.standard.set(data, forKey: "userimage");
-                }
+                guard let link = url else {return};
+                URLSession.shared.dataTask(with: link) { data, response, error in
+                    guard let data = data, error == nil
+                        else { return }
+                    UserDefaults.standard.set(data, forKey: "userimage")
+                }.resume()
             }
-            UserDefaults.standard.set(givenName, forKey: "username");
             // ...
-            
         }
     }
 
@@ -303,7 +313,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
         
         var viewControllerName: String;
         
-        viewControllerName = "Launch View Controller";
+        if (UserDefaults.standard.bool(forKey: "notFirstTimeLaunch"))
+        {
+            viewControllerName = "Sign In View Controller";
+        }
+        else
+        {
+            viewControllerName = "Launch View Controller";
+        }
         
         let entranceViewController = mainStoryboard.instantiateViewController(withIdentifier: viewControllerName);
         self.window?.rootViewController = entranceViewController;
