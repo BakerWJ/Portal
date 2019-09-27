@@ -223,10 +223,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
                         
                         if (UserDefaults.standard.bool(forKey: "notFirstTimeLaunch"))
                         {
+                            print ("toTabBar");
                             vc.performSegue (withIdentifier: "toTabBar", sender: vc);
                         }
                         else
                         {
+                            print ("toGetStarted");
                             vc.performSegue(withIdentifier: "toGetStarted", sender: vc);
                         }
                     }
@@ -279,9 +281,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
     
     // Stop the UIActivityIndicatorView animation that was started when the user
     // pressed the Sign In button
-    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool
     {
+        UITabBar.appearance().backgroundImage = UIImage();
+        UITabBar.appearance().shadowImage = UIImage();
         //Connection to firebase
         FirebaseApp.configure();
         //setup crashlytics

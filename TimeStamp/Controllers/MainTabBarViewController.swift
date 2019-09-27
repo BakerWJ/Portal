@@ -52,6 +52,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         super.viewWillLayoutSubviews();
         update()
     }
+    
 
     var selected = 0;
     
@@ -140,13 +141,18 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
     private func update ()
     {
         //tabBar positioning
-        tabBar.frame = CGRect(x: 35.375/375.0*screenWidth, y: 727/812.0*screenHeight, width: 304.25/375.0*screenWidth, height: 52/375.0*screenWidth);
+        tabBar.frame.origin = CGPoint (x: 35.375/375.0*screenWidth, y: 727/812.0*screenHeight);
+        tabBar.frame.size = CGSize(width: 304.25/375.0*screenWidth, height: 52/375.0*screenWidth);
         //makes the tab bar transparent
         tabBar.backgroundImage = UIImage();
         tabBar.shadowImage = UIImage ();
         tabBar.backgroundColor = .white;
-        tabBar.layer.cornerRadius = tabBar.frame.height/4;
-        tabBar.dropShadow()
+        if #available(iOS 13.0, *) {}
+        else
+        {
+            tabBar.layer.cornerRadius = tabBar.frame.height/4;
+            tabBar.dropShadow()
+        }
     }
     
     //add the tab bar items to the corresponding view controllers
@@ -173,15 +179,31 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         {
             view.addSubview(each);
         }
-        homeIcon.frame.size = CGSize (width: 22/375.0*screenWidth, height: 22/375.0*screenWidth);
-        scheduleIcon.frame.size = CGSize (width: 47/375.0*screenWidth, height: 47/375.0*screenWidth);
-        newsIcon.frame.size = CGSize (width: 47/375.0*screenWidth, height: 47/375.0*screenWidth);
-        settingsIcon.frame.size = CGSize(width: 22/375.0*screenWidth, height: 22/375.0*screenWidth);
         
-        homeIcon.frame.origin = CGPoint (x: 71.125/375.0*screenWidth, y: 745.5/812.0*screenHeight - (XOrLater() ? 4/812.0*screenHeight : 0));
-        scheduleIcon.frame.origin = CGPoint (x: 128.875/375.0*screenWidth, y: 730/812.0*screenHeight);
-        newsIcon.frame.origin = CGPoint (x: 199.125/375.0*screenWidth, y: 730/812.0*screenHeight);
-        settingsIcon.frame.origin = CGPoint (x: 281.875/375.0*screenWidth, y: 745.5/812.0*screenHeight - (XOrLater() ? 4/812.0*screenHeight : 0));
+        if #available(iOS 13.0, *)
+        {
+            homeIcon.frame.size = CGSize (width: 22/375.0*screenWidth, height: 22/375.0*screenWidth);
+            scheduleIcon.frame.size = CGSize (width: 47/375.0*screenWidth, height: 47/375.0*screenWidth);
+            newsIcon.frame.size = CGSize (width: 47/375.0*screenWidth, height: 47/375.0*screenWidth);
+            settingsIcon.frame.size = CGSize(width: 22/375.0*screenWidth, height: 22/375.0*screenWidth);
+            
+            homeIcon.frame.origin = CGPoint (x: 56.125/375.0*screenWidth, y: 765.5/812.0*screenHeight - (XOrLater() ? 4/812.0*screenHeight : 0));
+            scheduleIcon.frame.origin = CGPoint (x: 121.875/375.0*screenWidth, y: 750/812.0*screenHeight);
+            newsIcon.frame.origin = CGPoint (x: 206.125/375.0*screenWidth, y: 750/812.0*screenHeight);
+            settingsIcon.frame.origin = CGPoint (x: 296.875/375.0*screenWidth, y: 765.5/812.0*screenHeight - (XOrLater() ? 4/812.0*screenHeight : 0));
+        }
+        else
+        {
+            homeIcon.frame.size = CGSize (width: 22/375.0*screenWidth, height: 22/375.0*screenWidth);
+            scheduleIcon.frame.size = CGSize (width: 47/375.0*screenWidth, height: 47/375.0*screenWidth);
+            newsIcon.frame.size = CGSize (width: 47/375.0*screenWidth, height: 47/375.0*screenWidth);
+            settingsIcon.frame.size = CGSize(width: 22/375.0*screenWidth, height: 22/375.0*screenWidth);
+            
+            homeIcon.frame.origin = CGPoint (x: 71.125/375.0*screenWidth, y: 745.5/812.0*screenHeight - (XOrLater() ? 4/812.0*screenHeight : 0));
+            scheduleIcon.frame.origin = CGPoint (x: 128.875/375.0*screenWidth, y: 730/812.0*screenHeight);
+            newsIcon.frame.origin = CGPoint (x: 199.125/375.0*screenWidth, y: 730/812.0*screenHeight);
+            settingsIcon.frame.origin = CGPoint (x: 281.875/375.0*screenWidth, y: 745.5/812.0*screenHeight - (XOrLater() ? 4/812.0*screenHeight : 0));
+        }
     }
     
     private func setUpUnderline ()
@@ -190,13 +212,27 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         homeIcon.frame = homeIcon.frame.offsetBy(dx: 0, dy: -5/375.0*screenWidth);
         //the underline should be placed right beneath the image
         //depend on the aspect ratio of the phone:
-        if (XOrLater()) //accounts for some double precision error
+        if #available(iOS 13.0, *)
         {
-            underline.frame.origin.y = 769/812.0*screenHeight;
+            if (XOrLater()) //accounts for some double precision error
+            {
+                underline.frame.origin.y = 789/812.0*screenHeight;
+            }
+            else
+            {
+                underline.frame.origin.y = 796/812.0*screenHeight;
+            }
         }
         else
         {
-            underline.frame.origin.y = 776/812.0*screenHeight;
+            if (XOrLater()) //accounts for some double precision error
+            {
+                underline.frame.origin.y = 769/812.0*screenHeight;
+            }
+            else
+            {
+                underline.frame.origin.y = 776/812.0*screenHeight;
+            }
         }
         underline.center.x = homeIcon.center.x;
         view.addSubview(underline);

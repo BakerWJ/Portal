@@ -315,8 +315,12 @@ class MainPageViewController: UIViewController {
         featuredImage.heightAnchor.constraint(equalToConstant: 144/812.0*screenHeight).isActive = true
         featuredImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 302/812.0*screenHeight).isActive = true
         featuredImage.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 224/375.0*screenWidth).isActive = true
-        featuredImage.pin_updateWithProgress = true
-        featuredImage.pin_setImage(from: URL(string: featuredArticle!.img))
+        featuredImage.backgroundColor = #colorLiteral(red: 0.2038967609, green: 0.3737305999, blue: 0.7035349607, alpha: 1);
+        if let featured = featuredArticle
+        {
+            featuredImage.pin_updateWithProgress = true
+            featuredImage.pin_setImage(from: URL (string: featured.img));
+        }
     }
     
     //delegate method for upcoming days view (called when one of the days is pressed to go to the corresponding day in the schedule tab
@@ -366,6 +370,7 @@ class MainPageViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        segue.destination.modalPresentationStyle = .fullScreen;
         if let destinationVC = segue.destination as? ArticleViewController {
             destinationVC.delegate = self;
             destinationVC.article = featuredArticle

@@ -84,7 +84,7 @@ class PublicationViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+        segue.destination.modalPresentationStyle = .fullScreen;
         if let destinationVC = segue.destination as? ArticleViewController {
             destinationVC.delegate = self;
             destinationVC.article = pubArticles[selected]
@@ -163,8 +163,6 @@ class PublicationViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     @IBAction func returnToPub (sender: UIStoryboardSegue) {}
-
-    
 
     /*
     // MARK: - Navigation

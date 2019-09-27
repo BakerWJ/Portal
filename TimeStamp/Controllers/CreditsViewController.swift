@@ -36,7 +36,7 @@ class CreditsViewController: UIViewController {
         let text = NSMutableAttributedString(string: "Built by:\n\n", attributes: [.font : UIFont(name: "SitkaBanner", size: 30/375.0*screenWidth) ?? UIFont.systemFont(ofSize: 30/375.0*screenWidth)]);
         text.append(NSMutableAttributedString(string: "Jacky He\nBaker Jackson\nVincent Song\nJason Xiong", attributes: [.font : UIFont(name: "SitkaBanner", size: 20/375.0*screenWidth) ?? UIFont.systemFont(ofSize: 20/375.0*screenWidth)]));
         text.append(NSMutableAttributedString(string: "\n\nImages Designed by:\n\n", attributes: [.font : UIFont(name: "SitkaBanner", size: 30/375.0*screenWidth) ?? UIFont.systemFont(ofSize: 30/375.0*screenWidth)]));
-        text.append(NSMutableAttributedString(string: "pikisuperstar/Freepik\nEmma Jenkin", attributes: [.font : UIFont(name: "SitkaBanner", size: 20/375.0*screenWidth) ?? UIFont.systemFont(ofSize: 20/375.0*screenWidth)]));
+        text.append(NSMutableAttributedString(string: "pikisuperstar/Freepik", attributes: [.font : UIFont(name: "SitkaBanner", size: 20/375.0*screenWidth) ?? UIFont.systemFont(ofSize: 20/375.0*screenWidth)]));
         label.attributedText = text;
         label.numberOfLines = 0;
         label.textAlignment = .center;

@@ -1,82 +1,82 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14492.1" systemVersion="18G84" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14903" systemVersion="18G84" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Article" representedClassName="Article" syncable="YES">
-        <attribute name="author" attributeType="String" syncable="YES"/>
-        <attribute name="genre" attributeType="String" syncable="YES"/>
-        <attribute name="hashVal" attributeType="String" syncable="YES"/>
-        <attribute name="img" attributeType="String" customClassName="URL" syncable="YES"/>
-        <attribute name="liked" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="likes" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="publication" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="text" attributeType="String" syncable="YES"/>
-        <attribute name="timestamp" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="title" attributeType="String" syncable="YES"/>
-        <attribute name="uploaded" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="author" attributeType="String"/>
+        <attribute name="genre" attributeType="String"/>
+        <attribute name="hashVal" attributeType="String"/>
+        <attribute name="img" attributeType="String" customClassName="URL"/>
+        <attribute name="liked" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="likes" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="publication" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="text" attributeType="String"/>
+        <attribute name="timestamp" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="title" attributeType="String"/>
+        <attribute name="uploaded" attributeType="Boolean" usesScalarValueType="YES"/>
     </entity>
     <entity name="Event" representedClassName="Event" syncable="YES">
-        <attribute name="date" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="kind" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="time" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="titleDetail" attributeType="String" syncable="YES"/>
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="kind" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="time" optional="YES" attributeType="String"/>
+        <attribute name="titleDetail" attributeType="String"/>
     </entity>
     <entity name="FlipDay" representedClassName="FlipDay" syncable="YES">
-        <attribute name="expirationDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="normalToFlip" attributeType="Transformable" customClassName="[Int]" syncable="YES"/>
+        <attribute name="expirationDate" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="normalToFlip" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[Int]"/>
     </entity>
     <entity name="Period" representedClassName="Period" syncable="YES">
-        <attribute name="additionalNotes" attributeType="String" syncable="YES"/>
-        <attribute name="correspond" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="endTime" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="periodName" attributeType="String" syncable="YES"/>
-        <attribute name="startTime" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <relationship name="schedule" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Schedule" inverseName="periods" inverseEntity="Schedule" syncable="YES"/>
+        <attribute name="additionalNotes" attributeType="String"/>
+        <attribute name="correspond" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="endTime" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="periodName" attributeType="String"/>
+        <attribute name="startTime" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="schedule" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Schedule" inverseName="periods" inverseEntity="Schedule"/>
     </entity>
     <entity name="Schedule" representedClassName="Schedule" syncable="YES">
-        <attribute name="expirationDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="kind" attributeType="String" syncable="YES"/>
-        <attribute name="value" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="periods" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Period" inverseName="schedule" inverseEntity="Period" syncable="YES"/>
+        <attribute name="expirationDate" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="kind" attributeType="String"/>
+        <attribute name="value" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="periods" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Period" inverseName="schedule" inverseEntity="Period"/>
     </entity>
     <entity name="Settings" representedClassName="Settings" syncable="YES">
-        <attribute name="articleNotifications" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="daysBefore" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="firstTimeOpen" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="generalNotifications" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="houseNotifications" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="notificationTime" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="surveyNotifications" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="articleNotifications" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="daysBefore" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="firstTimeOpen" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
+        <attribute name="generalNotifications" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="houseNotifications" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="notificationTime" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="surveyNotifications" attributeType="Boolean" usesScalarValueType="YES"/>
     </entity>
     <entity name="Timetable" representedClassName="Timetable" syncable="YES">
-        <attribute name="classes" attributeType="Transformable" customClassName="[String]" syncable="YES"/>
-        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="classes" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
+        <attribute name="name" attributeType="String"/>
     </entity>
     <entity name="ToDo_Task" representedClassName="ToDo_Task" syncable="YES">
-        <attribute name="completed" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="detail" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="dueDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="title" attributeType="String" syncable="YES"/>
-        <relationship name="tag" maxCount="1" deletionRule="Nullify" destinationEntity="ToDo_TaskTag" inverseName="tasks" inverseEntity="ToDo_TaskTag" syncable="YES"/>
+        <attribute name="completed" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="detail" optional="YES" attributeType="String"/>
+        <attribute name="dueDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="title" attributeType="String"/>
+        <relationship name="tag" maxCount="1" deletionRule="Nullify" destinationEntity="ToDo_TaskTag" inverseName="tasks" inverseEntity="ToDo_TaskTag"/>
     </entity>
     <entity name="ToDo_TaskTag" representedClassName="ToDo_TaskTag" syncable="YES">
-        <attribute name="colour" attributeType="Transformable" customClassName="UIColor" syncable="YES"/>
-        <attribute name="name" attributeType="String" syncable="YES"/>
-        <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="ToDo_Task" inverseName="tag" inverseEntity="ToDo_Task" syncable="YES"/>
+        <attribute name="colour" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="UIColor"/>
+        <attribute name="name" attributeType="String"/>
+        <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="ToDo_Task" inverseName="tag" inverseEntity="ToDo_Task"/>
     </entity>
     <entity name="WeeklySchedule" representedClassName="WeeklySchedule" syncable="YES">
-        <attribute name="abDay" attributeType="Transformable" customClassName="[Bool]" syncable="YES"/>
-        <attribute name="flipOrNot" attributeType="Transformable" customClassName="[Bool]" syncable="YES"/>
-        <attribute name="typeOfDay" attributeType="Transformable" customClassName="[Int]" syncable="YES"/>
+        <attribute name="abDay" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[Bool]"/>
+        <attribute name="flipOrNot" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[Bool]"/>
+        <attribute name="typeOfDay" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[Int]"/>
     </entity>
     <elements>
         <element name="Article" positionX="-9" positionY="81" width="128" height="210"/>
         <element name="Event" positionX="-27" positionY="54" width="128" height="105"/>
-        <element name="FlipDay" positionX="-54" positionY="-9" width="128" height="75"/>
+        <element name="FlipDay" positionX="-54" positionY="-9" width="128" height="73"/>
         <element name="Period" positionX="-63" positionY="-18" width="128" height="135"/>
         <element name="Schedule" positionX="-36" positionY="9" width="128" height="105"/>
         <element name="Settings" positionX="-18" positionY="27" width="128" height="150"/>
-        <element name="Timetable" positionX="0" positionY="45" width="128" height="75"/>
+        <element name="Timetable" positionX="0" positionY="45" width="128" height="73"/>
         <element name="ToDo_Task" positionX="-27" positionY="54" width="128" height="120"/>
-        <element name="ToDo_TaskTag" positionX="-18" positionY="63" width="128" height="90"/>
-        <element name="WeeklySchedule" positionX="-27" positionY="45" width="128" height="90"/>
+        <element name="ToDo_TaskTag" positionX="-18" positionY="63" width="128" height="88"/>
+        <element name="WeeklySchedule" positionX="-27" positionY="45" width="128" height="88"/>
     </elements>
 </model>

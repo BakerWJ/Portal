@@ -58,6 +58,7 @@ class AnimatingButtonView: UIView
     {
         backgroundColor = UIColor.getColor(242, 242, 242);
         clipsToBounds = true;
+        layer.cornerRadius = 10/375.0*screenWidth;
         
         addSubview(blueView);
         blueView.translatesAutoresizingMaskIntoConstraints = false;

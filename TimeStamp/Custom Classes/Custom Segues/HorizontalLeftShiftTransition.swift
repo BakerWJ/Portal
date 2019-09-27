@@ -29,6 +29,7 @@ class HorizontalLeftShiftTransition: UIStoryboardSegue
             }, completion:
             {
                 (Finished) in
+                self.destination.modalPresentationStyle = .fullScreen;
                 self.source.present(self.destination, animated: false, completion: nil)
             })
         }

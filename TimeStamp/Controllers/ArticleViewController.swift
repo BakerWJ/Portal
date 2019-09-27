@@ -65,11 +65,10 @@ class ArticleViewController: UIViewController, FaveButtonDelegate {
     
     let img: UIImageView = {
         let img = UIImageView()
-        img.image = #imageLiteral(resourceName: "entryScreenCampImage")
         img.contentMode = .scaleAspectFill
         img.translatesAutoresizingMaskIntoConstraints = false
         img.clipsToBounds = true
-        img.backgroundColor = #colorLiteral(red: 0.2038967609, green: 0.3737305999, blue: 0.7035349607, alpha: 1)
+        img.backgroundColor = UIColor.getColor(230, 230, 230);
         return img
     }()
     

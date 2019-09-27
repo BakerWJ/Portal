@@ -34,9 +34,6 @@ class UpcomingDaysView: UIStackView
     weak var delegate: MainPageViewController?
     
     //model
-    var daysDisplayed = [Date?]()
-    var abdayDisplayed = [Int?]()
-    var typeOfDayDisplayed = [String?]()
     
     private func setup ()
     {
@@ -56,18 +53,10 @@ class UpcomingDaysView: UIStackView
     
     func refresh ()
     {
-        fetchData()
-        var idx = 0;
-        for subview in arrangedSubviews
-        {
-            let subview = subview as! UpcomingDayView
-            subview.refresh(day: daysDisplayed [idx], abday: abdayDisplayed [idx], typeOfDay: typeOfDayDisplayed [idx])
-            idx += 1;
-        }
-    }
-    
-    private func fetchData ()
-    {
+        var daysDisplayed = [Date?]()
+        var abdayDisplayed = [Int?]()
+        var typeOfDayDisplayed = [String?]()
+        
         guard let schedules = UserDataSettings.fetchAllSchedules(),
             let weeklySchedule = UserDataSettings.fetchWeeklySchedule()
             else {return;}
@@ -100,6 +89,14 @@ class UpcomingDaysView: UIStackView
                 abdayDisplayed.append (nil);
                 typeOfDayDisplayed.append (nil);
             }
+        }
+        
+        var idx = 0;
+        for subview in arrangedSubviews
+        {
+            let subview = subview as! UpcomingDayView
+            subview.refresh(day: daysDisplayed [idx], abday: abdayDisplayed [idx], typeOfDay: typeOfDayDisplayed [idx])
+            idx += 1;
         }
     }
     /*

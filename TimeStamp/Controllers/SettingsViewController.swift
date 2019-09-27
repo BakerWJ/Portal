@@ -295,6 +295,13 @@ class SettingsViewController: UIViewController {
     //signs the user out of this place and segues to the login view
     private func signOut () {
         do {
+            Auth.auth().addStateDidChangeListener { (auth, user) in
+                if user == nil {
+                    UserDefaults.standard.set(false, forKey: "loggedin");
+                    self.unwind = true;
+                    self.back();
+                }
+            }
             try Auth.auth().signOut()
             GIDSignIn.sharedInstance().signOut();
         }
@@ -303,9 +310,7 @@ class SettingsViewController: UIViewController {
             print ("Error signing out: %@", signOutError)
             return;
         }
-        UserDefaults.standard.set(false, forKey: "loggedin");
-        unwind = true;
-        back();
+        
     }
     
     @objc func restart ()

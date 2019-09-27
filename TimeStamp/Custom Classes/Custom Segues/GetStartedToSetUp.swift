@@ -35,6 +35,7 @@ class GetStartedToSetUp: UIStoryboardSegue {
             }, completion:
                 {
                     (Finished) in
+                    self.destination.modalPresentationStyle = .fullScreen;
                     self.source.present(self.destination, animated: false, completion: nil)
                     fromVC.movingRectTrailing.constant = 0;
             })

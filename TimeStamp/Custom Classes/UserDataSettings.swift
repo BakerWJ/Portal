@@ -16,6 +16,7 @@ class UserDataSettings
 {
     
     static var weekly: WeeklySchedule?
+    static var update: Bool = true;
 
     static func updateAll ()
     {
@@ -179,11 +180,14 @@ class UserDataSettings
             (snapshot) in
             if let connected = snapshot.value as? Bool, connected
             {
-                print ("connected")
-                self.updateData()
-                self.updateWeeklySchedule()
-                self.updateEvents()
-                self.updateArticles()
+                if (update)
+                {
+                    self.updateData()
+                    self.updateWeeklySchedule()
+                    self.updateEvents()
+                    self.updateArticles()
+                    update = false;
+                }
             }
         }
     }
@@ -463,6 +467,7 @@ class UserDataSettings
                         //assumes that if one is expired, then every one of the schedules is expired
                         if Date() > each.expirationDate as Date
                         {
+                            update = true;
                             //updates the local data with new schedules, even though it might be the same as the old one
                             updateWithInternet()
                             CoreDataStack.saveContext()
@@ -509,6 +514,7 @@ class UserDataSettings
                     }
                 }
         }
+
         //Gets all the documents that contain schedules
         ref.collection ("Schedules").getDocuments ()
             {
@@ -853,91 +859,7 @@ class UserDataSettings
         {
             notificationCenter.add(request)
         }
-        //latestart,
     }
     
-    //the previous method
-    /*func setNotifications(){
-     
-     let daysWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
-     let center = UNUserNotificationCenter.current()
-     center.removeAllPendingNotificationRequests();
-     
-     let fetchRequest = NSFetchRequest <NSFetchRequestResult> (entityName: "Settings");
-     let fetchRequest2 = NSFetchRequest <NSFetchRequestResult> (entityName: "WeeklySchedule");
-     let fetchRequest3 = NSFetchRequest <NSFetchRequestResult> (entityName: "Schedule");
-     
-     do {
-     if let results = try CoreDataStack.managedObjectContext.fetch(fetchRequest) as? [Settings] {
-     if let days = try CoreDataStack.managedObjectContext.fetch(fetchRequest2) as? [WeeklySchedule] {
-     if let schedule = try CoreDataStack.managedObjectContext.fetch(fetchRequest3) as? [Schedule] {
-     if (results.count != 0 && days.count != 0 && schedule.count != 0)
-     {
-     for x in 0...6 { //checks every day
-     var notify = false;
-     //determines if that day requires a notification
-     if((days[0].typeOfDay[x] == 2 || days[0].typeOfDay[x] == 3) && results[0].generalNotifications){
-     notify = true;
-     
-     }else if(results[0].articleNotifications && (days[0].typeOfDay[x]==5 || days[0].typeOfDay[x] == 6 || days[0].typeOfDay[x] == 7)){
-     notify = true;
-     
-     }else if(results[0].houseNotifications){
-     //No house events thus far
-     
-     }
-     if(notify == true){
-     let general = UNMutableNotificationContent() //Notification content
-     var eventName = "";
-     for z in schedule{
-     if(z.value == days[0].typeOfDay[x]){
-     eventName = z.kind;
-     
-     }
-     }
-     
-     if(results[0].daysBefore == 0){
-     general.title = "There is " + eventName + " today.";
-     
-     }else{
-     general.title = "There is " + eventName + " in " + String(results[0].daysBefore) + " days on " + daysWeek[x];
-     
-     }
-     
-     print(general.title);
-     //Determining time
-     var time = DateComponents()
-     
-     time.weekday = (Int)(x + 7 - Int(results[0].daysBefore))%7+1
-     
-     if(results[0].notificationTime == 1){ //morning
-     time.hour = 8;
-     time.minute = 10;
-     }else if(results[0].notificationTime == 2){
-     time.hour = 12;
-     time.minute = 40;
-     }else if(results[0].notificationTime == 3){//evening
-     time.hour = 16;
-     }
-     
-     let trigger = UNCalendarNotificationTrigger(dateMatching: time, repeats: false)
-     
-     let uuidString = UUID().uuidString
-     let request = UNNotificationRequest(identifier: uuidString, content: general, trigger: trigger)
-     
-     let notificationCenter = UNUserNotificationCenter.current()
-     notificationCenter.add(request)
-     
-     //latestart,
-     }
-     }
-     }
-     }
-     }
-     }
-     }
-     catch {
-     print("There was an error fetching the list of timetables");
-     }
-     }*/
+    
 }
