@@ -189,10 +189,10 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
             newsIcon.frame.size = CGSize (width: 47/375.0*screenWidth, height: 47/375.0*screenWidth);
             settingsIcon.frame.size = CGSize(width: 22/375.0*screenWidth, height: 22/375.0*screenWidth);
             
-            homeIcon.frame.origin = CGPoint (x: 56.125/375.0*screenWidth, y: 765.5/812.0*screenHeight - (XOrLater() ? 4/812.0*screenHeight : 0));
-            scheduleIcon.frame.origin = CGPoint (x: 121.875/375.0*screenWidth, y: 750/812.0*screenHeight);
-            newsIcon.frame.origin = CGPoint (x: 206.125/375.0*screenWidth, y: 750/812.0*screenHeight);
-            settingsIcon.frame.origin = CGPoint (x: 296.875/375.0*screenWidth, y: 765.5/812.0*screenHeight - (XOrLater() ? 4/812.0*screenHeight : 0));
+            homeIcon.frame.origin = CGPoint (x: 56.125/375.0*screenWidth, y: 767.5/812.0*screenHeight - (XOrLater() ? 4/812.0*screenHeight : 0));
+            scheduleIcon.frame.origin = CGPoint (x: 121.875/375.0*screenWidth, y: 752/812.0*screenHeight);
+            newsIcon.frame.origin = CGPoint (x: 206.125/375.0*screenWidth, y: 752/812.0*screenHeight);
+            settingsIcon.frame.origin = CGPoint (x: 296.875/375.0*screenWidth, y: 767.5/812.0*screenHeight - (XOrLater() ? 4/812.0*screenHeight : 0));
         }
         else
         {

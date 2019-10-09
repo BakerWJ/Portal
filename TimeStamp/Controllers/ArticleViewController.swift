@@ -13,6 +13,7 @@ import PINRemoteImage
 class ArticleViewController: UIViewController, FaveButtonDelegate, UIScrollViewDelegate {
     
     let w = UIScreen.main.bounds.width
+    let h = UIScreen.main.bounds.height;
     
     var imageHeight = NSLayoutConstraint();
     
@@ -102,11 +103,15 @@ class ArticleViewController: UIViewController, FaveButtonDelegate, UIScrollViewD
         view.addSubview(scrollview)
         setupScroll()
         self.scrollview.addSubview(img)
-        let layer = UIView(frame: CGRect(x: 0/375*w, y: 364/375*w, width: 375/375*w, height: 10000000/375*w))
+        let layer = UIView()
         layer.layer.cornerRadius = 15/375*w
         layer.backgroundColor = UIColor.white
         self.scrollview.addSubview(layer)
-        layer.dropShadow()
+        let layer2 = UIView(frame: CGRect(x: 0, y: 364/375.0*w, width: w, height: 1000000));
+        layer2.layer.cornerRadius = 15/375*w;
+        layer2.backgroundColor = UIColor.white;
+        layer2.dropShadow()
+        self.scrollview.addSubview(layer2);
         self.scrollview.addSubview(authorLabel)
         self.scrollview.addSubview(titleLabel)
         self.scrollview.addSubview(textLabel)
@@ -116,6 +121,7 @@ class ArticleViewController: UIViewController, FaveButtonDelegate, UIScrollViewD
         titleLabel.topAnchor.constraint(equalTo: self.scrollview.topAnchor, constant: 408/375*w).isActive = true
         titleLabel.leftAnchor.constraint(equalTo: self.scrollview.leftAnchor, constant: 36/375*w).isActive = true
         titleLabel.widthAnchor.constraint(equalToConstant: 300.79/375*w).isActive = true
+        titleLabel.layoutIfNeeded()
         
         authorLabel.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 18/375*w).isActive = true
         authorLabel.leftAnchor.constraint(equalTo: self.scrollview.leftAnchor, constant: 36/375*w).isActive = true
@@ -125,11 +131,17 @@ class ArticleViewController: UIViewController, FaveButtonDelegate, UIScrollViewD
         textLabel.topAnchor.constraint(equalTo: self.authorLabel.bottomAnchor, constant: 39/375*w).isActive = true
         textLabel.leftAnchor.constraint(equalTo: self.scrollview.leftAnchor, constant: 36/375*w).isActive = true
         textLabel.widthAnchor.constraint(equalToConstant: 300/375*w).isActive = true
-        textLabel.bottomAnchor.constraint(equalTo: self.scrollview.bottomAnchor, constant: -30/375*w).isActive = true
-        textLabel.sizeToFit()
         textLabel.layoutIfNeeded()
-        textLabel.heightAnchor.constraint(equalToConstant: textLabel.frame.height).isActive = true
         
+        layer.translatesAutoresizingMaskIntoConstraints = false;
+        layer.topAnchor.constraint (equalTo: scrollview.topAnchor, constant: 364/375.0*w).isActive = true;
+        layer.leftAnchor.constraint (equalTo: scrollview.leftAnchor).isActive = true;
+        layer.widthAnchor.constraint (equalTo: scrollview.widthAnchor).isActive = true;
+        layer.bottomAnchor.constraint (equalTo: scrollview.bottomAnchor).isActive = true;
+        let height1 = textLabel.frame.height + titleLabel.frame.height + (40 + 44 + 14 + 18 + 39)/375.0*w;
+        let height2 = h - 364/375.0*w + 15/375.0*w;
+        layer.heightAnchor.constraint (equalToConstant: max (height1, height2)).isActive = true;
+                
         img.centerXAnchor.constraint (equalTo: self.scrollview.centerXAnchor).isActive = true;
         img.bottomAnchor.constraint (equalTo: self.scrollview.topAnchor, constant: 395/375.0*w).isActive = true;
         imageHeight = img.heightAnchor.constraint(equalToConstant: 395/375.0*w);

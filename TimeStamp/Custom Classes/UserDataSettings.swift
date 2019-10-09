@@ -179,7 +179,7 @@ class UserDataSettings
     {
         var update : Bool = true;
         let connectedRef = Database.database().reference(withPath: ".info/connected");
-        for _ in 0...4
+        for _ in 0...3
         {
             connectedRef.observe (.value)
             {
