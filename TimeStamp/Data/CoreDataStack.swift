@@ -13,7 +13,7 @@ class CoreDataStack {
     
     static var applicationDocumentsDirectory: URL = {
         let fileManager = FileManager.default;
-        if let url = fileManager.containerURL(forSecurityApplicationGroupIdentifier: "group.UTSPortal")
+        if let url = fileManager.containerURL(forSecurityApplicationGroupIdentifier: "group.utschools.portal")
         {
             return url;
         }

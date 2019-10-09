@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>367766824243-2lift2fsdd0d6nmvi4uic7grt3e60r1l.apps.googleusercontent.com</string>
+	<string>367766824243-b9fpri49400530qa1lsnjgt28ad5viu2.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.367766824243-2lift2fsdd0d6nmvi4uic7grt3e60r1l</string>
+	<string>com.googleusercontent.apps.367766824243-b9fpri49400530qa1lsnjgt28ad5viu2</string>
 	<key>API_KEY</key>
 	<string>AIzaSyCd1ZftU6W6EL5btXhv6MfKU6CfCzY5VPE</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,23 +13,23 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.heja.dmoj.UTS-APP</string>
+	<string>com.utschools.portal</string>
 	<key>PROJECT_ID</key>
 	<string>uts-portal-293</string>
 	<key>STORAGE_BUCKET</key>
 	<string>uts-portal-293.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_APPINVITE_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_GCM_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:367766824243:ios:f136cd763a416f08</string>
+	<string>1:367766824243:ios:4009526315aeb032fa4a46</string>
 	<key>DATABASE_URL</key>
 	<string>https://uts-portal-293.firebaseio.com</string>
 </dict>

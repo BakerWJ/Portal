@@ -91,6 +91,7 @@ class SetUpViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad();
         view.backgroundColor = UIColor.getColor(40, 73, 164);
+        UserDataSettings.updateAll();
         setup ()
     }
     

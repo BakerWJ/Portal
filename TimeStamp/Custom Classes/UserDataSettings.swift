@@ -10,12 +10,13 @@ import Foundation
 import UIKit
 import CoreData
 import Firebase
+import FirebaseDatabase
+import FirebaseFirestore
 import UserNotifications
 
 class UserDataSettings
 {
     
-    static var weekly: WeeklySchedule?
     static var update: Bool = true;
 
     static func updateAll ()
@@ -24,6 +25,7 @@ class UserDataSettings
         addWeeklySchedule ()
         createSettings ()
         updateSchedules()
+        CoreDataStack.saveContext()
     }
 
     static func eraseAll ()
@@ -34,6 +36,7 @@ class UserDataSettings
         deleteSettings()
         deleteTimetables()
         deleteArticles()
+        CoreDataStack.saveContext()
     }
     
     static func updateArticles() {
@@ -174,19 +177,24 @@ class UserDataSettings
     
     static func updateWithInternet ()
     {
+        var update : Bool = true;
         let connectedRef = Database.database().reference(withPath: ".info/connected");
-        connectedRef.observe (.value)
+        for _ in 0...4
         {
-            (snapshot) in
-            if let connected = snapshot.value as? Bool, connected
+            connectedRef.observe (.value)
             {
-                if (update)
+                (snapshot) in
+                if let connected = snapshot.value as? Bool, connected
                 {
-                    self.updateData()
-                    self.updateWeeklySchedule()
-                    self.updateEvents()
-                    self.updateArticles()
-                    update = false;
+                    if (update)
+                    {
+                        self.updateData()
+                        self.updateWeeklySchedule()
+                        self.updateEvents()
+                        self.updateArticles()
+                        CoreDataStack.saveContext()
+                        update = false;
+                    }
                 }
             }
         }
@@ -305,12 +313,7 @@ class UserDataSettings
                     newWeeklySchedule.abDay = [Bool] (repeating: false, count: 7);
                     newWeeklySchedule.flipOrNot = [Bool] (repeating: false, count: 7);
                     newWeeklySchedule.typeOfDay = [Int] (repeating: 0, count: 7);
-                    weekly = newWeeklySchedule;
                     CoreDataStack.saveContext()
-                }
-                else
-                {
-                    weekly = results [0];
                 }
             }
         }
@@ -329,21 +332,22 @@ class UserDataSettings
                 if let data = snapshot.value as? [Any]
                 {
                     var x = 0;
+                    let weekly = UserDataSettings.fetchWeeklySchedule();
                     for day in data
                     {
                         if let specifics = day as? [Any]
                         {
                             if let value = specifics [0] as? Int
                             {
-                                self.weekly?.typeOfDay [x] = value;
+                                weekly?.typeOfDay [x] = value;
                             }
                             if let ABDay = specifics [1] as? String
                             {
-                                self.weekly?.abDay [x] = ABDay == "A";
+                                weekly?.abDay [x] = ABDay == "A";
                             }
                             if let flip = specifics [2] as? String
                             {
-                                self.weekly?.flipOrNot [x] = flip == "F";
+                                weekly?.flipOrNot [x] = flip == "F";
                             }
                         }
                         x += 1;
@@ -651,7 +655,7 @@ class UserDataSettings
                     }
                 }
                 CoreDataStack.saveContext()
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
                     UserDataSettings.setNotifications()
                 })
             }

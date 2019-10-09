@@ -112,10 +112,8 @@ class PublicationViewController: UIViewController, UITableViewDataSource, UITabl
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated);
-        articleTableView.layoutIfNeeded()
         let oldContentOffset = articleTableView.contentOffset
         articleTableView.reloadData()
-        articleTableView.layoutIfNeeded()
         self.articleTableView.setContentOffset(oldContentOffset, animated: false)
     }
     
@@ -154,7 +152,7 @@ class PublicationViewController: UIViewController, UITableViewDataSource, UITabl
         
         let f_image = UIImage(named: "Exit")
         let i_view = UIImageView(image: f_image)
-        i_view.frame = CGRect(x: 36/375*w, y: 50/375*w, width: 20/375*w, height: 20/375*w)
+        i_view.frame = CGRect(x: 36/375*w, y: 50/375*w, width: 26/375*w, height: 26/375*w)
         i_view.clipsToBounds = true
         i_view.isUserInteractionEnabled = true
         i_view.contentMode = .scaleAspectFill

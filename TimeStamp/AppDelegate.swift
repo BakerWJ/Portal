@@ -12,6 +12,7 @@ import Firebase
 import FirebaseFirestore
 import CoreData
 import UserNotifications
+import FirebaseAuth
 import GoogleSignIn
 import GTMAppAuth
 
@@ -190,7 +191,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!,
               withError error: Error!)
     {
+        var vc: SignInViewController?;
+        if let vc2 = self.window?.rootViewController?.presentedViewController as? SignInViewController
+        {
+            vc = vc2;
+        }
+        else if let vc2 = self.window?.rootViewController as? SignInViewController
+        {
+            vc = vc2;
+        }
         if let error = error {
+            vc?.signInButton.isUserInteractionEnabled = true;
             if (error as NSError).code == GIDSignInErrorCode.hasNoAuthInKeychain.rawValue {
                 print("The user has not signed in before or they have since signed out.")
             } else {
@@ -201,49 +212,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
         else
         {
             // Perform any operations on signed in user here.
-            
             guard let authentication = user.authentication else {return}
             let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
-            
             Auth.auth().signIn(with: credential, completion: {
                 (authResult, error) in
                 if let error = error
                 {
                     print (error.localizedDescription)
+                    vc?.signInButton.isUserInteractionEnabled = true;
                     return;
                 }
-                
-                if let vc = self.window?.rootViewController?.presentedViewController as? SignInViewController
+                if (user.profile.email.suffix(13) == "@utschools.ca")
                 {
-                    
-                    if (user.profile.email.suffix(13) == "@utschools.ca")
+                    UserDefaults.standard.set(true, forKey: "loggedin");
+                    UserDataSettings.updateAll()
+                    if (UserDefaults.standard.bool(forKey: "notFirstTimeLaunch"))
                     {
-                        UserDefaults.standard.set(true, forKey: "loggedin");
-                        UserDataSettings.updateAll()
-                        
-                        if (UserDefaults.standard.bool(forKey: "notFirstTimeLaunch"))
-                        {
-                            print ("toTabBar");
-                            vc.performSegue (withIdentifier: "toTabBar", sender: vc);
-                        }
-                        else
-                        {
-                            print ("toGetStarted");
-                            vc.performSegue(withIdentifier: "toGetStarted", sender: vc);
-                        }
+                        vc?.performSegue (withIdentifier: "toTabBar", sender: vc);
                     }
                     else
                     {
-                        vc.showWarning ();
-                        do {
-                            try Auth.auth().signOut()
-                            GIDSignIn.sharedInstance().signOut();
-                        }
-                        catch let signOutError as NSError
-                        {
-                            print ("Error signing out: %@", signOutError)
-                            return;
-                        }
+                        vc?.performSegue(withIdentifier: "toGetStarted", sender: vc);
+                    }
+                    vc?.signInButton.isUserInteractionEnabled = true;
+                }
+                else
+                {
+                    vc?.showWarning ();
+                    do {
+                        try Auth.auth().signOut()
+                        GIDSignIn.sharedInstance().signOut();
+                    }
+                    catch let signOutError as NSError
+                    {
+                        vc?.signInButton.isUserInteractionEnabled = true;
+                        print ("Error signing out: %@", signOutError)
+                        return;
                     }
                 }
             })
@@ -334,19 +338,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
         return true
     }
 
-    
-    func applicationWillResignActive(_ application: UIApplication)
-    {
-        UIApplication.shared.applicationIconBadgeNumber = 0
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
-    }
-    
-    func applicationDidEnterBackground(_ application: UIApplication)
-    {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    }
+
     
     func applicationWillEnterForeground(_ application: UIApplication)
     {

@@ -18,7 +18,6 @@
 		31BB399422E76493004D2DE5 /* SitkaBanner.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 31BB399022E76492004D2DE5 /* SitkaBanner.ttf */; };
 		31BB399622E764A9004D2DE5 /* SitkaBanner-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 31BB399522E764A9004D2DE5 /* SitkaBanner-BoldItalic.ttf */; };
 		31BB399822E8CEEC004D2DE5 /* DailyScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BB399722E8CEEC004D2DE5 /* DailyScheduleCell.swift */; };
-		8A1AEDC722C11598005282FD /* credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8A1AEDC622C11598005282FD /* credentials.plist */; };
 		8A1AEDCE22C4148F005282FD /* Event+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1AEDCC22C4148F005282FD /* Event+CoreDataClass.swift */; };
 		8A1AEDCF22C4148F005282FD /* Event+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1AEDCD22C4148F005282FD /* Event+CoreDataProperties.swift */; };
 		8A1B79FA22BEC0C6006FE52A /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B79F922BEC0C6006FE52A /* SignInViewController.swift */; };
@@ -26,6 +25,7 @@
 		8A1B7A0822BECAC7006FE52A /* HouseInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B7A0722BECAC7006FE52A /* HouseInfoViewController.swift */; };
 		8A1B7A1822BF2995006FE52A /* swipetoright.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8A1B7A1722BF2995006FE52A /* swipetoright.gif */; };
 		8A1B7A1C22BF2A7C006FE52A /* swipetoleft.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8A1B7A1B22BF2A7C006FE52A /* swipetoleft.gif */; };
+		8A1CEB90234E53020017DDEC /* client_367766824243-b9fpri49400530qa1lsnjgt28ad5viu2.apps.googleusercontent.com (1).plist in Resources */ = {isa = PBXBuildFile; fileRef = 8A1CEB8F234E53020017DDEC /* client_367766824243-b9fpri49400530qa1lsnjgt28ad5viu2.apps.googleusercontent.com (1).plist */; };
 		8A1CF7EE23044E49000E2F6B /* SettingsNotifOnOffButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1CF7ED23044E49000E2F6B /* SettingsNotifOnOffButtonView.swift */; };
 		8A1CF7F02304595E000E2F6B /* SettingsSpecificNotifButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1CF7EF2304595E000E2F6B /* SettingsSpecificNotifButtonView.swift */; };
 		8A1CF7F223046391000E2F6B /* SettingsDaysBeforeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1CF7F123046391000E2F6B /* SettingsDaysBeforeSlider.swift */; };
@@ -73,6 +73,7 @@
 		8A1CF849231C0E45000E2F6B /* UserDataSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEA785022851D5C0031B030 /* UserDataSettings.swift */; };
 		8A1CF84B231C3F33000E2F6B /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1CF84A231C3F33000E2F6B /* LaunchViewController.swift */; };
 		8A1CF84D231C5599000E2F6B /* SettingsToLogInUnwind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1CF84C231C5599000E2F6B /* SettingsToLogInUnwind.swift */; };
+		8A3464AD234D591E00CB7AFC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8A3464AC234D591E00CB7AFC /* GoogleService-Info.plist */; };
 		8A445BB22301AC370020C29B /* AnimatingButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A445BB12301AC370020C29B /* AnimatingButtonView.swift */; };
 		8A445BB42301ED810020C29B /* LogInToGetStarted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A445BB32301ED810020C29B /* LogInToGetStarted.swift */; };
 		8A445BB6230216C20020C29B /* GetStartedToSetUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A445BB5230216C20020C29B /* GetStartedToSetUp.swift */; };
@@ -109,7 +110,6 @@
 		CE927FF7227A0BCD00EE0A22 /* PeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE927FF1227A0BCD00EE0A22 /* PeriodView.swift */; };
 		CE927FF8227A0BCD00EE0A22 /* RepeatingTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE927FF2227A0BCD00EE0A22 /* RepeatingTimer.swift */; };
 		CE927FF9227A0BCD00EE0A22 /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE927FF3227A0BCD00EE0A22 /* ScheduleView.swift */; };
-		CE927FFB227A0EFB00EE0A22 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE927FFA227A0EFB00EE0A22 /* GoogleService-Info.plist */; };
 		CEAD94522310818F001C2FDA /* NewsPageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAD94512310818F001C2FDA /* NewsPageTableViewCell.swift */; };
 		CEC26E00227B3E9E00FFFC67 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC26DF7227B3E9E00FFFC67 /* CoreDataStack.swift */; };
 		CEC26E01227B3E9E00FFFC67 /* Schedule+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC26DF8227B3E9E00FFFC67 /* Schedule+CoreDataProperties.swift */; };
@@ -176,7 +176,6 @@
 		4944988DE91BDAF41825C6A0 /* Pods_TimeStamp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TimeStamp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C118D26195145B6F602CD7A /* Pods-TimeStamp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeStamp.debug.xcconfig"; path = "Target Support Files/Pods-TimeStamp/Pods-TimeStamp.debug.xcconfig"; sourceTree = "<group>"; };
 		86A93A6FC0B1FE5666E1C4E1 /* Pods_Portal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Portal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8A1AEDC622C11598005282FD /* credentials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = credentials.plist; sourceTree = "<group>"; };
 		8A1AEDCC22C4148F005282FD /* Event+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Event+CoreDataClass.swift"; sourceTree = "<group>"; };
 		8A1AEDCD22C4148F005282FD /* Event+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Event+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8A1B79F922BEC0C6006FE52A /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
@@ -184,6 +183,7 @@
 		8A1B7A0722BECAC7006FE52A /* HouseInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseInfoViewController.swift; sourceTree = "<group>"; };
 		8A1B7A1722BF2995006FE52A /* swipetoright.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = swipetoright.gif; sourceTree = "<group>"; };
 		8A1B7A1B22BF2A7C006FE52A /* swipetoleft.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = swipetoleft.gif; sourceTree = "<group>"; };
+		8A1CEB8F234E53020017DDEC /* client_367766824243-b9fpri49400530qa1lsnjgt28ad5viu2.apps.googleusercontent.com (1).plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "client_367766824243-b9fpri49400530qa1lsnjgt28ad5viu2.apps.googleusercontent.com (1).plist"; sourceTree = "<group>"; };
 		8A1CF7ED23044E49000E2F6B /* SettingsNotifOnOffButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNotifOnOffButtonView.swift; sourceTree = "<group>"; };
 		8A1CF7EF2304595E000E2F6B /* SettingsSpecificNotifButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSpecificNotifButtonView.swift; sourceTree = "<group>"; };
 		8A1CF7F123046391000E2F6B /* SettingsDaysBeforeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDaysBeforeSlider.swift; sourceTree = "<group>"; };
@@ -199,6 +199,7 @@
 		8A1CF8222314DF30000E2F6B /* Portal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Portal.entitlements; sourceTree = "<group>"; };
 		8A1CF84A231C3F33000E2F6B /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		8A1CF84C231C5599000E2F6B /* SettingsToLogInUnwind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsToLogInUnwind.swift; sourceTree = "<group>"; };
+		8A3464AC234D591E00CB7AFC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8A445BB12301AC370020C29B /* AnimatingButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatingButtonView.swift; sourceTree = "<group>"; };
 		8A445BB32301ED810020C29B /* LogInToGetStarted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInToGetStarted.swift; sourceTree = "<group>"; };
 		8A445BB5230216C20020C29B /* GetStartedToSetUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartedToSetUp.swift; sourceTree = "<group>"; };
@@ -234,7 +235,6 @@
 		CE927FF1227A0BCD00EE0A22 /* PeriodView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeriodView.swift; sourceTree = "<group>"; };
 		CE927FF2227A0BCD00EE0A22 /* RepeatingTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepeatingTimer.swift; sourceTree = "<group>"; };
 		CE927FF3227A0BCD00EE0A22 /* ScheduleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleView.swift; sourceTree = "<group>"; };
-		CE927FFA227A0EFB00EE0A22 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CEAD94512310818F001C2FDA /* NewsPageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsPageTableViewCell.swift; sourceTree = "<group>"; };
 		CEC26DF7227B3E9E00FFFC67 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		CEC26DF8227B3E9E00FFFC67 /* Schedule+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Schedule+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -449,9 +449,9 @@
 				CEC26DF6227B3E9E00FFFC67 /* Data */,
 				CE927FED227A0BB200EE0A22 /* Custom Classes */,
 				CEDC4347227612E500A78890 /* Fonts */,
-				CE927FFA227A0EFB00EE0A22 /* GoogleService-Info.plist */,
+				8A3464AC234D591E00CB7AFC /* GoogleService-Info.plist */,
 				CEDC434022760BC000A78890 /* Info.plist */,
-				8A1AEDC622C11598005282FD /* credentials.plist */,
+				8A1CEB8F234E53020017DDEC /* client_367766824243-b9fpri49400530qa1lsnjgt28ad5viu2.apps.googleusercontent.com (1).plist */,
 				CE2D71472280C71E00F4D89A /* TimeStampModel.xcdatamodeld */,
 			);
 			path = TimeStamp;
@@ -615,11 +615,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEDC434C2276130900A78890 /* Segoe UI Bold Italic.ttf in Resources */,
-				8A1AEDC722C11598005282FD /* credentials.plist in Resources */,
+				8A3464AD234D591E00CB7AFC /* GoogleService-Info.plist in Resources */,
 				8AD862122298387600412EFF /* enjoyWeekend.gif in Resources */,
 				31BB399122E76493004D2DE5 /* SitkaBanner-Bold.ttf in Resources */,
 				8A1B7A1C22BF2A7C006FE52A /* swipetoleft.gif in Resources */,
-				CE927FFB227A0EFB00EE0A22 /* GoogleService-Info.plist in Resources */,
+				8A1CEB90234E53020017DDEC /* client_367766824243-b9fpri49400530qa1lsnjgt28ad5viu2.apps.googleusercontent.com (1).plist in Resources */,
 				CEDC434E2276130900A78890 /* Segoe UI Bold.ttf in Resources */,
 				31BB399322E76493004D2DE5 /* SimSun.ttf in Resources */,
 				CEDC434F2276130900A78890 /* Segoe UI.ttf in Resources */,
@@ -888,9 +888,9 @@
 			baseConfigurationReference = 203B1C647C37BD6C4DB8FBBB /* Pods-Portal.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Portal/Portal.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = VZH52F2524;
+				DEVELOPMENT_TEAM = 6FHM656X9B;
 				INFOPLIST_FILE = Portal/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -898,7 +898,8 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.utschools.utsportal.extension;
+				MARKETING_VERSION = 1.2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.utschools.portal.extension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -912,9 +913,9 @@
 			baseConfigurationReference = 230B71FA42A116C6DA2E7C5C /* Pods-Portal.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Portal/Portal.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = VZH52F2524;
+				DEVELOPMENT_TEAM = 6FHM656X9B;
 				INFOPLIST_FILE = Portal/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -922,7 +923,8 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.utschools.utsportal.extension;
+				MARKETING_VERSION = 1.2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.utschools.portal.extension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -982,7 +984,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1037,7 +1039,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1054,17 +1056,18 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TimeStamp/TimeStamp.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = VZH52F2524;
+				DEVELOPMENT_TEAM = 6FHM656X9B;
 				INFOPLIST_FILE = TimeStamp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.utschools.utsportal;
+				MARKETING_VERSION = 1.2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.utschools.portal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -1079,17 +1082,18 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TimeStamp/TimeStamp.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = VZH52F2524;
+				DEVELOPMENT_TEAM = 6FHM656X9B;
 				INFOPLIST_FILE = TimeStamp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.utschools.utsportal;
+				MARKETING_VERSION = 1.2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.utschools.portal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;

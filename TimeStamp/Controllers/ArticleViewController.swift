@@ -10,9 +10,11 @@ import UIKit
 import FaveButton
 import PINRemoteImage
 
-class ArticleViewController: UIViewController, FaveButtonDelegate {
+class ArticleViewController: UIViewController, FaveButtonDelegate, UIScrollViewDelegate {
     
     let w = UIScreen.main.bounds.width
+    
+    var imageHeight = NSLayoutConstraint();
     
     var article:Article? {
         didSet {
@@ -39,23 +41,6 @@ class ArticleViewController: UIViewController, FaveButtonDelegate {
         self.heartButton = button;
         return button;
     }()
-
-    
-    /*
-    lazy var heartButton : UIButton = {
-        let button = UIButton()
-        button.addTarget(self, action: #selector(likeTapped), for: .touchUpInside);
-        let notHighlightedImage = UIImage(named: "emptyHeartImage")?.imageWithColor(newColor: );
-        let highligtedImage = UIImage(named: "filledHeartImage")?.imageWithColor(newColor: UIColor.getColor(255, 105, 180));
-        button.setImage(notHighlightedImage, for: .normal);
-        button.setImage(notHighlightedImage, for: [.normal, .highlighted]);
-        button.setImage(notHighlightedImage, for: .highlighted);
-        button.setImage(highligtedImage, for: .selected);
-        button.translatesAutoresizingMaskIntoConstraints = false;
-        button.backgroundColor = .clear
-        return button;
-    }()*/
-    
 
     lazy var scrollview: UIScrollView = {
         let view = UIScrollView()
@@ -125,8 +110,8 @@ class ArticleViewController: UIViewController, FaveButtonDelegate {
         self.scrollview.addSubview(authorLabel)
         self.scrollview.addSubview(titleLabel)
         self.scrollview.addSubview(textLabel)
-        
-        self.scrollview.addSubview(heartButton);
+        self.scrollview.isUserInteractionEnabled = true;
+        self.scrollview.isScrollEnabled = true;
         
         titleLabel.topAnchor.constraint(equalTo: self.scrollview.topAnchor, constant: 408/375*w).isActive = true
         titleLabel.leftAnchor.constraint(equalTo: self.scrollview.leftAnchor, constant: 36/375*w).isActive = true
@@ -137,7 +122,6 @@ class ArticleViewController: UIViewController, FaveButtonDelegate {
         authorLabel.widthAnchor.constraint(equalToConstant: 300/375*w).isActive = true
         authorLabel.heightAnchor.constraint(equalToConstant: 14/375*w).isActive = true
         
-        
         textLabel.topAnchor.constraint(equalTo: self.authorLabel.bottomAnchor, constant: 39/375*w).isActive = true
         textLabel.leftAnchor.constraint(equalTo: self.scrollview.leftAnchor, constant: 36/375*w).isActive = true
         textLabel.widthAnchor.constraint(equalToConstant: 300/375*w).isActive = true
@@ -146,10 +130,12 @@ class ArticleViewController: UIViewController, FaveButtonDelegate {
         textLabel.layoutIfNeeded()
         textLabel.heightAnchor.constraint(equalToConstant: textLabel.frame.height).isActive = true
         
-        img.topAnchor.constraint(equalTo: self.scrollview.topAnchor, constant: 0/375*w).isActive = true
-        img.leftAnchor.constraint(equalTo: self.scrollview.leftAnchor, constant: 0).isActive = true
-        img.widthAnchor.constraint(equalToConstant: w).isActive = true
-        img.heightAnchor.constraint(equalToConstant: 395/375*w).isActive = true
+        img.centerXAnchor.constraint (equalTo: self.scrollview.centerXAnchor).isActive = true;
+        img.bottomAnchor.constraint (equalTo: self.scrollview.topAnchor, constant: 395/375.0*w).isActive = true;
+        imageHeight = img.heightAnchor.constraint(equalToConstant: 395/375.0*w);
+        imageHeight.isActive = true;
+        img.widthAnchor.constraint (equalTo: img.heightAnchor, multiplier: 395.0/375.0).isActive = true;
+
         
         view.addSubview (backButton);
         backButton.translatesAutoresizingMaskIntoConstraints = false;
@@ -168,10 +154,20 @@ class ArticleViewController: UIViewController, FaveButtonDelegate {
         backButton.layer.shadowRadius = 0.5;
         backButton.layer.shadowPath = UIBezierPath(roundedRect: backButton.bounds, cornerRadius: backButton.layer.cornerRadius).cgPath;
         backButton.layer.shadowOffset = CGSize(width: 0.0, height: 0.3);
+        view.addSubview(heartButton);
+        
+        //swipe
+        if source != 2 && source != 0
+        {
+            let sgr = UISwipeGestureRecognizer(target: self, action: #selector(handleTap));
+            sgr.direction = .right;
+            view.addGestureRecognizer(sgr);
+        }
     }
     
     func setupScroll() {
-        scrollview.bounces = false
+        scrollview.bounces = true
+        scrollview.delegate = self;
         scrollview.showsVerticalScrollIndicator = false
         scrollview.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         scrollview.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
@@ -193,6 +189,23 @@ class ArticleViewController: UIViewController, FaveButtonDelegate {
         }
     }
 
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offset = scrollView.contentOffset.y
+        if (offset >= 0)
+        {
+            return;
+        }
+        imageHeight.constant = abs(offset/375.0*w) + 395/375.0*w;
+        
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        let offset = scrollView.contentOffset.y;
+        if ((source == 2 || source == 0) && offset <= -170/375.0*w)
+        {
+            handleTap()
+        }
+    }
     
     func faveButton(_ faveButton: FaveButton, didSelected selected: Bool) {
         article?.liked = selected;

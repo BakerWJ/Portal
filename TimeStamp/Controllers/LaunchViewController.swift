@@ -17,6 +17,7 @@ class LaunchViewController: UIViewController {
     let cityFront = UIImageView (image: UIImage(named: "cityFront"));
     let cityBack = UIImageView(image: UIImage(named: "cityBack"));
     let appLogo = UIImageView (image: UIImage(named: "logo"))
+    var first = true;
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +27,11 @@ class LaunchViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        animate()
+        if (first)
+        {
+            first = false;
+            animate()
+        }
     }
     
     var cityFrontTop = NSLayoutConstraint()

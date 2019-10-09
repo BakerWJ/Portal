@@ -144,19 +144,19 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         
         view.addSubview (typeDayLabel);
         typeDayLabel.translatesAutoresizingMaskIntoConstraints = false;
-        typeDayLabel.topAnchor.constraint (equalTo: view.topAnchor, constant: 18/812.0*screenHeight).isActive = true;
+        typeDayLabel.topAnchor.constraint (equalTo: view.topAnchor, constant: 18).isActive = true;
         typeDayLabel.leadingAnchor.constraint (equalTo: view.leadingAnchor, constant: 30/375.0*screenWidth).isActive = true;
         typeDayLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30/375.0*screenWidth).isActive = true;
-        typeDayLabel.heightAnchor.constraint (equalToConstant: 40/812.0*screenHeight).isActive = true;
+        typeDayLabel.heightAnchor.constraint (equalToConstant: 30).isActive = true;
         let tr3 = UITapGestureRecognizer(target: self, action: #selector(launchMain));
         typeDayLabel.addGestureRecognizer(tr3);
         
         view.addSubview(nextPeriodView);
         nextPeriodView.translatesAutoresizingMaskIntoConstraints = false;
         nextPeriodView.centerXAnchor.constraint (equalTo: view.centerXAnchor).isActive = true;
-        nextPeriodView.topAnchor.constraint(equalTo: typeDayLabel.bottomAnchor, constant: 10/812.0*screenHeight).isActive = true;
+        nextPeriodView.topAnchor.constraint(equalTo: typeDayLabel.bottomAnchor, constant: 5).isActive = true;
         nextPeriodView.widthAnchor.constraint(equalToConstant: 334/375.0*screenWidth).isActive = true;
-        nextPeriodView.heightAnchor.constraint(equalToConstant: 54/812.0*screenHeight).isActive = true;
+        nextPeriodView.heightAnchor.constraint(equalToConstant: 54/375.0*screenWidth).isActive = true;
         nextPeriodView.layoutIfNeeded()
         nextPeriodView.layer.cornerRadius = nextPeriodView.frame.height/2;
         nextPeriodView.refresh()
@@ -319,6 +319,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
         let expanded = activeDisplayMode == .expanded
         preferredContentSize = expanded ? CGSize(width: maxSize.width, height: screenHeight - 126/812.0*screenHeight) : maxSize
+        print (maxSize)
     }
     
     //goes to the schedule for today

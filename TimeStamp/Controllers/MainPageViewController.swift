@@ -344,6 +344,7 @@ class MainPageViewController: UIViewController {
         nextClassView.refresh()
         nextFewDaysView.refresh();
         featuredRefresh()
+        UserDataSettings.updateAll()
     }
     
     private func featuredRefresh ()

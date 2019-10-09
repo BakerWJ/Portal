@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Crashlytics
 
 class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
 
@@ -45,6 +46,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         self.delegate = self;
         update()
         initialsetup()
+        UserDataSettings.updateAll();
         // Do any additional setup after loading the view.
     }
     

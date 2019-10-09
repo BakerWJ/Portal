@@ -70,6 +70,7 @@ class GetStartedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad();
+        UserDataSettings.updateAll();
         setup();
     }
     

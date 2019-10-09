@@ -54,6 +54,7 @@ class SignInViewController: UIViewController
     
     @objc func signIn ()
     {
+        signInButton.isUserInteractionEnabled = false;
         GIDSignIn.sharedInstance()?.signIn()
     }
     
@@ -70,12 +71,13 @@ class SignInViewController: UIViewController
     override func viewDidAppear(_ animated: Bool)
     {
         super.viewDidAppear(animated);
+        print ("appeared");
         if (!firsttime)
         {
             return;
         }
         firsttime = false;
-        if (self.signedIn)
+        if (signedIn)
         {
             if (UserDefaults.standard.bool(forKey: "notFirstTimeLaunch"))
             {
@@ -93,6 +95,10 @@ class SignInViewController: UIViewController
         reset()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated);
+    }
+    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated);
         reset()
@@ -100,6 +106,7 @@ class SignInViewController: UIViewController
     
     private func reset ()
     {
+        signedIn = UserDefaults.standard.bool(forKey: "loggedin");
         //reset all the constraints to normal
         signInButton.layer.opacity = 1;
         imageView.layer.opacity = 1;
@@ -109,7 +116,6 @@ class SignInViewController: UIViewController
     
     private func setup ()
     {
-        signedIn = UserDefaults.standard.bool(forKey: "loggedin");
         view.backgroundColor = .white;
         GIDSignIn.sharedInstance()?.presentingViewController = self;
         
@@ -122,6 +128,7 @@ class SignInViewController: UIViewController
         signInButton.widthAnchor.constraint (equalToConstant: 307/375.0*screenWidth).isActive = true;
         signInButton.layoutIfNeeded();
         signInButton.layer.cornerRadius = signInButton.frame.height/3;
+        signInButton.isUserInteractionEnabled = true;
         signInButton.dropShadow()
         
         //add the let's get you started label
@@ -161,6 +168,8 @@ class SignInViewController: UIViewController
         warningLabel.text = "Sign in is restricted to UTS Students";
         warningLabel.layer.opacity = 0;
     }
+    
+    
     
     func showWarning ()
     {
