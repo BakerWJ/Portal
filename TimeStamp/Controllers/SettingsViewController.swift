@@ -310,7 +310,6 @@ class SettingsViewController: UIViewController {
             print ("Error signing out: %@", signOutError)
             return;
         }
-        
     }
     
     @objc func restart ()

@@ -252,6 +252,7 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         articlesView.isScrollEnabled = false
         articlesView.rowHeight = 127/375.0 * w
         articlesView.separatorStyle = .none
+        articlesView.backgroundColor = .white;
         
         DispatchQueue.main.async {
             self.articlesView.reloadData()

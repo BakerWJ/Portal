@@ -148,6 +148,7 @@ class MainPageViewController: UIViewController {
     //gets the user's google image
     lazy var userImage: UIImageView = {
         var image = UIImageView()
+        image.backgroundColor = .white;
         if let data = UserDefaults.standard.data(forKey: "userimage")
         {
             image.image = UIImage(data: data);

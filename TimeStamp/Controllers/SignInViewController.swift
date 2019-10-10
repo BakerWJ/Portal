@@ -8,6 +8,8 @@
 
 import UIKit
 import GoogleSignIn
+import AuthenticationServices
+import Firebase
 
 class SignInViewController: UIViewController
 {
@@ -49,13 +51,63 @@ class SignInViewController: UIViewController
         return view;
     }()
     
+    lazy var appleSignIn: UIButton = {
+        let button = UIButton ();
+        button.backgroundColor = UIColor.getColor(40, 73, 164);
+        button.addTarget(self, action: #selector (signInApple), for: .touchUpInside);
+        button.setTitle("Sign in with Apple", for: .normal);
+        button.setTitle("Sign in with Apple", for: .highlighted);
+        button.setTitleColor(.white, for: .normal);
+        button.setTitleColor(.white, for: .highlighted);
+        button.titleLabel?.font = UIFont (name: "SitkaBanner-Bold", size: 20/375.0*screenWidth);
+        return button;
+    }()
+    
     var getStartedLeading = NSLayoutConstraint()
     var imageWidth = NSLayoutConstraint();
     
     @objc func signIn ()
     {
         signInButton.isUserInteractionEnabled = false;
+        appleSignIn.isUserInteractionEnabled = false;
         GIDSignIn.sharedInstance()?.signIn()
+    }
+    
+    @objc func signInApple()
+    {
+        signInButton.isUserInteractionEnabled = false;
+        appleSignIn.isUserInteractionEnabled = false;
+        if #available(iOS 13.0, *)
+        {
+            let provider = ASAuthorizationAppleIDProvider()
+            let request = provider.createRequest();
+            request.requestedScopes = [.fullName, .email];
+            
+            let controller = ASAuthorizationController(authorizationRequests: [request]);
+            controller.delegate = self;
+            controller.presentationContextProvider = self;
+            controller.performRequests()
+        }
+        else
+        {
+            let alert = UIAlertController(title: "Incompatible with current OS version", message: "Apple Sign In requires iOS 13 or higher", preferredStyle: .alert);
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (action) in
+                switch action.style
+                {
+                case .default:
+                    print ("default");
+                case .cancel:
+                    print ("cancel");
+                case.destructive:
+                    print ("destructive");
+                default:
+                    print ("unknown");
+                }
+            }))
+            self.present (alert, animated: true, completion: nil);
+            signInButton.isUserInteractionEnabled = true;
+            appleSignIn.isUserInteractionEnabled = true;
+        }
     }
     
     override func viewDidLoad() {
@@ -131,6 +183,17 @@ class SignInViewController: UIViewController
         signInButton.isUserInteractionEnabled = true;
         signInButton.dropShadow()
         
+        view.addSubview(appleSignIn);
+        appleSignIn.translatesAutoresizingMaskIntoConstraints = false;
+        appleSignIn.centerXAnchor.constraint (equalTo: view.centerXAnchor).isActive = true;
+        appleSignIn.topAnchor.constraint (equalTo: signInButton.bottomAnchor, constant: 10/812.0*screenHeight).isActive = true;
+        appleSignIn.heightAnchor.constraint (equalToConstant: 45/812.0*screenHeight).isActive = true;
+        appleSignIn.widthAnchor.constraint (equalToConstant: 307/375.0*screenWidth).isActive = true;
+        appleSignIn.layoutIfNeeded();
+        appleSignIn.layer.cornerRadius = appleSignIn.frame.height/3;
+        appleSignIn.isUserInteractionEnabled = true;
+        appleSignIn.dropShadow()
+        
         //add the let's get you started label
         view.addSubview(getStartedLabel);
         getStartedLabel.translatesAutoresizingMaskIntoConstraints = false;
@@ -188,4 +251,117 @@ class SignInViewController: UIViewController
     
     @IBAction func returnFromTabBar (sender: UIStoryboardSegue) {}
 
+}
+
+//apple sign in
+@available(iOS 13.0, *)
+extension SignInViewController: ASAuthorizationControllerDelegate
+{
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        switch authorization.credential {
+        case let credentials as ASAuthorizationAppleIDCredential:
+            let id = credentials.user
+            let firstName = credentials.fullName?.givenName ?? "";
+            let email = credentials.email ?? "";
+            if (email.suffix(13) == "@utschools.ca")
+            {
+                Auth.auth().createUser(withEmail: email, password: id) { (authResult, error) in
+                    if let error = error
+                    {
+                        print (error.localizedDescription)
+                        self.signInButton.isUserInteractionEnabled = true;
+                        self.appleSignIn.isUserInteractionEnabled = true;
+                        return;
+                    }
+                    Auth.auth().signIn(withEmail: email, password: id) { (authResult, error) in
+                        if let error = error
+                        {
+                            print (error.localizedDescription)
+                            self.signInButton.isUserInteractionEnabled = true;
+                            self.appleSignIn.isUserInteractionEnabled = true;
+                            return;
+                        }
+                        UserDefaults.standard.set(firstName, forKey: "username");
+                        UserDefaults.standard.set (true, forKey: "loggedin");
+                        UserDataSettings.updateAll()
+                        self.signInButton.isUserInteractionEnabled = true;
+                        self.appleSignIn.isUserInteractionEnabled = true;
+                        if (UserDefaults.standard.bool(forKey: "notFirstTimeLaunch"))
+                        {
+                            self.performSegue (withIdentifier: "toTabBar", sender: self);
+                        }
+                        else
+                        {
+                            self.performSegue(withIdentifier: "toGetStarted", sender: self);
+                        }
+                    }
+                }
+            }
+            else //if signed in not with a UTS Account
+            {
+                let alert = UIAlertController(title: "Unsupported Account", message: "Sign in is restricted to UTS Members", preferredStyle: .alert);
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (action) in
+                    switch action.style
+                    {
+                    case .default:
+                        print ("default");
+                    case .cancel:
+                        print ("cancel");
+                    case.destructive:
+                        print ("destructive");
+                    default:
+                        print ("unknown");
+                    }
+                }))
+                self.present (alert, animated: true, completion: nil);
+                signInButton.isUserInteractionEnabled = true;
+                appleSignIn.isUserInteractionEnabled = true;
+                
+                do {
+                    self.signInButton.isUserInteractionEnabled = true;
+                    self.appleSignIn.isUserInteractionEnabled = true;
+                    try Auth.auth().signOut()
+                }
+                catch let signOutError as NSError
+                {
+                    self.signInButton.isUserInteractionEnabled = true;
+                    self.appleSignIn.isUserInteractionEnabled = true;
+                    print ("Error signing out: %@", signOutError)
+                    return;
+                }
+            }
+        default:
+            self.signInButton.isUserInteractionEnabled = true;
+            self.appleSignIn.isUserInteractionEnabled = true;
+        }
+    }
+    
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        self.signInButton.isUserInteractionEnabled = true;
+        self.appleSignIn.isUserInteractionEnabled = true;
+        let alert = UIAlertController(title: "Sign In Failed", message: "", preferredStyle: .alert);
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (action) in
+            switch action.style
+            {
+            case .default:
+                print ("default");
+            case .cancel:
+                print ("cancel");
+            case.destructive:
+                print ("destructive");
+            default:
+                print ("unknown");
+            }
+        }))
+        self.present (alert, animated: true, completion: nil);
+    }
+    
+}
+
+@available (iOS 13.0, *)
+extension SignInViewController: ASAuthorizationControllerPresentationContextProviding
+{
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return view.window!
+    }
 }

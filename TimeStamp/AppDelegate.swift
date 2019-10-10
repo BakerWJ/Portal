@@ -202,6 +202,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
         }
         if let error = error {
             vc?.signInButton.isUserInteractionEnabled = true;
+            vc?.appleSignIn.isUserInteractionEnabled = true;
             if (error as NSError).code == GIDSignInErrorCode.hasNoAuthInKeychain.rawValue {
                 print("The user has not signed in before or they have since signed out.")
             } else {
@@ -220,6 +221,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
                 {
                     print (error.localizedDescription)
                     vc?.signInButton.isUserInteractionEnabled = true;
+                    vc?.appleSignIn.isUserInteractionEnabled = true;
                     return;
                 }
                 if (user.profile.email.suffix(13) == "@utschools.ca")
@@ -235,17 +237,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
                         vc?.performSegue(withIdentifier: "toGetStarted", sender: vc);
                     }
                     vc?.signInButton.isUserInteractionEnabled = true;
+                    vc?.appleSignIn.isUserInteractionEnabled = true;
                 }
                 else
                 {
                     vc?.showWarning ();
                     do {
+                        vc?.signInButton.isUserInteractionEnabled = true;
+                        vc?.appleSignIn.isUserInteractionEnabled = true;
                         try Auth.auth().signOut()
                         GIDSignIn.sharedInstance().signOut();
                     }
                     catch let signOutError as NSError
                     {
                         vc?.signInButton.isUserInteractionEnabled = true;
+                        vc?.appleSignIn.isUserInteractionEnabled = true;
                         print ("Error signing out: %@", signOutError)
                         return;
                     }

@@ -125,6 +125,7 @@ class NewsPageTableViewCell: UITableViewCell {
         self.contentView.addSubview(titleLabel)
         self.contentView.addSubview(tLabel)
         self.contentView.addSubview(genreLabel)
+        
         addSubview(heartImage);
         addSubview(numLikesLabel);
         
@@ -163,5 +164,6 @@ class NewsPageTableViewCell: UITableViewCell {
         numLikesLabel.heightAnchor.constraint (equalTo: heartImage.heightAnchor).isActive = true;
         numLikesLabel.trailingAnchor.constraint(equalTo: heartImage.leadingAnchor, constant: -5/375.0*w).isActive = true;
         
+        backgroundColor = .white;
     }
 }

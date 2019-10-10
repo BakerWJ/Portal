@@ -213,7 +213,7 @@ class ArticleViewController: UIViewController, FaveButtonDelegate, UIScrollViewD
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         let offset = scrollView.contentOffset.y;
-        if ((source == 2 || source == 0) && offset <= -170/375.0*w)
+        if ((source == 2 || source == 0) && offset <= -120/375.0*w)
         {
             handleTap()
         }
@@ -224,3 +224,4 @@ class ArticleViewController: UIViewController, FaveButtonDelegate, UIScrollViewD
         CoreDataStack.saveContext()
     }
 }
+
