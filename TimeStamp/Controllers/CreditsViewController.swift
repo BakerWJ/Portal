@@ -40,6 +40,7 @@ class CreditsViewController: UIViewController {
         label.attributedText = text;
         label.numberOfLines = 0;
         label.textAlignment = .center;
+        label.textColor = .black;
         label.baselineAdjustment = .alignCenters;
         return label;
     }()

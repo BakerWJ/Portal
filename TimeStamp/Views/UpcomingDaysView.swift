@@ -144,6 +144,7 @@ class UpcomingDayView: UIView
         label.backgroundColor = .clear;
         label.font = UIFont (name: "SitkaBanner", size: 18/375.0*screenWidth);
         label.textAlignment = .left;
+        label.textColor = .black;
         label.adjustsFontSizeToFitWidth = true;
         label.numberOfLines = 1;
         label.baselineAdjustment = .alignCenters;
@@ -155,6 +156,7 @@ class UpcomingDayView: UIView
         label.backgroundColor = .clear;
         label.font = UIFont (name: "SitkaBanner-Bold", size: 14/375.0*screenWidth);
         label.textAlignment = .left;
+        label.textColor = .black;
         label.adjustsFontSizeToFitWidth = true;
         label.numberOfLines = 1;
         label.baselineAdjustment = .alignCenters;
@@ -166,6 +168,7 @@ class UpcomingDayView: UIView
         label.backgroundColor = .clear;
         label.font = UIFont (name: "SitkaBanner", size: 14/375.0*screenWidth);
         label.textAlignment = .center;
+        label.textColor = .black;
         label.adjustsFontSizeToFitWidth = true;
         label.numberOfLines = 0;
         label.baselineAdjustment = .alignCenters;

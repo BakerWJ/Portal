@@ -171,6 +171,7 @@ class PeriodView: UIStackView, UITextFieldDelegate
             classLabel.font = UIFont (name: "SitkaBanner", size: 20/812.0*screenHeight);
             classLabel.minimumScaleFactor = 6.0/812.0*screenHeight/classLabel.font.pointSize;
             classLabel.adjustsFontSizeToFitWidth = true;
+            classLabel.textColor = .black
 
             //light sky blue: 135-206-250
             //settting the colors and border colors of classLabel
@@ -186,6 +187,7 @@ class PeriodView: UIStackView, UITextFieldDelegate
             timeLabel.baselineAdjustment = .alignCenters;
             timeLabel.numberOfLines = 1
             timeLabel.font = UIFont (name: "SimSun", size: 20/812.0*screenHeight);
+            timeLabel.textColor = .black;
             
             //set background color to clear
             timeLabel.backgroundColor = .clear
@@ -220,6 +222,7 @@ class PeriodView: UIStackView, UITextFieldDelegate
             classTextField.adjustsFontSizeToFitWidth = true;
             classTextField.minimumFontSize = 6/812.0*screenHeight;
             classTextField.returnKeyType = .done
+            classTextField.textColor = .black
             
             //set background color to white
             classTextField.backgroundColor = .white;
@@ -244,6 +247,7 @@ class PeriodView: UIStackView, UITextFieldDelegate
             timeLabel.baselineAdjustment = .alignCenters;
             timeLabel.numberOfLines = 1
             timeLabel.font = UIFont (name: "SimSun", size: 20/812.0*screenHeight);
+            timeLabel.textColor = .black;
             
             //set background color to white
             timeLabel.backgroundColor = .clear
@@ -265,6 +269,7 @@ class PeriodView: UIStackView, UITextFieldDelegate
             classLabel.baselineAdjustment = .alignCenters;
             classLabel.font = UIFont (name: "SitkaBanner", size: 14/812.0*screenHeight);
             classLabel.minimumScaleFactor = 6.0/812.0*screenHeight/classLabel.font.pointSize;
+            classLabel.textColor = .black
             
             containerView.addSubview(rectangle1);
             containerView.addSubview(rectangle2);

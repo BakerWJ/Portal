@@ -47,11 +47,12 @@ class MainPageViewController: UIViewController {
         let label = UILabel ();
         label.font = UIFont (name: "SitkaBanner", size: 40/375.0*screenWidth);
         label.text = "Hello!";
-        if let username = UserDefaults.standard.string(forKey: "username")
+        if let username = UserDefaults.standard.string(forKey: "username"), username != ""
         {
             label.text = "Hello,\n" + username + "!";
         }
         label.numberOfLines = 2;
+        label.textColor = .black;
         label.baselineAdjustment = .alignCenters;
         label.textAlignment = .left;
         label.adjustsFontSizeToFitWidth = true;
@@ -65,6 +66,7 @@ class MainPageViewController: UIViewController {
         label.numberOfLines = 1
         label.textAlignment = .left;
         label.baselineAdjustment = .alignCenters;
+        label.textColor = .black
         label.backgroundColor = .clear;
         label.text = "Top Article";
         label.adjustsFontSizeToFitWidth = true;
@@ -205,6 +207,9 @@ class MainPageViewController: UIViewController {
     
     private func setup ()
     {
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .light
+        }
         featuredArticle = getFeatured()
         //makes navigation bar transparent
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default);

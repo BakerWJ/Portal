@@ -13,8 +13,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     let screenWidth = UIScreen.main.bounds.width;
     let screenHeight = UIScreen.main.bounds.height;
-    
-    lazy var scheme = "com.googleusercontent.apps.367766824243-2lift2fsdd0d6nmvi4uic7grt3e60r1l://";
+    lazy var scheme = "com.googleusercontent.apps.367766824243-b9fpri49400530qa1lsnjgt28ad5viu2://";
     
     lazy var nextPeriodView : NextPeriodView = {
         let view = NextPeriodView()

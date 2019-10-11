@@ -190,6 +190,11 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .light
+        }
+        
         new = self.newArticles()
         popular = self.popArticles()
         sift = self.siftArticles()

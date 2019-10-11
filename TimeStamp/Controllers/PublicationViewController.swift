@@ -97,6 +97,9 @@ class PublicationViewController: UIViewController, UITableViewDataSource, UITabl
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .light
+        }
         navBar()
         view.addSubview(articleTableView)
         articleTableView.delegate = self
@@ -108,6 +111,7 @@ class PublicationViewController: UIViewController, UITableViewDataSource, UITabl
         articleTableView.dataSource = self
         articleTableView.register(PublicationTableViewCell.self, forCellReuseIdentifier: "cell")
         articleTableView.separatorStyle = .none
+        articleTableView.backgroundColor = .white;
     }
     
     override func viewWillAppear(_ animated: Bool) {

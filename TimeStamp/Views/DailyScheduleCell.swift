@@ -32,6 +32,7 @@ class DailyScheduleCell: UICollectionViewCell, UIPickerViewDelegate, UIPickerVie
     lazy var dateLabel: UILabel = {
         let label = UILabel ()
         label.backgroundColor = .clear
+        label.textColor = .black;
         label.numberOfLines = 0;
         return label
     }()
@@ -44,6 +45,7 @@ class DailyScheduleCell: UICollectionViewCell, UIPickerViewDelegate, UIPickerVie
         label.numberOfLines = 0;
         label.backgroundColor = .clear;
         label.textAlignment = .center;
+        label.textColor = .black
         label.baselineAdjustment = .alignCenters;
         label.font = UIFont(name: "SitkaBanner-Bold", size: 15/812.0*screenHeight);
         return label;

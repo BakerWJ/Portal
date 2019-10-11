@@ -201,6 +201,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
             vc = vc2;
         }
         if let error = error {
+            let alert = UIAlertController(title: "Sign In Failed", message: "", preferredStyle: .alert);
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            vc?.present (alert, animated: true, completion: nil);
             vc?.signInButton.isUserInteractionEnabled = true;
             vc?.appleSignIn.isUserInteractionEnabled = true;
             if (error as NSError).code == GIDSignInErrorCode.hasNoAuthInKeychain.rawValue {
@@ -219,6 +222,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
                 (authResult, error) in
                 if let error = error
                 {
+                    let alert = UIAlertController(title: "Sign In Failed", message: "", preferredStyle: .alert);
+                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil));
+                    vc?.present (alert, animated: true, completion: nil);
                     print (error.localizedDescription)
                     vc?.signInButton.isUserInteractionEnabled = true;
                     vc?.appleSignIn.isUserInteractionEnabled = true;
@@ -241,7 +247,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
                 }
                 else
                 {
-                    vc?.showWarning ();
                     do {
                         vc?.signInButton.isUserInteractionEnabled = true;
                         vc?.appleSignIn.isUserInteractionEnabled = true;
@@ -255,6 +260,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
                         print ("Error signing out: %@", signOutError)
                         return;
                     }
+                    let alert = UIAlertController(title: "Unsupported Account", message: "Sign in is restricted to UTS Members", preferredStyle: .alert);
+                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                    vc?.present (alert, animated: true, completion: nil);
                 }
             })
             

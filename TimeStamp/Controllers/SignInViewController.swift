@@ -269,50 +269,16 @@ extension SignInViewController: ASAuthorizationControllerDelegate
                     if let error = error
                     {
                         print (error.localizedDescription)
-                        self.signInButton.isUserInteractionEnabled = true;
-                        self.appleSignIn.isUserInteractionEnabled = true;
+                        self.firebaseSignIn(email: email, password: id, firstName: firstName);
                         return;
                     }
-                    Auth.auth().signIn(withEmail: email, password: id) { (authResult, error) in
-                        if let error = error
-                        {
-                            print (error.localizedDescription)
-                            self.signInButton.isUserInteractionEnabled = true;
-                            self.appleSignIn.isUserInteractionEnabled = true;
-                            return;
-                        }
-                        UserDefaults.standard.set(firstName, forKey: "username");
-                        UserDefaults.standard.set (true, forKey: "loggedin");
-                        UserDataSettings.updateAll()
-                        self.signInButton.isUserInteractionEnabled = true;
-                        self.appleSignIn.isUserInteractionEnabled = true;
-                        if (UserDefaults.standard.bool(forKey: "notFirstTimeLaunch"))
-                        {
-                            self.performSegue (withIdentifier: "toTabBar", sender: self);
-                        }
-                        else
-                        {
-                            self.performSegue(withIdentifier: "toGetStarted", sender: self);
-                        }
-                    }
+                    self.firebaseSignIn(email: email, password: id, firstName: firstName);
                 }
             }
             else //if signed in not with a UTS Account
             {
                 let alert = UIAlertController(title: "Unsupported Account", message: "Sign in is restricted to UTS Members", preferredStyle: .alert);
-                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (action) in
-                    switch action.style
-                    {
-                    case .default:
-                        print ("default");
-                    case .cancel:
-                        print ("cancel");
-                    case.destructive:
-                        print ("destructive");
-                    default:
-                        print ("unknown");
-                    }
-                }))
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                 self.present (alert, animated: true, completion: nil);
                 signInButton.isUserInteractionEnabled = true;
                 appleSignIn.isUserInteractionEnabled = true;
@@ -336,23 +302,37 @@ extension SignInViewController: ASAuthorizationControllerDelegate
         }
     }
     
+    func firebaseSignIn (email: String, password: String, firstName: String)
+    {
+        Auth.auth().signIn(withEmail: email, password: password) { (authResult, error) in
+            if let error = error
+            {
+                print (error.localizedDescription)
+                self.signInButton.isUserInteractionEnabled = true;
+                self.appleSignIn.isUserInteractionEnabled = true;
+                return;
+            }
+            UserDefaults.standard.set(firstName, forKey: "username");
+            UserDefaults.standard.set (true, forKey: "loggedin");
+            UserDataSettings.updateAll()
+            self.signInButton.isUserInteractionEnabled = true;
+            self.appleSignIn.isUserInteractionEnabled = true;
+            if (UserDefaults.standard.bool(forKey: "notFirstTimeLaunch"))
+            {
+                self.performSegue (withIdentifier: "toTabBar", sender: self);
+            }
+            else
+            {
+                self.performSegue(withIdentifier: "toGetStarted", sender: self);
+            }
+        }
+    }
+    
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
         self.signInButton.isUserInteractionEnabled = true;
         self.appleSignIn.isUserInteractionEnabled = true;
         let alert = UIAlertController(title: "Sign In Failed", message: "", preferredStyle: .alert);
-        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (action) in
-            switch action.style
-            {
-            case .default:
-                print ("default");
-            case .cancel:
-                print ("cancel");
-            case.destructive:
-                print ("destructive");
-            default:
-                print ("unknown");
-            }
-        }))
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         self.present (alert, animated: true, completion: nil);
     }
     

@@ -142,16 +142,27 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
     
     private func update ()
     {
-        //tabBar positioning
-        tabBar.frame.origin = CGPoint (x: 35.375/375.0*screenWidth, y: 727/812.0*screenHeight);
-        tabBar.frame.size = CGSize(width: 304.25/375.0*screenWidth, height: 52/375.0*screenWidth);
         //makes the tab bar transparent
         tabBar.backgroundImage = UIImage();
         tabBar.shadowImage = UIImage ();
         tabBar.backgroundColor = .white;
-        if #available(iOS 13.0, *) {}
+        if #available(iOS 13.0, *)
+        {
+            if (XOrLater())
+            {
+                tabBar.frame.origin.y = 697/812.0*screenHeight;
+                tabBar.frame.size.height = screenHeight - tabBar.frame.origin.y;
+            }
+            else
+            {
+                tabBar.frame.origin.y = 697/812.0*screenHeight;
+                tabBar.frame.size.height = screenHeight - tabBar.frame.origin.y;
+            }
+        }
         else
         {
+            tabBar.frame.origin = CGPoint (x: 35.375/375.0*screenWidth, y: 727/812.0*screenHeight);
+            tabBar.frame.size = CGSize(width: 304.25/375.0*screenWidth, height: 52/375.0*screenWidth);
             tabBar.layer.cornerRadius = tabBar.frame.height/4;
             tabBar.dropShadow()
         }
@@ -189,10 +200,10 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
             newsIcon.frame.size = CGSize (width: 47/375.0*screenWidth, height: 47/375.0*screenWidth);
             settingsIcon.frame.size = CGSize(width: 22/375.0*screenWidth, height: 22/375.0*screenWidth);
             
-            homeIcon.frame.origin = CGPoint (x: 56.125/375.0*screenWidth, y: 767.5/812.0*screenHeight - (XOrLater() ? 4/812.0*screenHeight : 0));
-            scheduleIcon.frame.origin = CGPoint (x: 121.875/375.0*screenWidth, y: 752/812.0*screenHeight);
-            newsIcon.frame.origin = CGPoint (x: 206.125/375.0*screenWidth, y: 752/812.0*screenHeight);
-            settingsIcon.frame.origin = CGPoint (x: 296.875/375.0*screenWidth, y: 767.5/812.0*screenHeight - (XOrLater() ? 4/812.0*screenHeight : 0));
+            homeIcon.frame.origin = CGPoint (x: 56.125/375.0*screenWidth, y: 767.5/812.0*screenHeight - (XOrLater() ? 14/812.0*screenHeight : 0));
+            scheduleIcon.frame.origin = CGPoint (x: 121.875/375.0*screenWidth, y: 752/812.0*screenHeight - (XOrLater() ? 10/812.0*screenHeight : 0));
+            newsIcon.frame.origin = CGPoint (x: 206.125/375.0*screenWidth, y: 752/812.0*screenHeight - (XOrLater() ? 10/812.0*screenHeight : 0));
+            settingsIcon.frame.origin = CGPoint (x: 296.875/375.0*screenWidth, y: 767.5/812.0*screenHeight - (XOrLater() ? 14/812.0*screenHeight : 0));
         }
         else
         {
@@ -218,7 +229,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         {
             if (XOrLater()) //accounts for some double precision error
             {
-                underline.frame.origin.y = 789/812.0*screenHeight;
+                underline.frame.origin.y = 779/812.0*screenHeight;
             }
             else
             {

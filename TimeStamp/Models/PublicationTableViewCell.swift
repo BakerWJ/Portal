@@ -93,6 +93,8 @@ class PublicationTableViewCell: UITableViewCell {
         numLikesLabel.centerYAnchor.constraint (equalTo: heartImage.centerYAnchor).isActive = true;
         numLikesLabel.heightAnchor.constraint (equalTo: heartImage.heightAnchor).isActive = true;
         numLikesLabel.trailingAnchor.constraint(equalTo: heartImage.leadingAnchor, constant: -5/375.0*w).isActive = true;
+        
+        backgroundColor = .white;
     }
     
     required init?(coder aDecoder: NSCoder) {
