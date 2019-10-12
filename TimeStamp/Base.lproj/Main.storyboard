@@ -165,7 +165,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="uIg-jC-dVq"/>
                     <connections>
-                        <segue destination="BwQ-Ox-5Gd" kind="custom" identifier="article" customClass="HorizontalRightShiftTransition" customModule="TimeStamp" customModuleProvider="target" id="gOe-i5-O3d"/>
+                        <segue destination="BwQ-Ox-5Gd" kind="modal" identifier="article" id="gOe-i5-O3d"/>
                         <segue destination="5z8-KD-tXI" kind="presentation" identifier="pubf" id="Ojg-eI-mjx"/>
                     </connections>
                 </viewController>
@@ -335,7 +335,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="O4V-Zp-R5V"/>
-        <segue reference="qLb-2Y-kps"/>
+        <segue reference="bQ3-U0-0AC"/>
+        <segue reference="gOe-i5-O3d"/>
     </inferredMetricsTieBreakers>
 </document>

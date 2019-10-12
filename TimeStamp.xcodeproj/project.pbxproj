@@ -18,6 +18,9 @@
 		31BB399422E76493004D2DE5 /* SitkaBanner.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 31BB399022E76492004D2DE5 /* SitkaBanner.ttf */; };
 		31BB399622E764A9004D2DE5 /* SitkaBanner-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 31BB399522E764A9004D2DE5 /* SitkaBanner-BoldItalic.ttf */; };
 		31BB399822E8CEEC004D2DE5 /* DailyScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BB399722E8CEEC004D2DE5 /* DailyScheduleCell.swift */; };
+		8A01A99A235155CC00038BAE /* DismissAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A01A999235155CC00038BAE /* DismissAnimator.swift */; };
+		8A01A99C2351594E00038BAE /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A01A99B2351594E00038BAE /* Interactor.swift */; };
+		8A01A99E23515FC400038BAE /* PresentAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A01A99D23515FC400038BAE /* PresentAnimator.swift */; };
 		8A1AEDCE22C4148F005282FD /* Event+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1AEDCC22C4148F005282FD /* Event+CoreDataClass.swift */; };
 		8A1AEDCF22C4148F005282FD /* Event+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1AEDCD22C4148F005282FD /* Event+CoreDataProperties.swift */; };
 		8A1B79FA22BEC0C6006FE52A /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B79F922BEC0C6006FE52A /* SignInViewController.swift */; };
@@ -176,6 +179,9 @@
 		4944988DE91BDAF41825C6A0 /* Pods_TimeStamp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TimeStamp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C118D26195145B6F602CD7A /* Pods-TimeStamp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeStamp.debug.xcconfig"; path = "Target Support Files/Pods-TimeStamp/Pods-TimeStamp.debug.xcconfig"; sourceTree = "<group>"; };
 		86A93A6FC0B1FE5666E1C4E1 /* Pods_Portal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Portal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A01A999235155CC00038BAE /* DismissAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissAnimator.swift; sourceTree = "<group>"; };
+		8A01A99B2351594E00038BAE /* Interactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
+		8A01A99D23515FC400038BAE /* PresentAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentAnimator.swift; sourceTree = "<group>"; };
 		8A1AEDCC22C4148F005282FD /* Event+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Event+CoreDataClass.swift"; sourceTree = "<group>"; };
 		8A1AEDCD22C4148F005282FD /* Event+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Event+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8A1B79F922BEC0C6006FE52A /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
@@ -377,9 +383,12 @@
 		CE927FED227A0BB200EE0A22 /* Custom Classes */ = {
 			isa = PBXGroup;
 			children = (
+				8A01A99B2351594E00038BAE /* Interactor.swift */,
 				8AD8620C2297824000412EFF /* Util.swift */,
 				CE927FF2227A0BCD00EE0A22 /* RepeatingTimer.swift */,
 				CE927FEE227A0BCD00EE0A22 /* UserTimetable.swift */,
+				8A01A999235155CC00038BAE /* DismissAnimator.swift */,
+				8A01A99D23515FC400038BAE /* PresentAnimator.swift */,
 				8AEA785022851D5C0031B030 /* UserDataSettings.swift */,
 				8AD8621F22984ACB00412EFF /* Custom Segues */,
 			);
@@ -784,7 +793,9 @@
 				8A6780792298C81B00748848 /* EventView.swift in Sources */,
 				CE2D71492280C71E00F4D89A /* TimeStampModel.xcdatamodeld in Sources */,
 				8A1CF7F623049165000E2F6B /* TabBarToSettingsUnwind.swift in Sources */,
+				8A01A99A235155CC00038BAE /* DismissAnimator.swift in Sources */,
 				8AA2F046228123890091EF0F /* HorizontalLeftShiftTransition.swift in Sources */,
+				8A01A99C2351594E00038BAE /* Interactor.swift in Sources */,
 				314635B922EB78B400F522B4 /* UpcomingDaysView.swift in Sources */,
 				31BB399822E8CEEC004D2DE5 /* DailyScheduleCell.swift in Sources */,
 				8A5F823622D7A00B00443020 /* ToDo_Task+CoreDataClass.swift in Sources */,
@@ -825,6 +836,7 @@
 				8A445BB82303B5E60020C29B /* SettingsDayNightToggleButtonView.swift in Sources */,
 				8A1AEDCF22C4148F005282FD /* Event+CoreDataProperties.swift in Sources */,
 				CEC26E06227B3E9E00FFFC67 /* Timetable+CoreDataClass.swift in Sources */,
+				8A01A99E23515FC400038BAE /* PresentAnimator.swift in Sources */,
 				8A1B79FA22BEC0C6006FE52A /* SignInViewController.swift in Sources */,
 				8AD8621822984A3500412EFF /* HorizontalRightShiftTransitionUnwind.swift in Sources */,
 				CEDC435B22773F8400A78890 /* MainPageViewController.swift in Sources */,

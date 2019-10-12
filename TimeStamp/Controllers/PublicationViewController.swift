@@ -118,7 +118,9 @@ class PublicationViewController: UIViewController, UITableViewDataSource, UITabl
         super.viewWillAppear(animated);
         let oldContentOffset = articleTableView.contentOffset
         articleTableView.reloadData()
-        self.articleTableView.setContentOffset(oldContentOffset, animated: false)
+        DispatchQueue.main.async {
+            self.articleTableView.setContentOffset(oldContentOffset, animated: false)
+        }
     }
     
     @objc func exit() {

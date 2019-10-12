@@ -16,6 +16,8 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var articles = UserDataSettings.fetchAllArticles()
     var timer: Timer?;
     
+    let interactor = Interactor() //this is used by both the newsviewcontroller and articleviewcontroller
+    
     var row: Int = 1
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -599,6 +601,9 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 destinationVC.article = new[row]
             }
             destinationVC.source = 1
+            
+            destinationVC.transitioningDelegate = self;
+            destinationVC.interactor = interactor
         }
         if let destinationVC = segue.destination as? PublicationViewController {
             destinationVC.pub = publication
@@ -606,4 +611,22 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     @IBAction func returnFromArticle (sender: UIStoryboardSegue) {}
+}
+
+extension NewsViewController: UIViewControllerTransitioningDelegate {
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return DismissAnimator()
+    }
+    
+    func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return interactor.hasStarted ? interactor : nil
+    }
+    
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return PresentAnimator()
+    }
+    
+    func interactionControllerForPresentation(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return nil
+    }
 }

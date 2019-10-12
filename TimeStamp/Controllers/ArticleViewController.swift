@@ -17,6 +17,9 @@ class ArticleViewController: UIViewController, FaveButtonDelegate, UIScrollViewD
     
     var imageHeight = NSLayoutConstraint();
     
+    //controls animation back
+    var interactor: Interactor? = nil
+    
     var article:Article? {
         didSet {
             guard let articleItem = article else {return}
@@ -71,7 +74,7 @@ class ArticleViewController: UIViewController, FaveButtonDelegate, UIScrollViewD
     
     let authorLabel:UILabel = {
         let textLayer = UILabel()
-        textLayer.font = UIFont(name: "SitkaBanner", size: 14/375*UIScreen.main.bounds.width)
+        textLayer.font = UIFont(name: "SitkaBanner", size: 16/375*UIScreen.main.bounds.width)
         textLayer.textColor = UIColor.black
         textLayer.translatesAutoresizingMaskIntoConstraints = false
         textLayer.numberOfLines = 1
@@ -82,7 +85,7 @@ class ArticleViewController: UIViewController, FaveButtonDelegate, UIScrollViewD
     
     let textLabel:UILabel = {
         let textLayer = UILabel()
-        textLayer.font = UIFont(name: "SitkaBanner", size: 16/375*UIScreen.main.bounds.width)
+        textLayer.font = UIFont(name: "SitkaBanner", size: 20/375*UIScreen.main.bounds.width)
         textLayer.textColor = UIColor.black
         textLayer.translatesAutoresizingMaskIntoConstraints = false
         textLayer.numberOfLines = 0
@@ -171,8 +174,7 @@ class ArticleViewController: UIViewController, FaveButtonDelegate, UIScrollViewD
         //swipe
         if source != 2 && source != 0
         {
-            let sgr = UISwipeGestureRecognizer(target: self, action: #selector(handleTap));
-            sgr.direction = .right;
+            let sgr = UIPanGestureRecognizer (target: self, action: #selector(handlePan));
             view.addGestureRecognizer(sgr);
         }
     }
@@ -189,12 +191,42 @@ class ArticleViewController: UIViewController, FaveButtonDelegate, UIScrollViewD
         scrollview.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
     
-    @objc func handleTap() {
+    @objc func handlePan(sender: UIPanGestureRecognizer) {
+        let percentThreshold: CGFloat = 0.35;
+        let translation = sender.translation(in: view);
+        let horizontalMovement = translation.x/w;
+        let rightMovement = fmaxf(Float(horizontalMovement), 0.0);
+        let rightMovementPercent = fminf(rightMovement, 1.0);
+        let progress = CGFloat (rightMovementPercent);
+        
+        guard let interactor = interactor else {return}
+        
+        switch sender.state
+        {
+        case .began:
+            interactor.hasStarted = true;
+            dismiss(animated: true, completion: nil)
+        case .changed:
+            interactor.shouldFinish = progress > percentThreshold
+            interactor.update(progress);
+        case .cancelled:
+            interactor.hasStarted = false;
+            interactor.cancel()
+        case .ended:
+            interactor.hasStarted = false;
+            interactor.shouldFinish ? interactor.finish() : interactor.cancel();
+        default:
+            break;
+        }
+    }
+    
+    @objc func handleTap ()
+    {
         if source == 0 {
             self.performSegue(withIdentifier: "toPub", sender: self)
         }
-        else if source == 1{
-            self.performSegue(withIdentifier: "articleu", sender: self)
+        else if source == 1{ //special segue
+            dismiss(animated: true, completion: nil);
         }
         else if source == 2{
             self.performSegue(withIdentifier: "returnToMain", sender: self)
@@ -208,12 +240,11 @@ class ArticleViewController: UIViewController, FaveButtonDelegate, UIScrollViewD
             return;
         }
         imageHeight.constant = abs(offset/375.0*w) + 395/375.0*w;
-        
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         let offset = scrollView.contentOffset.y;
-        if ((source == 2 || source == 0) && offset <= -120/375.0*w)
+        if ((source == 2 || source == 0) && offset <= -100/375.0*w)
         {
             handleTap()
         }
@@ -224,4 +255,5 @@ class ArticleViewController: UIViewController, FaveButtonDelegate, UIScrollViewD
         CoreDataStack.saveContext()
     }
 }
+
 

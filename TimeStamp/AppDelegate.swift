@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseDatabase
+import FirebaseMessaging
 import Firebase
 import FirebaseFirestore
 import CoreData
@@ -17,7 +18,7 @@ import GoogleSignIn
 import GTMAppAuth
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
+class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate, UNUserNotificationCenterDelegate
 {
     // Setup for Notifications
     let notificationCenter = UNUserNotificationCenter.current()
@@ -314,6 +315,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
         GIDSignIn.sharedInstance()?.delegate = self;
 
         
+        //MARK: remote notification
+        UNUserNotificationCenter.current().delegate = self;
+        let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound];
+        UNUserNotificationCenter.current().requestAuthorization(options: authOptions) { (_, _) in}
+        application.registerForRemoteNotifications()
+        Messaging.messaging().delegate = self;
+        
         //After the app launches, it will check if the current schedule stored locally is up to date
         //if notifications are not allowed, it is asked for
         notificationCenter.getNotificationSettings { (settings) in
@@ -394,5 +402,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate
     {
         UserDataSettings.updateAll();
         completionHandler(.newData);
+    }
+    
+    private func application(application: UIApplication,
+                     didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData)
+    {
+        Messaging.messaging().apnsToken = deviceToken as Data
+    }
+}
+
+extension AppDelegate: MessagingDelegate
+{
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+        print("Firebase registration token: \(fcmToken)")
+
+        let dataDict:[String: String] = ["token": fcmToken]
+        NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
+        
+        InstanceID.instanceID().instanceID { (result, error) in
+            if let error = error {
+                print ("Error fetching remote instance ID: \(error)")
+            } else if let result = result {
+                print ("Remote intance ID token: \(result.token)")
+                Messaging.messaging().subscribe(toTopic: "all");
+            }
+        }
     }
 }

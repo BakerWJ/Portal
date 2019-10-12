@@ -236,7 +236,7 @@ class AppEntryViewController: UIViewController {
     
     private func startSequence ()
     {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.toReady()
         }
     }
@@ -244,20 +244,29 @@ class AppEntryViewController: UIViewController {
     
     private func toReady()
     {
-        UIView.animate(withDuration: 1, delay: 0, options: .curveEaseIn, animations: {
-            self.trainLeading.constant = -315/375.0*self.screenWidth;
-            self.holdOnTop.constant = -112/812.0*self.screenHeight;
-            self.readyTop.constant = 0
-            self.view.layoutIfNeeded();
-        }, completion: { (Finished) in
-            self.toAwait()
-        })
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: 6.0, delay: 0, options: .curveLinear, animations: {
+                self.trainLeading.constant = -889/375.0*self.screenWidth;
+                self.view.layoutIfNeeded()
+            }, completion: nil)
+        }
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: 1, delay: 0, options: .curveLinear, animations: {
+                //self.trainLeading.constant = -315/375.0*self.screenWidth;
+                self.holdOnTop.constant = -112/812.0*self.screenHeight;
+                self.readyTop.constant = 0
+                self.view.layoutIfNeeded();
+            }, completion: { (Finished) in
+                self.toAwait()
+            })
+        }
+        
     }
     
     private func toAwait()
     {
-        UIView.animate(withDuration: 1, delay: 1.5, options: .curveEaseIn, animations: {
-            self.trainLeading.constant = -519/375.0*self.screenWidth;
+        UIView.animate(withDuration: 1, delay: 1.5, options: .curveLinear, animations: {
+            //self.trainLeading.constant = -519/375.0*self.screenWidth;
             self.readyTop.constant = -112/812.0*self.screenHeight;
             self.awaitsTop.constant = 0
             self.view.layoutIfNeeded()
@@ -268,8 +277,8 @@ class AppEntryViewController: UIViewController {
     
     private func toEnd()
     {
-        UIView.animate(withDuration: 1, delay: 1.5, options: .curveEaseIn, animations: {
-            self.trainLeading.constant = -889/375.0*self.screenWidth;
+        UIView.animate(withDuration: 1, delay: 1.5, options: .curveLinear, animations: {
+            //self.trainLeading.constant = -889/375.0*self.screenWidth;
             self.awaitsTop.constant = -112/812.0*self.screenHeight;
             self.whiteHeight.constant += 2000/812.0*self.screenHeight;
             self.whiteTop.constant = -350/812.0*self.screenHeight;
