@@ -13,15 +13,16 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     let w = UIScreen.main.bounds.width;
     let h = UIScreen.main.bounds.height;
     
-    var articles = UserDataSettings.fetchAllArticles()
+    var articles = [Article]();
+    
     var timer: Timer?;
     
     let interactor = Interactor() //this is used by both the newsviewcontroller and articleviewcontroller
     
     var row: Int = 1
-    
+        
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return min(4, articles!.count)
+        return min(4, articles.count)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -67,22 +68,19 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func popArticles() -> [Article] {
-        guard let article = articles else {return [Article]()}
-        let sortedarticles = article.sorted { (article1, article2) -> Bool in
+        let sortedarticles = articles.sorted { (article1, article2) -> Bool in
             return article1.likes > article2.likes
         }
         return sortedarticles
     }
     
     func siftArticles() -> [Article]  {
-        guard let article = articles else {return [Article]()}
-        let shuffled = article.shuffled()
+        let shuffled = articles.shuffled()
         return shuffled;
     }
 
     func newArticles() -> [Article] {
-        guard let article = articles else {return [Article]()}
-        let sortedarticles = article.sorted { (article1, article2) -> Bool in
+        let sortedarticles = articles.sorted { (article1, article2) -> Bool in
             return article1.timestamp as Date >= article2.timestamp as Date
         }
         return sortedarticles
@@ -107,6 +105,7 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     lazy var scrollview: UIScrollView = {
         let view = UIScrollView()
+        
         view.translatesAutoresizingMaskIntoConstraints = false
         view.contentInsetAdjustmentBehavior = .never;
         view.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -147,7 +146,6 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewWillAppear(animated);
         self.refresh()
         timer = Timer.scheduledTimer(timeInterval: 600, target: self, selector: #selector (fireTimer), userInfo: nil, repeats: true);
-        UserDataSettings.updateAll()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -163,7 +161,8 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func refresh ()
     {
-        articles = UserDataSettings.fetchAllArticles()
+        guard let fetched = UserDataSettings.fetchAllArticles() else {return}
+        articles = fetched;
         featuredArticle = getFeatured()
         refreshFeatured()
         sift = self.siftArticles()
@@ -197,10 +196,15 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
             overrideUserInterfaceStyle = .light
         }
         
-        new = self.newArticles()
-        popular = self.popArticles()
-        sift = self.siftArticles()
-        featuredArticle = getFeatured()
+        if let fetched = UserDataSettings.fetchAllArticles()
+        {
+            articles = fetched;
+            new = self.newArticles()
+            popular = self.popArticles()
+            sift = self.siftArticles()
+            featuredArticle = getFeatured()
+        }
+       
         view.addSubview(scrollview)
         setupScroll()
         topText()
@@ -264,7 +268,7 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         DispatchQueue.main.async {
             self.articlesView.reloadData()
             self.articlesView.layoutIfNeeded()
-            self.articlesView.heightAnchor.constraint (equalToConstant: self.articlesView.rowHeight*CGFloat(min(4, self.articles!.count))).isActive = true;
+            self.articlesView.heightAnchor.constraint (equalToConstant: self.articlesView.rowHeight*CGFloat(min(4, self.articles.count))).isActive = true;
         }
         
         view.addSubview(blockView);
@@ -275,7 +279,7 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func setupScroll() {
-        scrollview.bounces = false
+        scrollview.bounces = true;
         scrollview.showsVerticalScrollIndicator = false
         scrollview.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         scrollview.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
@@ -561,6 +565,7 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     @objc func filterSiftTap() {
+        sift = siftArticles()
         clicked = 1
         articlesView.reloadData()
         newLabel.alpha = 0.5

@@ -46,7 +46,9 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         self.delegate = self;
         update()
         initialsetup()
-        UserDataSettings.updateAll();
+        DispatchQueue.main.async {
+            UserDataSettings.updateAll();
+        }
         // Do any additional setup after loading the view.
     }
     

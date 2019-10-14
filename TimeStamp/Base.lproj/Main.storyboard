@@ -165,7 +165,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="uIg-jC-dVq"/>
                     <connections>
-                        <segue destination="BwQ-Ox-5Gd" kind="modal" identifier="article" id="gOe-i5-O3d"/>
+                        <segue destination="BwQ-Ox-5Gd" kind="presentation" identifier="article" id="gOe-i5-O3d"/>
                         <segue destination="5z8-KD-tXI" kind="presentation" identifier="pubf" id="Ojg-eI-mjx"/>
                     </connections>
                 </viewController>

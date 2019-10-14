@@ -733,7 +733,6 @@ class UserDataSettings
                 if(days.typeOfDay[x] != 1 && days.typeOfDay[x] != 4 && results.generalNotifications){
                     let general = UNMutableNotificationContent() //Notification content
                     general.sound = .default
-                    general.badge = 1;
                     var eventName = "";
                     for z in schedule{
                         if(z.value == days.typeOfDay[x]){
@@ -754,7 +753,6 @@ class UserDataSettings
                     let general2 = UNMutableNotificationContent()
                     general2.sound = .default
                     general2.title = eventName;
-                    general2.badge = 1;
                     if (results.daysBefore == 1)
                     {
                         general2.body = "There is \(eventName.lowercased()) tomorrow.";
@@ -812,7 +810,6 @@ class UserDataSettings
             //set the day of notification
             let title = UNMutableNotificationContent()
             title.sound = .default
-            title.badge = 1;
             title.title = each.titleDetail.trimmingCharacters(in: .whitespacesAndNewlines);
             title.body = each.titleDetail.trimmingCharacters(in: .whitespacesAndNewlines);
             title.body += " today \(each.time.trimmingCharacters(in: .whitespacesAndNewlines))";
@@ -825,7 +822,6 @@ class UserDataSettings
             //set the daysBefore notification
             let title2 = UNMutableNotificationContent()
             title2.sound = .default
-            title2.badge = 1;
             title2.title = each.titleDetail.trimmingCharacters(in: .whitespacesAndNewlines);
             title2.body = each.titleDetail.trimmingCharacters(in: .whitespacesAndNewlines);
             guard let notifyDay = Calendar.current.date(byAdding: .day, value: -Int(results.daysBefore), to: each.date as Date)

@@ -302,6 +302,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate, UNUser
     // pressed the Sign In button
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool
     {
+       // Util.printFonts()
         UITabBar.appearance().backgroundImage = UIImage();
         UITabBar.appearance().shadowImage = UIImage();
         //Connection to firebase
@@ -385,6 +386,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate, UNUser
     
     func applicationDidBecomeActive(_ application: UIApplication)
     {
+        //sets the badge number to 0
+        application.applicationIconBadgeNumber = 0;
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
     
@@ -403,18 +406,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate, UNUser
         UserDataSettings.updateAll();
         completionHandler(.newData);
     }
-    
-    private func application(application: UIApplication,
-                     didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData)
-    {
-        Messaging.messaging().apnsToken = deviceToken as Data
-    }
 }
 
 extension AppDelegate: MessagingDelegate
 {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
         print("Firebase registration token: \(fcmToken)")
+        
+        
+        if let user = Auth.auth().currentUser,
+            let email = user.email,
+        email.suffix(13) == "@utschools.ca"
+        {
+            let ref = Firestore.firestore();
+            ref.collection("Users").document(email).setData(["fcmToken" : fcmToken, "name" : user.displayName ?? ""]);
+        }
 
         let dataDict:[String: String] = ["token": fcmToken]
         NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)

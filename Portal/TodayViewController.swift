@@ -17,6 +17,10 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     lazy var nextPeriodView : NextPeriodView = {
         let view = NextPeriodView()
+        if #available(iOSApplicationExtension 13.0, *) {
+            view.nextClassLabel.textColor = UIColor.label
+            view.nextClassTimeLabel.textColor = UIColor.label;
+        }
         view.layer.borderColor = UIColor.clear.cgColor;
         return view;
     }()
@@ -47,6 +51,11 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         label.baselineAdjustment = .alignCenters;
         label.backgroundColor = .clear;
         label.text = "Top Article";
+        if #available(iOSApplicationExtension 13.0, *) {
+            label.textColor = UIColor.label;
+        } else {
+            label.textColor = .black
+        }
         label.adjustsFontSizeToFitWidth = true;
         return label;
     }()
@@ -108,6 +117,9 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         label.text = "What's going on today?";
         label.font = UIFont (name: "SitkaBanner-Bold", size: 20/375.0*screenWidth);
         label.textColor = .black;
+        if #available(iOSApplicationExtension 13.0, *) {
+            label.textColor = UIColor.label;
+        } else {label.textColor = .black;}
         label.numberOfLines = 1;
         label.adjustsFontSizeToFitWidth = true;
         return label;
@@ -118,6 +130,9 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         label.textColor = .black;
         label.font = UIFont (name: "SitkaBanner-Bold", size: 20/375.0*screenWidth);
         label.textAlignment = .left;
+        if #available(iOSApplicationExtension 13.0, *) {
+            label.textColor = UIColor.label;
+        } else {label.textColor = .black;}
         label.numberOfLines = 1;
         label.adjustsFontSizeToFitWidth = true;
         return label;
@@ -341,5 +356,4 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         let url: URL = URL(string: scheme + "main")!
         extensionContext?.open(url, completionHandler: nil);
     }
-    
 }
