@@ -24,7 +24,6 @@ class LogInToGetStarted: UIStoryboardSegue
             let fromVC = self.source as! SignInViewController;
             let toVC = self.destination as! GetStartedViewController;
             
-            fromVC.getStartedLeading.constant -= self.screenWidth;
             fromVC.imageWidth.constant = 0;
             
             toVC.view.layer.opacity = 0;

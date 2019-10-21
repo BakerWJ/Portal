@@ -317,6 +317,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             label.textAlignment = .center;
             label.numberOfLines = 0;
             label.text = each.titleDetail.trimmingCharacters(in: .whitespacesAndNewlines) + "\n" + each.time.trimmingCharacters(in: .whitespacesAndNewlines);
+            label.layoutIfNeeded();
         }
     }
 
@@ -332,8 +333,9 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
         let expanded = activeDisplayMode == .expanded
-        preferredContentSize = expanded ? CGSize(width: maxSize.width, height: screenHeight - 126/812.0*screenHeight) : maxSize
-        print (maxSize)
+        var maxHeight = 376.5/670.0*screenHeight;
+        maxHeight += CGFloat(stackView.arrangedSubviews.count)*40.0/375.0*screenWidth;
+        preferredContentSize = expanded ? CGSize(width: maxSize.width, height: maxHeight) : maxSize
     }
     
     //goes to the schedule for today

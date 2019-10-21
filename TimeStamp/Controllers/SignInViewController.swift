@@ -33,23 +33,7 @@ class SignInViewController: UIViewController
         return button;
     }()
     
-    lazy var getStartedLabel: UILabel = {
-        let label = UILabel ();
-        let text = NSMutableAttributedString (string: "Hi! ", attributes: [.font: UIFont(name: "SitkaBanner-Bold", size: 20/375.0*screenWidth) ?? UIFont.systemFont(ofSize: 20/375.0*screenWidth, weight: .bold)]);
-        text.append(NSMutableAttributedString(string: "Let's get you Started!", attributes: [.font: UIFont(name: "SitkaBanner", size: 20/375.0*screenWidth) ?? UIFont.systemFont(ofSize: 20/375.0*screenWidth)]));
-        label.attributedText = text;
-        label.textColor = UIColor.getColor(40, 73, 164);
-        label.backgroundColor = .clear;
-        return label;
-    }()
-    
     let imageView = UIImageView (image: UIImage(named: "signInImage"));
-    
-    lazy var movingRect: UIView = {
-        let view = UIView ()
-        view.backgroundColor = UIColor.getColor(223, 168, 144)
-        return view;
-    }()
     
     lazy var appleSignIn: UIButton = {
         let button = UIButton ();
@@ -175,7 +159,7 @@ class SignInViewController: UIViewController
         view.addSubview (signInButton);
         signInButton.translatesAutoresizingMaskIntoConstraints = false;
         signInButton.centerXAnchor.constraint (equalTo: view.centerXAnchor).isActive = true;
-        signInButton.topAnchor.constraint (equalTo: view.topAnchor, constant: 696/812.0*screenHeight).isActive = true;
+        signInButton.topAnchor.constraint (equalTo: view.topAnchor, constant: 656/812.0*screenHeight).isActive = true;
         signInButton.heightAnchor.constraint (equalToConstant: 45/812.0*screenHeight).isActive = true;
         signInButton.widthAnchor.constraint (equalToConstant: 307/375.0*screenWidth).isActive = true;
         signInButton.layoutIfNeeded();
@@ -193,23 +177,6 @@ class SignInViewController: UIViewController
         appleSignIn.layer.cornerRadius = appleSignIn.frame.height/3;
         appleSignIn.isUserInteractionEnabled = true;
         appleSignIn.dropShadow()
-        
-        //add the let's get you started label
-        view.addSubview(getStartedLabel);
-        getStartedLabel.translatesAutoresizingMaskIntoConstraints = false;
-        getStartedLeading = getStartedLabel.leadingAnchor.constraint (equalTo: view.leadingAnchor, constant: 88/375.0*screenWidth);
-        getStartedLeading.isActive = true;
-        getStartedLabel.topAnchor.constraint (equalTo: view.topAnchor, constant: 654/812.0*screenHeight).isActive = true;
-        getStartedLabel.widthAnchor.constraint (equalToConstant: 199/375.0*screenWidth).isActive = true;
-        getStartedLabel.heightAnchor.constraint (equalToConstant: 20/812.0*screenHeight).isActive = true;
-        
-        //add the moving rectangle (line)
-        view.addSubview(movingRect);
-        movingRect.translatesAutoresizingMaskIntoConstraints = false;
-        movingRect.leadingAnchor.constraint (equalTo: getStartedLabel.leadingAnchor).isActive = true;
-        movingRect.heightAnchor.constraint (equalToConstant: 2/812.0*screenHeight).isActive = true;
-        movingRect.widthAnchor.constraint (equalToConstant: 287/375.0*screenWidth).isActive = true;
-        movingRect.topAnchor.constraint (equalTo: getStartedLabel.bottomAnchor).isActive = true;
 
         //add the image
         view.addSubview(imageView);

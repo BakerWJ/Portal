@@ -30,7 +30,7 @@ class UpcomingDaysView: UIStackView
     let screenWidth = UIScreen.main.bounds.width;
     let screenHeight = UIScreen.main.bounds.height;
     
-    var numDays: Int = 3;
+    var numDays: Int = 4;
     weak var delegate: MainPageViewController?
     
     //model

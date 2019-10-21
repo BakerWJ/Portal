@@ -168,8 +168,11 @@ class MainPageViewController: UIViewController {
         return view
     }()
     
+    
+    let scrollView = UIScrollView()
+
     lazy var nextFewDaysView: UpcomingDaysView = {
-        let view = UpcomingDaysView(numDays: 3, delegate: self);
+        let view = UpcomingDaysView(numDays: 4, delegate: self);
         return view;
     }()
     
@@ -264,13 +267,27 @@ class MainPageViewController: UIViewController {
         topArticleLabel.heightAnchor.constraint (equalToConstant: 40/812.0*screenHeight).isActive = true;
         topArticleLabel.widthAnchor.constraint (equalToConstant: 93/375.0*screenWidth).isActive = true;
         
-        view.addSubview(nextFewDaysView);
-        nextFewDaysView.translatesAutoresizingMaskIntoConstraints = false;
-        nextDaysCenter = nextFewDaysView.centerXAnchor.constraint (equalTo: view.centerXAnchor)
+        //this embeds the five day views at the bottom
+        view.addSubview (scrollView);
+        scrollView.translatesAutoresizingMaskIntoConstraints = false;
+        scrollView.widthAnchor.constraint (equalToConstant: 335.0/375.0*screenWidth).isActive = true;
+        scrollView.heightAnchor.constraint(equalToConstant: 207/812.0*screenHeight).isActive = true;
+        scrollView.topAnchor.constraint (equalTo: view.topAnchor, constant: 499/812.0*screenHeight).isActive = true;
+        nextDaysCenter = scrollView.centerXAnchor.constraint (equalTo: view.centerXAnchor)
         nextDaysCenter.isActive = true;
-        nextFewDaysView.topAnchor.constraint (equalTo: view.topAnchor, constant: 499/812.0*screenHeight).isActive = true;
+        scrollView.showsHorizontalScrollIndicator = false;
+        scrollView.showsVerticalScrollIndicator = false;
+        scrollView.alwaysBounceVertical = false;
+        scrollView.alwaysBounceHorizontal = true;
+        
+        scrollView.addSubview(nextFewDaysView);
+        nextFewDaysView.translatesAutoresizingMaskIntoConstraints = false;
+        nextFewDaysView.topAnchor.constraint (equalTo: scrollView.topAnchor).isActive = true;
         nextFewDaysView.heightAnchor.constraint (equalToConstant: 207/812.0*screenHeight).isActive = true;
-        nextFewDaysView.widthAnchor.constraint (equalToConstant: 335/375.0*screenWidth).isActive = true;
+        nextFewDaysView.bottomAnchor.constraint (equalTo: scrollView.bottomAnchor).isActive = true;
+        nextFewDaysView.leadingAnchor.constraint (equalTo: scrollView.leadingAnchor).isActive = true;
+        nextFewDaysView.trailingAnchor.constraint (equalTo: scrollView.trailingAnchor).isActive = true;
+        nextFewDaysView.widthAnchor.constraint (equalToConstant: 453.7/375.0*screenWidth).isActive = true;
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(featured))
         view.addSubview(blueBubble)

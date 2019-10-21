@@ -85,7 +85,7 @@ class ArticleViewController: UIViewController, FaveButtonDelegate, UIScrollViewD
     
     let textLabel:UILabel = {
         let textLayer = UILabel()
-        textLayer.font = UIFont(name: "SitkaBanner", size: 20/375*UIScreen.main.bounds.width)
+        textLayer.font = UIFont(name: "SitkaBanner", size: 17/375*UIScreen.main.bounds.width)
         textLayer.textColor = UIColor.black
         textLayer.translatesAutoresizingMaskIntoConstraints = false
         textLayer.numberOfLines = 0

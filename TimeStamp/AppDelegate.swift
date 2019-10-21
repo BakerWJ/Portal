@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate, UNUser
     //MARK: Google Sign In
     //handle the url received at the end of the authentification process
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        if (url.scheme == "com.googleusercontent.apps.367766824243-2lift2fsdd0d6nmvi4uic7grt3e60r1l")
+        if (url.scheme == "com.googleusercontent.apps.367766824243-b9fpri49400530qa1lsnjgt28ad5viu2")
         {
             if (UserDefaults.standard.bool(forKey: "loggedin") && UserDefaults.standard.bool(forKey: "notFirstTimeLaunch"))
             {
