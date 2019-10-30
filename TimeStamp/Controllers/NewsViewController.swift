@@ -22,7 +22,7 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var row: Int = 1
         
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return min(4, articles.count)
+        return min(6, articles.count)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -103,9 +103,10 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     let articlesView = UITableView() // Bottom articles
     
+    var tableViewHeight = NSLayoutConstraint();
+    
     lazy var scrollview: UIScrollView = {
         let view = UIScrollView()
-        
         view.translatesAutoresizingMaskIntoConstraints = false
         view.contentInsetAdjustmentBehavior = .never;
         view.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -168,7 +169,11 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         sift = self.siftArticles()
         new = self.newArticles()
         popular = self.popArticles()
-        articlesView.reloadData()
+        DispatchQueue.main.async {
+            self.articlesView.reloadData()
+            self.articlesView.layoutIfNeeded()
+            self.tableViewHeight.constant = self.articlesView.rowHeight*CGFloat(min(6, self.articles.count));
+        }
     }
     
     private func refreshFeatured()
@@ -268,7 +273,8 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         DispatchQueue.main.async {
             self.articlesView.reloadData()
             self.articlesView.layoutIfNeeded()
-            self.articlesView.heightAnchor.constraint (equalToConstant: self.articlesView.rowHeight*CGFloat(min(4, self.articles.count))).isActive = true;
+            self.tableViewHeight = self.articlesView.heightAnchor.constraint (equalToConstant: self.articlesView.rowHeight*CGFloat(min(6, self.articles.count)));
+            self.tableViewHeight.isActive = true;
         }
         
         view.addSubview(blockView);

@@ -110,7 +110,7 @@ class NextPeriodView: UIView {
         if let schedules = UserDataSettings.fetchAllSchedules(),
             let weeklySchedule = UserDataSettings.fetchWeeklySchedule()
         {
-            for x in 1..<5
+            for x in 1...5
             {
                 let day = Util.next(days: x);
                 let weekday = calendar.component(.weekday, from: day as Date);

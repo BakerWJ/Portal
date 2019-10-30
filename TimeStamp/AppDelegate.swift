@@ -365,6 +365,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate, UNUser
     
     func applicationWillEnterForeground(_ application: UIApplication)
     {
+        application.applicationIconBadgeNumber = 0;
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
         if let window = self.window
         {
@@ -379,9 +380,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate, UNUser
                 {
                     vc.refresh()
                 }
+                else if let vc = currVC as? MainPageViewController
+                {
+                    vc.refresh();
+                }
             }
         }
-        
     }
     
     func applicationDidBecomeActive(_ application: UIApplication)

@@ -199,7 +199,7 @@ class MainPageViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated);
         self.refresh()
-        timer = Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector (fireTimer), userInfo: nil, repeats: true);
+        timer = Timer.scheduledTimer(timeInterval: 15, target: self, selector: #selector (fireTimer), userInfo: nil, repeats: true);
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -362,7 +362,7 @@ class MainPageViewController: UIViewController {
         self.refresh()
     }
     
-    private func refresh ()
+    func refresh ()
     {
         nextClassView.refresh()
         nextFewDaysView.refresh();

@@ -29,8 +29,15 @@ class ArticleViewController: UIViewController, FaveButtonDelegate, UIScrollViewD
             authorLabel.text = articleItem.author
             titleLabel.text = articleItem.title
             textLabel.text = articleItem.text
+            wordCountLabel.text = "Word Count: \(getWords(str: textLabel.text))";
             heartButton.setSelected(selected: articleItem.liked, animated: false)
         }
+    }
+    
+    private func getWords (str: String?) -> Int
+    {
+        guard let str = str else {return 0;}
+        return str.split {$0 == " "}.count;
     }
     
     var source: Int?
@@ -93,6 +100,18 @@ class ArticleViewController: UIViewController, FaveButtonDelegate, UIScrollViewD
         return textLayer
     }()
     
+    lazy var wordCountLabel : UILabel = {
+        let label = UILabel ();
+        label.textColor = .black;
+        label.text = "Word Count: 0";
+        label.font = UIFont (name: "SitkaBanner", size: 16/375.0*w);
+        label.translatesAutoresizingMaskIntoConstraints = false;
+        label.numberOfLines = 1;
+        label.textAlignment = .right;
+        label.adjustsFontSizeToFitWidth = true;
+        return label;
+    }()
+    
     lazy var backButton: UIImageView = {
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         let articleImage = UIImage(named: "Taskbar")
@@ -128,8 +147,14 @@ class ArticleViewController: UIViewController, FaveButtonDelegate, UIScrollViewD
         
         authorLabel.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 18/375*w).isActive = true
         authorLabel.leftAnchor.constraint(equalTo: self.scrollview.leftAnchor, constant: 36/375*w).isActive = true
-        authorLabel.widthAnchor.constraint(equalToConstant: 300/375*w).isActive = true
+        authorLabel.widthAnchor.constraint(equalToConstant: 180/375*w).isActive = true
         authorLabel.heightAnchor.constraint(equalToConstant: 14/375*w).isActive = true
+        
+        self.scrollview.addSubview(wordCountLabel);
+        wordCountLabel.widthAnchor.constraint(equalToConstant: 120/375.0*w).isActive = true;
+        wordCountLabel.centerYAnchor.constraint (equalTo: authorLabel.centerYAnchor).isActive = true;
+        wordCountLabel.leftAnchor.constraint (equalTo: authorLabel.rightAnchor).isActive = true;
+        wordCountLabel.heightAnchor.constraint(equalTo: authorLabel.heightAnchor).isActive = true;
         
         textLabel.topAnchor.constraint(equalTo: self.authorLabel.bottomAnchor, constant: 39/375*w).isActive = true
         textLabel.leftAnchor.constraint(equalTo: self.scrollview.leftAnchor, constant: 36/375*w).isActive = true
