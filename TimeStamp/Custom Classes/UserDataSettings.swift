@@ -816,7 +816,7 @@ class UserDataSettings
             var time = Calendar.current.dateComponents([.year, .month, .day], from: each.date as Date);
             //gets notifiied in the morning for "day of" events
             time.hour = 7;
-            time.minute = Int.random(in: 20...30);
+            time.minute = 20//Int.random(in: 20...30);
             
             
             //set the daysBefore notification
@@ -849,6 +849,7 @@ class UserDataSettings
             
             let trigger = UNCalendarNotificationTrigger(dateMatching: time, repeats: false)
             requests.append(UNNotificationRequest(identifier: UUID().uuidString, content: title, trigger: trigger))
+            
             let trigger2 = UNCalendarNotificationTrigger(dateMatching: time2, repeats: false)
             requests.append(UNNotificationRequest(identifier: UUID().uuidString, content: title2, trigger: trigger2))
         }
@@ -857,7 +858,12 @@ class UserDataSettings
         let notificationCenter = UNUserNotificationCenter.current()
         for request in requests
         {
-            notificationCenter.add(request)
+            if let trigger = request.trigger as? UNCalendarNotificationTrigger,
+                let triggerdate = Calendar.current.date(from: trigger.dateComponents),
+                triggerdate > Date()
+            {
+                notificationCenter.add(request);
+            }
         }
     }
     

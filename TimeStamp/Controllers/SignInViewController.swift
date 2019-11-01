@@ -153,6 +153,7 @@ class SignInViewController: UIViewController
     private func setup ()
     {
         view.backgroundColor = .white;
+        view.clipsToBounds = true;
         GIDSignIn.sharedInstance()?.presentingViewController = self;
         
         //add sign in button
