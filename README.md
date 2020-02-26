@@ -9,7 +9,7 @@
 
 ## Introduction
 
-Designed to organize the large amounts of information relating to schedules, news, and events at schools in an easily accessible place. Built for UTS students, formerly known as TimeStamp.
+Designed to organize the large amounts of information relating to schedules, news, and events at schools in an easily accessible place. Built for UTS students, formerly known as TimeStamp. New repo for reat native version: https://github.com/dkantereivin/uts-portal-react
 
 **Available for iOS.**
 
