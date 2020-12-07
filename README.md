@@ -1,4 +1,4 @@
-<h1 align="center"> Timestamp </h1> <br>
+<h1 align="center"> Portal </h1> <br>
 <p align="center">
     <img alt="Portal" title="Portal" src="https://i.imgur.com/lVF6dK8.png" width="150">
 </p>
